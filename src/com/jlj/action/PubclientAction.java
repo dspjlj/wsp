@@ -36,7 +36,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	//登陆-用户名、密码、验证码参数
 	private String username;
 	private String password;
-	private String validate;
+//	private String validate;
+	//修改个人信息的属性
+	private String phone;
+	private String qq;
+	private String email;
 	//分页显示
 	private String[] arg=new String[2];
 	private List<Pubclient> pubclients;
@@ -81,15 +85,15 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 			return "adminLogin";
 		}
 		Pubclient pubclient=pubclientService.userlogin(username,password);
-		String code=(String) session.get("code");
+//		String code=(String) session.get("code");
 		if(pubclient==null){
 			String loginfail="用户名或密码输入有误";
 			request.put("loginFail", loginfail);
 			return "adminLogin";
-		}else if(validate==null||!validate.equalsIgnoreCase(code)){
-			String loginfail="验证码输入有误";
-			request.put("loginFail", loginfail);
-			return "adminLogin";
+//		}else if(validate==null||!validate.equalsIgnoreCase(code)){
+//			String loginfail="验证码输入有误";
+//			request.put("loginFail", loginfail);
+//			return "adminLogin";
 		}else{
 			session.put("pubclient", pubclient);
 			return "loginSucc";
@@ -159,6 +163,27 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		arg[1]="公众号管理";
 		return SUCCESS;
 	}
+	
+	/**
+	 * 修改个人的信息
+	 * @return
+	 */
+	public String updateself() throws Exception{
+		Pubclient pubclient1 = (Pubclient)session.get("pubclient");
+		int id = 0;
+		if(pubclient1!=null){
+			id = pubclient1.getId();
+		}else{
+			String loginfail="会话已过期，请重新登录";
+			request.put("loginFail", loginfail);
+			return "adminLogin";
+		}
+		pubclientService.updateBaseInfoById(phone,qq,email,id);
+		arg[0]="pubclientAction!list";
+		arg[1]="公众号管理";
+		return SUCCESS;
+	}
+	
 	/**
 	 * 查看信息
 	 * @return
@@ -269,12 +294,12 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		return pubclient;
 	}
 
-	public String getValidate() {
-		return validate;
-	}
-	public void setValidate(String validate) {
-		this.validate = validate;
-	}
+//	public String getValidate() {
+//		return validate;
+//	}
+//	public void setValidate(String validate) {
+//		this.validate = validate;
+//	}
 	public List<Pubclient> getPubclients() {
 		return pubclients;
 	}
@@ -354,6 +379,24 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 
 	public void setFrontpa(String frontpa) {
 		this.frontpa = frontpa;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getQq() {
+		return qq;
+	}
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

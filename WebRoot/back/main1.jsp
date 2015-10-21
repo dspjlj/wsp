@@ -1,4 +1,10 @@
-
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!doctype html>
 <html>
 <head>
@@ -168,7 +174,7 @@ $(function(){
                 </div>
                 <ul class="subnav-menu" style="display: block">
                     <li>
-                        <a href="user_mine_update.html">账户信息</a>
+                        <a href="pubclient_self_update.jsp">账户信息</a>
                     </li>
                     <li>
                         <a href="user_mine_updatePwd.html">修改密码</a>

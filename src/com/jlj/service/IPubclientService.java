@@ -40,4 +40,7 @@ public interface IPubclientService {
 
 	public abstract Pubclient queryPubclientByFrontpa(String frontpa);
 
+	public abstract void updateBaseInfoById(String phone, String qq,
+			String email, int id);
+
 }

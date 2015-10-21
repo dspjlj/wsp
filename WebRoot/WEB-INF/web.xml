@@ -6,7 +6,7 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   
   <welcome-file-list>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>back/login.jsp</welcome-file>
   </welcome-file-list>
   <listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -63,6 +63,11 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404page.jsp</location>
+	</error-page>
 	
 	<!-- 
 	<filter>
