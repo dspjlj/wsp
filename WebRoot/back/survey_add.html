@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>微调研设置</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+
+<link rel="stylesheet" href="css/admin/bootstrap.min.css">
+<link rel="stylesheet" href="css/admin/admin.css">
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+<style type="text/css">
+table td {
+	min-width:50px;
+	overflow:hidden;text-overflow:ellipsis;
+}
+#picsethere{
+	width: 510px;
+	display: block;
+}
+#picsethere img{
+	max-width: 500px;
+	display: block;
+}
+</style>
+</head>
+<body>
+	<h3>微调研设置</h3>
+	<div class="alert alert-info">
+		<p><span class="bold">说明：</span>微调研的目的是获得系统客观的收集信息研究数据，为决策做准备。</p>
+		<p><span class="bold">当前地址：</span>http://www.di3p.com/wx/wdy-.html?&wid=10652</p>
+	</div>
+	<form class="form-horizontal" id="lbsForm" action="" method="post"><input type="hidden" value="54dac5d4eee48" name="YYUC_FORM_TOKEN"/>
+		<input type="hidden" value = "" name="C1lSS1ttEkIXQ1QYZA1S" id="micro_surveyid" />	
+		<div class="control-group">
+			<label class="control-label" for="keyword">微调研名称</label>
+			<div class="controls">
+				<input type="text"   value="" name="C1lSS1ttEkIXQ1QYZApXC1I=" id="micro_surveyname" class="span4"/><span class="maroon">*</span>
+				<span class="help-inline">最多只能输入30个字符。</span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="keyword">微调研键字</label>
+			<div class="controls">
+				<input type="text"   value="" name="C1lSS1ttEkIXQ1QYZANcHA==" id="micro_surveygjz" class="span4"/><span class="maroon">*</span>
+				<span class="help-inline">最多只能输入20个字符。</span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="location_p">微调研开始时间</label>
+			<div class="controls">
+				<input type="text"   value=""  id="micro_surveykssj"  class="Wdate" name="startdate" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})" />	    	
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="category_f">微调研结束时间</label>
+			<div class="controls">
+				<input type="text"   value=""  id="micro_surveyjssj"  class="Wdate" name="enddate=" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>	    	</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="">微调研展示图片</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage1','myfile1');" id="myfile1"/><br/>
+                                    <img alt="暂无图片" src="" id="myimage1" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：700像素 * 380像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="picsethere">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="detail">微调研简述:</label>
+				<div class="controls">
+					<textarea name="C1lSS1ttEkIXQ1QYZAlF"   id="micro_surveyms" class="span5" style="height:90px;width:520px;"></textarea>				<span class="maroon">*</span><br><span class="help-inline">最多为1000个字符。</span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<div class="controls">
+
+					<button id="save-btn" type="submit" class="btn btn-primary btn-large">保存并开启</button>
+
+				</div>
+			</div>
+		</form>
+		<script type="text/javascript" src="js/comm.js"></script>
+		<script type="text/javascript">
+                                                function change(myimage,myfile) {
+                                                    var pic = document.getElementById(myimage),
+                                                    file = document.getElementById(myfile);
+
+                                                    var ext=file.value.substring(file.value.lastIndexOf(".")+1).toLowerCase();
+
+                                                 // gif在IE浏览器暂时无法显示
+                                                 if(ext!='png'&&ext!='jpg'&&ext!='jpeg'){
+                                                    alert("图片的格式必须为png或者jpg或者jpeg格式！"); 
+                                                    return;
+                                                 }
+                                                 var isIE = navigator.userAgent.match(/MSIE/)!= null,
+                                                 isIE6 = navigator.userAgent.match(/MSIE 6.0/)!= null;
+
+                                                 if(isIE) {
+                                                    file.select();
+                                                    var reallocalpath = document.selection.createRange().text;
+
+                                                    // IE6浏览器设置img的src为本地路径可以直接显示图片
+                                                    if (isIE6) {
+                                                        pic.src = reallocalpath;
+                                                    }else {
+                                                        // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+                                                        pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+                                                         // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+                                                         pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+                                                     }
+                                                 }else {
+                                                    html5Reader(pic,file);
+                                                 }
+                                                 pic.alt = '图片';
+                                             }
+                                             
+                                             function html5Reader(pic,file){
+                                                var file = file.files[0];
+                                                var reader = new FileReader();
+                                                reader.readAsDataURL(file);
+                                                reader.onload = function(e){
+                                                     //var pic = document.getElementById("myimage1");
+                                                     pic.src=this.result;
+                                                 }
+                                             }
+</script>
+		<script type="text/javascript">
+		$(function(){
+			$("#lbsForm").submit(function(){
+				var cansv= true;
+				$(this).find('input[type="text"],select,textarea').each(function(){
+					if($.trim($(this).val())=='' && $(this).attr('noneed')!='1'){
+						cansv = false;
+						$(this).css('backgroundColor','yellow');
+						$(this).one('focus',function(){
+							$(this).css('backgroundColor','transparent');
+						});
+					}
+				});
+				if(!cansv){
+					tusi('请将信息填写完整');
+					return false;
+				}
+				$(this).find('input[type="text"],select,textarea').each(function(){
+					if($(this).attr('isint')=='1' && $.trim($(this).val())!=''){
+						var intthis = parseInt2($(this).val());
+						if(intthis+''=='NaN'){
+							cansv = false;
+							$(this).css('backgroundColor','yellow');
+							$(this).one('focus',function(){
+								$(this).css('backgroundColor','transparent');
+							});
+						}else{
+							$(this).val(parseInt($(this).val()));
+						}
+					}
+				});
+				if(!cansv){
+					tusi('标注的项目必须为整数');
+					return false;
+				}
+
+				$(this).find('input[type="text"],select,textarea').each(function(){
+					if($(this).attr('isfloat')=='1' && $.trim($(this).val())!=''){
+						var intthis = parseFloat($(this).val());
+						if(intthis+''=='NaN'){
+							$(this).val('0');
+							cansv = false;
+							$(this).css('backgroundColor','yellow');
+							$(this).one('focus',function(){
+								$(this).css('backgroundColor','transparent');
+							});
+						}else{
+							$(this).val(parseFloat($(this).val()));
+						}
+					}
+				});
+				if(!cansv){
+					tusi('标注的项目必须为数字');
+					return false;
+				}
+
+				if($('#picsethere').find('img').size()<1){
+					cansv = false;
+					tusi('请上传活动图片');
+					return false;
+				}
+				return cansv;
+			});
+});
+</script>
+<br/><br/><br/></body>
+
+</html>

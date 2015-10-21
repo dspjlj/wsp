@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>地理位置定位</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+<link rel="stylesheet" href="css/admin/bootstrap.min.css">
+<link rel="stylesheet" href="css/admin/admin.css">
+<style type="text/css">
+	table td {
+		min-width:50px;
+		overflow:hidden;text-overflow:ellipsis;
+	}
+	#picsethere{
+		width: 510px;
+		display: block;
+	}
+	#picsethere img{
+		max-width: 500px;
+		display: block;
+	}
+</style>
+
+<script src="http://api.map.baidu.com/api?v=1.5&ak=1b0ace7dde0245f796844a06fb112734"></script>
+
+</head>
+<body>
+	<h3>商家LBS设置</h3>
+	<div class="alert alert-info">
+	  	<p><span class="bold">说明：</span>开启LBS功能后用户可在微信上发送地理位置获取商家的地理位置信息。</p>
+	</div>
+	<form class="form-horizontal" id="lbsForm" action="" method="post"><input type="hidden" value="54dc133ed18ac" name="YYUC_FORM_TOKEN"/><input type="hidden" value = "" name="X1RAMl1R" id="lbsid" /><input type="hidden" value = "116.403694" name="X1RAMl5R" id="lbsjd" /><input type="hidden" value = "39.916042" name="X1RAMkNR" id="lbswd" />		<div class="control-group">
+	    	<label class="control-label" for="keyword">商家名称</label>
+	    	<div class="controls">
+	    	<input type="text"   value="" name="X1RAMlpUXgQ=" id="lbsname" class="span4"/>		    	<span class="maroon">*</span>
+		    	<span class="help-inline">最多只能输入30个字符。</span>
+	    	</div>
+	  	</div>
+		<div class="control-group">
+	    	<label class="control-label" for="location_p">商家所在地区</label>
+	    	<div class="controls">
+	    	<select seluuid="54dc133ed1c9a" selindex="0"   name="X1RAMlhqQAlRCF8="  id="lbsl_sheng"  onchange="YYUC_getnextsel(this,'VlBQDwAFRVRX','')" onblur="YYUC_getnextsel(this,'VlBQDwAFRVRX','')" yy_autotext="X1RAMmdwfz5gPmxnCWtAUFxfUA=="><option value="" >--请选择--</option><option value="1" >北京市</option><option value="22" >天津市</option><option value="43" >河北省</option><option value="238" >山西省</option><option value="380" >内蒙古自治区</option><option value="503" >辽宁省</option><option value="632" >吉林省</option><option value="710" >黑龙江省</option><option value="868" >上海市</option><option value="890" >江苏省</option><option value="1023" >浙江省</option><option value="1136" >安徽省</option><option value="1276" >福建省</option><option value="1380" >江西省</option><option value="1502" >山东省</option><option value="1677" >河南省</option><option value="1871" >湖北省</option><option value="2000" >湖南省</option><option value="2150" >广东省</option><option value="2312" >广西壮族自治区</option><option value="2450" >海南省</option><option value="2479" >重庆市</option><option value="2522" >四川省</option><option value="2743" >贵州省</option><option value="2844" >云南省</option><option value="2998" >西藏自治区</option><option value="3080" >陕西省</option><option value="3208" >甘肃省</option><option value="3321" >青海省</option><option value="3374" >宁夏回族自治区</option><option value="3406" >新疆维吾尔自治区</option><option value="3522" >台湾省</option><option value="3523" >香港特别行政区</option><option value="3524" >澳门特别行政区</option></select><select seluuid="54dc133ed1c9a" selindex="1"   name="X1RAMlhqQAld"  id="lbsl_shi"  onchange="YYUC_getnextsel(this,'VlBQDwAFRVRX','')" onblur="YYUC_getnextsel(this,'VlBQDwAFRVRX','')" yy_autotext="X1RAMmdwfz5gPmxnCWtAUFA="><option value="" >--请选择--</option></select><select seluuid="54dc133ed1c9a" selindex="2"   name="X1RAMlhqSwhVCElN"  id="lbsl_xianqu"   yy_autotext="X1RAMmdwfz5gPmxnCWtLUVhfRkI="><option value="" >--请选择--</option></select>	    	</div>
+	  	</div>
+	  
+	  	<div class="control-group">
+	    	<label class="control-label" for="category_f">商家类别</label>
+	    	<div class="controls">
+	    	<select seluuid="54dc133ed2211" selindex="0"   name="X1RAMlhqWg9QVw=="  id="lbsl_ind1"  onchange="YYUC_getnextsel(this,'XFZdFBIQRUg=','')" onblur="YYUC_getnextsel(this,'XFZdFBIQRUg=','')" yy_autotext="X1RAMmdwfz5gPmxnCWtaVl0A"><option value="" >--请选择--</option><option value="2" >金融业</option><option value="9" >教育</option><option value="13" >大中小型企业</option><option value="17" >建筑</option><option value="20" >旅游</option><option value="23" >餐饮</option><option value="26" >娱乐</option><option value="30" >美容</option><option value="33" >商超</option><option value="36" >物流</option><option value="39" >汽车</option><option value="42" >事业机构</option></select><select seluuid="54dc133ed2211" selindex="1"   name="X1RAMlhqWg9QVA=="  id="lbsl_ind2"   yy_autotext="X1RAMmdwfz5gPmxnCWtaVl0D"><option value="" >--请选择--</option></select>	    	</div>
+	  	</div>
+	 
+		<div class="control-group">
+			<label class="control-label" for="address">地址:</label>
+			<div class="controls">
+			<input type="text"   value="" name="X1RAMlVRVxNRFUs=" id="lbsaddress" class="span5"/>				<button id="locate-btn" class="btn btn-primary">定位</button>
+				<span class="maroon">*</span><br>
+				<span class="help-inline">输入地址后，点击“自动定位”按钮可以在地图上定位。</span><br>
+				<span class="help-inline">（如果输入地址后无法定位，请在地图上直接点击选择地点）</span>
+			</div>
+		</div>
+		<div class="control-group">
+			<div id="map" style="width: 600px;height: 300px;margin-left: 100px;"></div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="address">电话:</label>
+			<div class="controls">
+			<input type="text"   value="" name="X1RAMkBQXw==" id="lbstel" class="span5"/>				<span class="maroon">*</span><br>
+			</div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label" for="">商家展示图片:</label>
+		    <div class="controls">
+			    <div class="cover-area">
+					<table style="height: 30px;overflow: hidden;">
+					<tr>
+					<td><iframe name="YYUC_03b826a44aa1daa7bc5a046deb4dc774_if" style="position:absolute; left:-10000px;"></iframe>
+<table  style="border:none;padding:0;margin:0;width:auto;display: inline-block;"><tr style="border:none;padding:0;margin:0;"><td style="border:none;padding:0;margin:0;width:auto;">
+<div style="display:none" id="YYUC_03b826a44aa1daa7bc5a046deb4dc774_div" action="/@system/upload.html" method="post" enctype="multipart/form-data" target="YYUC_03b826a44aa1daa7bc5a046deb4dc774_if">
+<span style="display:-moz-inline-box;display:inline-block;width:100px;height:32px;line-height: 32px;position: relative;">
+<input name="YYUC_UPLOAD_file" style="position: absolute;height: 100%;width:100px;right: 0;z-index:2" type="file"/>
+<input src="" type="button" style="display:block; position: absolute;height: 100%;width:100%;z-index:1;line-height: 25px;font-size:15px;color:#000000;text-align: center;" value="上传图片"/>
+</span>
+<input type="hidden" name="YYUC_UPLOAD_SIZE" value="600"/>
+<input type="hidden" name="YYUC_UPLOAD_ID" value="YYUC_03b826a44aa1daa7bc5a046deb4dc774"/></div>
+</td><td style="border:none;padding:0;margin:0;width:auto;">
+<span id="YYUC_03b826a44aa1daa7bc5a046deb4dc774_span" style="display:-moz-inline-box;display:inline-block;width:100px;height:32px;">
+</span>
+</td><td style="border:none;padding:0;margin:0;width:auto;"><span id="YYUC_03b826a44aa1daa7bc5a046deb4dc774_loadpic" style="display: none;"><img src="res/18.gif"/></span></td></tr></table>
+<input type="hidden" name="lbsT08d9e827ffbba2efe4413cb064bbf847pic" id="YYUC_03b826a44aa1daa7bc5a046deb4dc774_text" value=""/>
+<script>
+$(function(){	var YYUC_03b826a44aa1daa7bc5a046deb4dc774_form = window.YYUC_03b826a44aa1daa7bc5a046deb4dc774_form = $('<form style="position: absolute;left:-10000px;" id="YYUC_03b826a44aa1daa7bc5a046deb4dc774" action="/@system/upload.html" method="post" enctype="multipart/form-data" target="YYUC_03b826a44aa1daa7bc5a046deb4dc774_if"></form>');
+	$('body').append(YYUC_03b826a44aa1daa7bc5a046deb4dc774_form);
+	YYUC_03b826a44aa1daa7bc5a046deb4dc774_form.html($('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_div').html());
+	$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_div').remove();
+	window.YYUC_03b826a44aa1daa7bc5a046deb4dc774_resize = function(){
+	if($('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_span').is(':hidden')){
+		YYUC_03b826a44aa1daa7bc5a046deb4dc774_form.hide();
+	}else{
+		YYUC_03b826a44aa1daa7bc5a046deb4dc774_form.show();
+		var YYUC_03b826a44aa1daa7bc5a046deb4dc774_offset = $('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_span').offset();
+		YYUC_03b826a44aa1daa7bc5a046deb4dc774_form.css('left',YYUC_03b826a44aa1daa7bc5a046deb4dc774_offset.left).css('top',YYUC_03b826a44aa1daa7bc5a046deb4dc774_offset.top);
+	}
+  		
+	};
+	setInterval(window.YYUC_03b826a44aa1daa7bc5a046deb4dc774_resize,55);
+	var YYUC_03b826a44aa1daa7bc5a046deb4dc774pic = $('#YYUC_03b826a44aa1daa7bc5a046deb4dc774').find('input[name="YYUC_UPLOAD_file"]');
+	YYUC_03b826a44aa1daa7bc5a046deb4dc774pic.css('opacity',0);
+	YYUC_03b826a44aa1daa7bc5a046deb4dc774pic.change(function(){
+		var thefiles = $(this).val().replaceAll('\\','/').split('/');
+		var filename = thefiles[thefiles.length-1];
+		//后缀校验
+		var needsuffixs = ',png,jpeg,jpg,gif,bmp,'.toLowerCase();
+		var suffixs = filename.split('.');
+		if(needsuffixs.indexOf((','+suffixs[suffixs.length-1]+',').toLowerCase())==-1){
+			if(alert){
+				alert('文件格式不被允许',$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774'),1,'YYUC_03b826a44aa1daa7bc5a046deb4dc774');
+			}
+		}else{			$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_name').html(filename);
+			window.YYUC_03b826a44aa1daa7bc5a046deb4dc774_jd = 0;
+			YYUC_03b826a44aa1daa7bc5a046deb4dc774_process()
+			$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774').submit();
+			$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_loadpic').show();
+
+			$('iframe[name="YYUC_03b826a44aa1daa7bc5a046deb4dc774_if"]').unbind('load').load(function(){
+				if(!window.YYUC_03b826a44aa1daa7bc5a046deb4dc774){
+					$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_loadpic').hide();
+					$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_bfb').html('');	
+					if(alert){
+						alert('网络连接超时或文件大小超出',$('#ttid'),3,'YYUC_03b826a44aa1daa7bc5a046deb4dc774');
+						clearTimeout(window.YYUC_03b826a44aa1daa7bc5a046deb4dc774jdproc);						
+					}
+				}
+			});
+		}
+	});
+
+});
+function YYUC_03b826a44aa1daa7bc5a046deb4dc774_process(){
+	if(window.YYUC_03b826a44aa1daa7bc5a046deb4dc774_jd < 99){
+		var nexttime = parseInt(Math.sqrt(window.YYUC_03b826a44aa1daa7bc5a046deb4dc774_jd)*100)*2;
+		window.YYUC_03b826a44aa1daa7bc5a046deb4dc774_jd = window.YYUC_03b826a44aa1daa7bc5a046deb4dc774_jd+1;
+		$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_bfb').html(window.YYUC_03b826a44aa1daa7bc5a046deb4dc774_jd+'%');
+		window.YYUC_03b826a44aa1daa7bc5a046deb4dc774jdproc = setTimeout(function(){
+			YYUC_03b826a44aa1daa7bc5a046deb4dc774_process();
+		},nexttime);
+	}else{
+		$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_bfb').html('');
+		$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_loadpic').hide();
+		if(alert){
+			alert('网络连接超时或文件大小超出',$('#ttid'),3,'YYUC_03b826a44aa1daa7bc5a046deb4dc774');
+		}
+	}
+}
+function YYUC_03b826a44aa1daa7bc5a046deb4dc774_success(url,key){
+	$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_del').show();
+	window.YYUC_03b826a44aa1daa7bc5a046deb4dc774_jd = 100;
+	$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_bfb').html('100%');
+	$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_loadpic').hide();
+	clearTimeout(window.YYUC_03b826a44aa1daa7bc5a046deb4dc774jdproc);
+	var oldkey = $('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_text').val();
+	if(oldkey.indexOf('@-@')!=-1){
+		var oldkey2 = oldkey.split('@-@');
+		$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_text').val(key+'@-@'+oldkey2[1]);
+	}else if(oldkey.indexOf('/')==0){
+		$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_text').val(key+'@-@'+oldkey);
+	}else{
+		$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_text').val(key);
+	}	window.YYUC_03b826a44aa1daa7bc5a046deb4dc774_upimg = $('<img id="YYUC_03b826a44aa1daa7bc5a046deb4dc774_realpic" src="'+url+'"/>');
+	$('#picsethere').html('').append(window.YYUC_03b826a44aa1daa7bc5a046deb4dc774_upimg);}
+function YYUC_03b826a44aa1daa7bc5a046deb4dc774_failure(size,type){
+	if(alert){
+		if(type==2){
+			alert('文件大小为：'+size+'K，超出了600K的限制,上传失败！',$('#ttid'),2,'YYUC_03b826a44aa1daa7bc5a046deb4dc774');
+		}else{
+			alert('文件上传发生未知错误',$('#ttid'),4,'YYUC_03b826a44aa1daa7bc5a046deb4dc774');
+		}
+		clearTimeout(window.YYUC_03b826a44aa1daa7bc5a046deb4dc774jdproc);
+		$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_bfb').html('');
+		$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_name').html('');
+		$('#YYUC_03b826a44aa1daa7bc5a046deb4dc774_loadpic').hide();
+	}
+}
+</script></td>
+					<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：700像素 * 380像素</td>
+					</tr>
+					</table>
+					<p class="img-area cover-bd" id="picsethere">
+					</p>
+				</div>
+		    </div>
+	  	</div>
+	  	<div class="control-group">
+			<label class="control-label" for="detail">门店简介:</label>
+			<div class="controls">
+			<textarea name="X1RAMldaXRVRCEw="   id="lbscontent" class="span5" style="height:90px;width:520px;"></textarea>				<span class="maroon">*</span><br><span class="help-inline">最多为1000个字符。</span>
+			</div>
+		</div>
+ 		<div class="control-group">
+		    <div class="controls">
+		    
+		      <button id="save-btn" type="submit" class="btn btn-primary btn-large">保存并开启</button>
+		     
+		    </div>
+	    </div>
+	</form>
+
+<script type="text/javascript">
+//是否从未保存过定位信息，如果从未保存过，并且有填地址信息，那么进入页面后自动定位
+var located = true;
+//定位坐标
+var destPoint = new BMap.Point($('#lbsjd').val(),$('#lbswd').val());
+$(function(){
+	
+	/**开始处理百度地图**/
+	var map = new BMap.Map("map");
+	map.centerAndZoom(new BMap.Point(destPoint.lng, destPoint.lat), 12);//初始化地图
+	map.enableScrollWheelZoom();
+	map.addControl(new BMap.NavigationControl());
+	var marker = new BMap.Marker(destPoint);
+	map.addOverlay(marker);//添加标注
+	
+	map.addEventListener("click", function(e){
+		if(confirm("确认选择这个位置？")){
+			destPoint = e.point;
+			$('#lbsjd').val(destPoint.lng);
+			$('#lbswd').val(destPoint.lat);
+			map.clearOverlays();
+			var marker1 = new BMap.Marker(destPoint);  // 创建标注
+			map.addOverlay(marker1); 
+		}
+	});
+	
+	
+	
+	var myValue;
+
+	var local;
+	function setPlace(){
+	    map.clearOverlays();    //清除地图上所有覆盖物
+	    local = new BMap.LocalSearch(map, { //智能搜索
+	      renderOptions:{ map: map}
+	    });
+	    located = true;
+	    local.setMarkersSetCallback(callback);
+	    local.search(myValue);
+	}
+	
+	function addEventListener(marker){
+		marker.addEventListener("click", function(data){
+			destPoint = data.target.getPosition(0);
+		});
+	}
+	function callback(posi){
+		$("#locate-btn").removeAttr("disabled");
+		for(var i=0;i<posi.length;i++){
+			if(i==0){
+				destPoint = posi[0].point;
+			}
+			posi[i].marker.addEventListener("click", function(data){
+				destPoint = data.target.getPosition(0);
+			});  
+		}
+	}
+	
+	$("#lbsl_xianqu").change(function(){
+		$("#locate-btn").attr("disabled","disabled");
+		local = new BMap.LocalSearch(map, { //智能搜索
+			renderOptions:{ map: map}
+		});
+		located = true;
+		local.setMarkersSetCallback(callback);
+		local.search($("#lbsl_xianqu").find('option:selected').text());
+		return false;
+	});
+	$("#lbsl_shi").change(function(){
+		$("#locate-btn").attr("disabled","disabled");
+		local = new BMap.LocalSearch(map, { //智能搜索
+			renderOptions:{ map: map}
+		});
+		located = true;
+		local.setMarkersSetCallback(callback);
+		local.search($("#lbsl_shi").find('option:selected').text());
+		return false;
+	});
+	$("#locate-btn").click(function(){
+		if($("#lbsaddress").val() == ""){
+			alert("请输入门店地址！");
+			return ;
+		}
+		$("#locate-btn").attr("disabled","disabled");
+		local = new BMap.LocalSearch(map, { //智能搜索
+			renderOptions:{ map: map}
+		});
+		located = true;
+		local.setMarkersSetCallback(callback);
+		local.search($("#lbsaddress").val());
+		return false;
+	});
+	/**结束百度地图处理**/
+	$("#close-btn").click(function(){
+    	if(confirm("你确定要停用LBS功能？")){
+    		var submitData = {
+    			"action":"close",
+    			"wuid":19979,
+    			"lid":null
+    		};
+    		$.post("/admin/lbsinfo",submitData,function(data){
+    			if(data.success){
+    				window.location.reload();
+    			} else{
+    				alert("停用失败");
+    			}
+    		},"json");
+    	}
+    });
+	 $("#lbsForm").submit(function(){
+		var cansv= true;
+		$(this).find('input[type="text"],textarea').each(function(){
+			if($.trim($(this).val())==''){
+				cansv = false;
+				$(this).css('backgroundColor','yellow');
+				$(this).one('focus',function(){
+					$(this).css('backgroundColor','transparent');
+				});
+			}
+		});
+		if(!cansv){
+			tusi('请将信息填写完整');
+		}else if($('#picsethere').find('img').size()<1){
+    		cansv = false;
+    		tusi('请上传商家图片');
+    	}
+    	return cansv;
+    });
+});
+</script>
+<br/><br/><br/></body>
+
+</html>

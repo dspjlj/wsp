@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="微信">
+<title>我的优惠券</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+<link rel="stylesheet" type="text/css" href="res/page.css" />
+<link href="res/xym.css" rel="stylesheet" type="text/css">
+<link href="res/zwj.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<div class="m_ggl">
+<div class="m_ylzjxx">
+<table class="ggltb">
+<tr>
+<td class="ggltd"></td>
+<td><h1>优惠券活动开始啦</h1></td>
+<td class="ggltd"></td>
+</tr>
+</table>
+</div>
+<br/>
+<div style="width: 100%;text-align: center;">
+<img src="res/whd/activity-coupon-winning.jpg" style="width: 80%;"/>
+</div>
+<br/>
+<div class="m_ylzjxx">
+优惠代金券，满300立减100！</div>
+
+<form action="" method="post"><input type="hidden" value="54d467fcca592" name="YYUC_FORM_TOKEN"/><div class="m_yljpsm">
+<div class="m_yljpsms">
+<span style="color: gray;font-size:12px;">
+活动时间：2015-02-06 14:41:59--2015-03-06 14:41:59</span>
+</div>
+</div>
+</form>
+</div>
+<br/>
+
+<div class="Pop-upbox" id="usermsg" style="display: none;">
+        <div class="upbox_top">
+            <h1>请填写您的用户资料：</h1>
+            <a href=""><div class="close" style="display: none;"></div></a>
+        </div>
+        <div class="upbox_cens">
+        <div>
+           微信名：<input type="text" id="un" class="sinput">
+        </div>
+     <div style="margin-top: 5px;">
+     手机号：<input type="text" id="tel" class="sinput">
+     </div>
+        
+        </div>
+        <div class="upbox_cen">
+            <a href="javascript:lingqu()"><div class="button_1"><span>确认领取</span></div></a>
+        </div>
+</div>
+<div class="Pop-upbox" id="snmsg"  >
+        <div class="upbox_top">
+            <h1>优惠券SN码：</h1>           
+        </div>
+        <div class="upbox_cens">
+        <div id="sncode">YH10000001</div>        
+        </div>
+</div>
+<div class="mfooter" id="wxgjfooter" style="text-align: center;width: 100%;height: 20px;line-height: 20px;margin-top:10px;">
+<span class="sp2"><a href="http://www.39mnet.com" style="color: #5e5e5e;font-size: 12px;"><!--@39MI微信开发商提供技术支持--></a></span>
+</div>
+<div style="width: 0px;height: 0px;overflow: hidden;">
+
+</div>
+<script>
+/**
+$(function(){
+	if($('body').height()<$(window).height()){
+		$('body').height($(window).height());
+		$('#wxgjfooter').css('position','fixed').css('bottom','0px');
+	}
+});
+**/
+</script>
+</body>
+<script type="text/javascript">
+function lingqu(){
+	var un = $.trim($('#un').val());
+	var tel = $.trim($('#tel').val());
+	if(un=='' || tel==''){
+		tusi('请完善用户信息');
+		return;
+	}
+	ajax('yhqok-add.html',{ tel:tel,un:un,id:'11034'},function(m){
+		if(m=='rep'){
+			location.href=location.href;
+		}
+		tusi('领取成功');
+		$('#usermsg').hide();
+		$('#sncode').text(m);
+		$('#snmsg').show();
+	});	
+}
+
+</script>
+
+</html>

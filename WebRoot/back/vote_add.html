@@ -1,0 +1,718 @@
+
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>微投票设置</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+
+<link rel="stylesheet" href="css/admin/bootstrap.min.css">
+<link rel="stylesheet" href="css/admin/admin.css">
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+<style type="text/css">
+table td {
+	min-width:50px;
+	overflow:hidden;text-overflow:ellipsis;
+}
+#picsethere{
+	width: 510px;
+	display: block;
+}
+#picsethere img{
+	max-width: 500px;
+	display: block;
+}
+</style>
+</head>
+<body>
+	<h3>微投票设置</h3>
+	<div class="alert alert-info">
+		<p><span class="bold">说明：</span>微投票的目的是获得系统客观的收集信息研究数据，为决策做准备。&nbsp;&nbsp;<font color="red">（如需使用链接，请复制下方地址）</font></p>
+		<p><span class="bold">当前地址：</span>http://www.di3p.com/wx/wtp0-11585.html?&wid=11001</p>
+	</div>
+	<form class="form-horizontal" id="lbsForm" action="" method="post"><input type="hidden" value="54dd9f8f0a845" name="YYUC_FORM_TOKEN"/><input type="hidden" value = "11585" name="WVlQE15vTl0RVTJYXQ==" id="micro_voteid" />		<div class="control-group">
+		<label class="control-label" for="keyword">微投票名称</label>
+		<div class="controls">
+			<input type="text"   value="微投票活动开始啦？【所有设置为演示版，请修改】" name="WVlQE15vTl0RVTJfWFxU" id="micro_votename" class="span4"/>		    	<span class="maroon">*</span>
+			<span class="help-inline">最多只能输入30个字符。</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="keyword">微投票关键字</label>
+		<div class="controls">
+			<input type="text"   value="微投票" name="WVlQE15vTl0RVTJWU0s=" id="micro_votegjz" class="span4"/>		    	<span class="maroon">*</span>
+			<span class="help-inline">最多只能输入20个字符。</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="location_p">微投票开始时间</label>
+		<div class="controls">
+			<input type="text"   value=""  id="micro_votekssj" name="WVlQE15vTl0RVTJaSkJb" class="Wdate" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})" />	    	</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="category_f">微投票结束时间</label>
+			<div class="controls">
+				<input type="text" value="" id="micro_votejssj" name="WVlQE15vTl0RVTJbSkJb" class="Wdate" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>	    	</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="">微投票展示图片</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage1','myfile1');" id="myfile1"/><br/>
+									<img alt="暂无图片" src="" id="myimage1" width="400px">
+									
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：700像素 * 380像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="picsethere">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="detail">微投票简述:</label>
+				<div class="controls">
+					<textarea name="WVlQE15vTl0RVTJcSg=="   id="micro_votems" class="span5" style="height:90px;width:520px;">您觉得我们的公众平台最需要修改的板块是？</textarea>				<span class="maroon">*</span><br><span class="help-inline">最多为1000个字符。</span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="keyword">选项1</label>
+				<div class="controls">
+					<input type="text"   value="刮刮卡" name="WVlQE15vTl0RVTJeSUVYWFsG" id="micro_voteoption1" class="span4"/>		    	<span class="maroon">*</span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="">展示图片1</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage11','myfile11');" id="myfile11"/><br/>
+									<img alt="暂无图片" src="" id="myimage11" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic1">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="keyword">选项2</label>
+				<div class="controls">
+					<input type="text"   value="大转盘" name="WVlQE15vTl0RVTJeSUVYWFsF" id="micro_voteoption2" class="span4"/>		    	<span class="maroon">*</span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="">展示图片2</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage12','myfile12');" id="myfile12"/><br/>
+									<img alt="暂无图片" src="" id="myimage12" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic2">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="keyword">选项3</label>
+				<div class="controls">
+					<input type="text"   value="微官网" name="WVlQE15vTl0RVTJeSUVYWFsE" id="micro_voteoption3" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="">展示图片3</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage13','myfile13');" id="myfile13"/><br/>
+									<img alt="暂无图片" src="" id="myimage13" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic3">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="keyword">选项4</label>
+				<div class="controls">
+					<input type="text"   value="微团购" name="WVlQE15vTl0RVTJeSUVYWFsD" id="micro_voteoption4" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="">展示图片4</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage14','myfile14');" id="myfile14"/><br/>
+									<img alt="暂无图片" src="" id="myimage14" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic4">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项5</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsC" id="micro_voteoption5" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片5</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage15','myfile15');" id="myfile15"/><br/>
+									<img alt="暂无图片" src="" id="myimage15" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic5">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项6</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsB" id="micro_voteoption6" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片6</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage16','myfile16');" id="myfile16"/><br/>
+									<img alt="暂无图片" src="" id="myimage16" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic6">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项7</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsA" id="micro_voteoption7" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片7</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage17','myfile17');" id="myfile17"/><br/>
+									<img alt="暂无图片" src="" id="myimage17" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic7">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项8</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsP" id="micro_voteoption8" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片8</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage18','myfile18');" id="myfile18"/><br/>
+									<img alt="暂无图片" src="" id="myimage18" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic8">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项9</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsO" id="micro_voteoption9" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片9</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage19','myfile19');" id="myfile19"/><br/>
+									<img alt="暂无图片" src="" id="myimage19" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic9">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项10</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsGVg==" id="micro_voteoption10" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片10</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage110','myfile110');" id="myfile110"/><br/>
+									<img alt="暂无图片" src="" id="myimage110" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic10">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项11</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsGVw==" id="micro_voteoption11" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片11</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage111','myfile111');" id="myfile111"/><br/>
+									<img alt="暂无图片" src="" id="myimage111" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic11">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项12</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsGVA==" id="micro_voteoption12" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片12</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage112','myfile112');" id="myfile112"/><br/>
+									<img alt="暂无图片" src="" id="myimage112" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic12">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项13</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsGVQ==" id="micro_voteoption13" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片13</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage113','myfile113');" id="myfile113"/><br/>
+									<img alt="暂无图片" src="" id="myimage113" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic13">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项14</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsGUg==" id="micro_voteoption14" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片14</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage114','myfile114');" id="myfile114"/><br/>
+									<img alt="暂无图片" src="" id="myimage114" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic14">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项15</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsGUw==" id="micro_voteoption15" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片15</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage115','myfile115');" id="myfile115"/><br/>
+									<img alt="暂无图片" src="" id="myimage115" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic15">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项16</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsGUA==" id="micro_voteoption16" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片16</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage116','myfile116');" id="myfile116"/><br/>
+									<img alt="暂无图片" src="" id="myimage116" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic16">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项17</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsGUQ==" id="micro_voteoption17" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片17</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage117','myfile117');" id="myfile117"/><br/>
+									<img alt="暂无图片" src="" id="myimage117" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic17">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项18</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsGXg==" id="micro_voteoption18" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片18</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage118','myfile118');" id="myfile118"/><br/>
+									<img alt="暂无图片" src="" id="myimage118" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic18">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项19</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsGXw==" id="micro_voteoption19" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片19</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage119','myfile119');" id="myfile119"/><br/>
+									<img alt="暂无图片" src="" id="myimage119" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic19">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="keyword">选项20</label>
+				<div class="controls">
+					<input type="text"   value="" name="WVlQE15vTl0RVTJeSUVYWFsFVg==" id="micro_voteoption20" class="span4" noneed="1"/>		    	<span class="maroon"></span>
+					<span class="help-inline">最多只能输入30个字符。</span>
+				</div>
+			</div>
+			<div class="control-group more" style="display:none;">
+				<label class="control-label" for="">展示图片20</label>
+				<div class="controls">
+					<div class="cover-area">
+						<table style="height: 30px;overflow: hidden;">
+							<tr>
+								<td>
+									<input type="file" name="picture" style="width:400px" onchange="change('myimage120','myfile120');" id="myfile120"/><br/>
+									<img alt="暂无图片" src="" id="myimage120" width="400px">
+								</td>
+								<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：200像素 * 160像素</td>
+							</tr>
+						</table>
+						<p class="img-area cover-bd" id="headpic20">
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="keyword"><button id="more_vote" type="button">更多选项</button></label>
+				<div class="controls">
+
+					<span class="help-inline">提示:请依次填写</span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<div class="controls">
+
+					<button id="save-btn" type="submit" class="btn btn-primary btn-large">保存并开启</button>
+
+				</div>
+			</div>
+		</form>
+		<script type="text/javascript" src="js/comm.js"></script>
+		<script type="text/javascript">
+												function change(myimage,myfile) {
+													var pic = document.getElementById(myimage),
+													file = document.getElementById(myfile);
+
+													var ext=file.value.substring(file.value.lastIndexOf(".")+1).toLowerCase();
+
+											     // gif在IE浏览器暂时无法显示
+											     if(ext!='png'&&ext!='jpg'&&ext!='jpeg'){
+											     	alert("图片的格式必须为png或者jpg或者jpeg格式！"); 
+											     	return;
+											     }
+											     var isIE = navigator.userAgent.match(/MSIE/)!= null,
+											     isIE6 = navigator.userAgent.match(/MSIE 6.0/)!= null;
+
+											     if(isIE) {
+											     	file.select();
+											     	var reallocalpath = document.selection.createRange().text;
+
+											        // IE6浏览器设置img的src为本地路径可以直接显示图片
+											        if (isIE6) {
+											        	pic.src = reallocalpath;
+											        }else {
+											            // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+											            pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+											             // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+											             pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+											         }
+											     }else {
+											     	html5Reader(pic,file);
+											     }
+											     pic.alt = '图片';
+											 }
+											 
+											 function html5Reader(pic,file){
+											 	var file = file.files[0];
+											 	var reader = new FileReader();
+											 	reader.readAsDataURL(file);
+											 	reader.onload = function(e){
+											         //var pic = document.getElementById("myimage1");
+											         pic.src=this.result;
+											     }
+											 }
+/*
+											 $(function(){
+											 	$("#more_vote").click(function(){ 
+											 		$(".more").toggle();
+
+											 	});
+											 	$("#lbsForm").submit(function(){
+											 		var cansv= true;
+											 		$(this).find('input[type="text"],select,textarea').each(function(){
+											 			if($.trim($(this).val())=='' && $(this).attr('noneed')!='1'){
+											 				cansv = false;
+											 				$(this).css('backgroundColor','yellow');
+											 				$(this).one('focus',function(){
+											 					$(this).css('backgroundColor','transparent');
+											 				});
+											 			}
+											 		});
+											 		if(!cansv){
+											 			tusi('请将信息填写完整');
+											 			return false;
+											 		}
+											 		$(this).find('input[type="text"],select,textarea').each(function(){
+											 			if($(this).attr('isint')=='1' && $.trim($(this).val())!=''){
+											 				var intthis = parseInt2($(this).val());
+											 				if(intthis+''=='NaN'){
+											 					cansv = false;
+											 					$(this).css('backgroundColor','yellow');
+											 					$(this).one('focus',function(){
+											 						$(this).css('backgroundColor','transparent');
+											 					});
+											 				}else{
+											 					$(this).val(parseInt($(this).val()));
+											 				}
+											 			}
+											 		});
+											 		if(!cansv){
+											 			tusi('标注的项目必须为整数');
+											 			return false;
+											 		}
+
+											 		$(this).find('input[type="text"],select,textarea').each(function(){
+											 			if($(this).attr('isfloat')=='1' && $.trim($(this).val())!=''){
+											 				var intthis = parseFloat($(this).val());
+											 				if(intthis+''=='NaN'){
+											 					$(this).val('0');
+											 					cansv = false;
+											 					$(this).css('backgroundColor','yellow');
+											 					$(this).one('focus',function(){
+											 						$(this).css('backgroundColor','transparent');
+											 					});
+											 				}else{
+											 					$(this).val(parseFloat($(this).val()));
+											 				}
+											 			}
+											 		});
+											 		if(!cansv){
+											 			tusi('标注的项目必须为数字');
+											 			return false;
+											 		}
+
+											 		if($('#picsethere').find('img').size()<1){
+											 			cansv = false;
+											 			tusi('请上传活动图片');
+											 			return false;
+											 		}
+											 		return cansv;
+											 	});
+});
+*/
+</script>
+<br/><br/><br/></body>
+
+</html>

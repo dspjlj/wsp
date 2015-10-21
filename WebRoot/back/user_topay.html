@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/admin/bootstrap.min.css">
+<link rel="stylesheet" href="css/admin/admin.css">
+<link rel="stylesheet" href="res/payback.css">
+<title>第三屏支付页面</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+<style type="text/css">
+body{ 
+background: #f5faff;
+}
+.demo_con{
+width: 960px;
+margin:40px auto 0;
+}
+.button{
+width: 140px;
+line-height: 38px;
+text-align: center;
+font-weight: bold;
+color: #fff;
+text-shadow:1px 1px 1px #333;
+border-radius: 5px;
+margin:0 20px 20px 0;
+position: relative;
+overflow: hidden;
+}
+.button:nth-child(6n){
+margin-right: 0;
+}
+
+.button.blue{
+font-size:22px;
+border:1px solid #1e7db9;
+box-shadow: 0 1px 2px #8fcaee inset,0 -1px 0 #497897 inset,0 -2px 3px #8fcaee inset;
+background: -webkit-linear-gradient(top,#42a4e0,#2e88c0);
+background: -moz-linear-gradient(top,#42a4e0,#2e88c0);
+background: linear-gradient(top,#42a4e0,#2e88c0);
+}
+
+.tags:after{
+font-weight: normal;
+position: absolute;
+display: inline-block;
+content: "优惠";
+font-size:22px;
+top:-3px;
+right: -33px;
+color: #fff;
+text-shadow:none;
+width: 95px;
+height:35px;
+line-height: 38px;
+-webkit-transform:rotate(45deg) scale(.7,.7);
+-moz-transform:rotate(45deg) scale(.7,.7);
+transform:rotate(55deg) scale(.7,.7);
+}
+
+.blue.tags:after{
+background: #178877;
+border:2px solid #54b1e9;	
+}
+.button.rarrow,
+	.button.larrow{
+overflow:visible;
+}
+
+	</style>
+	
+</head>
+<body>
+<form action="https://www.alipay.com" target="_blank" id="mqqform">
+	<div class="main-title">		
+	<h3>会员在线支付</h3>	
+	</div>	
+	<div class="alert alert-info">	  	
+	<p><span class="bold">第三屏购买需知：</span></p>
+1. 在付款前请仔细了解产品功能和资费套餐内容，一旦付款成功，不能以任何理由申请退款，敬请知悉！<br>
+2. 默认为非含税价格，如需开具发票(500元以上)，需要额外支付7%税费。<br>
+3. 使用优惠券时增值套餐不属于折扣优惠范围。<br>
+4. 升级或降级会员购买时，必须等到原会员类型到期才能升级或降级为新的会员类型，如需立即生效请联系客服！<br>
+5. 付款成功后重新登录即可升级会员成功。<br>
+</div>	
+
+<div>
+<blockquote style="max-width: 60%; color: rgb(62, 62, 62); font-size: medium; white-space: normal; line-height: 25px; border: 2px dotted rgb(225, 225, 225); text-align: justify; padding: 10px 20px; background-color: rgb(0, 176, 80); margin: 10px 5px; font-family: 微软雅黑; box-shadow: rgb(225, 225, 225) 5px 5px 2px; border-top-left-radius: 0.5em 4em; border-top-right-radius: 3em 0.5em; border-bottom-left-radius: 0em 3em; border-bottom-right-radius: 0.5em 1em; border-image-source: none; word-wrap: break-word !important; box-sizing: border-box !important;"><p style="margin-top: 0px; margin-bottom: 0px; max-width: 100%; word-wrap: normal; min-height: 1em; white-space: pre-wrap; box-sizing: border-box !important;"><span style="max-width: 100%; word-wrap: break-word !important; box-sizing: border-box !important; color: rgb(255, 255, 0);"><strong style="max-width: 60%; word-wrap: break-word !important; box-sizing: border-box !important;">收费标准：&nbsp;&nbsp;&nbsp;</strong></span><span style="max-width: 99%; word-wrap: break-word !important; box-sizing: border-box !important; color: rgb(255, 255, 255);">1000元/年&nbsp;&nbsp;&nbsp;【包含全部功能】&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100元/月&nbsp;&nbsp;&nbsp;【包含全部功能】</span><span style="max-width: 100%; word-wrap: break-word !important; box-sizing: border-box !important; color: rgb(255, 255, 255);"></span></p></blockquote>
+</div>
+
+<!--开始-->
+<fieldset class="tn-Powered-by-XIUMI" style="margin: 0.8em 0px 0.5em; padding: 0px; border: 0px currentColor; border-image: none; box-sizing: border-box;"><section class="tn-Powered-by-XIUMI" style="border-color: rgb(166, 91, 203); padding: 0px 2px 2px; text-align: center; color: rgb(255, 255, 255); line-height: 1; font-family: inherit; font-size: 1em; font-weight: inherit; text-decoration: inherit; border-bottom-width: 2px; border-bottom-style: solid; display: inline-block; box-sizing: border-box;"><section class="tn-Powered-by-XIUMI" style="margin: 0px; padding: 0.3em 0.4em; border-radius: 80% 100% 90% 20%; line-height: 1; font-family: inherit; font-size: 1em; display: inline-block; -ms-word-wrap: break-word !important; min-height: 1.6em; min-width: 1.8em; box-sizing: border-box; background-color: rgb(166, 91, 203);"><section class="tn-Powered-by-XIUMI" style="box-sizing: border-box;">1</section></section><span class="tn-Powered-by-XIUMI" style="text-align: inherit; color: rgb(166, 91, 203); line-height: 1.4; font-family: inherit; font-size: 1em; font-weight: bolder; text-decoration: inherit; margin-left: 0.4em; display: inline-block; -ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box;"><section class="tn-Powered-by-XIUMI" style="box-sizing: border-box;">优惠活动</section></span></section></fieldset><fieldset class="tn-Powered-by-XIUMI" style="padding: 0px; border: 0px currentColor; border-image: none; text-align: justify; color: inherit; clear: both; font-family: inherit; font-size: 1em; font-weight: inherit; text-decoration: inherit; margin-top: 0px; margin-bottom: 0px; box-sizing: border-box;"><section class="tn-Powered-by-XIUMI" style="box-sizing: border-box;">新年伊始，万象更新，为了方便大家快速开展微信营销活动，即日起我司将年费调整为500元，活动持续到除夕当天。</section></fieldset><fieldset class="tn-Powered-by-XIUMI" style="margin: 0.8em 0px 0.5em; padding: 0px; border: 0px currentColor; border-image: none; box-sizing: border-box;"><section class="tn-Powered-by-XIUMI" style="border-color: rgb(249, 110, 87); padding: 0px 2px 2px; text-align: center; color: rgb(255, 255, 255); line-height: 1; font-family: inherit; font-size: 1em; font-weight: inherit; text-decoration: inherit; border-bottom-width: 2px; border-bottom-style: solid; display: inline-block; box-sizing: border-box;"><section class="tn-Powered-by-XIUMI" style="margin: 0px; padding: 0.3em 0.4em; border-radius: 80% 100% 90% 20%; line-height: 1; font-family: inherit; font-size: 1em; display: inline-block; -ms-word-wrap: break-word !important; min-height: 1.6em; min-width: 1.8em; box-sizing: border-box; background-color: rgb(249, 110, 87);"><section class="tn-Powered-by-XIUMI" style="box-sizing: border-box;">2</section></section><span class="tn-Powered-by-XIUMI" style="text-align: inherit; color: rgb(249, 110, 87); line-height: 1.4; font-family: inherit; font-size: 1em; font-weight: bolder; text-decoration: inherit; margin-left: 0.4em; display: inline-block; -ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box;"><section class="tn-Powered-by-XIUMI" style="box-sizing: border-box;">特别提醒</section></span></section></fieldset><fieldset class="tn-Powered-by-XIUMI" style="padding: 0px; border: 0px currentColor; border-image: none; text-align: justify; color: inherit; clear: both; font-family: inherit; font-size: 1em; font-weight: inherit; text-decoration: inherit; margin-top: 0px; margin-bottom: 0px; box-sizing: border-box;"><section class="tn-Powered-by-XIUMI" style="box-sizing: border-box;">因充值用户较多，转账时请您务必备注好第三屏用户名，如有任何疑问，可随时咨询值班客服，QQ：793495478</section></fieldset>
+<!--结束-->
+
+<p></p>	
+<div class="paytype-list">
+<h2><font face=“隶书” size=“40” color="red">支付宝支付：</font></h2>
+<p>财务支付宝 <font size="6">15861521065</font>蒋龙健 </p>
+</div>
+</form>
+
+<div class="page">
+<div class="demo_con">
+	<button type="button" class="button blue tags" onClick="window.open('https://www.alipay.com')">去支付&nbsp;&nbsp;&nbsp;&nbsp;</button>
+</div>	
+</div>
+
+</body>
+</html>

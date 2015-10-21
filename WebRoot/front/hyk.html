@@ -1,0 +1,320 @@
+
+<!DOCTYPE>
+<html>
+<head>
+    <title>会员卡</title>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/yyucadapter.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/mwm/card/card.css" media="all" />
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta name="format-detection" content="telephone=no">
+    <script type="text/javascript" src="res/choujiang/js/weixin-api.js"></script>
+</head>
+
+<body id="card" ondragstart="return false;" onselectstart="return false;">
+
+    <script type="text/javascript">
+        var mysharelink = window.location.href; 
+        // 所有功能必须包含在 WeixinApi.ready 中进行
+        WeixinApi.ready(function (Api) {
+
+            // 微信分享的数据
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl": 'res/share/hyk.jpg',
+                "img_width": "360",
+                "img_height": "360",
+                "link": mysharelink,
+                "desc": '一朝成为会员，享受永久会员服务，会员卡已为您准备好，点击领取！',
+                "title": '领取会员卡，你将拥有的更多！'
+            };
+
+            // 分享的回调
+            var wxCallbacks = {
+                // 分享操作开始之前
+                ready: function () {
+                    // 你可以在这里对分享的数据进行重组
+                    wxData.link = mysharelink;
+                },
+                // 分享被用户自动取消
+                cancel: function (resp) {
+                   // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+                },
+                // 分享失败了
+                fail: function (resp) {
+                    // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+                },
+                // 分享成功
+                confirm: function (resp) {
+                    // 分享成功了，我们是不是可以做一些分享统计呢？
+                    $.ajax({
+                        /*url: "http://#?do=addsharetimes&id=" + myguid,*/
+                        type: "POST",
+                        dataType: "text",
+                        data: null,
+                        success: function (data) {
+                        }
+                    });
+                },
+                // 整个分享过程结束
+                all: function (resp) {
+                     // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+                }
+            };
+
+            // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+            Api.shareToFriend(wxData, wxCallbacks);
+
+            // 点击分享到朋友圈，会执行下面这个代码
+            Api.shareToTimeline(wxData, wxCallbacks);
+
+            // 点击分享到腾讯微博，会执行下面这个代码
+            Api.shareToWeibo(wxData, wxCallbacks);
+        });
+    </script>
+
+    <section class="body">
+        <div id="overlay" style="position:fixed;z-index:100;"></div>
+        <div class="cardcenter">
+            <div class="card">
+                <img class="cardbg" src="res/whd/hyk.jpg">
+                <!-- <img id="cardlogo" class="logo" src="http://www.39mnet.com/res/whd/hyk.jpg">
+                -->
+                <h1 style="color: ">会员卡免费发放啦【演示版，请修改】</h1> <strong class="pdo verify" style="color: "><span id="cdnb" style="text-align: right;margin-top: 15px;"> <em>10000001</em>
+                    </span></strong> 
+            </div>
+            <!--  
+        <div id="masklayer" class="masklayer off" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
+            <script>
+                var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
+                document.write(isAndroid>-1?"<img src='http://stc.weimob.com/img/instruction_android.png' alt='' />":"<img src='http://stc.weimob.com/img/instruction_iphone.png' alt='' />");
+            </script>
+        </div>
+        -->
+        <p class="explain">
+            <span>使用时向服务员出示此卡</span>
+        </p>
+    </div>
+    <div class="cardexplain">
+        <!--会员积分信息-->
+        <div class="jifen-box">
+            <ul class="zongjifen">
+                <li>
+                    <a href="javascript:;">
+                        <div class="fengexian">
+                            <p>消费总额</p>
+                            <span>0元</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <div class="fengexian">
+                            <p>剩余积分</p>
+                            <span>0分</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <p>剩余金额</p>
+                        <span>0元</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="clr"></div>
+        </div>
+        <ul class="round" id="notice">
+            <li>
+                <a href="hykmm-tz-10991.html">
+                    <span>
+                        最新通知 <em class="ok">1</em>
+                    </span>
+                </a>
+                <!-- <a href="/userinfo/MemberNotice?cardid=56630&pid=33260&bid=62312&wechatid=oLKXFt_nd1c8f_G_e_jb_ZP4RR">
+                <span>
+                    最新通知
+                    <em class="ok">1</em>
+                </span>
+            </a>
+            -->
+        </li>
+        <li>
+            <a href="hykmm-tz-10991.html">
+                <span>
+                    会员卡特权
+                    <em class="ok">1</em>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="hykmm-tz-10991.html">
+                <span>
+                    积分兑换活动
+                    <em class="ok">1</em>
+                </span>
+            </a>
+        </li>
+        <!-- 
+            <li>
+        <a href="/userinfo/MemberCoupon?id=5085&memberid=47018&pid=33260&bid=62312&wechatid=oLKXFt_nd1c8f_G_e_jb_ZP4RR">
+            <span>
+                会员优惠券
+                <em class="error">1</em>
+            </span>
+        </a>
+    </li>
+
+    <li>
+        <a href="/userinfo/MemberGift?id=5085&memberid=47018&pid=33260&bid=62312&wechatid=oLKXFt_nd1c8f_G_e_jb_ZP4RR">
+            <span>
+                积分换礼品
+                <em class="ok">1</em>
+            </span>
+        </a>
+    </li>
+    -->
+</ul>
+<!---------------------->
+<ul class="round" id="powerandgift">
+    <li>
+        <a href="javascript:;" id="qdzjfclick">
+            <span>
+                签到赚积分
+                <em class="ok">今日还未签到</em>
+            </span>
+        </a>
+    </li>
+    <li>
+        <a href="hykxx-2385.html">
+            <span>个人资料</span>
+        </a>
+    </li>
+</ul>
+
+<ul class="round">
+    <li>
+        <a href="hykmm-tz-10991.html">
+            <span>会员卡说明</span>
+        </a>
+    </li>
+    <li>
+        <a href="hykmd.html#=mp.weixin.qq.com">
+            <span>适用门店电话及地址</span>
+        </a>
+    </li>
+</ul>
+<ul class="round">
+    <li class="addr">
+        <a href="http://map.baidu.com">
+            <span>地址: 山东临沂</span>
+        </a>
+    </li>
+    <li class="tel">
+        <a href="tel:0539">
+            <span>电话: 0539</span>
+        </a>
+    </li>
+</ul>
+</div>
+
+<div class="plugback">
+<a href="javascript:history.back(-1)">
+    <div class="plugbg themeStyle">
+        <span class="plugback"></span>
+    </div>
+</a>
+</div>
+<!--输入框-->
+<div class="window" id="windowcenter" style="height:auto!important;max-height:1000px!important;bottom:inherit!important;">
+<div id="title" class="wtitle">
+    领卡信息
+    <span class="close" id="alertclose"></span>
+</div>
+<div class="content">
+    <div id="txt">填写真实的姓名以及电话号码，即可获得会员卡，享受会员特权。</div>
+    <script>
+            var navg = navigator.userAgent.toLowerCase(), html = '';
+            if(navg.match(/(ipad)|(iphone)/i)){
+                html = '<p><input name="truename" value="" class="px" id="un" type="text" placeholder="请输入您的姓名" ontouchstart="event.preventDefault();this.focus();this.select();" /></p>\
+                        <p><input name="tel" class="px" id="tel" value="" type="tel" placeholder="请输入您的电话" ontouchstart="event.preventDefault();this.focus();this.select();" /></p>\
+                                                ';
+            }else{
+                html = '<p><input name="truename" value="" class="px" id="un" type="text" placeholder="请输入您的姓名" /></p>\
+                        <p><input name="tel" class="px" id="tel" value="" type="tel" placeholder="请输入您的电话" /></p>\
+                                                ';
+            }
+            document.write(html);
+        </script>
+    <input type="button" value="确 定" name="确 定" class="txtbtn" id="windowclosebutton"></div>
+</div>
+
+<style>
+    .masklayer{
+        display:none;
+        position:fixed;
+        top:0;
+        left:0;
+        z-index:2000;
+        width:100%;
+        height:100%;
+        background-color:rgba(0,0,0,0.5);
+        text-align:right;
+    }
+    .masklayer.on{
+        display:block;
+    }
+    .masklayer img{
+        margin-top:10px;
+        margin-right:30px;
+        width:160px;
+    }
+</style>
+</section>
+<script type="text/javascript">
+    $(function(){
+        $('#alertclose').click(function(){
+            $('#windowcenter').hide();
+        });
+        $("#showcard").click(function () {
+            $('#windowcenter').slideDown();
+        });
+        $('#windowclosebutton').click(function(){
+            var un = $.trim($('#un').val());
+            var tel = $.trim($('#tel').val());
+            if(un=='' || tel==''){
+                tusi('请完善用户信息');
+                return;
+            }
+            ajax('hykok-add.html',{ tel:tel,un:un,id:'10991'},function(m){
+                if(m=='rep'){
+                    location.reload(true);
+                }
+                tusi('领取成功');
+                //window.location.reload();
+                //$('#applyBtn').show().find('a').html('会员卡SN：'+m).attr('href','javascript:;');
+                //$('#xxsjdiv').hide();
+                location.reload(true);
+            }); 
+        });
+        $('#qdzjfclick').click(function(){
+            ajax('hykmm-qdl-10991.html',{ rid:'2385'},function(m){
+                if(m=='ok'){
+                    tusi('签到成功,积分+2');
+                    setTimeout(function(){
+                        location.reload(true); 
+                    },888);
+                    
+                }else if(m=='not'){
+                    tusi('你还不是会员');
+                }
+            }); 
+        });
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+﻿ul, li { list-style-type: none; }
+.footer_logo { float: right; width: 35%; text-align: right; margin: 5px 5px auto auto; }
+.ui-icon,.ui-icon-searchfield:after{background-color:#666;background-color:rgba(0,0,0,.4);background-image:url(/assets/css/images/icons-18-white.png);background-repeat:no-repeat;-webkit-border-radius:9px;border-radius:9px}
+.ui-icon-arrow-u{background-position:-180px -1px}.ui-icon-arrow-d{background-position:-215px -1px}

@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/admin/bootstrap.min.css">
+<link rel="stylesheet" href="css/admin/admin.css">
+<title>我的活动</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+	<div class="main-title">
+		<h3>砸金蛋活动开始啦【所有设置为演示版，请修改】大转盘活动</h3>
+	</div>
+
+<div class="pagination">
+  <ul>
+    <li class="pagination_current current"><span>1</span></li>  </ul>  
+</div>
+<div>
+<form action="xydzpList-11762.html">
+手机号：
+<input type="text"   value="" name="fT08d9e827ffbba2efe4413cb064bbf847tel" id="ftel" style="margin-top: 10px;width:100px;"/>领取状态：
+<select    name="fT08d9e827ffbba2efe4413cb064bbf847iscom"  id="fiscom" style="margin-top: 10px;width:80px;" yy_autotext="fT08d9e827ffbba2efe4413cb064bbf847SEL_TXT_iscom"><option value="" selected="selected">全部</option><option value="0" >未领奖</option><option value="1" >已领奖</option></select>获得奖项：
+<select    name="fT08d9e827ffbba2efe4413cb064bbf847jx"  id="fjx" style="margin-top: 10px;width:80px;" yy_autotext="fT08d9e827ffbba2efe4413cb064bbf847SEL_TXT_jx"><option value="" selected="selected">全部</option><option value="0" >未中奖</option><option value="1" >奖项一</option><option value="2" >奖项二</option><option value="3" >奖项三</option><option value="4" >奖项四</option><option value="5" >奖项五</option><option value="6" >奖项六</option><option value="7" >奖项七</option><option value="8" >奖项八</option></select>开始时间：
+<input type="text"   value=""  id="fkssj" style="margin-top: 10px;width:140px;" name="fT08d9e827ffbba2efe4413cb064bbf847kssj" class="Wdate" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>结束时间：
+<input type="text"   value=""  id="fjssj" style="margin-top: 10px;width:140px;" name="fT08d9e827ffbba2efe4413cb064bbf847jssj" class="Wdate" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>消费门店：<select    name="fT08d9e827ffbba2efe4413cb064bbf847mdid"  id="fmdid" style="margin-top: 10px;width:300px;" yy_autotext="fT08d9e827ffbba2efe4413cb064bbf847SEL_TXT_mdid"><option value="" selected="selected">不限</option></select><button type="submit" class="btn">检索</button>
+</form>
+
+</div>
+<div>总计：<B>2条/1页</B></div>
+	<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>用户名称</th>
+					<th>用户电话</th>
+					<th>获得奖项</th>
+					<th>参与时间</th>
+					<th>消费门店</th>
+					<th>消费备注</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+						 
+			      <tr>
+						<td></td>
+						<td></td>
+						<td>
+                          [谢谢参与]
+												</td>
+						<td>
+						2015-02-10 16:12:11						</td>
+						<td>
+												</td>
+						<td>
+												</td>
+						<td>
+						<span>
+												未中奖
+												
+						</span>
+						</td>
+				  </tr>
+						 
+			      <tr>
+						<td></td>
+						<td></td>
+						<td>
+                          [谢谢参与]
+												</td>
+						<td>
+						2015-02-10 16:12:02						</td>
+						<td>
+												</td>
+						<td>
+												</td>
+						<td>
+						<span>
+												未中奖
+												
+						</span>
+						</td>
+				  </tr>
+						</tbody>
+		</table>
+	<div class="tb-toolbar">
+	</div>
+
+<div class="pagination">
+  <ul>
+<li class="pagination_current current"><span>1</span></li>  </ul>
+  
+</div>
+
+<script type="text/javascript">
+
+function toused(id,o){
+	if(confirm('确定标记领取奖项吗？')){
+		ajax('xydzpList-used.html',{ id:id},function(m){
+			if(m=='ok'){
+				$(o).parent().html('已领奖');
+			}
+		});
+	}
+	
+}
+</script>
+<script type="text/javascript" src="js/comm.js"></script>
+<div id="jfczarea" style="display:none">
+	<table>
+		<tr>
+			<td style="line-height: 30px;" valign="top">门店：</td>
+			<td colspan="3"><select style="width: 228px;" class="mdlb">
+					<option value="0">--不标记--</option>
+								</select></td>
+			</tr>
+			<tr>
+			<td style="line-height: 30px;" valign="top">备注：</td>
+			<td colspan="2"><input type="text" class="bz" style="width: 150px;"></td>
+			<td valign="top" align="right">
+			<button onClick="fyjs('xydzpList')" class="btn">确定</button>
+			</td>
+		</tr>
+	</table>
+</div>
+<br/><br/><br/></body></html>

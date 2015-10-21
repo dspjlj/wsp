@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="zh-cn" class="ie8 no-js">
+  <![endif]-->
+  <!--[if IE 9]>
+  <html lang="zh-cn" class="ie9 no-js">
+    <![endif]-->
+    <!--[if !IE]>
+    <!-->
+    <html lang="zh-cn" class="no-js">
+      <!--<![endif]-->
+      <!-- BEGIN HEAD -->
+<head>
+      <meta charset="utf-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta content="black" name="apple-mobile-web-app-status-bar-style">
+      <meta name="format-detection" content="telephone=no">
+      <meta content="telephone=no" name="format-detection">
+      <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+
+      <title>苏阿姨美食微商城</title>
+      <link data-turbolinks-track="true" href="assets/mobile-0606394dc46e105e87d1a9ff2c09985e.css" media="all" rel="stylesheet" />
+      <script data-turbolinks-track="true" src="assets/mobile-scroll-982576b5e9f900d4d53cad7c2111eda7.js"></script>
+
+      <!--微信接口js -->
+      <script data-turbolinks-track="true" src="javascripts/jweixin-1.0.0.js"></script>
+
+      <link data-turbolinks-track="true" href="stylesheets/wshop-navbar-0.css" media="all" rel="stylesheet" />
+      <!-- global js variables -->
+      <style>
+      .attention{background:url(images/attention.png) no-repeat top right;width:100%;height:100%;top:0;-webkit-background-size:170px auto;background-size:170px auto;}
+    </style>
+
+      <!-- hidden until the associated ViewModel finishes compilation -->
+      <style>
+      [v-cloak] { display: none; }
+      .v-enter, .msg.v-leave {
+          height: 0;
+          padding: 0 10px;
+          opacity: 0;
+      }
+    </style>
+      <meta content="authenticity_token" name="csrf-param" />
+      <meta content="x5+Y8CMsQbSZG6odRlnWyaphZEkSKycTyfQsDLCjEXw=" name="csrf-token" />
+</head>
+<body     class="body-shopcar body-navLine-top"
+>
+
+      <div id="html" class="html">
+        <div id="stage" class="stage">
+          <section id="sec-index">
+            <header>
+              <a class="active" href="1_shop.html"> <i class="menu-home"></i>
+                <small>首页</small>
+              </a>
+              <a href="1_shop_search.html"> <i class="menu-search"></i>
+                <small>搜索</small>
+              </a>
+              <a class=" " href="1_shop_cart.html">
+                <i class="menu-cart"></i>
+                <small>购物车</small>
+              </a>
+              <a class=" " href="1_shop_user_center.html">
+                <i class="menu-user"></i>
+                <small>我的</small>
+              </a>
+            </header>
+
+            <div class="body">
+              <div class="mod-tab">
+                <ul>
+                  <li>
+                    <a class='count1 active' href='1_shop_cart.html'>全部商品(1)</a>
+                  </li>
+                  <li>
+                    <a class='count2 ' href='javascript:;'>降价商品(0)</a>
+                  </li>
+                  <li>
+                    <a class='count3 ' href='javascript:;'>库存紧张(0)</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mod-product product-hor form-checkbox">
+                <div class="li-checkbox box product-radio radio-item">
+                  <input type="radio">
+                  <i></i>
+                  <input class="cart_item_data" data-id="124840" data-price="0.8" data-product-variant-id="278958" data-total-price="11.2" id="cart_item_124840" name="cart_item_124840" type="hidden" value="124840" />
+                </div>
+                <div class="product-img">
+                  <a href="1_shop_product_detail.html">
+                    <img alt="汤圆" src="uploads/FskZZZXD-QGC1Kk71Nz6qWEyMVGv.jpg" />
+                  </a>
+                </div>
+                <div class="product-text"> <b>汤圆</b>
+                  <div class="add-num inline" data-item-id="124840">
+                    <a href="javascript:;" class="sub edit_quantity" data-num="-1"></a>
+                    <div class="text">
+                      <input type="text" value="14" class="quantity" readonly></div>
+                    <a href="javascript:;" class="add edit_quantity" data-num="1"></a>
+                  </div>
+                  <p></p>
+                </div>
+                <div class="product-num">
+                  <p>￥0.80</p>
+                  <p class="text-muted">x14</p>
+                  <a class="btn-remove inline" href="javascript:;" data-price="0.8" data-number="1">
+                    <i class="fa fa-trash-o"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div class="mod-shopcar form-checkbox">
+                <div class="product-radio radio-all li-checkbox box" data-all="radio-item">
+                  <input type="radio">
+                  <i></i>
+                </div>
+                <div class="shopcar-text">
+                  <p>
+                    总金额：
+                    <span class="red" id="product-all" data-price="100">￥11.20</span>
+                  </p>
+                </div>
+                <div class="shopcar-btn">
+                  <a class="btn btn-shopcar btn-shopcar-checkout" data-number="0" href="#nogo" id="product-shopcar-checkout">结算(0)</a>
+                </div>
+              </div>
+            </div>
+
+            <script type="text/javascript">
+  function detect_select_cart_item_data () {
+     var all_cart_items_data = [],
+     all_cart_items = [],
+     all_total_price = 0.0;
+
+     $.each($(".radio-item"), function(index, element) {
+       per_self = $(element)
+       console.log(per_self.hasClass("selected"))
+       if (per_self.hasClass("selected")) {
+         all_cart_items.push(element)
+       }
+     });
+
+     $.each(all_cart_items, function(index, item_element) {
+       all_cart_items_data.push($(item_element).find(".cart_item_data")[0].dataset)
+     });
+
+    return all_cart_items_data;
+  };
+
+  function update_checkout_cart_summary () {
+
+    var all_total_price = 0.0,
+        all_cart_items_data = detect_select_cart_item_data();
+
+    all_cart_items_data.map(function (data,index) { all_total_price = all_total_price + data.totalPrice*1.0});
+
+    $(".shopcar-btn").find(".btn-shopcar").text("结算(" + all_cart_items_data.length + ")")
+    $("#product-all").attr("data-price", all_total_price.toFixed(2))
+    $("#product-all").text("￥" + all_total_price.toFixed(2))
+  }
+
+  function trigger_select_all_cart_item (element) {
+    var self=$(element),
+      $all=$("."+self.attr("data-all")),
+      $input=self.find("input");
+    if(self.hasClass("selected")){
+      $input.prop("checked",false);
+      $all.prop("checked",false);
+      $all.removeClass("selected");
+    }else{
+      $input.prop("checked",true);
+      $all.addClass("selected");
+      $all.prop("checked",true);
+    }
+  };
+
+    $(function(){
+        $(".edit_quantity").click(function(){
+          var $item=$(this),
+              item_id = $item.closest(".inline").attr("data-item-id"),
+              $quantity_input = $item.closest(".inline").find(".quantity"),
+              quantity = parseInt($quantity_input.val())+parseInt($item.attr("data-num"));
+          if(quantity > 0){
+            var url = "/mobile/carts/edit_quantity?wx_mp_user_id=gh_abff20e6fd1c&id="+item_id+"&quantity=" + quantity;
+            $.get(url, function(data) {
+              $quantity_input.val(data.num);
+              $item.closest(".product-text").find(".item_total").html("￥"+data.total_price);
+              $item.closest(".form-checkbox").find(".cart_item_data").attr("data-total-price",data.total_price);
+              update_checkout_cart_summary();
+            });
+          }
+        });
+
+        $(".btn-remove").click(function(){
+            var self=$(this).parents(".mod-product")
+            cart_items_data = self.find(".cart_item_data")[0].dataset
+
+            $.ajax({
+                url: '/mobile/carts/remove_item?wx_mp_user_id=gh_abff20e6fd1c',
+                data: {item_id: cart_items_data.id},
+                type: 'PUT',
+                success: function(data, status) {
+                  console.log("response data "+ data)
+                  self.remove();
+                  $(".mod-tab .count1").html("全部商品("+data.count1+")");
+                  $(".mod-tab .count2").html("降价商品("+data.count2+")");
+                  $(".mod-tab .count3").html("库存紧张("+data.count3+")");
+                  update_checkout_cart_summary();
+                }
+            });
+
+        });
+        //选中
+        $(".product-radio").click(function(){
+            var self=$(this),
+                $all=$(".radio-all");
+            if(!self.hasClass("selected")){
+                $all.removeClass("selected");
+                $all.find("input").prop("checked",false);
+            }else{
+              if($(".form-checkbox .product-radio").not(".selected").length<=1){
+                  $all.addClass("selected");
+                  $all.find("input").prop("checked",true);
+              }
+            }
+
+            update_checkout_cart_summary()
+        });
+        //全选
+        $(".radio-all").click(function(){
+            var self=$(this),
+                    $all=$("."+self.attr("data-all")),
+                    $input=self.find("input");
+            if(!self.hasClass("selected")){
+                $all.removeClass("selected");
+                $input.prop("checked",true);
+                $all.prop("checked",true);
+            }else{
+                $input.prop("checked",false);
+                $all.prop("checked",false);
+                $all.addClass("selected");
+            }
+            update_checkout_cart_summary()
+
+        });
+
+        //cart checkout selected item
+        $("#product-shopcar-checkout").click(function() {
+          var item_ids = [],
+              all_cart_items_data = detect_select_cart_item_data();
+
+          if (all_cart_items_data.length == 0) {
+            return false
+          }
+
+          all_cart_items_data.map(function (data,index) { item_ids.push(data.id)});
+          var request_data = {item_ids: item_ids.join(",")}
+
+          var url = $.url('/front/1_shop_order.html?wx_mp_user_id=gh_abff20e6fd1c')
+          param = $.extend(url.param(), request_data)
+          href = url.attr('path') + "?" + $.param(param);
+
+          $(this).attr("href", href)
+        });
+
+      $(".radio-all").trigger("click")
+    });
+</script></section>
+        </div>
+
+      </div>
+
+      <footer>
+        <a href="">技术支持：39MI微信开发商</a>
+      </footer>
+
+      <script></script>
+
+      
+
+</body>
+    </html>

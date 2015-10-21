@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<meta name="format-detection" content="telephone=no">
+
+<title>话题列表</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+
+<link type="text/css" rel="stylesheet" href="res/weiba/style/topic.css" />
+<script type="text/javascript" src="res/choujiang/js/weixin-api.js"></script>
+
+</head>
+
+<body>
+<script type="text/javascript">
+        var mysharelink = window.location.href;	
+		// 所有功能必须包含在 WeixinApi.ready 中进行
+        WeixinApi.ready(function (Api) {
+
+            // 微信分享的数据
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl": 'http://www.39mnet.com/res/share/wb.jpg',
+                "img_width": "360",
+                "img_height": "360",
+                "link": mysharelink,
+                "desc": '微信专属聊天地带，快来微吧吐槽吧，她已经在里面等你了哦！',
+                "title": '微吧，一个自由聊天的国度！'
+            };
+
+            // 分享的回调
+            var wxCallbacks = {
+                // 分享操作开始之前
+                ready: function () {
+                    // 你可以在这里对分享的数据进行重组
+                    wxData.link = mysharelink;
+                },
+                // 分享被用户自动取消
+                cancel: function (resp) {
+                   // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+                },
+                // 分享失败了
+                fail: function (resp) {
+                    // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+                },
+                // 分享成功
+                confirm: function (resp) {
+                    // 分享成功了，我们是不是可以做一些分享统计呢？
+                    $.ajax({
+                        /*url: "http://weisft.com/youxi/lujinxgsg/myshare/todo.aspx?do=addsharetimes&id=" + myguid,*/
+                        type: "POST",
+                        dataType: "text",
+                        data: null,
+                        success: function (data) {
+                        }
+                    });
+                },
+                // 整个分享过程结束
+                all: function (resp) {
+                     // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+                }
+            };
+
+            // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+            Api.shareToFriend(wxData, wxCallbacks);
+
+            // 点击分享到朋友圈，会执行下面这个代码
+            Api.shareToTimeline(wxData, wxCallbacks);
+
+            // 点击分享到腾讯微博，会执行下面这个代码
+            Api.shareToWeibo(wxData, wxCallbacks);
+        });
+    </script>
+	<div id="wrapper" class="wrapper main_content">
+
+		<div>
+
+			<div class="load_more">
+
+				<a href="weiba-11215-new.html?wid=11001&wxidofoY0t4jJv8KqAK6HYGIMG8IsGhA">发布话题</a>
+
+			</div>
+
+			<div class="topic_list">
+
+				<ul id="topic_data" class="topic_list_item">
+
+				
+					<li>
+
+						<a href="weiba-11215-215.html?wid=11001&wxid=ofoY0t4jJv8KqAK6HYGIMG8IsGhA">#什么是友谊#
+
+						</a>
+
+						<span class="hot">热度：0</span>
+
+					</li>
+
+				
+				</ul>
+
+			</div>
+
+			<div class="load_more">
+
+				<a href="javascript:loadmore();">查看更多</a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+ 	<p class="page-url">
+
+		<a href="/" target="_blank" class="page-url-link"></a>
+
+	</p>
+
+	<script type="text/javascript">
+
+	function loadmore(){
+
+		if(!window.loadnum){
+
+			window.loadnum = 10;
+
+		}else{
+
+			window.loadnum += 10;
+
+		}
+
+		$('.load_more').eq(1).hide();
+
+		ajax('weibamore-list.html',{ num:window.loadnum},function(m){
+
+			if(m.length <10){
+
+			}else{
+
+				$('.load_more').eq(1).show();
+
+			}
+
+			for(var i=0;i<m.length;i++){
+
+				var mm = m[i];
+
+				$('#topic_data').append('<li><a href="weiba-11215-'+mm.id+'.html?wid=11001&wxid=ofoY0t4jJv8KqAK6HYGIMG8IsGhA">#'+mm.keywd+'#</a><span class="hot">热度：'+mm.zm+'</span></li>');
+
+			}
+
+		});
+
+	}
+
+	</script>
+
+	<div class="mfooter" id="wxgjfooter" style="text-align: center;width: 100%;height: 20px;line-height: 20px;margin-top:10px;">
+<span class="sp2"><a href="http://www.39mnet.com" style="color: #5e5e5e;font-size: 12px;"><!--@39MI微信开发商提供技术支持--></a></span>
+</div>
+<div style="width: 0px;height: 0px;overflow: hidden;">
+
+</div>
+<script>
+/**
+$(function(){
+	if($('body').height()<$(window).height()){
+		$('body').height($(window).height());
+		$('#wxgjfooter').css('position','fixed').css('bottom','0px');
+	}
+});
+**/
+</script>
+
+</body>
+
+</html>

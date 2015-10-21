@@ -1,0 +1,899 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="zh-cn" class="ie8 no-js">
+  <![endif]-->
+  <!--[if IE 9]>
+  <html lang="zh-cn" class="ie9 no-js">
+    <![endif]-->
+    <!--[if !IE]>
+    <!-->
+    <html lang="zh-cn" class="no-js">
+      <!--<![endif]-->
+      <!-- BEGIN HEAD -->
+<head>
+      <meta charset="utf-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta content="black" name="apple-mobile-web-app-status-bar-style">
+      <meta name="format-detection" content="telephone=no">
+      <meta content="telephone=no" name="format-detection">
+      <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+
+      <title>苏阿姨美食微商城</title>
+      <link data-turbolinks-track="true" href="assets/mobile-0606394dc46e105e87d1a9ff2c09985e.css" media="all" rel="stylesheet" />
+      <script data-turbolinks-track="true" src="assets/mobile-scroll-982576b5e9f900d4d53cad7c2111eda7.js"></script>
+      <link data-turbolinks-track="true" href="stylesheets/wshop-navbar-0.css" media="all" rel="stylesheet" />
+      <!-- global js variables -->
+      <style>
+      .attention{background:url(images/attention.png) no-repeat top right;width:100%;height:100%;top:0;-webkit-background-size:170px auto;background-size:170px auto;}
+    </style>
+
+      <!-- hidden until the associated ViewModel finishes compilation -->
+      <style>
+      [v-cloak] { display: none; }
+      .v-enter, .msg.v-leave {
+          height: 0;
+          padding: 0 10px;
+          opacity: 0;
+      }
+    </style>
+      <meta content="authenticity_token" name="csrf-param" />
+      <meta content="x5+Y8CMsQbSZG6odRlnWyaphZEkSKycTyfQsDLCjEXw=" name="csrf-token" />
+</head>
+<body   class=""
+>
+
+      <div id="html" class="html">
+        <div id="stage" class="stage">
+          <section id="sec-index">
+            <div class="header">
+              <a class="fa fa-arrow-left" href="javascript:history.go(-1);"></a>
+              <a class="btn btn-shopcar checkout_order nosubmit">确认支付</a>
+            </div>
+
+            <form accept-charset="UTF-8" action="#" class="body body-gobuy" id="edit_order_" method="post">
+              <div style="display:none">
+                <input name="utf8" type="hidden" value="&#x2713;" />
+                <input name="authenticity_token" type="hidden" value="x5+Y8CMsQbSZG6odRlnWyaphZEkSKycTyfQsDLCjEXw=" />
+              </div>
+
+              <input id="order_delivery_freight_value" name="order[delivery_freight_value]" type="hidden" value="0.0" />
+              <input id="order_cal_amount" name="order[cal_amount]" type="hidden" value="0.8" />
+
+              <div class="mod-title hide">配送方式</div>
+              <div class="mod-form form-hor box-form form-radio J-select shipping_setting_type hide">
+                <label class="form-li box">
+                  <div class="li-l li-checkbox">
+                    <input checked="checked" id="order_shipping_shipping_setting_type_shippingsettingshippingdelivery" name="order[shipping][shipping_setting_type]" type="radio" value="ShippingSetting::ShippingDelivery" /> <i></i>
+                  </div>
+                  <div class="li-r">送货上门</div>
+                </label>
+              </div>
+              <div class="J-cont shipping_delivery_field">
+                <div class="mod-title">收货信息</div>
+
+                <input id="order_wx_user_address_id" name="order[wx_user_address][id]" type="hidden" />
+                <input id="order_wx_user_address_is_default" name="order[wx_user_address][is_default]" type="hidden" value="1" />
+                <div class="mod-form form-hor box-form order-wx-user-address-input" style="display: ;">
+                  <div class="form-li">
+                    <div class="li-l"> <b><i class="icon icon-1"></i>
+                        收货人：</b> 
+                    </div>
+                    <div class="li-r">
+                      <input class="input" id="order_wx_user_address_name" name="order[wx_user_address][name]" placeholder="请输入您的真实姓名" type="text" />
+                    </div>
+                  </div>
+                  <div class="form-li">
+                    <div class="li-l"> <b><i class="icon icon-2"></i>联系电话：</b> 
+                    </div>
+                    <div class="li-r">
+                      <input class="input" id="order_wx_user_address_phone" name="order[wx_user_address][phone]" placeholder="请输入您的有效联系电话" type="tel" />
+                    </div>
+                  </div>
+
+                  <div class="form-li">
+                    <div class="li-l">
+                      <b>
+                        <i class="icon icon-3"></i>选择地区：
+                      </b>
+                    </div>
+                    <div class="li-r">
+                      <div class="fa fa-angle-right mod-fa clearfix">
+                        <select class="input select province" data-callback="calculate_order_freight" data-initialize="true" id="order_wx_user_address_province" name="order[wx_user_address][province]"></select>
+                        <select class="input select city" id="order_wx_user_address_city" name="order[wx_user_address][city]"></select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-li">
+                    <div class="li-l">
+                      <b>
+                        <i class="icon icon-3"></i>详细地址：
+                      </b>
+                    </div>
+                    <div class="li-r">
+                      <input class="input" id="order_wx_user_address_address" name="order[wx_user_address][address]" placeholder="请输入您的有效地址" type="text" />
+                    </div>
+                  </div>
+
+                </div>
+                <div class="mod-add" style="display: none;">
+                  <a href="javascript:;" class="box order-wx-user-address-detail">
+                    <h1>
+                      <span>收件人：</span>
+                      <span></span>
+                    </h1>
+                    <p>收货地址:</p>
+                  </a>
+                </div>
+              </div>
+
+              <div class="J-cont hide personal_pickup_field">
+                <div class="mod-title">门店信息</div>
+                <div class="mod-form form-hor box-form">
+                  <div class="form-li" id="select_district"></div>
+                  <div class="form-li" id="select_subbranch"></div>
+                  <div id="subbranch_detail"></div>
+                </div>
+                <div class="mod-title">门店提货要求</div>
+                <div class="mod-form form-hor box-form"></div>
+                <div class="mod-title">提货人信息</div>
+
+                <div class="mod-form form-hor box-form">
+                  <div class="form-li">
+                    <div class="li-l">
+                      <b>
+                        <i class="fa fa-user"></i>
+                        姓名：
+                      </b>
+                    </div>
+                    <div class="li-r">
+                      <input class="input" id="order_wx_user_address_name" name="order[wx_user_address][name]" placeholder="请输入您的真实姓名" type="text" />
+                    </div>
+                  </div>
+                  <div class="form-li">
+                    <div class="li-l">
+                      <b>
+                        <i class="fa fa-phone"></i>
+                        电话：
+                      </b>
+                    </div>
+                    <div class="li-r">
+                      <input class="input" id="order_wx_user_address_phone" name="order[wx_user_address][phone]" placeholder="请输入您的有效联系电话" type="tel" />
+                    </div>
+                  </div>
+                  <div class="form-li">
+                    <div class="li-l">
+                      <b>
+                        <i class="fa fa-map-marker"></i>
+                        地址：
+                      </b>
+                    </div>
+                    <div class="li-r">
+                      <input class="input" id="order_wx_user_address_address" name="order[wx_user_address][address]" placeholder="请输入您的有效地址" type="text" />
+                    </div>
+                  </div>
+
+                </div>
+
+                <input id="order_shipping_subbranch_id" name="order[shipping][subbranch_id]" type="hidden" />
+              </div>
+
+              <script id="select_district_tmpl" type="text/x-jquery-tmpl">
+  <div class="li-l"></div>
+  <div class="li-r">
+    <select class="input" id="district_select_element">
+      <option>请点击选择门店所在区</option>
+      {{each districts}}
+        <option value="${id}">${name}</option>
+      {{/each}}
+
+    </select>
+  </div>
+</script>
+              <script id="select_subbranch_tmpl" type="text/x-jquery-tmpl">
+  <div class="li-l"></div>
+  <div class="li-r">
+    <select class="input" id="subbranch_select_element">
+      <option>请点击选择门店</option>
+      {{each subbranches}}
+        <option value="${id}">${name}</option>
+      {{/each}}
+    </select>
+  </div>
+</script>
+              <script id="subbranch_detail_tmpl" type="text/x-jquery-tmpl">
+  <div class="form-li">
+    <div class="li-l"><b><i class="fa fa-map-marker"></i>地址：</b></div>
+    <div class="li-r"><a href="#">${address}</a></div>
+  </div>
+  <div class="form-li">
+    <div class="li-l"><b><i class="fa fa-phone"></i>电话：</b></div>
+    <div class="li-r"><a href="#">${tel}</a></div>
+  </div>
+</script>
+              <script>
+//<![CDATA[
+
+$(function(){
+  $subbranches_json = {
+};
+
+  var districts = [];
+  $.each($subbranches_json, function (k, v) {
+    district = v["district"]
+    if (!(typeof(district) == "undefined")) {
+      districts.push(v["district"])
+    }
+  })
+
+  function detect_district_subbranches (district_id) {
+    return $subbranches_json[district_id]["subbranches"]
+  }
+
+  if (districts.length > 0) {
+    console.log(JSON.stringify(districts))
+    $("#select_district").html($("#select_district_tmpl").tmpl({districts: districts}))
+  }
+
+  $("#district_select_element").bind("change", function () {
+    $current_subbranches = detect_district_subbranches (this.value)
+
+    if ($current_subbranches.length > 0) {
+      $("#select_subbranch").html($("#select_subbranch_tmpl").tmpl({subbranches: $current_subbranches}))
+    }
+  });
+
+  $("#select_subbranch").delegate("#subbranch_select_element", "change", function (event) {
+    var subbranch;
+    $.map($current_subbranches, function (e, i) {
+      if (String(e.id) == event.currentTarget.value) { subbranch = e}
+    })
+
+    if (!( typeof(subbranch) ==  "undefined")) {
+      $("#subbranch_detail").html($("#subbranch_detail_tmpl").tmpl(subbranch))
+      $("#order_shipping_subbranch_id").val(subbranch.id)
+      $(".personal_pickup_field input[name='order[wx_user_address][address]']").val(subbranch.address)
+
+    }
+  });
+
+})
+
+//]]>
+</script>
+              <div class="mod-discount" id="coupon" style="display: none;">
+                优惠信息：{{title}}
+                <input id="order_coupon_code" name="order[coupon_code]" type="hidden" value="{{code}}" />
+              </div>
+              <div class="mod-title">商品信息</div>
+              <div class="mod-box order-product-list">
+                <div class="mod-product product-hor form-checkbox">
+                  <div class="product-img">
+                    <a href="1_shop_product_detail.html">
+                      <img alt="" src="uploads/FskZZZXD-QGC1Kk71Nz6qWEyMVGv.jpg" />
+                    </a>
+                  </div>
+                  <div class="product-text">
+                    <p>汤圆</p>
+                    <p class="cell">汤圆：鲜肉大汤圆（30g/只）</p>
+                  </div>
+                  <div class="product-number">
+                    <p>￥0.80</p>
+                    <p class="text-muted">x1</p>
+                  </div>
+                </div>
+
+                <div class="box-li">
+                  <div class="product-text tright">
+                    <span>
+                      运费：
+                      <span class="freight_value" >{{freight_value}}</span>
+                      元　　小计：
+                      <span id="amount" class="red">{{amount}}</span>
+                      元
+                    </span>
+                  </div>
+                </div>
+
+                <div id="discount" style="display:none;">
+                  <input disabled="disabled" id="order_discount_deduction" name="order[discount_deduction]" type="hidden" v-model="discount_deduction" value="0.0" />
+                </div>
+
+                <script>
+    var discount = new Vue({
+      el: '#discount',
+      data: {}
+    });
+
+    function adjust_order_amount_by_discount(){
+      $.ajax({
+        url: 'http://www.vcooline.com/v1/vips/user_info.json',
+        data: {open_id: 'signup-ce0fd890bad2e945ef55', mp_user_open_id: 'gh_abff20e6fd1c', trade_token: ''},
+        type: 'get',
+        async: false,
+        success: function(data, status, jqxhr) {
+          console.log(data);
+          if(data.errcode==0) {
+            if(!_.isEmpty(data.user_info) && !_.isEmpty(data.user_info.vip_privileges)){
+              discount_privileges = _.where(data.user_info.vip_privileges, {category: 1, value_by: 2});
+              console.log(discount_privileges);
+              update_amount_by_discount_privileges(discount_privileges);
+            }else{
+              console.log('no vip privileges');
+            };
+          }else{
+            console.log('errcode: ', data.errcode, ', data: ', data);
+          }
+        },
+        error: function(data, status, jqxhr) {
+          console.log(status, ':', data);
+        }
+      });
+    };
+
+    function update_amount_by_discount_privileges(discount_privileges){
+      sorted_discount_privileges = _.sortBy(discount_privileges, function(e){ return parseFloat(e.amount)*(-1) });
+
+      discount_privilege = _.find(sorted_discount_privileges, function(e) {
+//        return e.amount <= order.products_amount;
+        return e.amount <= order.max_vip_deduction_money;
+      });
+
+      if(!_.isEmpty(discount_privilege) && _.isNumber(discount_privilege.value)) {
+//        amount_before_discount = order.products_amount;
+//        console.log('amount_before_discount: '+order.products_amount);
+//        amount_after_discount = amount_before_discount * discount_privilege.value / 10;
+//        console.log('amount_after_discount: '+amount_after_discount)
+//        if(amount_after_discount > 0){
+//          set_current_amount(amount_after_discount);
+//          discount.discount_deduction = amount_before_discount - amount_after_discount
+//        };
+
+                var amount_before_discount = order.max_vip_deduction_money;
+                var amount_after_discount = amount_before_discount * discount_privilege.value / 10;
+                if(amount_after_discount > 0 && amount_after_discount < amount_before_discount) {
+                    discount.discount_deduction = amount_before_discount - amount_after_discount;
+                    calculate_order_amount();
+                    $("#order_discount_deduction").attr("disabled", false);
+                }
+      }else{
+        console.log('no discount privilege');
+      };
+    };
+</script>
+
+                <div class="box-li" id="points" style="display:none;">
+                  <div class="product-text tright">
+                    <label>
+                      <div id="use_point_div" class="li-checkbox ">
+                        <input id="order_use_points_false" name="order[use_points]" type="radio" value="false" />
+                        <i></i>
+                      </div>
+                      <p>
+                        <span id="use_point_span">
+                          可用{{used_points}}积分抵扣
+                          <span class="red">{{points_deduction}}元</span>
+                        </span>
+                        <small>本单可获得{{gain_points}}积分</small>
+                      </p>
+                      <input disabled="disabled" id="order_used_points" name="order[used_points]" type="hidden" v-model="used_points" value="0" />
+                      <input disabled="disabled" id="order_points_deduction" name="order[points_deduction]" type="hidden" v-model="points_deduction" value="0" />
+                    </label>
+                  </div>
+                </div>
+
+                <script>
+    var points = new Vue({
+        el: '#points',
+        data: {points_deduction: 0, per_points: 0}
+    });
+
+    $(".product-text .li-checkbox").click(function(){
+        var self     = $(this).toggleClass("selected");
+        var usePoints = self.hasClass('selected');
+        self.find("input").prop("checked", usePoints);
+        self.siblings("#order_used_points, #order_points_deduction").attr("disabled", !usePoints);
+        calculate_order_amount();
+        return false;
+    });
+
+    function update_points_info(){
+        var deduction_points = 0;
+        if(deduction_points <= 0) {
+            return;
+        }
+        $.ajax({
+            url: 'http://www.vcooline.com/v1/vips/usable_points?mp_user_open_id=gh_abff20e6fd1c&amp;trade_token=&amp;open_id=signup-ce0fd890bad2e945ef55',
+            data: {},
+            crossDomain: true,
+            dataType: "json",
+            type: 'get',
+            async: false,
+            success: function(data, status) {
+                console.log("usable points data: "+ JSON.stringify(data));
+                if(data.errcode == 0){
+                    var max_points_deduction_amount = order.amount - order.freight_value;
+                    var max_points_deduction_points = max_points_deduction_amount === 0 ? 0 : max_points_deduction_amount * deduction_points;
+                    points.used_points = Math.min(data.points, order.max_points_deduction_points, max_points_deduction_points);
+                    points.points_deduction =  Math.round(points.used_points)/ deduction_points;
+                    $("#points").show();
+                }else{
+                    $("#points").hide();
+                }
+                if( points.used_points <= 0 ) {
+                    $('#use_point_div, #use_point_span').hide();
+                }
+                if ("true" == "false"){
+                  $("#points").hide();
+                }
+            }
+        });
+        $.ajax({
+            url: 'http://www.vcooline.com/v1/vips/earnable_points?mp_user_open_id=gh_abff20e6fd1c&amp;trade_token=&amp;open_id=signup-ce0fd890bad2e945ef55&amp;amount='+order.products_amount,
+            data: {},
+            crossDomain: true,
+            dataType: "json",
+            type: 'get',
+            async: false,
+            success: function(data, status) {
+                console.log("earnable points data: "+ JSON.stringify(data));
+                if(data.errcode==0){
+                    points.gain_points = data.points;
+                }else{
+                    $("#points").hide();
+                }
+            }
+        });
+    };
+</script>
+
+                <div class="box-li">
+                  <div class="remarks">
+                    <input class="input" id="order_comment" name="order[comment]" placeholder="给卖家留言" type="text" />
+                  </div>
+                </div>
+              </div>
+
+              <input id="order_variants" name="order[variants]" type="hidden" value="[{&quot;product_variant_id&quot;:&quot;278958&quot;,&quot;quantity&quot;:&quot;1&quot;}]" />
+              <div class="mod-title">支付方式</div>
+              <div class="pay-box">
+                <ul class="radioTab">
+                  <li class="active">
+                    <i class="pay-icon-vip_userpay"></i>
+                    <div>余额支付</div>
+                    <div class="tips">支持已开通余额支付的用户使用</div>
+                    <input checked="checked" id="payment_type_name_vip_userpay" name="payment_type_name" type="radio" value="vip_userpay" />
+                  </li>
+                </ul>
+              </div>
+              <input id="order_payment_type_name" name="order[payment_type_name]" type="hidden" />
+            </form>
+            <script>
+
+var coupon = new Vue({el: '#coupon', data: {title: '无', deduction: 0}});
+var $coupon = $('#coupon');
+
+order = new Vue({
+  el: ".order-product-list",
+  data: {
+    freight_value:  0.00,
+    amount:  0.80,
+    products_amount:  0.80,
+        max_points_deduction_points: 0,
+        max_vip_deduction_money: 0.8,
+        items_amount: 0.8
+  },
+  computed: {
+    products_amount_from_page: function(){ return (this.amount - this.freight_value).toPrecision(2)}
+  }
+});
+
+function calculate_order_amount() {
+    order.amount = order.items_amount;
+    if(discount.discount_deduction) order.amount -= discount.discount_deduction;
+    if(coupon.deduction) order.amount -= coupon.deduction;
+    var pointsDiscounted = $(".product-text .li-checkbox").hasClass('selected');
+    if(pointsDiscounted && points.points_deduction) order.amount -= points.points_deduction;
+    order.amount += order.freight_value;
+    order.amount = parseFloat( Math.max(0, order.amount).toFixed(2) );
+    order.products_amount = order.amount;
+}
+
+$(function(){
+
+  var pay_busy = true;
+  $(".radioTab").on("click","li",function(){
+     var $this = $(this),
+         $input = $this.find("input");
+     $this.addClass("active").find("input").attr("checked",true);
+     $this.siblings().removeClass("active").find("input").attr("checked",false);
+  });
+
+  function validate_shipping_field(selector) {
+    var self = $(selector);
+
+    if (self.length == 0) {
+      return false;
+    }
+
+    current_wrapper = $(self.parents(".form-li")[0]);
+
+    if (self.val().length > 0) {
+      current_wrapper.removeClass("animated-vertical");
+    } else {
+      current_wrapper.addClass("animated-vertical");
+    }
+  }
+
+  function validate_book_pickup_at_date(selector) {
+    var self = $(selector).filter("[disabled!='disabled']");
+
+    if (self.length == 0) {
+      return false;
+    }
+
+    var date = self.val(),
+          one_day_early = moment(date) < moment().subtract('days', -1).startOf('day'),
+          $li=self.parents(".form-li");
+
+    if(date == "" || one_day_early){
+        $li.addClass("animated-vertical");
+    }else{
+        $li.removeClass("animated-vertical");
+    }
+  }
+
+  function validate_shipping_field_data(selector) {
+    $.each($(selector).filter("[disabled!='disabled']"),  function(index, value) {
+      validate_shipping_field(value)
+    });
+  }
+
+  var validate_address_selector = ".shipping_delivery_field input[name='order[wx_user_address][name]'], .shipping_delivery_field input[name='order[wx_user_address][phone]'], .shipping_delivery_field input[name='order[wx_user_address][address]']",
+      book_pickup_at_date_selector = "[name='order[shipping][book_pickup_at_date]']",
+      book_pickup_at_time_selector = "[name='order[shipping][book_pickup_at_time]']";
+
+  function validate_subbranch () {
+    current_shipping_type = $(".selected input[name='order[shipping][shipping_setting_type]']").val();
+    if ( current_shipping_type == "ShippingSetting::PersonalPickup") {
+      if ($("#order_shipping_subbranch_id").val() == "") {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  var pay_busy = true;
+  $(".checkout_order").click(function() {
+    var self = $(this),
+    current_payment_type = $('.active [name="payment_type_name"]').val(),
+    order_variants = $("#order_variants").val();
+
+    validate_shipping_field_data(validate_address_selector)
+    validate_shipping_field_data(book_pickup_at_time_selector)
+    validate_book_pickup_at_date(book_pickup_at_date_selector)
+
+    if ($(book_pickup_at_date_selector).length > 0 && $(book_pickup_at_date_selector).parents(".form-li").hasClass("animated-vertical")) {
+      alertTip("请确保日期晚于当日");
+      return false
+    }
+
+    if (! validate_subbranch()) {
+      alertTip("请选择门店");
+      return false
+    }
+
+    if (order_variants =="") {
+      alertTip("订单无效");
+      return false;
+    }
+
+    if (order_variants =="") {
+      alertTip("订单无效");
+      return false;
+    }
+
+    if ( typeof(current_payment_type) == "undefined") {
+      alertTip("请选择支付方式");
+      return false;
+    }
+
+    if ( $(".animated-vertical").filter("[disabled!='disabled']").length == 0 
+          && current_payment_type.length > 0 ) {
+      $("#order_payment_type_name").val(current_payment_type);
+      if($(this).attr("class").indexOf('bargain') > 0){
+        // alert('day0');
+        $("#edit_order_").attr('action',
+          $("#edit_order_").attr('action') + "&is_bargain=true");
+        // alert($("#edit_order_").attr('action'));
+      }
+      self.html("正在提交...");
+      if(pay_busy){
+        $("#edit_order_").submit();
+      };
+      pay_busy = false;
+    } else {
+      alertTip("请检查订单表单信息");
+      return false;
+    }
+  });
+
+  $(validate_address_selector).change(function() {
+    validate_address_field(this)
+  });
+  $(book_pickup_at_date_selector).change(function() {
+    validate_book_pickup_at_date(this)
+  })
+
+  function update_selected_shipping_field (element) {
+      var $current = $(element),
+          index = $current.index(),
+          $tab = $(".J-cont");
+      var inputs = $tab.find("*"),
+          match_tab = $tab.eq(index);
+      $tab.hide();
+      inputs.attr("disabled", "disabled");
+      match_tab.find("*").removeAttr("disabled");
+      match_tab.removeClass("hide").show();
+  };
+
+  function update_freight_by_shipipng_type () {
+    var current_shipping_type = $(".selected input[name='order[shipping][shipping_setting_type]']").val(),
+        order_delivery_freight_value = $("#order_delivery_freight_value").val() * 1.0;
+
+    if (current_shipping_type == "ShippingSetting::PersonalPickup") {
+      order.freight_value = 0;
+      $(".personal_pickup_field input[name='order[wx_user_address][address]']").parents('.form-li').hide();
+    } else if (current_shipping_type == "ShippingSetting::ShippingDelivery") {
+      order.freight_value = order_delivery_freight_value;
+    }
+
+    calculate_order_amount();
+  };
+
+  function set_coupon_info(async) {
+      // 获取新优惠券信息并显示
+      var maxOrderCouponDeduction = 0;
+      if (maxOrderCouponDeduction > 0 && true) {
+          var url = 'http://www.vcooline.com/v1/coupons/consume_list?wx_mp_user_open_id=gh_abff20e6fd1c&coupon_token=AxJKl390nbYhd&open_id=signup-ce0fd890bad2e945ef55&value_by=0.8';
+          $.ajax({
+              url: url,
+              async: false,
+              dataType: 'json',
+              success: function (data) {
+                  if (data.consumes && data.consumes.length) {
+                      var consume = data.consumes[0];
+                      coupon.deduction = Math.min(maxOrderCouponDeduction, consume.value);
+                      coupon.code = consume.code;
+
+                      coupon.title = '优惠券';
+                      if (parseInt(consume.value_by) > 0) coupon.title += '满 ' + consume.value_by;
+                      coupon.title += ' 抵扣 ' + consume.value + ' 元';
+                      calculate_order_amount();
+                      return $coupon.show();
+                  }
+                  $coupon.hide();
+              }
+          });
+      }
+  }
+
+  $(".shipping_setting_type .box").bind("click",function(){
+      update_selected_shipping_field(this);
+      update_freight_by_shipipng_type();
+      adjust_order_amount_by_discount();
+      set_coupon_info(false);
+      update_points_info();
+      calculate_order_freight($("#order_wx_user_address_province"),$("#order_wx_user_address_city"));
+  });
+
+  $("input[name='order[shipping][shipping_setting_type]'][checked]").click()
+});
+</script>
+
+          </section>
+        </div>
+
+        <div class="stage hide" id="stage">
+          <section id="sec-index">
+            <div class="body body-gobuy">
+              <div class="mod-add add-list">
+                <a href="javascript:;" class="add-addr J-add-addr">
+                  <i class="fa fa-plus-circle"></i>
+                  新增地址
+                </a>
+              </div>
+              <form class="mod-form form-hor box-form mod-hide">
+                <input type="hidden" id="wx-user-address-wx-user-id" value="372144">
+                <div class="form-li">
+                  <div class="li-l">
+                    <b>
+                      <i class="icon icon-1"></i>
+                      收货人：
+                    </b>
+                  </div>
+                  <div class="li-r">
+                    <input type="text" id='wx-user-address-name' placeholder="请输入您的真实姓名" class="input"></div>
+                </div>
+                <div class="form-li">
+                  <div class="li-l">
+                    <b>
+                      <i class="icon icon-2"></i>
+                      联系电话：
+                    </b>
+                  </div>
+                  <div class="li-r">
+                    <input type="tel" id='wx-user-address-phone' placeholder="请输入您的有效联系电话" class="input"></div>
+                </div>
+                <div class="form-li">
+                  <div class="li-l">
+                    <b>
+                      <i class="icon icon-3"></i>
+                      选择地区：
+                    </b>
+                  </div>
+                  <div class="li-r">
+                    <div class="fa fa-angle-right mod-fa clearfix">
+                      <select class="input select province" id='wx-user-address-province' data-initialize='true' select_value='上海'></select>
+                      <select class="input select" id='wx-user-address-city'></select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-li">
+                  <div class="li-l">
+                    <b>
+                      <i class="icon icon-3"></i>
+                      详细地址：
+                    </b>
+                  </div>
+                  <div class="li-r">
+                    <input type="text" id='wx-user-address-address' placeholder="请输入您的有效地址" class="input"></div>
+                </div>
+                <div class="btn-box clearfix">
+                  <a href="javascript:;" class="btn btn-small btn-shopcar btn-add-wx-user-address">保存</a>
+                  <input type="reset" class="btn btn-small J-cancel" value="取消"></div>
+              </form>
+            </div>
+          </section>
+        </div>
+        <script>
+    function calculate_order_freight(province, city){
+        $.ajax({
+            url: "http://ec.vcooline.com/api/products/freights?wx_mp_user_id=gh_abff20e6fd1c",
+            data: {
+                products_attributes: {
+                        '144428':1,
+                },
+                order_amount: order.amount, //$('#order_cal_amount').val(),
+                province: province.val(),
+                city: city.val()
+            },
+            type: 'POST',
+            success: function(data, status) {
+                if(data['result'] == 'success'){
+                    $('#order_delivery_freight_value').val(data['freight_value']);
+                    order.freight_value = data['freight_value'] || 0;
+                    calculate_order_amount();
+                    return false;
+                }
+            },
+            error: function() {
+                return false;
+            }
+        });
+    }
+    function set_order_wx_user_address(element){
+        $('.stage').eq(0).removeClass('hide');
+        $('.stage').eq(1).addClass('hide');
+        $('#order_wx_user_address_id').val(element.attr('data-id'));
+        $('#order_wx_user_address_name').val(element.attr('data-name'));
+        $('#order_wx_user_address_phone').val(element.attr('data-phone'));
+        $('#order_wx_user_address_address').val(element.attr('data-address'));
+        $('#order_wx_user_address_province').val(element.attr('data-province'));
+        $('#order_wx_user_address_city').attr('select_value', element.attr('data-city'));
+        $('#order_wx_user_address_province').change();
+        $('.order-wx-user-address-detail span').eq(0).html('收件人：'+element.attr('data-name'));
+        $('.order-wx-user-address-detail span').eq(1).html(element.attr('data-phone'));
+        $('.order-wx-user-address-detail p').html($.unique([element.attr('data-province'), element.attr('data-city'), element.attr('data-address')]).join(' '));
+        $('.order-wx-user-address-input').hide();
+        $('.order-wx-user-address-detail').show();
+        if($('.shipping_setting_type .form-li').length > 1){
+            $('.shipping_setting_type').show();
+        }else{
+            $('.shipping_setting_type').hide();
+        }
+        $('.order-payment-type').show();
+    }
+    $(function(){
+        $('.order-wx-user-address-detail').click(function(){
+            $('.stage').eq(0).addClass('hide');
+            $('.stage').eq(1).removeClass('hide');
+            $.each($('.add-list .box'), function(){
+                if($(this).attr('data-id') == $('#order_wx_user_address_id').val()){
+                    $(this).find('.li-checkbox').addClass('selected');
+                }else{
+                    $(this).find('.li-checkbox').removeClass('selected');
+                }
+            });
+        });
+        $(".J-add-addr").on("click",function(){
+            $(".mod-form").slideDown();
+        });
+        $(".J-cancel").on("click",function(){
+            $(".mod-form").slideUp();
+        });
+        $('.add-list .box').click(function(){
+            set_order_wx_user_address($(this));
+        });
+        $('.btn-add-wx-user-address').click(function(){
+            if(!$('#wx-user-address-name').val()){
+                alertTip('请输入您的真实姓名');
+                return false;
+            }
+            if(!$('#wx-user-address-phone').val()){
+                alertTip('请输入您的有效联系电话');
+                return false;
+            }
+            if(!$('#wx-user-address-province').val()){
+                alertTip('请选择省份');
+                return false;
+            }
+            if(!$('#wx-user-address-city').val()){
+                alertTip('请选择城市');
+                return false;
+            }
+            if(!$('#wx-user-address-address').val()){
+                alertTip('请输入您的有效地址');
+                return false;
+            }
+            $.ajax({
+                url: "http://ec.vcooline.com/api/wx_user_address?wx_mp_user_id=gh_abff20e6fd1c",
+                data: {
+                    wx_user_address:
+                    {
+                        wx_user_id: $('#wx-user-address-wx-user-id').val(),
+                        name: $('#wx-user-address-name').val(),
+                        phone: $('#wx-user-address-phone').val(),
+                        province: $('#wx-user-address-province').val(),
+                        city: $('#wx-user-address-city').val(),
+                        address: $('#wx-user-address-address').val()
+                    }
+                },
+                type: 'POST',
+                success: function(data, status) {
+                    if(data['result'] == 'success'){
+                        $(".J-add-addr").before('<a href="javascript:;" class="box" data-id="'+data['id']+'" data-name="'+$('#wx-user-address-name').val()+'" data-phone="'+$('#wx-user-address-phone').val()+'" data-province="'+$('#wx-user-address-province').val()+'" data-city="'+$('#wx-user-address-city').val()+'"  data-address="'+$('#wx-user-address-address').val()+'" ><div class="li-checkbox"><input type="radio"><i></i></div><h1><span>收件人：'+$('#wx-user-address-name').val()+'</span><span>'+$('#wx-user-address-phone').val()+'</span></h1><p>收货地址:'+$('#wx-user-address-province').val()+' '+$('#wx-user-address-city').val()+' '+$('#wx-user-address-address').val()+'</p></a>')
+                        $('#wx-user-address-name').val('');
+                        $('#wx-user-address-phone').val('');
+                        $('#wx-user-address-address').val('');
+                        $('#wx-user-address-province').val('上海');
+                        $('#wx-user-address-province').change();
+                        alertTip('收货人地址添加成功');
+                        $('.add-list .box').click(function(){
+                            set_order_wx_user_address($(this));
+                        });
+                        return false;
+                    }
+                },
+                error: function() {
+                    return false;
+                }
+            });
+        });
+    });
+</script>
+
+      </div>
+
+      <footer>
+        <a href="">技术支持：39MI微信开发商</a>
+      </footer>
+
+     
+
+      
+
+</body>
+    </html>

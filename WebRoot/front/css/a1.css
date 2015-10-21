@@ -1,0 +1,24 @@
+﻿body, .xjxc-content { background: none repeat scroll 0 0 rgba(0, 0, 0, 0); }
+body, div, h1, h2, h3, h4, h5, h6, p { margin: 0; padding: 0; }
+body { overflow-x: hidden; position: relative; }
+.xjxc-content { margin: 3px; width: 95%; position: relative; }
+.contactgroup { border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); color: #000000; margin-bottom: 15px; overflow: hidden; }
+
+a:link { color: inherit; text-decoration: none; }
+.add { background: url("1.png") no-repeat scroll 8px center rgba(0, 0, 0, 0); }
+
+a:link { color: inherit; text-decoration: none; }
+.add { background: url("1.png") no-repeat scroll 8px center rgba(0, 0, 0, 0); }
+.add, .tel { border-bottom: 1px solid #CCCCCC; color: #FFFFFF; display: block; font-size: 13px; padding: 15px 15px 10px 10px; position: relative; text-decoration: none; }
+.xjxc-list-item-icon { background-color: rgba(0, 0, 0, 0.4); background-image: url("images/icons-18-white.png"); background-repeat: no-repeat; border-radius: 9px; height: 18px; margin-top: -9px; position: absolute; right: 12px; top: 50%; width: 18px; }
+.icon-arrow-r { background-position: -108px -1px; }
+.tel { background: url("2.png") no-repeat scroll 6px center rgba(0, 0, 0, 0); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.tpl-linkus-address-text { color: #444; }
+.ui-link { color: #444; font-weight: bold; }
+
+.logobox { background-image: url("/images/logobg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; height: 60px; margin: 5px; padding: 5px; }
+.logobox02 { background: url("/images/inco.png") no-repeat scroll right center rgba(0, 0, 0, 0); display: block; height: 60px; text-decoration: none; }
+.logo { background-position: center center; background-repeat: no-repeat; background-size: cover; border: 5px solid #FFFFFF; border-radius: 30px; box-shadow: 0 0 5px #999999; float: left; height: 50px; width: 50px; }
+.logoinfo { float: left; height: 60px; padding-left: 10px; text-decoration: none; }
+.wx_name { color: #666666; font-size: 14px; font-weight: bold; line-height: 30px;height:30px }
+.gz_name { color: #999999; font-size: 12px; line-height: 20px; }

@@ -1,0 +1,1 @@
+$(function(){function t(){e()}function e(){var t=$("#swipe li").length>1;t?$("#swipe").swipe({cur:config.swipeCur,dir:config.swipeDir,success:function(){}}):$("#swipe li").eq(0).fadeIn()}t()});

@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>刮刮卡设定</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+<link rel="stylesheet" href="css/admin/bootstrap.min.css">
+<link rel="stylesheet" href="css/admin/admin.css">
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+<style type="text/css">
+	table td {
+		min-width:50px;
+		overflow:hidden;text-overflow:ellipsis;
+	}
+	#picsethere{
+		width: 510px;
+		display: block;
+	}
+	#picsethere img{
+		max-width: 500px;
+		display: block;
+	}
+</style>
+</head>
+<body>
+	<h3>商家刮刮卡设置</h3>
+	<div class="alert alert-info">
+	  	<p><span class="bold">说明：</span>刮刮卡是一种游戏促销模式。&nbsp;&nbsp;<font color="red">（如需使用链接，请复制下方地址）</font></p>
+		<p><span class="bold">当前地址：</span>http://www.di3p.com/wx/n_ggk-.html?&wid=10652</p>
+	</div>
+	<form class="form-horizontal" id="lbsForm" action="" method="post"><input type="hidden" value="54d9b8a597ed7" name="YYUC_FORM_TOKEN"/><input type="hidden" value = "" name="AVAIZlkB" id="ggkid" />		<div class="control-group">
+	    	<label class="control-label" for="keyword">刮刮卡名称</label>
+	    	<div class="controls">
+	    	<input type="text"   value="" name="AVAIZl4ECFM=" id="ggkname" class="span4"/>		    	<span class="maroon">*</span>
+		    	<span class="help-inline">最多只能输入30个字符。</span>
+	    	</div>
+	  	</div>
+	  	<div class="control-group">
+	    	<label class="control-label" for="keyword">活动关键字</label>
+	    	<div class="controls">
+	    	<input type="text"   value="" name="AVAIZlcPHw==" id="ggkgjz" class="span4"/>		    	<span class="maroon">*</span>
+		    	<span class="help-inline">最多只能输入20个字符。</span>
+	    	</div>
+	  	</div>
+		<div class="control-group">
+	    	<label class="control-label" for="location_p">活动开始时间</label>
+	    	<div class="controls">
+	    	<input type="text"   value=""  id="ggkkssj"  class="Wdate" name="AVAIZlsWFlw=" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>	    	</div>
+	  	</div>
+	  
+	  	<div class="control-group">
+	    	<label class="control-label" for="category_f">活动结束时间</label>
+	    	<div class="controls">
+	    	<input type="text"   value=""  id="ggkjssj"  class="Wdate" name="AVAIZloWFlw=" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>	    	</div>
+	  	</div>
+		<div class="control-group">
+		    <label class="control-label" for="">活动展示图片</label>
+		    <div class="controls">
+			    <div class="cover-area">
+					<table style="height: 30px;overflow: hidden;">
+					<tr>
+					<td>
+						<input type="file" name="picture" style="width:400px" onchange="change('myimage1','myfile1');" id="myfile1"/><br/>
+                                    <img alt="暂无图片" src="images/activity/ggk.jpg" id="myimage1" width="400px">
+					</td>
+					<td valign="top" style="line-height: 30px;color:gray;">建议尺寸：700像素 * 380像素</td>
+					</tr>
+					</table>
+					<p class="img-area cover-bd" id="picsethere">
+					</p>
+				</div>
+		    </div>
+	  	</div>
+	  	<div class="control-group">
+			<label class="control-label" for="detail">活动简述:</label>
+			<div class="controls">
+			<textarea name="AVAIZl0W"   id="ggkms" class="span5" style="height:90px;width:520px;"></textarea>				<span class="maroon">*</span><br><span class="help-inline">最多为1000个字符。</span>
+			</div>
+		</div>
+  	
+	  	<div class="cont fn-clear control-group">
+		<h3 style="text-align: center;">奖项设置</h3>
+		<h5 style="text-align: center;color:red;">小技巧：&nbsp;&nbsp;想让几等奖中的人多，就把几等奖的中奖概率调高；反之就把中奖概率调低，比如0.001%&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+		<table class="prizetable" style="margin-left: 80px;">
+			<thead>
+				<tr>
+					<th width="100" height="30px;"></th>
+					<th>奖项名称<br>(<span class="maroon">*</span><span class="help-inline">不能超过5个字 </span>)</th>
+					<th>奖品<br>(<span class="maroon">*</span><span class="help-inline">不能超过50个字 </span>)</th>
+					<th>奖品数量<br>(<span class="maroon">*</span><span class="help-inline">必须大于0 </span>)</th>
+					<th>中奖概率<br>(<span class="maroon">*</span><span class="help-inline">0-100, 支持小数点</span>)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>奖项一</td>
+					<td><input type="text"   value="" name="AVAIZlpUCFU=" id="ggkj1mc" class="span3"/></td>
+					<td><input type="text"   value="" name="AVAIZlpUCEU=" id="ggkj1ms" class="span3"/></td>
+					<td><input type="text"   value="" name="AVAIZlpUFlo=" id="ggkj1sl" class="span1" isint="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpUAlo=" id="ggkj1gl" class="span1" isfloat="1"/>%</td>
+				</tr>
+				<tr>
+					<td>奖项二</td>
+					<td><input type="text"   value="" name="AVAIZlpXCFU=" id="ggkj2mc" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpXCEU=" id="ggkj2ms" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpXFlo=" id="ggkj2sl" class="span1" noneed="1" isint="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpXAlo=" id="ggkj2gl" class="span1" noneed="1" isfloat="1"/>%</td>
+				</tr>
+				<tr>
+					<td>奖项三</td>
+					<td><input type="text"   value="" name="AVAIZlpWCFU=" id="ggkj3mc" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpWCEU=" id="ggkj3ms" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpWFlo=" id="ggkj3sl" class="span1" noneed="1" isint="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpWAlo=" id="ggkj3gl" class="span1" noneed="1" isfloat="1"/>%</td>
+				</tr>
+				
+				<tr class="more" style="display:none;">
+					<td>奖项四</td>
+					<td><input type="text"   value="" name="AVAIZlpRCFU=" id="ggkj4mc" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpRCEU=" id="ggkj4ms" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpRFlo=" id="ggkj4sl" class="span1" noneed="1" isint="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpRAlo=" id="ggkj4gl" class="span1" noneed="1" isfloat="1"/>%</td>
+				</tr>
+				<tr class="more" style="display:none;">
+					<td>奖项五</td>
+					<td><input type="text"   value="" name="AVAIZlpQCFU=" id="ggkj5mc" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpQCEU=" id="ggkj5ms" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpQFlo=" id="ggkj5sl" class="span1" noneed="1" isint="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpQAlo=" id="ggkj5gl" class="span1" noneed="1" isfloat="1"/>%</td>
+				</tr>
+				<tr class="more" style="display:none;">
+					<td>奖项六</td>
+					<td><input type="text"   value="" name="AVAIZlpTCFU=" id="ggkj6mc" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpTCEU=" id="ggkj6ms" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpTFlo=" id="ggkj6sl" class="span1" noneed="1" isint="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpTAlo=" id="ggkj6gl" class="span1" noneed="1" isfloat="1"/>%</td>
+				</tr>
+				<tr class="more" style="display:none;">
+					<td>奖项七</td>
+					<td><input type="text"   value="" name="AVAIZlpSCFU=" id="ggkj7mc" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpSCEU=" id="ggkj7ms" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpSFlo=" id="ggkj7sl" class="span1" noneed="1" isint="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpSAlo=" id="ggkj7gl" class="span1" noneed="1" isfloat="1"/>%</td>
+				</tr>
+				<tr class="more" style="display:none;">
+					<td>奖项八</td>
+					<td><input type="text"   value="" name="AVAIZlpdCFU=" id="ggkj8mc" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpdCEU=" id="ggkj8ms" class="span3" noneed="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpdFlo=" id="ggkj8sl" class="span1" noneed="1" isint="1"/></td>
+					<td><input type="text"   value="" name="AVAIZlpdAlo=" id="ggkj8gl" class="span1" noneed="1" isfloat="1"/>%</td>
+				</tr>
+				
+				<tr><td><button id="more_jx" type="button">更多奖项</button></td><td>提示:请依次填写奖项</td></tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div class="cont fn-clear other-setting">
+		<div class="cont-left msg-preview">
+		<h3 style="text-align: center;">其他设置</h3>
+		</div>
+		<div class="cont-right">
+			<div class="form-horizontal">
+			  <div class="control-group">
+			   <label class="control-label" for="showamount">是否显示奖品数量</label>
+			    <div class="controls">				    
+				    <input type="hidden" name="AVAIZlkWFl5cFUda" value="0"/><input type="checkbox" value="1" name="AVAIZlkWFl5cFUda" checked="checked" id="ggkisshowsl" style="margin: 8px;"/>				    
+			      	<span class="maroon">*</span><span class="help-inline">取消选择后在活动页面中将不会显示奖品数量 </span>
+			    </div>
+			  </div>
+			  <div class="control-group">
+			    <label class="control-label" for="playtotal">每人参与的总次数</label>
+			    <div class="controls">
+			    <input type="text"   value="" name="AVAIZl0XH0U=" id="ggkmrzs" class="span1" isint="1"/>			    <span class="maroon">*</span><span class="help-inline">必填 ，数量必须是大于1且小于100000</span>
+			    </div>
+			  </div>
+			  <div class="control-group">
+			    <label class="control-label" for="playperday">每人每天可参与次数</label>
+			    <div class="controls">
+			    	<input type="text"   value="" name="AVAIZl0RFlo=" id="ggkmtsl" class="span1" isint="1"/>			      	<span class="maroon">*</span><span class="help-inline">必填 ，数量必须是大于1且不能大于每人可以参与刮奖的总次数</span>
+			    </div>
+			  </div>
+			  <div class="control-group">
+			    <label class="control-label" for="playperday">每天最多出奖数量</label>
+			    <div class="controls">
+			    	<input type="text"   value="0" name="AVAIZl0XH1I=" id="ggkmrzd" class="span1" isint="1"/>			      	<span class="maroon">*</span><span class="help-inline">必填 ，0为不限制出奖数</span>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+ 		<div class="control-group">
+		    <div class="controls">
+		    
+		      <button id="save-btn" type="submit" class="btn btn-primary btn-large">保存并开启</button>
+		     
+		    </div>
+	    </div>
+	</form>
+
+<script type="text/javascript">
+$(function(){
+	
+	 var picjk = setInterval(function(){
+		if($('#picsethere').find('img').size()>0){
+			$('#picsethere').find('img').each(function(){
+				$(this).error(function(){
+					$(this).attr('src','res/demopic.jpg');
+				});
+				$(this).attr('src',$(this).attr('src'));
+			});
+			clearInterval(picjk);
+		}
+	},500); 
+	 $('#more_jx').click(function(){
+		 $(".more").toggle();
+		 
+	 });
+	 $("#lbsForm").submit(function(){
+		var cansv= true;
+		$(this).find('input[type="text"],select,textarea').each(function(){
+			if($.trim($(this).val())=='' && $(this).attr('noneed')!='1'){
+				cansv = false;
+				$(this).css('backgroundColor','yellow');
+				$(this).one('focus',function(){
+					$(this).css('backgroundColor','transparent');
+				});
+			}
+		});
+		if(!cansv){
+			tusi('请将信息填写完整');
+			return false;
+		}
+		$(this).find('input[type="text"],select,textarea').each(function(){
+			if($(this).attr('isint')=='1' && $.trim($(this).val())!=''){
+				var intthis = parseInt2($(this).val());
+				if(intthis+''=='NaN'){
+					$(this).val('0');
+					cansv = false;
+					$(this).css('backgroundColor','yellow');
+					$(this).one('focus',function(){
+						$(this).css('backgroundColor','transparent');
+					});
+				}else{
+					$(this).val(parseInt($(this).val()));
+				}
+			}
+		});
+		if(!cansv){
+			tusi('标注的项目必须为整数');
+			return false;
+		}
+		
+		$(this).find('input[type="text"],select,textarea').each(function(){
+			if($(this).attr('isfloat')=='1' && $.trim($(this).val())!=''){
+				var intthis = parseFloat($(this).val());
+				if(intthis+''=='NaN'){
+					$(this).val('0');
+					cansv = false;
+					$(this).css('backgroundColor','yellow');
+					$(this).one('focus',function(){
+						$(this).css('backgroundColor','transparent');
+					});
+				}else{
+					$(this).val(parseFloat($(this).val()));
+				}
+			}
+		});
+		if(!cansv){
+			tusi('标注的项目必须为数字');
+			return false;
+		}
+		
+		if($('#picsethere').find('img').size()<1){
+    		cansv = false;
+    		tusi('请上传活动图片');
+    		return false;
+    	}
+    	return cansv;
+    });
+});
+</script>
+<br/><br/><br/></body>
+
+</html>

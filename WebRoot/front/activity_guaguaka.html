@@ -1,0 +1,209 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="微信">
+<title>刮刮卡活动开始啦</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+<link rel="stylesheet" type="text/css" href="res/page.css">
+<link href="res/xym.css" rel="stylesheet" type="text/css">
+<link href="res/zwj.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="res/choujiang/js/WeixinApi.js"></script>
+<style type="text/css">
+
+</style>
+</head>
+<body youdao="bind">
+
+<script type="text/javascript">
+        var mysharelink = 'http://www.39mnet.com/wx/n_ggk-11529.html?&wid=10481';	
+		// 所有功能必须包含在 WeixinApi.ready 中进行
+        WeixinApi.ready(function (Api) {
+
+            // 微信分享的数据
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                //"imgUrl": 'http://www.39mnet.com/res/share/ggk.jpg',
+				"imgUrl": "http://weixinguanjia.cn/res/whd/ggk.jpg",
+                "img_width": "335",
+                "img_height": "335",
+                "link": mysharelink,
+                //"desc": '为您准备了多重豪礼，赶快行动，大奖刮出来',
+				"desc": "凭此奖品可以享受39MI微信开发商套餐相应折扣。",
+                //"title": '快乐刮刮卡，一等奖等你来拿！'
+				"title": "刮刮卡活动开始啦【所有设置为演示版，请修改】"
+            };
+
+            // 分享的回调
+            var wxCallbacks = {
+                // 分享操作开始之前
+                ready: function () {
+                    // 你可以在这里对分享的数据进行重组
+                    wxData.link = mysharelink;
+                },
+                // 分享被用户自动取消
+                cancel: function (resp) {
+                   // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+                },
+                // 分享失败了
+                fail: function (resp) {
+                    // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+                },
+                // 分享成功
+                confirm: function (resp) {
+                    // 分享成功了，我们是不是可以做一些分享统计呢？
+                    $.ajax({
+                        /*url: "http://#/youxi/lujinxgsg/myshare/todo.aspx?do=addsharetimes&id=" + myguid,*/
+                        type: "POST",
+                        dataType: "text",
+                        data: null,
+                        success: function (data) {
+                        }
+                    });
+                },
+                // 整个分享过程结束
+                all: function (resp) {
+                     // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+                }
+            };
+
+            // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+            Api.shareToFriend(wxData, wxCallbacks);
+
+            // 点击分享到朋友圈，会执行下面这个代码
+            Api.shareToTimeline(wxData, wxCallbacks);
+			
+			// iOS上，可以直接调用这个API进行分享，一句话搞定
+			Api.generalShare(wxData,wxCallbacks);
+
+            // 点击分享到腾讯微博，会执行下面这个代码
+            Api.shareToWeibo(wxData, wxCallbacks);
+        });
+    </script>
+
+<div class="m_ggl">
+
+<div class="m_ylzjxx">
+<table class="ggltb">
+<tbody><tr>
+<td class="ggltd"></td>
+<td><h1>刮刮卡活动开始啦【所有设置为演示版，请修改】</h1></td>
+<td class="ggltd"></td>
+</tr>
+</tbody></table>
+</div>
+<br>
+<div class="m_ylzjxx">
+目前还没人中奖，快来刮一刮。
+</div>
+
+<div class="m_gglmain">
+<img src="res/w/ggl.png">
+<div class="m_gglgjqs" style="">谢谢参与</div>
+<div class="m_gglgjq" id="scratchpad" style="color: #333;">
+    
+</div>
+</div>
+
+<div class="m_yljpsm">
+<div class="m_yljpsms">
+<h2 style="background: url('res/stitle.png') no-repeat; color: white;">奖项设置：</h2>
+<div class="m_yljpsmnr"> 一等奖： 大润发200元购物卡。数量：1</div>
+<div class="m_yljpsmnr"> 二等奖： 大润发100元购物卡。数量：1</div>
+<div class="m_yljpsmnr"> 三等奖： 大润发50元购物卡。数量：1</div>
+</div>
+</div>
+<div class="m_yljpsm">
+<div class="m_yljpsms">
+<h2 style="background: url('res/stitle.png') no-repeat; color: white;">活动说明：</h2>
+<div class="m_yljpsmnr">您今天还有 <span id="syjhspan">3</span> 次参与机会</div>
+<div class="m_yljpsmnr">凭此奖品可以享受39MI微信开发商套餐相应折扣。</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="res/wScratchPad.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(window).on('touchmove',function(){
+		if ($("#scratchpad").css("color").indexOf("51") > 0) {	    		
+            $("#scratchpad").css("color", "rgb(50,50,50)");
+        } else if ($("#scratchpad").css("color").indexOf("50") > 0) {
+            $("#scratchpad").css("color", "rgb(51,51,51)");
+        }
+	});
+	var useragent = window.navigator.userAgent.toLowerCase();
+	$('#scratchpad').wScratchPad({
+	    width           : 130,
+	    height          : 35,
+	    color: "#a9a9a7",
+	    scratchUp:function(i,ii){
+	    	if(ii>10 && !window.iscyggldeduijing){
+	    		window.iscyggldeduijing = true;
+	    		tellcjok('ggk');
+	    	}
+	    },
+	    scratchMove:function(i){
+	    	tusi($("#scratchpad").css("color"));
+	    	if ($("#scratchpad").css("color").indexOf("51") > 0) {	    		
+                $("#scratchpad").css("color", "rgb(50,50,50)");
+            } else if ($("#scratchpad").css("color").indexOf("50") > 0) {
+                $("#scratchpad").css("color", "rgb(51,51,51)");
+            }
+	    }
+	});
+	$('.m_gglgjqs').show();
+});
+
+</script>
+<input type="hidden" id="hdid" value="11529">
+<input type="hidden" id="hdjx" value="0">
+<input type="hidden" id="hdjxmc" value="谢谢参与">
+<script src="res/hammer.js"></script>
+<script src="res/wx.js"></script>
+<div id="zjtzdiv" style="display: none;position: fixed;width: 100%; bottom:0px;z-index:9999;">
+<div class="Pop-upbox" id="usermsg">
+        <div class="upbox_top">
+            <h1>恭喜中奖：</h1>
+            <a href=""><div class="close" style="display: none;"></div></a>
+        </div>
+        <div class="upbox_cens">
+        <div>
+恭喜获得奖品:谢谢参与。
+请留下你的手机号码作为领奖依据。<br>
+姓名：<input type="text" id="un" value="bathsunshine" class="sinput">
+        </div>
+     <div style="margin-top: 5px;">
+ 电话：<input type="text" id="tel" value="18626386806" class="sinput">
+     </div>
+      <div style="margin-top: 5px;">
+ 微信用户名：<input type="text" id="wxun" value="" class="sinput">
+     </div>
+        
+        </div>
+        <div class="upbox_cen">
+            <a href="javascript:tellcjxxok('ggk')"><div class="button_1"><span>确认信息</span></div></a>
+        </div>
+</div>
+</div>
+<div class="mfooter" id="wxgjfooter" style="text-align: center;width: 100%;height: 20px;line-height: 20px;margin-top:10px;">
+<span class="sp2"><a href="http://www.39mnet.com" style="color: #5e5e5e;font-size: 12px;"><!--@39MI微信开发商提供技术支持--></a></span>
+</div>
+<div style="width: 0px;height: 0px;overflow: hidden;">
+
+</div>
+<script>
+/**
+$(function(){
+	if($('body').height()<$(window).height()){
+		$('body').height($(window).height());
+		$('#wxgjfooter').css('position','fixed').css('bottom','0px');
+	}
+});
+**/
+</script>
+</body></html>

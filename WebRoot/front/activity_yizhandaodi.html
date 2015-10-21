@@ -1,0 +1,202 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>一战到底</title>
+	<script type="text/javascript">
+	    var yyuc_jspath="";
+	</script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/yyucadapter.js"></script>
+	<link type="text/css" rel="stylesheet" href="res/yzdd/style/war.css" />
+	<script type="text/javascript" src="res/choujiang/js/WeixinApi.js"></script>
+</head>
+
+<body style="background:#feae05;">
+	<div class="wrapper">
+
+		<img class="bg" src="res/yzdd/images/bg_exam.jpg">
+
+		<div class="top">
+
+			<div class="time">
+				<span id="jsf">19</span>
+				:
+				<span id="jsm">99</span>
+			</div>
+
+			<div class="index">
+				第 <strong>1</strong>
+				题
+			</div>
+
+			<div class="score">
+				积分:
+				<span style="color: red;font-size: 16px;line-height: 30px;">0</span>
+			</div>
+
+		</div>
+
+		<div class="question">
+
+			<div class="title">意识到计划生育的重要性，社会上纷纷掀起“少生优生”的热潮，你觉得计划光荣证应该发给哪对夫妇______。</div>
+
+			<div class="options">
+
+				<div class="option" data-value="1">
+
+					<img class="oimg" src="res/yzdd/images/option_bg.png">
+
+					<img class="oimg-sel" src="res/yzdd/images/option_sel_bg.png">
+
+					<div class="text">
+
+						<div class="i">A</div>
+
+						<div class="otext">郭靖、黄蓉</div>
+
+					</div>
+
+				</div>
+
+				<div class="option" data-value="2">
+
+					<img class="oimg" src="res/yzdd/images/option_bg.png">
+
+					<img class="oimg-sel" src="res/yzdd/images/option_sel_bg.png">
+
+					<div class="text">
+
+						<div class="i">B</div>
+
+						<div class="otext">杨康、穆念慈</div>
+
+					</div>
+
+				</div>
+
+				<div class="option" data-value="3">
+
+					<img class="oimg" src="res/yzdd/images/option_bg.png">
+
+					<img class="oimg-sel" src="res/yzdd/images/option_sel_bg.png">
+
+					<div class="text">
+
+						<div class="i">C</div>
+
+						<div class="otext">段正淳、刀白凤</div>
+
+					</div>
+
+				</div>
+
+				<div class="option" data-value="4">
+
+					<img class="oimg" src="res/yzdd/images/option_bg.png">
+
+					<img class="oimg-sel" src="res/yzdd/images/option_sel_bg.png">
+
+					<div class="text">
+
+						<div class="i">D</div>
+
+						<div class="otext">张翠山、殷素素</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+
+$(function(){
+
+	$('.option').click(function(){
+
+		clearInterval(window.djs);
+
+		checkans($(this).attr('data-value'));
+
+	});
+
+	window.djs = setInterval(function(){
+
+		var jsm = parseInt($('#jsm').text());
+
+		var jsf = parseInt($('#jsf').text());
+
+		if(jsm>0){
+
+			jsm-=1;
+
+			$('#jsm').text(jsm+'');
+
+		}else if(jsf>0){
+
+			jsf-=1;
+
+			$('#jsm').text('99');
+
+			$('#jsf').text(jsf+'');
+
+		}else{
+
+			checkans('0');
+
+			clearInterval(window.djs);
+
+		}
+
+		
+
+	},10);
+
+	
+
+});
+
+function checkans(ans){
+
+	ajax('activity_yizhandaodi_over.html#check',{ zqda:ans},function(m){
+
+		if(m=='ok'){
+
+			tusi('恭喜回答正确');
+
+		}else if(m=='no'){
+
+			tusi('回答错误');
+
+		}else if(m=='out'){
+
+			tusi('答题超时');
+
+		}
+
+		setTimeout(function(){
+
+			location.href='activity_yizhandaodi_over.html';
+
+		},888);
+
+		
+
+	});
+
+}
+
+</script>
+
+</body>
+
+</html>

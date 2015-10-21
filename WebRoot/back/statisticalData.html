@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!-- Apple devices fullscreen -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- Apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<base target="mainFrame" />
+<link rel="stylesheet" type="text/css" href="css/wm/index.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/bootstrap_min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/bootstrap_responsive_min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/themes.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/todc_bootstrap.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/inside.css" media="all" />
+<script type="text/javascript" src="res/FusionCharts.js"></script>
+<title>欢迎</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+</head>
+<body>		
+    <div id="main">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="box ">
+                    <div class="box-title">
+                        <div class="span8">
+                            <h3><i class="icon-bar-chart"></i>运营图表</h3>
+                        </div>
+                        <div class="span4">
+                            按月份查看
+                            <select class="input-small" name="periody" id="periody">
+                                <option value="2013"  >2013年</option>
+                                <option value="2014" >2014年</option>
+                            </select>
+                            <select class="input-small" name="period" id="period">
+                                <option value="01" >1月</option>
+                                <option value="02" selected="selected">2月</option>
+                                <option value="03" >3月</option>
+                                <option value="04" >4月</option>
+                                <option value="05" >5月</option>
+                                <option value="06" >6月</option>
+                                <option value="07" >7月</option>
+                                <option value="08" >8月</option>
+                                <option value="09" >9月</option>
+                                <option value="10" >10月</option>
+                                <option value="11" >11月</option>
+                                <option value="12" >12月</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div id="chartdiv" class="box-content">
+                    </div>
+
+                    <div id="chartdiv2" class="box-content">
+                    </div>
+
+
+
+					<script type="text/javascript">
+                        var chart = new FusionCharts("res/MSLine1.swf", "ChartId", "100%", "400", "0", "0");
+                        chart.setXMLUrl('statisticalDatares-2015-02.html?chart=1');
+                        chart.render("chartdiv");
+                        var chart1 = new FusionCharts("res/MSLine1.swf", "ChartId", "100%", "400", "0", "0");
+                        chart1.setXMLUrl('statisticalDatares-2015-02.html?chart=2');
+                        chart1.render("chartdiv2");
+                    </script>
+
+
+
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/ecmascript">
+        $(function () {
+            $(".input-small").change(function () {
+                window.location = 'statisticalData-'+$('#periody').val()+'-'+$('#period').val()+'.html';
+            })
+
+        })
+    </script>
+</body>
+</html>

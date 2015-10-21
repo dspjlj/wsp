@@ -1,0 +1,874 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/admin/bootstrap.min.css">
+<link rel="stylesheet" href="css/admin/admin.css">
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+<title>自定义菜单</title>
+<style>
+body{
+	background-color: #ffffff;
+}
+.left{
+	position: absolute;
+	top: 140px;
+	left: 20px;
+	width: 258px;
+	border-right: 1px solid #CCC;
+	overflow-y: auto;
+}
+.right{
+	position: absolute;
+	top: 140px;
+	left: 280px;
+	width: 600px;
+	overflow: auto;
+}
+.tree-menu{
+	float: right;
+}
+.tree-menu span{
+	margin-left: 6px;
+}
+.tree-menu span i{
+	cursor: pointer;
+}
+.icon-plus {
+	background-position: -408px -96px;
+}
+.icon-remove {
+	background-position: -312px 0;
+}
+.icon-edit {
+	background-position: -96px -72px;
+}
+
+#menu_tree{
+	margin-right: 20px;
+}
+.right iframe{
+	height: 100%;
+	width: 100%;
+	z-index: 20;
+	border: 0;
+	margin: 0 auto;
+	display: block;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+li{
+	line-height: 16px;
+}
+.om-tree-node a{
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	width: 115px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#vip_tip{
+	text-align: center;
+}
+.actions{
+	position: absolute;
+	bottom: 20px;
+	left: 10px;
+	width: 268px;
+	border-right: 1px solid #CCC;
+	height: 60px;
+}
+.actions .btn{
+	position: relative;
+	top: 30px;
+}
+
+.szcjbt, #czselarea,.zizicd{
+	display: none;
+}
+
+.maincd{
+	cursor: pointer;
+}
+.zizicd{
+	width: 82px;height:38px;border: 1px solid gray; margin-bottom: -1px; line-height: 38px;text-align: center;cursor: pointer;position: relative;
+}
+</style>
+
+<script type="text/javascript">
+$(function(){
+	$('.maincd').click(function(){
+		suitdata();
+		window.curcd = this;
+		window.curctyp = '1';
+		backdata();		
+	});
+	
+	$('.zizicd').click(function(){
+		suitdata();
+		window.curcd = this;
+		window.curctyp = '2';
+		backdata();		
+	});
+	$('#answertype').change(function(){
+		$('.szcjbt').hide();
+		$('#'+$(this).val()).show();
+	});
+	
+	$('.szcjbt').find('input,textarea,.editArea').on('keyup click change mouseup',function(){
+		suitdata();
+	});
+	$(".editArea textarea").on("contentValueChange",suitdata);
+	$('#cdmcinpo').on('keyup click change mouseup',function(){
+		suitdata();
+	});
+	
+	initthedata();
+	$('.maincd').eq(0).trigger('click');
+	
+	$('.zizicd,.maincd').click(function(){
+		$('.zizicd,.maincd').unmask();
+		$(this).mask();
+	});
+});
+//把菜单信息转化为控制信息
+function backdata(){
+	$('#res_ejcd').find('input[type="text"]').val('');
+	$(".editArea div").html('');
+	$('#xsejcdopt').remove();
+	if(window.curctyp == '1'){
+		$('#answertype').prepend('<option value="res_ejcd" id="xsejcdopt">显示二级菜单</option>');
+	}
+	var cdid = $(window.curcd).attr('id');
+	var cddata = $.trim($(window.curcd).attr('reldata'));
+	if(cddata!=''){
+		cddata = $.evalJSON(cddata);
+		$('#answertype').val(cddata.typ);
+		$('#answertype').trigger('change');
+		if(cddata.typ=='res_ejcd'){
+			//回填菜单
+			var zcddiv = $('div[zcdrel="'+cdid+'"]');
+			if($.trim(cddata.data) !=''){
+				var ds = cddata.data.split('@');
+				zcddiv.find('.zizicd').hide();
+				for(var i=0;i<ds.length;i++){
+					$('#res_ejcd').find('input[type="text"]').eq(parseInt(ds[i])-1).val(zcddiv.find('.zizicd').eq(parseInt(ds[i])-1).show().text());
+				}
+			}			
+		}else if(cddata.typ=='res_wb'){//Emotion.replaceInput
+			$(".editArea div").html(Emotion.replaceEmoji(cddata.data));
+		}else if($('#'+cddata.typ).find('input[type="radio"]').size()>0){
+			 $('#'+cddata.typ).find('input[value="'+cddata.data+'"]').prop('checked',true);
+		}else{
+			$('#'+cddata.typ).find('input[type="text"]').val(cddata.data);
+		}
+		
+	}else{
+		cddata = {};
+		if(window.curctyp == '1'){
+			$('#answertype').val('res_ejcd');
+		}else{
+			$('#answertype').val('res_wb');
+		}
+		$('#answertype').trigger('change');
+	}
+	
+	$('#czselarea').show();
+	$('#cdmcinpo').val($(window.curcd).text());
+}
+
+//把控制信息回填到菜单中
+function suitdata(){
+	if(window.curcd){
+		var cdid = $(window.curcd).attr('id');
+		var cddata = $.trim($(window.curcd).attr('reldata'));
+		if(cddata!=''){
+			cddata = $.evalJSON(cddata);
+		}else{
+			cddata = {};
+		}
+		cddata.typ = $('#answertype').val();
+		
+		var zcddiv = $('div[zcdrel="'+cdid+'"]');
+		if(cddata.typ=='res_ejcd'){			
+			//填充菜单
+			var sjarr = [];
+			$('#res_ejcd').find('input[type="text"]').each(function(i){
+				var temp_zcd = zcddiv.find('.zizicd').eq(i);
+				if($.trim($(this).val())!=''){					
+					temp_zcd.text($.trim($(this).val())).show();
+					sjarr[sjarr.length] = i+1;
+				}else{
+					temp_zcd.hide();
+				}
+			});
+			cddata.data = sjarr.join('@');
+		}else{
+			zcddiv.hide();
+			if(cddata.typ=='res_wb'){
+				cddata.data = Emotion.replaceInput($.trim($(".editArea div").html()));
+			}else if($('#'+cddata.typ).find('input:checked').size()>0){
+				cddata.data = $('#'+cddata.typ).find('input:checked').val();
+			}else{
+				cddata.data = $('#'+cddata.typ).find('input[type="text"]').val();
+			}
+			
+		}
+		$(window.curcd).text($('#cdmcinpo').val());
+		$(window.curcd).attr('reldata',$.toJSON(cddata));
+	}
+}
+
+function savedata(fun){
+	var alldata = [];
+	$('.maincd').each(function(i){
+		var cddata = $.evalJSON($.trim($(this).attr('reldata')));
+		var cdid = $(this).attr('id');
+		cddata.tit = $.trim($(this).text());
+		if(cddata.typ=='res_ejcd'){
+			//回填菜单
+			var zcddiv = $('div[zcdrel="'+cdid+'"]');
+			if($.trim(cddata.data) !=''){
+				var ds = cddata.data.split('@');
+				cddata.subdata = {};
+				for(var i=0;i<ds.length;i++){
+					var ind = parseInt(ds[i])-1;
+					var zcd = zcddiv.find('.zizicd').eq(ind);
+					var ttstr = $.trim(zcd.attr('reldata'));
+					var ssdata = {};
+					if(ttstr != ''){
+						ssdata = $.evalJSON(zcd.attr('reldata'));
+					}
+					 
+					ssdata.tit = $.trim(zcd.text());
+					cddata.subdata['zizicd'+ds[i]] = ssdata;
+				}
+			}			
+		}
+		alldata[alldata.length] = cddata;
+	});
+	loading('数据保存中...');
+	ajax('cmenu.html',{ id:$('body').attr('menuid'),data:$.toJSON(alldata)},function(m){
+		tusi('保存成功');
+		loading(false);
+		if(fun){
+			fun();
+		}
+	});
+}
+
+function fbcaidan(){
+	savedata(function(){
+		loading('菜单发布中...');
+		ajax('fbmenu.html',null,function(m){
+			if(m=='nosec'){
+				alert('授权配置不正确');
+			}else if(m=='ok'){
+				tusi('菜单发布成功');				
+			}else{
+				alert(m);				
+			}
+			loading(false);
+		});
+	});
+}
+
+function initthedata(){
+	var idata = $.trim($('#initdatat').val());
+	if(idata !=''){
+		var csdata = $.evalJSON(idata);
+		for(var i=0;i<csdata.length;i++){
+			var mcd = $('.maincd').eq(i);
+			var zcddiv = $('div[zcdrel="'+mcd.attr('id')+'"]');
+			var cdjda = csdata[i];
+			if(cdjda.typ=='res_ejcd'){
+				for(var ejcd in cdjda.subdata){
+					zcddiv.find('[rel="'+ejcd+'"]').attr('reldata',$.toJSON(cdjda.subdata[ejcd])).text(cdjda.subdata[ejcd].tit).show();
+				}
+			}
+			cdjda.subdata = null;
+			mcd.attr('reldata',$.toJSON(cdjda));
+			mcd.text(cdjda.tit);			
+		}
+	}
+}
+</script>
+</head>
+
+<body menuid="3599">
+<textarea style="display:none;" id="initdatat">
+[{"typ":"res_ejcd","data":"1","tit":"菜单一","subdata":{"zizicd1":{"tit":"子1"}}},{"typ":"res_ejcd","data":"1@2@3@4@5","tit":"菜单二","subdata":{"zizicd1":{"tit":"子2"},"zizicd2":{"tit":"子22"},"zizicd3":{"tit":"子222"},"zizicd4":{"tit":"子2222"},"zizicd5":{"tit":"子22222"}}},{"typ":"res_ejcd","data":"1@2@3@4@5","tit":"菜单三","subdata":{"zizicd1":{"tit":"子3"},"zizicd2":{"tit":"子33"},"zizicd3":{"tit":"子333"},"zizicd4":{"tit":"子3333"},"zizicd5":{"tit":"子33333"}}}]</textarea>
+	<div class="main-title">
+		<h3>自定义菜单设置</h3>
+	</div>
+	<div id="top"  class="alert alert-info" style="margin:0 0 ;">
+	1.使用本模块，必须在微信公众平台<strong>申请</strong>自定义菜单使用的<strong>AppId和AppSecret</strong>，然后在【授权设置】中设置。<br/>
+	2.最多创建<span class="red bold">3 个一级菜单</span>，每个一级菜单下最多可以创建 <span class="red bold">5 个二级菜单</span>，菜单<span class="red bold">最多支持两层</span>。
+	</div>
+	<div>	
+	<table>
+	<tr>
+	<td>
+	<div style="background-image: url('media/images/cusmenu/3CustomLt.png');width: 344px;height: 623px;position: relative;">
+	
+	<div style="position: absolute;bottom: 170px;left: 46px; width: 82px;" zcdrel="maincd1">
+	<div class="zizicd" rel="zizicd1" >
+	子菜单
+	</div>
+	<div class="zizicd" rel="zizicd2" >
+	子菜单
+	</div>
+	<div class="zizicd" rel="zizicd3" >
+	子菜单
+	</div>
+	<div class="zizicd" rel="zizicd4" >
+	子菜单
+	</div>
+	<div class="zizicd" rel="zizicd5" >
+	子菜单
+	</div>
+	</div>
+	
+	<div style="position: absolute;bottom: 170px;left: 131px; width: 83px;" zcdrel="maincd2">
+	<div class="zizicd" rel="zizicd1" >
+	子菜单
+	</div>
+	<div class="zizicd" rel="zizicd2" >
+	子菜单
+	</div>
+	<div class="zizicd" rel="zizicd3" >
+	子菜单
+	</div>
+	<div class="zizicd" rel="zizicd4" >
+	子菜单
+	</div>
+	<div class="zizicd" rel="zizicd5" >
+	子菜单
+	</div>
+	</div>
+	
+	<div style="position: absolute;bottom: 170px;left: 216px; width: 83px;" zcdrel="maincd3">
+	<div class="zizicd" rel="zizicd1" >
+	子菜单
+	</div>
+	<div class="zizicd" rel="zizicd2" >
+	子菜单
+	</div>
+	<div class="zizicd" rel="zizicd3" >
+	子菜单
+	</div>
+	<div class="zizicd" rel="zizicd4" >
+	子菜单
+	</div>
+	<div class="zizicd" rel="zizicd5" >
+	子菜单
+	</div>
+	</div>
+	<div style="position: absolute;bottom: 122px;left: 43px;">
+	<table style="border: none;" cellpadding="0" cellspacing="0" >
+	<tr>
+	<td><div style="height: 45px;width: 85px;line-height: 45px;text-align: center;" id="maincd1" reldata="" class="maincd">菜单一</div></td>
+	<td><div style="height: 45px;width: 87px;line-height: 45px;text-align: center;" id="maincd2" reldata="" class="maincd">菜单二</div></td>
+	<td><div style="height: 45px;width: 85px;line-height: 45px;text-align: center;" id="maincd3" reldata="" class="maincd">菜单三</div></td>
+	</tr>
+	</table>
+	</div>
+	</div>
+	</td>
+	<td valign="top"><br/>
+	<div style="position: relative;width: 100%">
+		<button class="btn btn-big btn-primary" id="sync" onclick="fbcaidan()">发布菜单</button>&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="btn btn-big btn-primary" id="stop">停用菜单</button>&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="btn btn-big btn-primary" id="saveOrder" onclick="savedata()">保存菜单数据</button>     
+	</div><br/>
+	<div id="czselarea">
+<div id="top" class="alert alert-info" style="line-height: 16px;padding-bottom:0px;">
+菜单名称：<input type="text" id="cdmcinpo" style="margin-top: 6px;">
+</div>
+	<div class="control-group">
+			  <label class="control-label" for="answertype">菜单点击事件:</label>
+			    <div class="controls">
+					<select class="span2" id="answertype" name="answertype">
+					  <option value="res_ejcd" id="xsejcdopt">显示二级菜单</option>
+					  <option value="res_wb">回复文字</option>
+					  <option value="res_tw">单图文</option>
+					  <option value="res_dtw">多图文</option>
+					  <option value="res_wgw">微官网</option>
+					  <option value="res_gjz">关键字</option>
+					  <option value="res_url">链接地址</option>
+				
+					  <option value="res_yhq">优惠券</option>
+					  <option value="res_ggk">刮刮卡</option>
+					  <option value="res_xydzp">幸运大转盘</option>
+					  <option value="res_yzdd">一战到底</option>
+					  <option value="res_xyj">幸运机</option>
+					  <option value="res_weiba">微吧</option>
+					  <option value="res_whyk">微会员卡</option>
+					  <option value="res_wtg">微团购</option>
+					  <option value="res_wdy">微调研</option>
+					  <option value="res_wtp">微投票</option>
+					  <option value="res_wyy">微预约</option>
+					
+					</select>
+			   </div>
+		  	</div>
+	</div>
+
+
+<!-- 微投票 -->
+<div class="szcjbt" id="res_wtp">
+<table class="table table-bordered">
+						<tr>
+							<th style="width:50px;">请选择</th>
+							<th>微投票</th>
+						</tr>
+											</table>
+</div>
+
+<!-- 微调研 -->
+<div class="szcjbt" id="res_wdy">
+<table class="table table-bordered">
+						<tr>
+							<th style="width:50px;">请选择</th>
+							<th>微调研</th>
+						</tr>
+												<tr>
+						<td>
+						<input type="radio" name="rad_tw" value="10972">
+						</td>
+						<td>
+						微调研活动开始啦【所有设置为演示版，请修改】						</td>
+						</tr>
+											</table>
+</div>
+<!-- 微团购-->
+<div class="szcjbt" id="res_wtg">
+<table class="table table-bordered">
+						<tr>
+							<th style="width:50px;">请选择</th>
+							<th>微团购</th>
+						</tr>
+												<tr>
+						<td>
+						<input type="radio" name="rad_tw" value="10926">
+						</td>
+						<td>
+						微团购活动开始啦【所有设置为演示版，请修改】						</td>
+						</tr>
+											</table>
+</div>
+<!-- 微会员卡 -->
+<div class="szcjbt" id="res_whyk">
+<table class="table table-bordered">
+						<tr>
+							<th style="width:50px;">请选择</th>
+							<th>微会员卡</th>
+						</tr>
+												<tr>
+						<td>
+						<input type="radio" name="rad_tw" value="10991">
+						</td>
+						<td>
+						会员卡免费发放啦【所有设置为演示版，请修改】						</td>
+						</tr>
+											</table>
+</div>
+
+<!-- 幸运机 -->
+<div class="szcjbt" id="res_xyj">
+<table class="table table-bordered">
+						<tr>
+							<th style="width:50px;">请选择</th>
+							<th>幸运机</th>
+						</tr>
+												<tr>
+						<td>
+						<input type="radio" name="rad_tw" value="10945">
+						</td>
+						<td>
+						幸运机活动开始啦【所有设置为演示版，请修改】						</td>
+						</tr>
+											</table>
+</div>
+
+
+<!-- 一战到底 -->
+<div class="szcjbt" id="res_yzdd">
+<table class="table table-bordered">
+						<tr>
+							<th style="width:50px;">请选择</th>
+							<th>一战到底</th>
+						</tr>
+												<tr>
+						<td>
+						<input type="radio" name="rad_tw" value="11043">
+						</td>
+						<td>
+						快来参加一战到底活动吧【所有设置为演示版，请修改】						</td>
+						</tr>
+											</table>
+</div>
+
+<!-- 幸运大转盘 -->
+<div class="szcjbt" id="res_xydzp">
+<table class="table table-bordered">
+						<tr>
+							<th style="width:50px;">请选择</th>
+							<th>幸运大转盘</th>
+						</tr>
+												<tr>
+						<td>
+						<input type="radio" name="rad_tw" value="11762">
+						</td>
+						<td>
+						幸运大转盘活动开始啦【所有设置为演示版，请修改】						</td>
+						</tr>
+											</table>
+</div>
+
+<!-- 刮刮卡 -->
+<div class="szcjbt" id="res_ggk">
+<table class="table table-bordered">
+						<tr>
+							<th style="width:50px;">请选择</th>
+							<th>刮刮卡名称</th>
+						</tr>
+												<tr>
+						<td>
+						<input type="radio" name="rad_tw" value="11711">
+						</td>
+						<td>
+						刮刮卡活动开始啦【所有设置为演示版，请修改】						</td>
+						</tr>
+											</table>
+</div>
+
+	
+<!-- 优惠券 -->
+<div class="szcjbt" id="res_yhq">
+<table class="table table-bordered">
+						<tr>
+							<th style="width:50px;">请选择</th>
+							<th>优惠券名称</th>
+						</tr>
+												<tr>
+						<td>
+						<input type="radio" name="rad_tw" value="11207">
+						</td>
+						<td>
+						优惠券活动开始啦【所有设置为演示版，请修改】						</td>
+						</tr>
+											</table>
+</div>
+
+<!-- 微预约 -->
+<div class="szcjbt" id="res_wyy">
+<table class="table table-bordered">
+						<tr>
+							<th style="width:50px;">请选择</th>
+							<th>预约名称</th>
+						</tr>
+												<tr>
+						<td>
+						<input type="radio" name="rad_tw" value="10913">
+						</td>
+						<td>
+						在线预订活动开始啦【所有设置为演示版，请修改】						</td>
+						</tr>
+											</table>
+</div>	
+	
+	<!-- 二级菜单 -->
+<div class="szcjbt" id="res_ejcd">
+<div id="top" class="alert alert-info">
+至少填写一项子菜单
+</div>
+
+<span class="res_ejcd_1">
+<label class="control-label" for="answertype">菜单一:</label>
+<input type="text" >
+</span>
+<br/>
+<span class="res_ejcd_2">
+<label class="control-label" for="answertype">菜单二:</label>
+<input type="text" >
+</span>
+<br/>
+<span class="res_ejcd_3">
+<label class="control-label" for="answertype">菜单三:</label>
+<input type="text" >
+</span>
+<br/>
+<span class="res_ejcd_4">
+<label class="control-label" for="answertype">菜单四:</label>
+<input type="text" >
+</span>
+<br/>
+<span class="res_ejcd_5">
+<label class="control-label" for="answertype">菜单五:</label>
+<input type="text" >
+</span>
+<br/>
+</div>	
+	
+	
+	<!-- 单图文 -->
+<div class="szcjbt" id="res_tw">
+<table class="table table-bordered">
+						<tr>
+							<th style="width:50px;">请选择</th>
+							<th>单图文标题</th>
+						</tr>
+												<tr>
+						<td>
+						<input type="radio" name="rad_tw" value="24844">
+						</td>
+						<td>
+						欢迎关注微信公众账号，点击进入微官网[演示版，请修改]						</td>
+						</tr>
+											</table>
+</div>
+
+
+	<!-- 多图文 -->
+<div class="szcjbt" id="res_dtw">
+<table class="table table-bordered">
+							<tr>
+								<th style="width:50px;">请选择</th>
+								<th>多图文标题</th>
+							</tr>
+												<tr>
+						<td>
+						<input type="radio" name="rad_tw" value="24845">
+						</td>
+						<td>
+						欢迎关注微信公众账号，点击进入微官网[演示版，请修改]						</td>
+						</tr>
+											</table>
+</div>
+
+<!-- 关键字  -->
+<div class="szcjbt" id="res_gjz">
+要触发的关键字：<input type="text" name="event_gjz">
+</div>
+<!-- 关键字  -->
+<div class="szcjbt" id="res_url">
+要链接到的URL地址：<input type="text" name="event_url">
+</div>
+	<!-- 文本 -->
+	<div class="szcjbt" id="res_wb">	
+	<link rel="stylesheet" href="css/admin/emotion.css">
+<script type="text/javascript" src="js/emotion.js"></script>
+<script type="text/javascript" src="js/html_helper.js"></script>
+<div class="txtArea">
+	<div class="functionBar">
+		<div class="opt">
+			<a class="icon18C iconEmotion block" href="javascript:;">表情</a>
+		</div>
+		<div class="tip"></div>
+		<div class="emotions">
+			<table cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td><div class="eItem" style="background-position: 0px 0;" data-title="微笑" data-gifurl="media/images/admin/emotion/0.gif"></div></td>
+						<td><div class="eItem" style="background-position: -24px 0;" data-title="撇嘴" data-gifurl="media/images/admin/emotion/1.gif"></div></td>
+						<td><div class="eItem" style="background-position: -48px 0;" data-title="色" data-gifurl="media/images/admin/emotion/2.gif"></div></td>
+						<td><div class="eItem" style="background-position: -72px 0;" data-title="发呆" data-gifurl="media/images/admin/emotion/3.gif"></div></td>
+						<td><div class="eItem" style="background-position: -96px 0;" data-title="得意" data-gifurl="media/images/admin/emotion/4.gif"></div></td>
+						<td><div class="eItem" style="background-position: -120px 0;" data-title="流泪" data-gifurl="media/images/admin/emotion/5.gif"></div></td>
+						<td><div class="eItem" style="background-position: -144px 0;" data-title="害羞" data-gifurl="media/images/admin/emotion/6.gif"></div></td>
+						<td><div class="eItem" style="background-position: -168px 0;" data-title="闭嘴" data-gifurl="media/images/admin/emotion/7.gif"></div></td>
+						<td><div class="eItem" style="background-position: -192px 0;" data-title="睡" data-gifurl="media/images/admin/emotion/8.gif"></div></td>
+						<td><div class="eItem" style="background-position: -216px 0;" data-title="大哭" data-gifurl="media/images/admin/emotion/9.gif"></div></td>
+						<td><div class="eItem" style="background-position: -240px 0;" data-title="尴尬" data-gifurl="media/images/admin/emotion/10.gif"></div></td>
+						<td><div class="eItem" style="background-position: -264px 0;" data-title="发怒" data-gifurl="media/images/admin/emotion/11.gif"></div></td>
+						<td><div class="eItem" style="background-position: -288px 0;" data-title="调皮" data-gifurl="media/images/admin/emotion/12.gif"></div></td>
+						<td><div class="eItem" style="background-position: -312px 0;" data-title="呲牙" data-gifurl="media/images/admin/emotion/13.gif"></div></td>
+						<td><div class="eItem" style="background-position: -336px 0;" data-title="惊讶" data-gifurl="media/images/admin/emotion/14.gif"></div></td>
+					</tr>
+					<tr>
+						<td><div class="eItem" style="background-position: -360px 0;" data-title="难过" data-gifurl="media/images/admin/emotion/15.gif"></div></td>
+						<td><div class="eItem" style="background-position: -384px 0;" data-title="酷" data-gifurl="media/images/admin/emotion/16.gif"></div></td>
+						<td><div class="eItem" style="background-position: -408px 0;" data-title="冷汗" data-gifurl="media/images/admin/emotion/17.gif"></div></td>
+						<td><div class="eItem" style="background-position: -432px 0;" data-title="抓狂" data-gifurl="media/images/admin/emotion/18.gif"></div></td>
+						<td><div class="eItem" style="background-position: -456px 0;" data-title="吐" data-gifurl="media/images/admin/emotion/19.gif"></div></td>
+						<td><div class="eItem" style="background-position: -480px 0;" data-title="偷笑" data-gifurl="media/images/admin/emotion/20.gif"></div></td>
+						<td><div class="eItem" style="background-position: -504px 0;" data-title="可爱" data-gifurl="media/images/admin/emotion/21.gif"></div></td>
+						<td><div class="eItem" style="background-position: -528px 0;" data-title="白眼" data-gifurl="media/images/admin/emotion/22.gif"></div></td>
+						<td><div class="eItem" style="background-position: -552px 0;" data-title="傲慢" data-gifurl="media/images/admin/emotion/23.gif"></div></td>
+						<td><div class="eItem" style="background-position: -576px 0;" data-title="饥饿" data-gifurl="media/images/admin/emotion/24.gif"></div></td>
+						<td><div class="eItem" style="background-position: -600px 0;" data-title="困" data-gifurl="media/images/admin/emotion/25.gif"></div></td>
+						<td><div class="eItem" style="background-position: -624px 0;" data-title="惊恐" data-gifurl="media/images/admin/emotion/26.gif"></div></td>
+						<td><div class="eItem" style="background-position: -648px 0;" data-title="流汗" data-gifurl="media/images/admin/emotion/27.gif"></div></td>
+						<td><div class="eItem" style="background-position: -672px 0;" data-title="憨笑" data-gifurl="media/images/admin/emotion/28.gif"></div></td>
+						<td><div class="eItem" style="background-position: -696px 0;" data-title="大兵" data-gifurl="media/images/admin/emotion/29.gif"></div></td>
+					</tr>
+					<tr>
+						<td><div class="eItem" style="background-position: -720px 0;" data-title="奋斗" data-gifurl="media/images/admin/emotion/30.gif"></div></td>
+						<td><div class="eItem" style="background-position: -744px 0;" data-title="咒骂" data-gifurl="media/images/admin/emotion/31.gif"></div></td>
+						<td><div class="eItem" style="background-position: -768px 0;" data-title="疑问" data-gifurl="media/images/admin/emotion/32.gif"></div></td>
+						<td><div class="eItem" style="background-position: -792px 0;" data-title="嘘" data-gifurl="media/images/admin/emotion/33.gif"></div></td>
+						<td><div class="eItem" style="background-position: -816px 0;" data-title="晕" data-gifurl="media/images/admin/emotion/34.gif"></div></td>
+						<td><div class="eItem" style="background-position: -840px 0;" data-title="折磨" data-gifurl="media/images/admin/emotion/35.gif"></div></td>
+						<td><div class="eItem" style="background-position: -864px 0;" data-title="衰" data-gifurl="media/images/admin/emotion/36.gif"></div></td>
+						<td><div class="eItem" style="background-position: -888px 0;" data-title="骷髅" data-gifurl="media/images/admin/emotion/37.gif"></div></td>
+						<td><div class="eItem" style="background-position: -912px 0;" data-title="敲打" data-gifurl="media/images/admin/emotion/38.gif"></div></td>
+						<td><div class="eItem" style="background-position: -936px 0;" data-title="再见" data-gifurl="media/images/admin/emotion/39.gif"></div></td>
+						<td><div class="eItem" style="background-position: -960px 0;" data-title="擦汗" data-gifurl="media/images/admin/emotion/40.gif"></div></td>
+						<td><div class="eItem" style="background-position: -984px 0;" data-title="抠鼻" data-gifurl="media/images/admin/emotion/41.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1008px 0;" data-title="鼓掌" data-gifurl="media/images/admin/emotion/42.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1032px 0;" data-title="糗大了" data-gifurl="media/images/admin/emotion/43.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1056px 0;" data-title="坏笑" data-gifurl="media/images/admin/emotion/44.gif"></div></td>
+					</tr>
+					<tr>
+						<td><div class="eItem" style="background-position: -1080px 0;" data-title="左哼哼" data-gifurl="media/images/admin/emotion/45.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1104px 0;" data-title="右哼哼" data-gifurl="media/images/admin/emotion/46.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1128px 0;" data-title="哈欠" data-gifurl="media/images/admin/emotion/47.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1152px 0;" data-title="鄙视" data-gifurl="media/images/admin/emotion/48.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1176px 0;" data-title="委屈" data-gifurl="media/images/admin/emotion/49.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1200px 0;" data-title="快哭了" data-gifurl="media/images/admin/emotion/50.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1224px 0;" data-title="阴险" data-gifurl="media/images/admin/emotion/51.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1248px 0;" data-title="亲亲" data-gifurl="media/images/admin/emotion/52.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1272px 0;" data-title="吓" data-gifurl="media/images/admin/emotion/53.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1296px 0;" data-title="可怜" data-gifurl="media/images/admin/emotion/54.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1320px 0;" data-title="菜刀" data-gifurl="media/images/admin/emotion/55.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1344px 0;" data-title="西瓜" data-gifurl="media/images/admin/emotion/56.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1368px 0;" data-title="啤酒" data-gifurl="media/images/admin/emotion/57.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1392px 0;" data-title="篮球" data-gifurl="media/images/admin/emotion/58.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1416px 0;" data-title="乒乓" data-gifurl="media/images/admin/emotion/59.gif"></div></td>
+					</tr>
+					<tr>
+						<td><div class="eItem" style="background-position: -1440px 0;" data-title="咖啡" data-gifurl="media/images/admin/emotion/60.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1464px 0;" data-title="饭" data-gifurl="media/images/admin/emotion/61.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1488px 0;" data-title="猪头" data-gifurl="media/images/admin/emotion/62.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1512px 0;" data-title="玫瑰" data-gifurl="media/images/admin/emotion/63.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1536px 0;" data-title="凋谢" data-gifurl="media/images/admin/emotion/64.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1560px 0;" data-title="示爱" data-gifurl="media/images/admin/emotion/65.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1584px 0;" data-title="爱心" data-gifurl="media/images/admin/emotion/66.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1608px 0;" data-title="心碎" data-gifurl="media/images/admin/emotion/67.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1632px 0;" data-title="蛋糕" data-gifurl="media/images/admin/emotion/68.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1656px 0;" data-title="闪电" data-gifurl="media/images/admin/emotion/69.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1680px 0;" data-title="炸弹" data-gifurl="media/images/admin/emotion/70.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1704px 0;" data-title="刀" data-gifurl="media/images/admin/emotion/71.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1728px 0;" data-title="足球" data-gifurl="media/images/admin/emotion/72.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1752px 0;" data-title="瓢虫" data-gifurl="media/images/admin/emotion/73.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1776px 0;" data-title="便便" data-gifurl="media/images/admin/emotion/74.gif"></div></td>
+					</tr>
+					<tr>
+						<td><div class="eItem" style="background-position: -1800px 0;" data-title="月亮" data-gifurl="media/images/admin/emotion/75.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1824px 0;" data-title="太阳" data-gifurl="media/images/admin/emotion/76.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1848px 0;" data-title="礼物" data-gifurl="media/images/admin/emotion/77.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1872px 0;" data-title="拥抱" data-gifurl="media/images/admin/emotion/78.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1896px 0;" data-title="强" data-gifurl="media/images/admin/emotion/79.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1920px 0;" data-title="弱" data-gifurl="media/images/admin/emotion/80.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1944px 0;" data-title="握手" data-gifurl="media/images/admin/emotion/81.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1968px 0;" data-title="胜利" data-gifurl="media/images/admin/emotion/82.gif"></div></td>
+						<td><div class="eItem" style="background-position: -1992px 0;" data-title="抱拳" data-gifurl="media/images/admin/emotion/83.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2016px 0;" data-title="勾引" data-gifurl="media/images/admin/emotion/84.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2040px 0;" data-title="拳头" data-gifurl="media/images/admin/emotion/85.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2064px 0;" data-title="差劲" data-gifurl="media/images/admin/emotion/86.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2088px 0;" data-title="爱你" data-gifurl="media/images/admin/emotion/87.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2112px 0;" data-title="NO" data-gifurl="media/images/admin/emotion/88.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2136px 0;" data-title="OK" data-gifurl="media/images/admin/emotion/89.gif"></div></td>
+					</tr>
+					<tr>
+						<td><div class="eItem" style="background-position: -2160px 0;" data-title="爱情" data-gifurl="media/images/admin/emotion/90.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2184px 0;" data-title="飞吻" data-gifurl="media/images/admin/emotion/91.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2208px 0;" data-title="跳跳" data-gifurl="media/images/admin/emotion/92.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2232px 0;" data-title="发抖" data-gifurl="media/images/admin/emotion/93.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2256px 0;" data-title="怄火" data-gifurl="media/images/admin/emotion/94.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2280px 0;" data-title="转圈" data-gifurl="media/images/admin/emotion/95.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2304px 0;" data-title="磕头" data-gifurl="media/images/admin/emotion/96.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2328px 0;" data-title="回头" data-gifurl="media/images/admin/emotion/97.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2352px 0;" data-title="跳绳" data-gifurl="media/images/admin/emotion/98.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2376px 0;" data-title="挥手" data-gifurl="media/images/admin/emotion/99.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2400px 0;" data-title="激动" data-gifurl="media/images/admin/emotion/100.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2424px 0;" data-title="街舞" data-gifurl="media/images/admin/emotion/101.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2448px 0;" data-title="献吻" data-gifurl="media/images/admin/emotion/102.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2472px 0;" data-title="左太极" data-gifurl="media/images/admin/emotion/103.gif"></div></td>
+						<td><div class="eItem" style="background-position: -2496px 0;" data-title="右太极" data-gifurl="media/images/admin/emotion/104.gif"></div></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="emotionsGif"></div>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<div class="editArea">
+		<textarea id="welcome" name="welcome" style="display: none;"></textarea>
+		<div style="overflow-y: auto; overflow-x: hidden;" contenteditable="true">
+		</div>
+	</div>
+</div>
+	
+	
+	</div>
+	</td>
+	</tr>
+	</table>
+	
+	
+	</div>
+	
+	
+	
+	
+<script>
+$(function(){
+	var $textarea = $(".editArea textarea");
+	var $contentDiv = $(".editArea div");
+	$(".functionBar .iconEmotion").click(function(){
+		//Emotion.saveRange();
+		$(".emotions").show();
+	});
+	$(".emotions").hover(function(){
+		
+	},function(){
+		$(".emotions").fadeOut();
+	});
+	$(".emotions .eItem").mouseenter(function(){
+		$(".emotionsGif").html('<img src="'+$(this).attr("data-gifurl")+'">');
+	}).click(function(){
+		Emotion.insertHTML('<img src="' + $(this).attr("data-gifurl") + '"' + 'alt="mo-' + $(this).attr("data-title") + '"' + "/>");
+		$(".emotions").fadeOut();
+		$textarea.trigger("contentValueChange");
+	});
+	$contentDiv.bind("keyup",function(){
+		$textarea.trigger("contentValueChange");
+		Emotion.saveRange();
+	}).bind("keydown",function(e){
+	    switch (e.keyCode) {
+	    case 8:
+	        var t = Emotion.getSelection();
+	        t.type && t.type.toLowerCase() === "control" && (e.preventDefault(), t.clear());
+	        break;
+	    case 13:
+	        e.preventDefault(),
+	        Emotion.insertHTML("<br/>");
+	        Emotion.saveRange();
+	    }
+	}).bind("mouseup",function(e){
+	    Emotion.saveRange();
+	    if (!$.support.boxModel && />$/.test($contentDiv.html())) {
+	        var n = Emotion.getSelection();
+	        n.extend && (n.extend(cursorNode, cursorNode.length), n.collapseToEnd()),
+	        Emotion.saveRange();
+	        Emotion.insertHTML(" ");
+	    }
+	});
+	$textarea.bind("contentValueChange",function(){
+		$(this).val(Emotion.replaceInput($contentDiv.html()));
+	});
+	$contentDiv.html(Emotion.replaceEmoji($.trim($contentDiv.html())));
+	
+});
+
+
+</script>
+<br/><br/><br/></body>
+</html>

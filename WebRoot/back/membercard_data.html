@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/admin/bootstrap.min.css">
+<link rel="stylesheet" href="css/admin/admin.css">
+<title>我的活动</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+	<div class="main-title">
+		<h3>会员卡免费发放啦【所有设置为演示版，请修改】微会员卡活动</h3>
+	</div>
+
+<div class="pagination">
+  <ul>
+    <li class="pagination_current current"><span>1</span></li>  </ul>  
+</div>
+<div>
+<form action="">
+手机号：
+<input type="text"   value="" name="fT08d9e827ffbba2efe4413cb064bbf847tel" id="ftel" style="margin-top: 10px;width:100px;"/>会员卡号：
+<input type="text"   value="" name="fT08d9e827ffbba2efe4413cb064bbf847sn" id="fsn" style="margin-top: 10px;width:100px;"/>开始时间：
+<input type="text"   value=""  id="fkssj" style="margin-top: 10px;width:140px;" name="fT08d9e827ffbba2efe4413cb064bbf847kssj" class="Wdate" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>结束时间：
+<input type="text"   value=""  id="fjssj" style="margin-top: 10px;width:140px;" name="fT08d9e827ffbba2efe4413cb064bbf847jssj" class="Wdate" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"/><button type="submit" class="btn">检索</button>
+</form>
+
+</div>
+<div>总计：<B>1条/1页</B></div>
+	<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>会员名称</th>
+					<th>电话</th>
+					<th>生日</th>
+					<th>地址</th>
+					<th>参与时间</th>
+					<th>会员卡号</th>
+					<th>余额</th>
+					<th>积分</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+						 
+			      <tr>
+						<td>小龙</td>
+						<td>15861521066</td>
+						<td></td>
+						<td></td>
+						<td>
+						2015-02-10 16:55:15						</td>
+						<td>10000001</td>
+						<td>￥0</td>
+						<td>0</td>
+						<td>
+						<span>
+						[<a href="javascript:;" onclick="toused(2385,this)">操作</a>]&nbsp;			
+						[<a href="membercard_data_record.html">记录</a>]					
+						</span>
+						</td>
+				  </tr>
+						</tbody>
+		</table>
+	<div class="tb-toolbar">
+	</div>
+
+<div class="pagination">
+  <ul>
+<li class="pagination_current current"><span>1</span></li>  </ul>
+  
+</div>
+
+<script type="text/javascript">
+function fyjs(){
+	var fs = $('.zcsel').val();
+	var je = $('.je').val();
+	var bz = $('.bz').val();
+	var md = $('.mdlb').val();
+	ajax('microMemberCardListset.html',{ fs:fs,je:je,id:window.yjsid,bz:bz,md:md},function(m){
+		tusi('操作成功');
+		setTimeout(function(){
+			location.href =location.href; 
+		},1000);
+		
+	});
+}
+function toused(id,o){
+	if(!window.pophtm){
+		window.pophtm = $('#jfczarea').html();
+		$('#jfczarea').remove();
+	}
+	window.yjsid = id;
+	pophtml(window.pophtm,360,180);
+	
+	/**
+	if(confirm('确定标记微会员卡已使用吗？')){
+		ajax('microMemberCardList-used.html',{ id:id},function(m){
+			if(m=='ok'){
+				$(o).parent().html('已使用');
+			}
+		});
+	}
+	*/
+}
+</script>
+<div id="jfczarea" style="display: none;">
+	<table>
+		<tr>
+			<td style="line-height: 30px;" valign="top">方式：</td>
+			<td><select style="width: 120px;" class="zcsel">
+					<option value="cz">充值</option>
+					<option value="xf">消费</option>
+					<option value="jfa">积分累加</option>
+					<option value="jfd">积分消费</option>
+			</select></td>
+			<td style="line-height: 30px;" valign="top">数额：</td>
+			<td><input type="text" class="je" style="width: 50px;"></td>
+			</tr>
+		<tr>
+			<td style="line-height: 30px;" valign="top">门店：</td>
+			<td colspan="3"><select style="width: 228px;" class="mdlb">
+					<option value="0">--不标记--</option>
+								</select></td>
+			</tr>
+			<tr>
+			<td style="line-height: 30px;" valign="top">备注：</td>
+			<td colspan="2"><input type="text" class="bz" style="width: 150px;"></td>
+			<td valign="top" align="right">
+			<button onclick="fyjs()" class="btn">确定</button>
+			</td>
+		</tr>
+	</table>
+</div>
+<br/><br/><br/></body></html>

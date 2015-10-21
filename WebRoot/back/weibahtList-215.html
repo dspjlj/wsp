@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/admin/bootstrap.min.css">
+<link rel="stylesheet" href="css/admin/admin.css">
+<title>我的活动</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+	<div class="main-title">
+		<h3>什么是友谊微吧活动</h3>
+	</div>
+
+<div class="pagination">
+  <ul>
+    <li class="pagination_current current"><span>1</span></li>  </ul>  
+</div>
+<div>
+ <form action="weibahtList-215.html">
+ 用户名：
+<input type="text"   value="" name="fT08d9e827ffbba2efe4413cb064bbf847un" id="fun" style="margin-top: 10px;width:100px;"/>
+开始时间：
+<input type="text"   value=""  id="fkssj" style="margin-top: 10px;width:140px;" name="fT08d9e827ffbba2efe4413cb064bbf847kssj" class="Wdate" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>结束时间：
+<input type="text"   value=""  id="fjssj" style="margin-top: 10px;width:140px;" name="fT08d9e827ffbba2efe4413cb064bbf847jssj" class="Wdate" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"/><button type="submit" class="btn">检索</button>
+</form> 
+
+</div>
+<div>总计：<B>2条/1页</B></div>
+	<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>用户名称</th>
+					<th>内容</th>
+					<th>时间</th>
+					<th>称赞</th>
+					<th>贬低</th>
+				</tr>
+			</thead>
+			<tbody>
+						 
+			      <tr>
+						<td>小龙</td>
+						<td>好友啊
+</td>
+						<td>2015-02-13 14:45:58</td>
+						<td>0</td>
+						<td>0</td>
+						
+				  </tr>
+						 
+			      <tr>
+						<td>小龙</td>
+						<td>朋友啊！</td>
+						<td>2015-02-13 14:45:30</td>
+						<td>0</td>
+						<td>0</td>
+						
+				  </tr>
+						</tbody>
+		</table>
+	<div class="tb-toolbar">
+	</div>
+
+<div class="pagination">
+  <ul>
+<li class="pagination_current current"><span>1</span></li>  </ul>
+  
+</div>
+
+<script type="text/javascript">
+
+function toused(id,o){
+	if(confirm('确定标记领取奖项吗？')){
+		ajax('xyjList-used.html',{ id:id},function(m){
+			if(m=='ok'){
+				$(o).parent().html('已领奖');
+			}
+		});
+	}
+	
+}
+</script>
+<br/><br/><br/></body></html>

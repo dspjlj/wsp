@@ -1,0 +1,82 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!-- Apple devices fullscreen -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- Apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<base target="mainFrame" />
+<link rel="stylesheet" type="text/css" href="css/wm/index.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/bootstrap_min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/bootstrap_responsive_min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/themes.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/todc_bootstrap.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/inside.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/album.css" media="all" />
+<title>第三屏—国内免费的微信公众服务平台</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+
+<link rel="shortcut icon" href="favicon.ico" />
+</head>
+<body class="theme-blue">
+	<div id="main">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="box">
+						<div class="box-title">
+							<div class="span12">
+								<h3><i class="icon-cog"></i>添加景区</h3>
+							</div>
+						</div>
+						<div class="box-content">
+							<form action="" method="post" class="form-horizontal form-validate"><input type="hidden" value="54eeda9646343" name="YYUC_FORM_TOKEN"/><input type="hidden" value = "" name="Ww0CRAo6DhAdC0I6HFtUDRFAU19iXQc=" id="micro_lvyou_ziloupanid" />								<div class="control-group">
+									<label for="title" class="control-label">景区名称：</label>
+									<div class="controls">
+									<input type="text"   value="" name="Ww0CRAo6DhAdC0I6HFtUDRFAU19iWgIMXA==" id="micro_lvyou_ziloupanname" class="input-large" required="required"/>										<span class="maroon">*</span>
+										<span class="help-inline">尽量简单，不要超过20字</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="sort" class="control-label">显示顺序：</label>
+									<div class="controls">
+									<input type="text"   value="0" name="Ww0CRAo6DhAdC0I6HFtUDRFAU19iRwwTTQ==" id="micro_lvyou_ziloupansort" class="input-mini"/>										<span class="maroon">*</span>
+										<span class="help-inline">数值越大越靠前</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="description" class="control-label">景区介绍：</label>
+									<div class="controls">
+									<textarea name="Ww0CRAo6DhAdC0I6HFtUDRFAU19iXgoAV1MLUQ=="   id="micro_lvyou_ziloupanjianjie" class="input-xxlarge" style="height:80px;width:380px;" placeholder="可不填"></textarea>									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" id="bsubmit" data-loading-text="提交中..." class="btn btn-primary">保存</button>
+									<button type="button" class="btn" onclick="window.history.go(-1);">取消</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<br/><br/><br/></body>
+	<script>
+		window.document.onkeydown = function(e) {
+			if ('' == document.activeElement.id) {
+				var e=e || event;
+　 				var currKey=e.keyCode || e.which || e.charCode;
+				if (8 == currKey) {
+					return false;
+				}
+			}
+		};
+	</script>
+</html>

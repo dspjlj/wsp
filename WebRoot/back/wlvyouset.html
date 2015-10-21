@@ -1,0 +1,328 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!-- Apple devices fullscreen -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- Apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<base target="mainFrame" />
+<link rel="stylesheet" type="text/css" href="css/wm/index.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/bootstrap_min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/bootstrap_responsive_min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/themes.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/todc_bootstrap.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/inside.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/wm/album.css" media="all" />
+<title>第三屏—国内免费的微信公众服务平台</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+
+<script src="http://api.map.baidu.com/api?v=1.5&ak=1b0ace7dde0245f796844a06fb112734"></script>
+</head>
+<body class="theme-blue">
+	<div id="main">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="box">
+						<div class="box-title">
+							<div class="span12">
+								<h3><i class="icon-cog"></i>旅游简介</h3>
+							</div>
+						</div>
+						<div class="box-content">
+							<form action="" method="post" id="lbsForm" class="form-horizontal form-validate" ><input type="hidden" value="54eecf66c5b3a" name="YYUC_FORM_TOKEN"/><input type="hidden" value = "10" name="CFkAFFk8VUYdWxY8RVVBMFgF" id="micro_lvyou_setid" />								<div class="control-group">
+									<label for="title" class="control-label">图文消息标题：</label>
+									<div class="controls">
+									<input type="text"   value="微旅游" name="CFkAFFk8VUYdWxY8RVVBMF8AWVY=" id="micro_lvyou_setname" class="input-xlarge" required="required"/>										<span class="maroon">*</span>
+										<span class="help-inline">触发关键词后返回的图文消息标题</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="keyword" class="control-label">图文消息触发关键词：</label>
+									<div class="controls">
+										<input type="text"   value="微旅游" name="CFkAFFk8VUYdWxY8RVVBMFYLTg==" id="micro_lvyou_setgjz" class="input-xlarge" required="required"/>										<span class="maroon">*</span>
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">图文消息封面：</label>
+									<div class="controls">
+										<img class="thumb_img" src="res/wfc/estate_home.png" id="pic_pic" style="max-height:100px;" />
+										<input type="hidden" value = "res/wfc/estate_home.png" name="CFkAFFk8VUYdWxY8RVVBMEEIVw==" id="micro_lvyou_setpic" />										<span class="help-inline">
+											<button class="btn select_img" type="button" onclick="setpic('pic_pic','micro_lvyou_setpic');">选择封面</button>
+											<span class="help-inline">建议尺寸：宽720像素，高400像素</span>
+										</span>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label">旅游区头部图片：</label>
+									<div class="controls">
+									<img class="thumb_img" src="res/wfc/estate_banner.png" id="pic_headpic"  style="max-height:100px;" />
+										<input type="hidden" value = "res/wfc/estate_banner.png" name="CFkAFFk8VUYdWxY8RVVBMFkEVVdFW1U=" id="micro_lvyou_setheadpic" />										<span class="help-inline">
+											<button class="btn select_img" type="button" onclick="setpic('pic_headpic','micro_lvyou_setheadpic');">选择图片</button>
+											<span class="help-inline">建议尺寸：宽720像素，高350像素</span>
+										</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">景点头部图片：</label>
+									<div class="controls">
+									<img class="thumb_img" src="res/wfc/estate_house_banner.png" id="pic_apartpic" style="max-height:100px;" />
+									<input type="hidden" value = "res/wfc/estate_house_banner.png" name="CFkAFFk8VUYdWxY8RVVBMFARVUFBQl9X" id="micro_lvyou_setapartpic" />									
+										<span class="help-inline">
+											<button class="btn select_img" type="button" onclick="setpic('pic_apartpic','micro_lvyou_setapartpic');">选择图片</button>
+											<span class="help-inline">建议尺寸：宽720像素，高350像素</span>
+										</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="suggestId" class="control-label">地图标识：</label>
+									<div class="controls">
+										<div class="input-append">
+										<input type="text"   value="宜兴" name="CFkAFFk8VUYdWxY8RVVBMFAFUEE=" id="micro_lvyou_setaddr" class="input-xlarge" required="required"/>	
+											<button class="btn" type="button" id="positioning">搜索</button>
+										</div>
+										<span class="maroon">注意：这个只是模糊定位，准确位置请地图上标注！</span>
+										<div id="l-map">
+											<i class="icon-spinner icon-spin icon-large"></i>地图加载中...
+										</div>
+										<div id="r-result">
+										<input type="text"   value="119.794289" name="CFkAFFk8VUYdWxY8RVVBMFsF" id="micro_lvyou_setjd" />										<input type="text"   value="31.368165" name="CFkAFFk8VUYdWxY8RVVBMEYF" id="micro_lvyou_setwd" />										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="estate_desc" class="control-label">服务理念简介：</label>
+									<div class="controls">
+									<textarea style="width:600px;height:100px;" width="600px" height="100px" name="CFkAFFk8VUYdWxY8RVVBMFsIVV1fW1M=" id="micro_lvyou_setjianjie">服务理念简介</textarea><input type="hidden" relobj="kindeditor" rel="yyuc" editorid="micro_lvyou_setjianjie" value="{langType:&quot;zh-cn&quot;,allowImageUpload:true,allowFlashUpload:true,allowMediaUpload:true,allowFileManager:false,items:kindeditor_item0}" />									</div>
+								</div>
+								<div class="control-group">
+									<label for="object_desc" class="control-label">旅游区简介：</label>
+									<div class="controls">
+										<textarea style="width:600px;height:100px;" width="600px" height="100px" name="CFkAFFk8VUYdWxY8RVVBMEkIVV1SX0M=" id="micro_lvyou_setxiangmu">旅游区简介</textarea><input type="hidden" relobj="kindeditor" rel="yyuc" editorid="micro_lvyou_setxiangmu" value="{langType:&quot;zh-cn&quot;,allowImageUpload:true,allowFlashUpload:true,allowMediaUpload:true,allowFileManager:false,items:kindeditor_item0}" />									</div>
+								</div>
+								<div class="control-group">
+									<label for="traffic_desc" class="control-label">服务配套：</label>
+									<div class="controls">
+										<textarea style="width:600px;height:100px;" width="600px" height="100px" name="CFkAFFk8VUYdWxY8RVVBMFsIVVxBXVhT" id="micro_lvyou_setjiaotong">服务配套</textarea><input type="hidden" relobj="kindeditor" rel="yyuc" editorid="micro_lvyou_setjiaotong" value="{langType:&quot;zh-cn&quot;,allowImageUpload:true,allowFlashUpload:true,allowMediaUpload:true,allowFileManager:false,items:kindeditor_item0}" />									</div>
+								</div>								
+								<div class="control-group">
+									<label for="traffic_desc" class="control-label">旅游预约：</label>
+									<div class="controls">
+										<select    name="CFkAFFk8VUYdWxY8RVVBMEgYXVc="  id="micro_lvyou_setyyid"  yy_autotext="CFkAFFk8VUYdWxY8RVVBMGIkeGxhamJrHxsMVA=="><option value="12505" selected="selected">在线预订活动开始啦【所有设置为演示版，请修改】</option></select>									</div>
+								</div>	
+								<div class="control-group">
+									<label for="traffic_desc" class="control-label">旅游新闻：</label>
+									<div class="controls">
+										<select    name="CFkAFFk8VUYdWxY8RVVBMEkWXVc="  id="micro_lvyou_setxwid"  yy_autotext="CFkAFFk8VUYdWxY8RVVBMGIkeGxhamJrHhUMVA=="><option value="index" >微首页</option><option value="75721ca4b0f0ccc05e7458c7" selected="selected">产品列表</option></select>									</div>
+								</div>
+								<div class="control-group">
+									<label for="traffic_desc" class="control-label">旅游游客：</label>
+									<div class="controls">
+										<select    name="CFkAFFk8VUYdWxY8RVVBMFkYXVc="  id="micro_lvyou_sethyid"  yy_autotext="CFkAFFk8VUYdWxY8RVVBMGIkeGxhamJrDhsMVA=="><option value="12591" selected="selected">会员卡免费发放啦【所有设置为演示版，请修改】</option></select>									</div>
+								</div>
+								<div class="control-group">
+									<label for="traffic_desc" class="control-label">联系电话：</label>
+									<div class="controls">
+										<input type="text"   value="15861521066" name="CFkAFFk8VUYdWxY8RVVBMEUEWA==" id="micro_lvyou_settel" />									</div>
+								</div>
+								<div class="control-group">
+									<label for="traffic_desc" class="control-label">链接地址：</label>
+									<div class="controls">
+										http://www.di3p.com/wlvy/index.html?wid=12242									</div>
+								</div>
+								
+								<hr/>
+								<div class="control-group">
+									<label for="traffic_desc" class="control-label">行业版底部导航设置：</label>
+									
+								</div>
+								<div class="control-group">
+									<label for="album_title" class="control-label">简介名称：</label>
+									<div class="controls">
+									<input type="text"   value="简介1" name="CFkAFFk8VUYdWxY8RVVBMFsLWlJYVw==" id="micro_lvyou_setjjname" class="input-xlarge" required="required"/>							
+										<span class="maroon">*</span>
+										<span class="help-inline">导航1</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="album_title" class="control-label">相册名称：</label>
+									<div class="controls">
+									<input type="text"   value="相册1" name="CFkAFFk8VUYdWxY8RVVBMEkCWlJYVw==" id="micro_lvyou_setxcname" class="input-xlarge" required="required"/>							
+										<span class="maroon">*</span>
+										<span class="help-inline">导航2</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="album_title" class="control-label">景点名称：</label>
+									<div class="controls">
+									<input type="text"   value="景点1" name="CFkAFFk8VUYdWxY8RVVBMFkZWlJYVw==" id="micro_lvyou_sethxname" class="input-xlarge" required="required"/>							
+										<span class="maroon">*</span>
+										<span class="help-inline">导航3</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="album_title" class="control-label">印象名称：</label>
+									<div class="controls">
+									<input type="text"   value="印象1" name="CFkAFFk8VUYdWxY8RVVBMEgZWlJYVw==" id="micro_lvyou_setyxname" class="input-xlarge" required="required"/>							
+										<span class="maroon">*</span>
+										<span class="help-inline">导航4</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="album_title" class="control-label">新闻名称：</label>
+									<div class="controls">
+									<input type="text"   value="新闻1" name="CFkAFFk8VUYdWxY8RVVBMEkWWlJYVw==" id="micro_lvyou_setxwname" class="input-xlarge" required="required"/>							
+										<span class="maroon">*</span>
+										<span class="help-inline">导航5</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="album_title" class="control-label">预约名称：</label>
+									<div class="controls">
+									<input type="text"   value="预约1" name="CFkAFFk8VUYdWxY8RVVBMEgYWlJYVw==" id="micro_lvyou_setyyname" class="input-xlarge" required="required"/>							
+										<span class="maroon">*</span>
+										<span class="help-inline">导航6</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="album_title" class="control-label">会员系统名称：</label>
+									<div class="controls">
+									<input type="text"   value="会员1" name="CFkAFFk8VUYdWxY8RVVBMFkYWlJYVw==" id="micro_lvyou_sethyname" class="input-xlarge" required="required"/>							
+										<span class="maroon">*</span>
+										<span class="help-inline">导航7</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="album_title" class="control-label">联系名称：</label>
+									<div class="controls">
+									<input type="text"   value="联系1" name="CFkAFFk8VUYdWxY8RVVBMF0ZWlJYVw==" id="micro_lvyou_setlxname" class="input-xlarge" required="required"/>							
+										<span class="maroon">*</span>
+										<span class="help-inline">导航8</span>
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" id="bsubmit" data-loading-text="提交中..." class="btn btn-primary">保存</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<br/><br/><br/></body>
+	<script type="text/javascript">
+	function setpic(imgid,hideid){
+		window.piccbk = function(m){
+			$('#'+imgid).attr('src',m);
+			$('#'+hideid).val(m);
+			window.piccbk = null;
+		}
+		window.curpic = null;
+		openpicset();	
+	} 
+	function openpicset(){
+		pophtml('<iframe src="wspicif.html" style="width:630px;height:470px;border:none;background-color: #dfdfdf;" width="630px" height="475px"></iframe>',670,510,true);
+	}
+
+	
+	
+	//是否从未保存过定位信息，如果从未保存过，并且有填地址信息，那么进入页面后自动定位
+	var located = true;
+	//定位坐标
+	var destPoint = new BMap.Point($('#micro_lvyou_setjd').val(),$('#micro_lvyou_setwd').val());
+	$(function(){		
+		/**开始处理百度地图**/
+		var map = new BMap.Map("l-map");
+		map.centerAndZoom(new BMap.Point(destPoint.lng, destPoint.lat), 12);//初始化地图
+		map.enableScrollWheelZoom();
+		map.addControl(new BMap.NavigationControl());
+		var marker = new BMap.Marker(destPoint);
+		map.addOverlay(marker);//添加标注
+		
+		map.addEventListener("click", function(e){
+			if(confirm("确认选择这个位置？")){
+				destPoint = e.point;
+				$('#micro_lvyou_setjd').val(destPoint.lng);
+				$('#micro_lvyou_setwd').val(destPoint.lat);
+				map.clearOverlays();
+				var marker1 = new BMap.Marker(destPoint);  // 创建标注
+				map.addOverlay(marker1); 
+			}
+		});
+		
+		
+		
+		var myValue;
+
+		var local;
+		function setPlace(){
+		    map.clearOverlays();    //清除地图上所有覆盖物
+		    local = new BMap.LocalSearch(map, { //智能搜索
+		      renderOptions:{ map: map}
+		    });
+		    located = true;
+		    local.setMarkersSetCallback(callback);
+		    local.search(myValue);
+		}
+		
+		function addEventListener(marker){
+			marker.addEventListener("click", function(data){
+				destPoint = data.target.getPosition(0);
+			});
+		}
+		function callback(posi){
+			$("#micro_lvyou_setaddr").removeAttr("disabled");
+			for(var i=0;i<posi.length;i++){
+				if(i==0){
+					destPoint = posi[0].point;
+				}
+				posi[i].marker.addEventListener("click", function(data){
+					destPoint = data.target.getPosition(0);
+				});  
+			}
+		}
+		
+		
+		$("#positioning").click(function(){
+			if($("#micro_lvyou_setaddr").val() == ""){
+				alert("请输地址！");
+				return ;
+			}
+			$("#locate-btn").prop("disabled",true);
+			local = new BMap.LocalSearch(map, { //智能搜索
+				renderOptions:{ map: map}
+			});
+			located = true;
+			local.setMarkersSetCallback(callback);
+			local.search($("#micro_lvyou_setaddr").val());
+			return false;
+		});
+		
+		 $("#lbsForm").submit(function(){
+			var cansv= true;
+			$(this).find('input[type="text"],select,textarea').filter('[required="required"]').each(function(){
+				if($.trim($(this).val())==''){
+					cansv = false;
+					$(this).css('backgroundColor','yellow');
+					$(this).one('focus',function(){
+						$(this).css('backgroundColor','transparent');
+					});
+				}
+			});
+			if(!cansv){
+				tusi('请将信息填写完整');
+			}
+	    	return cansv;
+	    });
+	});
+	</script>
+</html>

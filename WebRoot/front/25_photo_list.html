@@ -1,0 +1,136 @@
+
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta name="format-detection" content="telephone=no">
+  <meta content="telephone=no" name="format-detection">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>迷失</title>
+  <script type="text/javascript">
+
+        var config = {
+            coverUrl:'',
+            swipeCur: 0,
+            swipeDir:'horizontal'// 'vertical' // horizontal
+        }
+    </script>
+  <link href="assets/mobile/album-158edcaf79168710f2527bceda757dfd.css" media="screen" rel="stylesheet" type="text/css" />
+  <script src="assets/mobile/album-d868b8e0ff4ec806100071cdd8717a5b.js" type="text/javascript"></script>
+  <meta content="authenticity_token" name="csrf-param" />
+  <meta content="kUIA3YaGFmhgVNZrOJgtluuM5yolIlgQqZs7lJtcxQw=" name="csrf-token" />
+</head>
+<body class="bggrey">
+
+  <div class="cent">
+    <div class="list list1 clear">
+      <ul>
+        <li>
+          <a href="25_photo_detail.html">
+            <img class="lazy" src="pictures/FoHv1kOyep4F97Ul8EWMTOAEilfb"/>
+          </a>
+        </li>
+        <li>
+          <a href="25_photo_detail.html#246748">
+            <img class="lazy" src="pictures/Foo_1KIH92clkhysXQ8cimitDQZ0"/>
+          </a>
+        </li>
+        <li>
+          <a href="25_photo_detail.html#246749">
+            <img class="lazy" src="pictures/FrIAVoLZw4Ky-tHBqysYMpxFuhGm"/>
+          </a>
+        </li>
+        <li>
+          <a href="25_photo_detail.html#246750">
+            <img class="lazy" src="pictures/FjCjwVzoRsUdnHWxa9HsVnJ0vWEJ"/>
+          </a>
+        </li>
+        <li>
+          <a href="25_photo_detail.html#246751">
+            <img class="lazy" src="pictures/FqPHybts0u3g_9f3i-nlYVr7WtNf"/>
+          </a>
+        </li>
+        <li>
+          <a href="25_photo_detail.html#246752">
+            <img class="lazy" src="pictures/FuDNueZop-FASwk0CKRfBkhdXIOB"/>
+          </a>
+        </li>
+        <li>
+          <a href="25_photo_detail.html#246753">
+            <img class="lazy" src="pictures/FkNkWYn0QuAUPqn7yUdzpU2oWL6v"/>
+          </a>
+        </li>
+        <li>
+          <a href="25_photo_detail.html#246754">
+            <img class="lazy" src="pictures/FkCQsn2CSi0lHxWo6aQDuQQ0IoPH"/>
+          </a>
+        </li>
+        <li>
+          <a href="25_photo_detail.html#246755">
+            <img class="lazy" src="pictures/Fj6fUgiDxH6-Y2tPX-a-ncWNDnnN"/>
+          </a>
+        </li>
+        <li>
+          <a href="25_photo_detail.html#246756">
+            <img class="lazy" src="pictures/FncKurp_s8XYEQcBH-LtaamqthoT"/>
+          </a>
+        </li>
+      </ul>
+      <div class="mod-load">
+        <span class="tips">加载更多</span>
+        <span class="jiazai"> <i class="fa fa-spinner fa-spin "></i>
+          正在加载...
+        </span>
+      </div>
+    </div>
+  </div>
+  <script>
+  $(function(){
+    //延迟加载
+    $(".lazy").lazyload({
+      placeholder : "assets/mobile/albums/load.gif",
+      effect  : "fadeIn"
+    });
+
+    bottomLoad(load)
+    var page = 2,
+        get_ajax = true;
+    function load(){
+      var get_url = "25_photo_detail.html#14372/load_more_photos" + "?page=" + page;
+      if(get_ajax){
+        get_ajax = false;
+        $.getJSON(get_url, function(data) {
+          if(data.photos.length > 0){
+            page += 1;
+            var html = '';
+            for(i=0;i<data.photos.length;i++){
+              html += '<li><a href="'+data.photos[i].link_to+'"><img class="lazy" src="'+data.photos[i].img_url+'"/></a></li>';
+            }
+            $(html).appendTo($(".list ul"));
+            get_ajax = true;
+          }else{
+            $(".tips").html("没有数据啦");
+          }
+        });
+      }
+      $(".mod-load").removeClass("loading");
+    }
+  });
+
+</script>
+
+  <a href="javascript:scroll(0,0)" class="btn-pop btn-up"> <i class="fa fa-arrow-up"></i>
+  </a>
+  <div class="loading fixed-top"></div>
+  <script type="text/javascript">
+      $(function(){
+        // topRefresh(300);
+        showBtnUp(100);
+
+      });
+    </script>
+</body>
+</html>

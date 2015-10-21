@@ -1,0 +1,21 @@
+.body-navLine-bottom .html{padding:0 0 80px;}
+.body-navLine-bottom footer{height:80px;margin-top:-80px;line-height:30px;}
+header,.header{height:51px;border-top:1px solid #f25b22;position:fixed;width:100%;bottom:0;left:0;right:0;top:auto;z-index:100;}
+header{border:1px solid #cfc8bc;background-color:#fff;background-repeat:repeat-x;box-shadow:0 1px 1px rgba(255,255,255,0.4) inset;}
+header a{display:block;color:#333333;float:left;width:25%;text-align:center;height:50px;padding:4px 0;}
+header a.active{color:#f25b22;}
+.fa-animate{position:relative;}
+.fa-animate:after{width:6px;height:6px;border-radius:1000px;background:#f25b22;position:absolute;content:"";right:0;}
+header a> b{font-size:14px;height:16px;}
+.header{background:#fff;border-top:1px solid #eee;}
+.header > a{text-align:center;display:inline-block;width:40%;}
+.header > .fa{width:18%;font-size:18px;color:#999999;height:45px;line-height:45px;}
+.header .btn-buy,.header .btn-shopcar{width:37%;margin-right:10px;margin-top:4px;}
+.header .btn-bargain{width:37%;margin-right:10px;margin-top:4px;background:#ff9c00;}
+.header .btn-all{width:70%;margin-right:0;}
+[class^="menu-"]{width:25px;height:25px;display:block;margin:0 auto;background-image:url(../img/wshop/menu-icon.png);-webkit-background-size:auto 25px;background-size:auto 25px;}
+.active [class^="menu-"]{background-image:url(../img/wshop/menu-icon-active.png);}
+.menu-home{background-position:0 0;}
+.menu-search{background-position:-25px 0;}
+.menu-cart{background-position:-50px 0;}
+.menu-user{background-position:-75px 0;}

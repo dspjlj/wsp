@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>具体内容</title>
+<script type="text/javascript">var yyuc_jspath = "";</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yyucadapter.js"></script>
+
+<link type="text/css" rel="stylesheet" href="res/wdy/style/examine.css" />
+<script type="text/javascript">
+	$(function(){
+				$('.option').click(function(){
+			$('.option').each(function(){
+				$(this).find('img').eq(0).show();
+				$(this).find('img').eq(1).hide();
+				$(this).attr('sel','0');
+			});
+			$(this).find('img').eq(0).hide();
+			$(this).find('img').eq(1).show();
+			$(this).attr('sel','sel');		
+		});		
+				
+	});
+</script>
+</head>
+<body style="background-color: #ffb100;">
+<div class="wrapper">
+	<img class="bg" src="res/wdy/images/bg.jpg">
+	<div class="question" style="overflow:hidden;">
+		<div class="title">使用微信的人口数量</div>
+				<div class="tip1">注：本题最多能选择1个答案！</div>
+				
+		<div class="options">
+				<div class="option" data-value="1">
+				<img id="img1" class="oimg" src="res/wdy/images/option_bg.png">
+				<img id="img11" class="oimg-sel" src="res/wdy/images/option_sel_bg.png">
+				<div class="text">
+					<div class="otext">3亿</div>
+				</div>
+			</div>
+						<div class="option" data-value="2">
+				<img id="img2" class="oimg" src="res/wdy/images/option_bg.png">
+				<img id="img21" class="oimg-sel" src="res/wdy/images/option_sel_bg.png">
+				<div class="text">
+					<div class="otext">9亿</div>
+				</div>
+			</div>
+						<div class="option" data-value="3">
+				<img id="img3" class="oimg" src="res/wdy/images/option_bg.png">
+				<img id="img31" class="oimg-sel" src="res/wdy/images/option_sel_bg.png">
+				<div class="text">
+					<div class="otext">10亿</div>
+				</div>
+			</div>
+									
+
+		</div>
+		<div id="submit" onclick="gotonext()">
+			<img src="res/wdy/images/next_btn.png">
+			<span>下一步</span>
+		</div>
+	</div>
+ 	<p class="page-url">
+		<a href="/" target="_blank" class="page-url-link"></a>
+	</p>
+</div>
+<script type="text/javascript">
+function gotonext(){
+	var res = [];
+	$('.option[sel="sel"]').each(function(){
+		res[res.length] = $(this).attr('data-value');
+	});
+	if(res.length==0){
+		tusi('请选择答案');
+		return;
+	}else{
+		location.href = 'wdyans-10972-'+res.join('@')+'.html';
+	}
+}
+</script>
+<div class="mfooter" id="wxgjfooter" style="text-align: center;width: 100%;height: 20px;line-height: 20px;margin-top:10px;">
+<span class="sp2"><a href="http://www.39mnet.com" style="color: #5e5e5e;font-size: 12px;"><!--@39MI微信开发商提供技术支持--></a></span>
+</div>
+<div style="width: 0px;height: 0px;overflow: hidden;">
+
+</div>
+<script>
+/**
+$(function(){
+	if($('body').height()<$(window).height()){
+		$('body').height($(window).height());
+		$('#wxgjfooter').css('position','fixed').css('bottom','0px');
+	}
+});
+**/
+</script>
+</body>
+</html>
