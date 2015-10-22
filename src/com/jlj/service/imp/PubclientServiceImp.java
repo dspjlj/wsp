@@ -64,9 +64,8 @@ public class PubclientServiceImp implements IPubclientService{
 		return pubclientDao.queryByNamedParam(queryString,paramNames,values);
 	}
 	
-	public int getPageCount(int con, String convalue, int status, int pid,
+	public int getPageCount(int totalCount,
 			int size) {
-		int totalCount=this.getTotalCount(con, convalue, status, pid);
 		return totalCount%size==0?totalCount/size:(totalCount/size+1);
 	}
 

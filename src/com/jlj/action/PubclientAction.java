@@ -41,6 +41,10 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private String phone;
 	private String qq;
 	private String email;
+	//修改个人密码的属性
+	private String newpwd;//新密码
+	private String againpwd;//再次输入新密码
+	private String oldpwd;//旧密码
 	//分页显示
 	private String[] arg=new String[2];
 	private List<Pubclient> pubclients;
@@ -109,15 +113,16 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(page<1){
 			page=1;
 		}
+		//总记录数
+		totalCount=pubclientService.getTotalCount(con,convalue,status,pid);
 		//总页数
-		pageCount=pubclientService.getPageCount(con,convalue,status,pid,size);
+		pageCount=pubclientService.getPageCount(totalCount,size);
 		if(page>pageCount&&pageCount!=0){
 			page=pageCount;
 		}
 		//所有当前页记录对象
 		pubclients=pubclientService.queryList(con,convalue,status,pid,page,size);
-		//总记录数
-		totalCount=pubclientService.getTotalCount(con,convalue,status,pid);
+		
 		return "list";
 	}
 	/**
@@ -133,7 +138,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @throws Exception
 	 */
 	public String add() throws Exception{
-		pubclient.setPassword("11");
 		pubclient.setCreatedate(new Date());
 		pubclientService.add(pubclient);
 		
@@ -185,6 +189,32 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	
 	/**
+	 * 修改个人的密码
+	 * @return
+	 */
+	public String updateselfpwd() throws Exception{
+		Pubclient pubclient=pubclientService.userlogin(username,oldpwd);
+		String failInfo=null;
+		if(pubclient==null){
+			failInfo="原密码输入有误";
+			request.put("failInfo", failInfo);
+			return "opfail";
+		}else{
+			if(newpwd!=null&&!newpwd.equals("")&&againpwd!=null&&!againpwd.equals("")&&againpwd.equals(newpwd)){
+				pubclientService.updatePwd(newpwd,pubclient.getId());
+				
+				arg[0]="pubclient_self_update_pwd.jsp";
+				arg[1]="修改密码";
+				return SUCCESS;
+			}else{
+				failInfo="两次密码输入不一致";
+				request.put("failInfo", failInfo);
+				return "opfail";
+			}
+		}
+	}
+	
+	/**
 	 * 查看信息
 	 * @return
 	 */
@@ -209,34 +239,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		return "load";
 	}
 	
-	private String newpwd;//新密码
-	private String againpwd;//再次输入新密码
-	private String oldpwd;//旧密码
-	/**
-	 * 修改个人密码
-	 * @return
-	 */
-	public String upMyPwd(){
-		Pubclient pubclient=pubclientService.userlogin(username,oldpwd);
-		String errorInfo=null;
-		if(pubclient==null){
-			errorInfo="原密码输入有误";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}else{
-			if(newpwd!=null&&!newpwd.equals("")&&againpwd!=null&&!againpwd.equals("")&&againpwd.equals(newpwd)){
-				pubclientService.updatePwd(newpwd,pubclient.getId());
-				
-				arg[0]="main.jsp";
-				arg[1]="主页";
-				return SUCCESS;
-			}else{
-				errorInfo="两次密码输入不一致";
-				request.put("errorInfo", errorInfo);
-				return "operror";
-			}
-		}
-	}
+	
 	
 	//get、set-------------------------------------------
 	public IPubclientService getPubclientService() {

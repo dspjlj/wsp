@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
                             <form id="pubform" action="pubclientAction!updateself" method="post" class="form-horizontal form-validate" novalidate="novalidate">
-                                 <input type="hidden" value = "10669" name="username" id="userid" />                                <div class="control-group">
+                                <div class="control-group">
                                     <label for="name" class="control-label">用户名 :</label>
                                     <div class="controls">
                                         ${pubclient.username }                                    </div>

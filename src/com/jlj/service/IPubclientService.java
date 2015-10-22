@@ -24,8 +24,7 @@ public interface IPubclientService {
 
 	public abstract Pubclient userlogin(String username, String password);
 
-	public abstract int getPageCount(int con, String convalue, int status,
-			int pid, int size);
+	public abstract int getPageCount(int totalCount, int size);
 
 	public abstract int getTotalCount(int con, String convalue, int status,
 			int pid);

@@ -30,15 +30,12 @@
 		</action>
 		<action name="pubclientAction" class="pubclientAction">
 			<result name="loginSucc">/back/main1.jsp</result>
-			<result name="success">/op_success.jsp</result>
-			<result name="fail">/op_failure.jsp</result>
-			<result name="list">/pubclient_manage.jsp</result>
-			<result name="add">/pubclient_add.jsp</result>
-			<result name="load">/pubclient_update.jsp</result>
-			<result name="view">/pubclient_view.jsp</result>
-			<result name="clientview">/pubclient_clientview.jsp</result>
-			<result name="operror">/op_error.jsp</result>
-			<result name="invalid.token">/op_failure.jsp</result>
+			<result name="success">/back/op_success.jsp</result>
+			<result name="opfail">/back/op_failure.jsp</result>
+			<result name="list">/back/pubclient_manage.jsp</result>
+			<result name="add">/back/pubclient_add.jsp</result>
+			<result name="load">/back/pubclient_update.jsp</result>
+			<result name="invalid.token">/back/op_error.jsp</result>
 			<interceptor-ref name="mystack" />
             <interceptor-ref name="token" >
             	<param name="includeMethods">add</param>

@@ -72,7 +72,7 @@ $(function(){
             </div>
             <ul class='main-nav' >
                 <li class='active'>
-                    <a href="public_manage.html">
+                    <a href="pubclientAction!list" target="mainFrame">
                         <span>公众帐号管理</span>
                     </a>
                 </li>
@@ -153,11 +153,13 @@ $(function(){
                <div class="dropdown"> <a href="javascript:;"  target="_self" class='dropdown-toggle' data-toggle="dropdown" style="width:127px;"><nobr> 
         <span class="caret"></span><img class="thumb_img" src="" id="pic_apartpic" style="max-width:40px" /></nobr></a> 
                     <ul class="dropdown-menu pull-right">
+                    <!-- 
                         <li>
-                            <a  href="public_manage.html" >管理帐号</a>
+                            <a  href="pubclientAction!list" >管理帐号</a>
                         </li>
+                         -->
                         <li>
-                            <a href="login.html" target="_self">退出</a>
+                            <a href="login.jsp" target="_self">退出</a>
                         </li>
                     </ul>
                 </div>
@@ -177,7 +179,7 @@ $(function(){
                         <a href="pubclient_self_update.jsp">账户信息</a>
                     </li>
                     <li>
-                        <a href="user_mine_updatePwd.html">修改密码</a>
+                        <a href="pubclient_self_update_pwd.jsp">修改密码</a>
                     </li>
                     <li class="active">
                         <a href="pubclientAction!list">公众号管理</a>
@@ -196,7 +198,7 @@ $(function(){
 
         <div class="right">
             <div class="main">
-                <iframe frameborder="0" id="mainFrame" name="mainFrame" src="public_manage.html" style="background: url('media/images/loading.gif') center no-repeat"></iframe>
+                <iframe frameborder="0" id="mainFrame" name="mainFrame" src="pubclientAction!list" style="background: url('media/images/loading.gif') center no-repeat"></iframe>
             </div>
         </div>
 

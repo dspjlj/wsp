@@ -33,7 +33,8 @@ public class Keyres implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Keyres(Publickey publickey, String keytitle, Integer matchtype, Integer fodderid) {
+	public Keyres(Publickey publickey, String keytitle, Integer matchtype,
+			Integer fodderid) {
 		this.publickey = publickey;
 		this.keytitle = keytitle;
 		this.matchtype = matchtype;
@@ -82,12 +83,11 @@ public class Keyres implements java.io.Serializable {
 
 	@Column(name = "fodderid")
 	public Integer getFodderid() {
-		return fodderid;
+		return this.fodderid;
 	}
 
 	public void setFodderid(Integer fodderid) {
 		this.fodderid = fodderid;
 	}
 
-	
 }

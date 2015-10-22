@@ -3,8 +3,11 @@ package com.jlj.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,15 +24,10 @@ public class Pubclient implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private String realname;
-	private String username;
-	private String password;
-	private String phone;
+	private Dspuser dspuser;
 	private String publicname;
 	private String publicno;
 	private String publicaccount;
-	private String qq;
-	private String email;
 	private String url;
 	private String token;
 	private Integer accounttype;
@@ -38,8 +36,7 @@ public class Pubclient implements java.io.Serializable {
 	private String accessToken;
 	private Date createdate;
 	private Date deaddate;
-	private Integer clienttype;
-	private Integer limits;
+	private Integer protype;
 	private String comtel;
 	private String navurl;
 	private String enterurl;
@@ -52,22 +49,16 @@ public class Pubclient implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Pubclient(String realname, String username, String password,
-			String phone, String publicname, String publicno,
-			String publicaccount, String qq, String email, String url,
-			String token, Integer accounttype, String appid, String appsecret,
+	public Pubclient(Dspuser dspuser, String publicname, String publicno,
+			String publicaccount, String url, String token,
+			Integer accounttype, String appid, String appsecret,
 			String accessToken, Date createdate, Date deaddate,
-			Integer clienttype, Integer limits, String comtel, String navurl,
-			String enterurl, String imgurl) {
-		this.realname = realname;
-		this.username = username;
-		this.password = password;
-		this.phone = phone;
+			Integer protype, String comtel, String navurl, String enterurl,
+			String imgurl) {
+		this.dspuser = dspuser;
 		this.publicname = publicname;
 		this.publicno = publicno;
 		this.publicaccount = publicaccount;
-		this.qq = qq;
-		this.email = email;
 		this.url = url;
 		this.token = token;
 		this.accounttype = accounttype;
@@ -76,8 +67,7 @@ public class Pubclient implements java.io.Serializable {
 		this.accessToken = accessToken;
 		this.createdate = createdate;
 		this.deaddate = deaddate;
-		this.clienttype = clienttype;
-		this.limits = limits;
+		this.protype = protype;
 		this.comtel = comtel;
 		this.navurl = navurl;
 		this.enterurl = enterurl;
@@ -96,40 +86,14 @@ public class Pubclient implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "realname", length = 20)
-	public String getRealname() {
-		return this.realname;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "dspuserid")
+	public Dspuser getDspuser() {
+		return this.dspuser;
 	}
 
-	public void setRealname(String realname) {
-		this.realname = realname;
-	}
-
-	@Column(name = "username", length = 20)
-	public String getUsername() {
-		return this.username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	@Column(name = "password", length = 20)
-	public String getPassword() {
-		return this.password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Column(name = "phone", length = 20)
-	public String getPhone() {
-		return this.phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setDspuser(Dspuser dspuser) {
+		this.dspuser = dspuser;
 	}
 
 	@Column(name = "publicname", length = 50)
@@ -157,24 +121,6 @@ public class Pubclient implements java.io.Serializable {
 
 	public void setPublicaccount(String publicaccount) {
 		this.publicaccount = publicaccount;
-	}
-
-	@Column(name = "qq", length = 20)
-	public String getQq() {
-		return this.qq;
-	}
-
-	public void setQq(String qq) {
-		this.qq = qq;
-	}
-
-	@Column(name = "email", length = 50)
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	@Column(name = "url")
@@ -251,22 +197,13 @@ public class Pubclient implements java.io.Serializable {
 		this.deaddate = deaddate;
 	}
 
-	@Column(name = "clienttype")
-	public Integer getClienttype() {
-		return this.clienttype;
+	@Column(name = "protype")
+	public Integer getProtype() {
+		return this.protype;
 	}
 
-	public void setClienttype(Integer clienttype) {
-		this.clienttype = clienttype;
-	}
-
-	@Column(name = "limits")
-	public Integer getLimits() {
-		return this.limits;
-	}
-
-	public void setLimits(Integer limits) {
-		this.limits = limits;
+	public void setProtype(Integer protype) {
+		this.protype = protype;
 	}
 
 	@Column(name = "comtel", length = 30)
