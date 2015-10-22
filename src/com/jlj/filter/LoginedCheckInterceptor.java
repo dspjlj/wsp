@@ -1,6 +1,9 @@
 package com.jlj.filter;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts2.ServletActionContext;
+
+import com.jlj.model.Dspuser;
 import com.jlj.model.Pubclient;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
@@ -16,9 +19,9 @@ public class LoginedCheckInterceptor extends AbstractInterceptor {
 //		response.setHeader("Cache-Control","no-cache");   
 //		response.setHeader("Cache-Control", "no-store");   
 //		response.setDateHeader("Expires",0);
-		Pubclient pubclient = null;
+		Dspuser dspuser = null;
 		//对登录与注销请求直接放行,不予拦截
-		if (url.indexOf("front")!=-1 ||url.indexOf("jsp")!=-1 ||url.indexOf("toolkitAction!validateCode")!=-1 || url.indexOf("pubclientAction!login")!=-1){
+		if (url.indexOf("front")!=-1 ||url.indexOf("jsp")!=-1 ||url.indexOf("toolkitAction!validateCode")!=-1 || url.indexOf("dspuserAction!login")!=-1){
 			System.out.println("直接放行");
 			return ai.invoke();
 		}
@@ -30,9 +33,9 @@ public class LoginedCheckInterceptor extends AbstractInterceptor {
 				return "opsessiongo";
 			}
 			else{
-				pubclient = (Pubclient)ServletActionContext.getRequest().getSession().getAttribute("pubclient");
+				dspuser = (Dspuser)ServletActionContext.getRequest().getSession().getAttribute("dspuser");
 				//验证是否已经登录
-				if (pubclient==null){
+				if (dspuser==null){
 					//尚未登录,跳转至登录页面
 					System.out.println("过期null");
 					return "opsessiongo";

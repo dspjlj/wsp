@@ -176,13 +176,18 @@ $(function(){
                 </div>
                 <ul class="subnav-menu" style="display: block">
                     <li>
-                        <a href="pubclient_self_update.jsp">账户信息</a>
+                        <a href="dspuser_self_update.jsp">账户信息</a>
                     </li>
                     <li>
-                        <a href="pubclient_self_update_pwd.jsp">修改密码</a>
+                        <a href="dspuser_self_update_pwd.jsp">修改密码</a>
                     </li>
+                    <s:if test="#session.dspuser.limits<2">
+                    <li>
+                        <a href="dspuserAction!list">用户管理</a>
+                    </li>
+                    </s:if>
                     <li class="active">
-                        <a href="pubclientAction!list">公众号管理</a>
+                        <a href="pubclientAction!list">公众账号管理</a>
                     </li>
                     
                 </ul>

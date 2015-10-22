@@ -55,7 +55,7 @@ function countDown(secs,surl){
   <tr bgcolor="#FFFFFF">
     <td width="25%" bgcolor="#FFFFFF">感谢您的使用：</td>
     <td width="75%" bgcolor="#FFFFFF">
-		${pubclient.username }
+		${session.dspuser.username }
 	</td>
   </tr>
   <tr bgcolor="#FFFFFF">

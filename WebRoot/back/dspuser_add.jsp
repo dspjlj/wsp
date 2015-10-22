@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="box">
                         <div class="box-title">
                             <div class="span10">
-                                <h3><i class="icon-edit"></i>请如实填写您的个人信息</h3>
+                                <h3><i class="icon-edit"></i>添加用户</h3>
                             </div>
                             <div class="span2"><a class="btn" href="Javascript:window.history.go(-1)">返回</a></div>
                         </div>
@@ -47,54 +47,87 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="box-content">
 
 
-                            <form id="pubform" action="pubclientAction!updateself" method="post" class="form-horizontal form-validate" novalidate="novalidate">
+                            <form id="dspuserform" action="dspuserAction!add" method="post" class="form-horizontal form-validate" novalidate="novalidate">
                                 <div class="control-group">
                                     <label for="name" class="control-label">用户名 :</label>
                                     <div class="controls">
-                                        ${pubclient.username }                                    </div>
+                                    	<s:textfield name="dspuser.username" id="username" cssClass="input-large"></s:textfield>
+                                    	<span class="maroon">*</span><span class="help-inline"></span>
+									</div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="name" class="control-label">初始密码 :</label>
+                                    <div class="controls">
+                                    	默认为123456
+                                    	<s:hidden name="dspuser.password" value="123456"></s:hidden>
+                                    	<s:hidden name="dspuser.ison" value="1"></s:hidden>
+									</div>
                                 </div>
                                 <div class="control-group">
                                     <label for="mobile" class="control-label">手机号码：</label>
                                     <div class="controls">
-                                    <input type="text"   value="${pubclient.phone }" name="phone" id="usertelephone" class="input-medium"/>                                    <span class="maroon">*</span><span class="help-inline"></span>
+                                    	<s:textfield name="dspuser.phone" id="phone" cssClass="input-large"></s:textfield>                                   
+                                    	<span class="maroon">*</span><span class="help-inline"></span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label for="qq" class="control-label">常用QQ号码：</label>
                                     <div class="controls">
-                                     <input type="text"   value="${pubclient.qq }" name="qq" id="userqq"  noneed="1" class="input-medium"/>                                     <span class="maroon">*</span>
+                                     	<s:textfield name="dspuser.qq" id="qq" cssClass="input-large"></s:textfield>
                                     </div>
                                 </div>
-								  <div class="control-group">
+								<div class="control-group">
                                     <label for="email" class="control-label">常用email：</label>
                                     <div class="controls">
-                                    <input type="email"   value="${pubclient.email }" name="email" id="useremail" class="input-medium"/>                                    <span class="maroon">*</span>
+                                    	<s:textfield name="dspuser.email" id="email" cssClass="input-large"></s:textfield>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label for="email" class="control-label">开户日期 :</label>
+                                    <label for="mobile" class="control-label">真实姓名：</label>
                                     <div class="controls">
-                                        <b class="text-warning">${pubclient.createdate }</b><p></p>
+                                    	<s:textfield name="dspuser.realname" id="realname" cssClass="input-large"></s:textfield>                                   
                                     </div>
                                 </div>
-								<!-- 
-								<div class="control-group">
-                                    <label for="email" class="control-label">会员级别 :</label>
+                                <div class="control-group">
+                                    <label for="email" class="control-label">详细地址：</label>
                                     <div class="controls">
-                                        <b class="text-warning">普通用户</b>
-                                        <p>到期时间 :          2015-02-12 00:00:00          </p>
+                                    	<s:textfield name="dspuser.address" id="address" cssClass="input-xlarge"></s:textfield>
                                     </div>
                                 </div>
-								<div class="control-group">
-                                    <label for="email" class="control-label">升级级别 :</label>
-                                    <div class="controls">
-                                        <b class="text-warning">行业版会员</b>
-                                        <p>到期时间 :	                       [暂无]
-	       </p>
-                                    </div>
-                                </div>
- -->
+								<s:if test="#session.dspuser.limits==0">
+									<div class="control-group">
+	                                    <label for="email" class="control-label">用户权限：</label>
+										<div class="controls">
+											<s:select list="#{2:'普通用户',1:'高级用户',0:'管理员'}" name="dspuser.limits" id="limits"></s:select>
+	                                    
+	                                        <span class="maroon">*</span>
+	                                        <span class="help-inline"></span>
+	                                    </div>
+	                                </div>
+	                                <div class="control-group">
+	                                    <label for="name" class="control-label">用户配额 :</label>
+	                                    <div class="controls">
+	                                    	<s:textfield name="dspuser.usernum" id="usernum" cssClass="input-medium" value="0"></s:textfield>
+	                                    	<span class="maroon">*</span><span class="help-inline"></span>
+										</div>
+	                                </div>
+	                                <div class="control-group">
+	                                    <label for="name" class="control-label">公众号配额 :</label>
+	                                    <div class="controls">
+	                                    	<s:textfield name="dspuser.pubnum" id="pubnum" cssClass="input-medium" value="1"></s:textfield>
+	                                    	<span class="maroon">*</span><span class="help-inline"></span>
+										</div>
+	                                </div>
+								</s:if>
+								<s:else>
+									<!-- 高级用户创建的普通用户 -->
+									<s:hidden name="dspuser.limits" value="2"></s:hidden>
+									<s:hidden name="dspuser.usernum" value="0"></s:hidden>
+									<s:hidden name="dspuser.pubnum" value="1"></s:hidden>
+								</s:else>
+								<s:hidden name="dspuser.upuser" value="%{#session.dspuser.id}"></s:hidden>
                                 <div class="form-actions">
+                                	<s:token></s:token>
                                     <button type="submit" class="btn btn-primary">保存</button>
                                     <a class="btn" href="Javascript:document.getElementById('pubform').reset();">取消</a>
 
@@ -111,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="fallr-overlay"></div>
 <script type="text/javascript">
 $(function(){
-	$("#accountform").submit(function(){
+	$("#dspuserform").submit(function(){
 		var cansv= true;
 		$(this).find('input[type="text"]').each(function(){
 			if($.trim($(this).val())=='' && $(this).attr('noneed')!='1'){

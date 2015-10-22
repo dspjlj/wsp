@@ -40,7 +40,7 @@ html, body
 </head>
 <body onload="loadthis()">
 <div id="wrapper" >
-	<form action="pubclientAction!login" class="form-login" method="post" onsubmit="return checkIsUp()">
+	<form action="dspuserAction!login" class="form-login" method="post" onsubmit="return checkIsUp()">
 		<div class="header">
 			<a href="http://www.di3p.com" class="link-head-left" target="_blank"> <i class="icon-home"></i>
 			</a>

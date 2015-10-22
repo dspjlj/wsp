@@ -49,14 +49,14 @@
 								</div>
 							</div>
 							<div class="box-content">
-								<form action="pubclientAction!updateselfpwd" method="post"
-									class="form-horizontal form-validate" id="pubpwdform">
+								<form action="dspuserAction!updateselfpwd" method="post"
+									class="form-horizontal form-validate" id="dspuserpwdform">
 									<div class="control-group">
 										<label class="control-label" for="old_password">
 											原始密码
 										</label>
 										<div class="controls">
-											<input type="hidden" name="username" value="${pubclient.username}"/>
+											<input type="hidden" name="username" value="${dspuser.username}"/>
 											<input type="password" name="oldpwd" id="oldpwd"
 												data-rule-required="true" data-rule-rangelength="[1,16]" />
 										</div>
@@ -128,7 +128,7 @@
 			newpwd.focus();
 			return false;
 		}
-		document.getElementById('pubpwdform').submit();
+		document.getElementById('dspuserpwdform').submit();
 	}
 
 	</script>
