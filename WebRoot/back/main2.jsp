@@ -1,4 +1,10 @@
-
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!doctype html>
 <html>
 <head>
@@ -71,102 +77,14 @@ $(function(){
       </div>
       <ul class='main-nav'>
         <li class='active'>
-          <a href="main2.html" target="_self">
-            <span>功能列表</span>
+          <a href="javascript:;">
+            <span>公众号功能</span>
           </a>
         </li>
         <li>
-          <a href="main1.html" target="_self">公众帐号管理</a>
+          <a href="main1.jsp" target="_self">账号管理</a>
         </li>
 
-        <!--
-        <li>
-        <a href="javascript:void(0)" data-toggle="dropdown" class='dropdown-toggle' data-hover="dropdown">
-          <span>使用说明</span>
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-
-          <li>
-            <a href="/htm/help2/features.html">功能介绍</a>
-          </li>
-          <li>
-            <a href="/htm/help2/shiyongzhn.html">使用指南</a>
-          </li>
-          <li>
-            <a href="/htm/help2/aboutus.html">关于我们</a>
-          </li>
-          <li>
-            <a href="/htm/help2/help.html">常见问题</a>
-          </li>
-        </ul>
-      </li>
-      -->
-      <!--<li>
-      <a href="/htm/help2/taocan.html">套餐介绍</a>
-    </li>
-    -->
-    <!--  <li>
-    <a href="javascript:void(0)" data-toggle="dropdown" class='dropdown-toggle' data-hover="dropdown">
-      <span>个性化服务</span>
-      <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="/htm/help2/yunying.html">运营托管</a>
-      </li>
-      <li>
-        <a href="/htm/help2/dingzhi.html">定制开发</a>
-      </li>
-    </ul>
-  </li>
-  -->
-  <!--    
-                <li>
-  <a href="javascript:void(0)" data-toggle="dropdown" class='dropdown-toggle' data-hover="dropdown">
-    <span>在线客服</span>
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu">
-
-    <li>
-      <a href="http://wpa.qq.com/msgrd?v=3&uin=793495478&site=qq&menu=yes" target="_blank">在线咨询</a>
-    </li>
-    <li>
-      <a href="http://wpa.qq.com/msgrd?v=3&uin=1815906134&site=qq&menu=yes" target="_blank">代理咨询与意见反馈</a>
-    </li>
-
-  </ul>
-</li>
-<li style="position: absolute;right: 350px;">
-  <a class="shortcut-button" href="ind.html" target="_top">
-    <img src="media/images/ht/pencil_48.png" alt="系统首页" title="系统首页"></a>
-</li>
-
-<li style="position: absolute;right: 290px;">
-  <a class="shortcut-button" href="/admin/userCenter/updatePwd.html">
-    <img src="media/images/ht/paper_content_pencil_48.png" alt="修改密码" title="修改密码"></a>
-</li>
-<li style="position: absolute;right: 230px;">
-  <a class="shortcut-button" href="javascript:void(0);" onClick="fresh_sys();">
-    <img src="media/images/ht/clock_48.png" alt="刷新系统" title="刷新系统"></a>
-</li>
-<li>
-  <a href="mains.html">新手教程</a>
-</li>
-<li>
-  <a href="topay.html">续费充值</a>
-</li>
--->
-<!--<li>
-<a href="/static/wxgjcn/about/newbaojia/newbaojia.html">限时活动</a>
-</li>
--->
-<!--<li>
-<a href="/admin/cost/topay.html">
-<img src="/res/xiaobai/youhui.png" alt="第三屏支付">&nbsp;&nbsp;&nbsp;</a>
-</li>
--->
 </ul>
 <div class="user">
 <ul class="icon-nav">
@@ -210,17 +128,17 @@ $(function(){
 <div class="dropdown">
 <a href="javascript:;" class='dropdown-toggle'  target="_self" data-toggle="dropdown" style="width:127px;">
 <nobr>
-  jsjlj1989
+  ${dspuser.username }
   <span class="caret"></span>
   <img class="thumb_img" src="" id="pic_apartpic" style="max-width:40px" />
 </nobr>
 </a>
 <ul class="dropdown-menu pull-right">
 <li>
-  <a href="public_manage.html" target="_self">管理帐号</a>
+  <a href="main1.jsp">管理帐号</a>
 </li>
 <li>
-  <a href="login.html" target="_self">退出</a>
+  <a href="login.jsp" target="_self">退出</a>
 </li>
 </ul>
 </div>
@@ -231,37 +149,6 @@ $(function(){
 <!--菜单栏-->
 <div class="container-fluid" id="content">
   <div id="left">
-    <div class="subnav">
-      <div class="subnav-title">
-        <a href="javascript:void(0);" class='toggle-subnav'> <i class="icon-angle-right"></i>
-          <span>我的信息</span>
-        </a>
-      </div>
-      <ul class="subnav-menu" style="display: none">
-        <li>
-          <a href="user_mine_update.html">账号信息</a>
-        </li>
-        <li>
-          <a href="user_mine_updatePwd.html">修改密码</a>
-        </li>
-        
-        <!--
-        <li>
-          <a href="public_manage.html">公共账号管理</a>
-        </li>
-        <li>
-          <a href="#">支付配置</a>
-        </li>
-        <li>
-          <a href="statisticalData.html">运营图表</a>
-        </li>
-        
-        <li>
-          <a href="user_topay.html">在线升级</a>
-        </li>
-        -->
-      </ul>
-    </div>
     <div class="subnav">
       <div class="subnav-title">
         <a href="javascript:void(0);" class='toggle-subnav'> <i class="icon-angle-right"></i>
@@ -647,7 +534,7 @@ $(function(){
 
 <div class="right">
 <div class="main">
-<iframe frameborder="0" id="mainFrame" name="mainFrame" src="welcome.html" style="background: url('media/images/loading.gif') center no-repeat"></iframe>
+<iframe frameborder="0" id="mainFrame" name="mainFrame" src="welcome.jsp" style="background: url('media/images/loading.gif') center no-repeat"></iframe>
 </div>
 </div>
 

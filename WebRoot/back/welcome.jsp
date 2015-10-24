@@ -1,4 +1,10 @@
-
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!doctype html>
 <html>
 <head>
@@ -39,9 +45,16 @@
                                    <img src="http://img.weimob.com/static/2d/f4/76/image/20131125/20131125093622_45962.png" style="width: 88px; height: 88px" class="img-rounded"></dt>
                             -->
                             <dd style="margin-left: 20px;">
-                                <p> <strong>jsjlj1989</strong>
-                                    ： <b class="text-warning">套餐级别：行业版会员 试用版(3天)</b>
-                                    <a href="/admin/cost/topay.html"> <i class="icon-arrow-up" title="充值"></i>
+                                <p> <strong>${session.dspuser.username}</strong>
+                                    ： <b class="text-warning">套餐级别：
+                                    <s:if test="#session.pubclient.protype==1">
+                                    	基础版会员
+                                    </s:if>
+                                    <s:else>
+                                    	升级版会员
+                                    </s:else>
+                                    </b>
+                                    <a href="#"> <i class="icon-arrow-up" title="充值"></i>
                                         充值
                                     </a>
 
@@ -50,21 +63,20 @@
                                 <table class="table noborder">
                                     <tbody>
                                         <tr>
-
-                                            <td>开户时间：2015-02-09 09:13:36</td>
-                                            <td>到期时间：2015-02-12 00:00:00</td>
-                                            <td>
-                                                续费级别：
-                                                                                普通用户
-                                            </td>
-                                            <td>未来级别到期时间：暂无</td>
+											<td>公众号名称：${session.pubclient.publicname }</td>
+                                            <td>公众号微信号：${session.pubclient.publicno }</td>
+                                            <td>开户时间：${session.pubclient.createdate }</td>
+                                            <td>到期时间：${session.pubclient.deaddate }</td>
+                                            
                                         </tr>
+                                        <!-- 
                                         <tr>
                                             <td>今日关注数 : 0</td>
                                             <td>今日请求数 : 0</td>
                                             <td>本月关注总数：0</td>
                                             <td>本月请求总数：0</td>
                                         </tr>
+                                         -->
                                         <tr>
                                             <td>文本自定义: 不限</td>
                                             <td>图文自定义 : 不限</td>
@@ -73,11 +85,13 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <!-- 
                                 <p> <strong>接口地址：</strong>
                                     http://www.di3p.com/mpapi.html?appid=10652&nbsp;&nbsp;&nbsp;&nbsp;
                                     <strong>TOKEN：</strong>
                                     618fe8ab86030cf742616705140ea046
                                 </p>
+                                 -->
                             </dd>
                         </dl>
                     </div>

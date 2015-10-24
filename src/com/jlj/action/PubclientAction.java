@@ -1,5 +1,6 @@
 package com.jlj.action;
 
+import java.io.File;
 import java.net.URLDecoder;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
@@ -16,8 +18,11 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.jlj.model.Dspuser;
 import com.jlj.model.Pubclient;
 import com.jlj.service.IPubclientService;
+import com.jlj.util.DateTimeKit;
+import com.jlj.util.ToolKitUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Component("pubclientAction")
@@ -31,20 +36,10 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	Map<String,Object> session;
 	private javax.servlet.http.HttpServletResponse response;
 	private javax.servlet.http.HttpServletRequest req;
+	//删除、进入修改页等改传入参数
 	private int id;
 	private Pubclient pubclient;
-	//登陆-用户名、密码、验证码参数
-	private String username;
-	private String password;
-//	private String validate;
-	//修改个人信息的属性
-	private String phone;
-	private String qq;
-	private String email;
-	//修改个人密码的属性
-	private String newpwd;//新密码
-	private String againpwd;//再次输入新密码
-	private String oldpwd;//旧密码
+	
 	//分页显示
 	private String[] arg=new String[2];
 	private List<Pubclient> pubclients;
@@ -57,8 +52,13 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	//条件
 	private int con;
 	private String convalue;
-	
+	//前端的属性
 	private String frontpa;
+	
+	//上传照片
+	private File picture;
+	private String pictureContentType;
+	private String pictureFileName;
 	/**
 	 * 前台-查出公众账号存入request
 	 * @return
@@ -68,43 +68,9 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		request.put("pubclient", pubclient);
 		return null;
 	}
-	/**
-	 * 前台-欢迎页面获取图片进入首页的地址
-	 * @return
-	 */
-	public String getimgurl(){
-		pubclient = pubclientService.queryPubclientByFrontpa(frontpa);
-		String imgurl=pubclient.getImgurl();
-		request.put("imgurl", imgurl);
-		return null;
-	}
 	
 	/**
-	 * 用户登陆
-	 */
-	public String login(){
-		if(username==null||username.equals("")||password==null||password.equals("")){
-			String loginfail="用户名或密码不能为空";
-			request.put("loginFail", loginfail);
-			return "adminLogin";
-		}
-		Pubclient pubclient=pubclientService.userlogin(username,password);
-//		String code=(String) session.get("code");
-		if(pubclient==null){
-			String loginfail="用户名或密码输入有误";
-			request.put("loginFail", loginfail);
-			return "adminLogin";
-//		}else if(validate==null||!validate.equalsIgnoreCase(code)){
-//			String loginfail="验证码输入有误";
-//			request.put("loginFail", loginfail);
-//			return "adminLogin";
-		}else{
-			session.put("pubclient", pubclient);
-			return "loginSucc";
-		}
-	}
-	/**
-	 * 公众号管理
+	 * 后台-公众号管理
 	 */
 	public String list() throws Exception{
 		if(convalue!=null&&!convalue.equals("")){
@@ -113,15 +79,32 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(page<1){
 			page=1;
 		}
-		//总记录数
-		totalCount=pubclientService.getTotalCount(con,convalue,status,pid);
-		//总页数
-		pageCount=pubclientService.getPageCount(totalCount,size);
-		if(page>pageCount&&pageCount!=0){
-			page=pageCount;
+		//判断权限级别，若为管理员0，查询所有用户信息
+		//若为高级用户1，查询下级用户信息
+		Dspuser dspuser1 = (Dspuser)session.get("dspuser");
+		int limits = dspuser1.getLimits();
+		if(limits==0){
+			//总记录数
+			totalCount=pubclientService.getAllTotalCount(con,convalue);
+			//总页数
+			pageCount=pubclientService.getPageCount(totalCount,size);
+			if(page>pageCount&&pageCount!=0){
+				page=pageCount;
+			}
+			//所有当前页记录对象
+			pubclients=pubclientService.queryAllList(con,convalue,page,size);
+		}else{
+			int selfid = dspuser1.getId();
+			//总记录数
+			totalCount=pubclientService.getTotalCount(con,convalue,selfid);
+			//总页数
+			pageCount=pubclientService.getPageCount(totalCount,size);
+			if(page>pageCount&&pageCount!=0){
+				page=pageCount;
+			}
+			//所有当前页记录对象
+			pubclients=pubclientService.queryList(con,convalue,selfid,page,size);
 		}
-		//所有当前页记录对象
-		pubclients=pubclientService.queryList(con,convalue,status,pid,page,size);
 		
 		return "list";
 	}
@@ -138,7 +121,27 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @throws Exception
 	 */
 	public String add() throws Exception{
-		pubclient.setCreatedate(new Date());
+		//设置创建日期和过期日期
+		Date nowDate = new Date();
+		pubclient.setCreatedate(nowDate);
+		pubclient.setDeaddate(DateTimeKit.dateBeforethisDate(nowDate, -365));
+		//关联用户
+		Dspuser dspuser1 = (Dspuser)session.get("dspuser");
+		pubclient.setDspuser(dspuser1);
+		//上传并记录图片地址
+		if(picture!=null){
+			String paccount = pubclient.getPublicaccount();//获取原始ID
+			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));//获取图片文件名称
+			ToolKitUtil.upload(paccount,imageName,picture);
+			pubclient.setImgurl("res/"+paccount+"/"+imageName);//设置图片地址全称
+		}
+		//设置url、token和43位的随机密钥encodingAESKey
+		String url = "http://121.40.87.194/wsp/vcoreAction!vprocess?vxinpublic="+pubclient.getPublicno();
+		String token = pubclient.getPublicno();
+		String encodingAESKey = ToolKitUtil.getRandomString(43);
+		pubclient.setUrl(url);
+		pubclient.setToken(token);
+		pubclient.setEncodingaeskey(encodingAESKey);
 		pubclientService.add(pubclient);
 		
 		arg[0]="pubclientAction!list";
@@ -148,87 +151,17 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	/**
 	 * 删除
 	 * @return
+	 * @throws Exception 
 	 */
-	public String delete(){
+	public String delete() throws Exception{
 		Pubclient pubclient=pubclientService.loadById(id);
-		pubclientService.delete(pubclient);
-		
-		arg[0]="pubclientAction!list";
-		arg[1]="公众号管理";
-		return SUCCESS;
-	}
-	/**
-	 * 修改
-	 * @return
-	 */
-	public String update() throws Exception{
-		pubclientService.update(pubclient);
-		arg[0]="pubclientAction!list";
-		arg[1]="公众号管理";
-		return SUCCESS;
-	}
-	
-	/**
-	 * 修改个人的信息
-	 * @return
-	 */
-	public String updateself() throws Exception{
-		Pubclient pubclient1 = (Pubclient)session.get("pubclient");
-		int id = 0;
-		if(pubclient1!=null){
-			id = pubclient1.getId();
-		}else{
-			String loginfail="会话已过期，请重新登录";
-			request.put("loginFail", loginfail);
-			return "adminLogin";
+		String paccount = pubclient.getPublicaccount();//获取原始ID
+		pubclientService.deleteById(id);
+		//删除该公众号的所有资源res/{paccount}
+		if(paccount!=null&&!paccount.equals("")){
+			ToolKitUtil.deleteFile(ServletActionContext.getServletContext().getRealPath("/")+"res/"+paccount);
 		}
-		pubclientService.updateBaseInfoById(phone,qq,email,id);
-		arg[0]="pubclientAction!list";
-		arg[1]="公众号管理";
-		return SUCCESS;
-	}
-	
-	/**
-	 * 修改个人的密码
-	 * @return
-	 */
-	public String updateselfpwd() throws Exception{
-		Pubclient pubclient=pubclientService.userlogin(username,oldpwd);
-		String failInfo=null;
-		if(pubclient==null){
-			failInfo="原密码输入有误";
-			request.put("failInfo", failInfo);
-			return "opfail";
-		}else{
-			if(newpwd!=null&&!newpwd.equals("")&&againpwd!=null&&!againpwd.equals("")&&againpwd.equals(newpwd)){
-				pubclientService.updatePwd(newpwd,pubclient.getId());
-				
-				arg[0]="pubclient_self_update_pwd.jsp";
-				arg[1]="修改密码";
-				return SUCCESS;
-			}else{
-				failInfo="两次密码输入不一致";
-				request.put("failInfo", failInfo);
-				return "opfail";
-			}
-		}
-	}
-	
-	/**
-	 * 查看信息
-	 * @return
-	 */
-	public String view(){
-		pubclient=pubclientService.loadById(id);
-		return "view";
-	}
-	/**
-	 * 查看个人信息
-	 * @return
-	 */
-	public String clientview(){
-		pubclient=pubclientService.loadById(id);
-		return "clientview";
+		return this.list();
 	}
 	/**
 	 * 跳转到修改页面
@@ -237,6 +170,47 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public String load() throws Exception{
 		pubclient=pubclientService.loadById(id);
 		return "load";
+	}
+	/**
+	 * 修改
+	 * @return
+	 */
+	public String update() throws Exception{
+		
+		//上传并记录图片地址
+		if(picture!=null){
+			String paccount = pubclient.getPublicaccount();//获取原始ID
+			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));//获取图片文件名称
+			ToolKitUtil.upload(paccount,imageName,picture);
+			//删除原来的图片
+			File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+pubclient.getImgurl());
+			photofile.delete();
+			pubclient.setImgurl("res/"+paccount+"/"+imageName);//设置图片地址全称
+		}
+		
+		pubclientService.update(pubclient);
+		arg[0]="pubclientAction!list";
+		arg[1]="公众号管理";
+		return SUCCESS;
+	}
+	
+	/**
+	 * 跳转到绑定API页面
+	 * @return
+	 */
+	public String loadbind() throws Exception{
+		pubclient=pubclientService.loadById(id);
+		return "loadbind";
+	}
+	
+	/**
+	 * 进入某公众号的功能列表进行管理
+	 * @return
+	 */
+	public String loadpubfun(){
+		pubclient=pubclientService.getById(id);
+		session.put("pubclient", pubclient);
+		return "loadpubfun";
 	}
 	
 	
@@ -276,18 +250,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	
 	public void setPubclient(Pubclient pubclient) {
 		this.pubclient = pubclient;
@@ -297,12 +259,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		return pubclient;
 	}
 
-//	public String getValidate() {
-//		return validate;
-//	}
-//	public void setValidate(String validate) {
-//		this.validate = validate;
-//	}
 	public List<Pubclient> getPubclients() {
 		return pubclients;
 	}
@@ -357,24 +313,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setArg(String[] arg) {
 		this.arg = arg;
 	}
-	public String getNewpwd() {
-		return newpwd;
-	}
-	public void setNewpwd(String newpwd) {
-		this.newpwd = newpwd;
-	}
-	public String getAgainpwd() {
-		return againpwd;
-	}
-	public void setAgainpwd(String againpwd) {
-		this.againpwd = againpwd;
-	}
-	public String getOldpwd() {
-		return oldpwd;
-	}
-	public void setOldpwd(String oldpwd) {
-		this.oldpwd = oldpwd;
-	}
 
 	public String getFrontpa() {
 		return frontpa;
@@ -383,24 +321,23 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setFrontpa(String frontpa) {
 		this.frontpa = frontpa;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public String getQq() {
-		return qq;
-	}
-	public void setQq(String qq) {
-		this.qq = qq;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	
-	
+	public File getPicture() {
+		return picture;
+	}
+	public void setPicture(File picture) {
+		this.picture = picture;
+	}
+	public String getPictureContentType() {
+		return pictureContentType;
+	}
+	public void setPictureContentType(String pictureContentType) {
+		this.pictureContentType = pictureContentType;
+	}
+	public String getPictureFileName() {
+		return pictureFileName;
+	}
+	public void setPictureFileName(String pictureFileName) {
+		this.pictureFileName = pictureFileName;
+	}
 }

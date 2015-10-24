@@ -12,6 +12,8 @@ public interface IPubclientDao {
 
 	public abstract Pubclient loadById(int id);
 
+	public abstract Pubclient getById(int id);
+	
 	public abstract void save(Pubclient pubclient);
 
 	public abstract Pubclient queryByNamedParam(String queryString,

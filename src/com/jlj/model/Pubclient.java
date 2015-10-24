@@ -30,6 +30,7 @@ public class Pubclient implements java.io.Serializable {
 	private String publicaccount;
 	private String url;
 	private String token;
+	private String encodingaeskey;
 	private Integer accounttype;
 	private String appid;
 	private String appsecret;
@@ -50,7 +51,7 @@ public class Pubclient implements java.io.Serializable {
 
 	/** full constructor */
 	public Pubclient(Dspuser dspuser, String publicname, String publicno,
-			String publicaccount, String url, String token,
+			String publicaccount, String url, String token,String encodingaeskey,
 			Integer accounttype, String appid, String appsecret,
 			String accessToken, Date createdate, Date deaddate,
 			Integer protype, String comtel, String navurl, String enterurl,
@@ -61,6 +62,7 @@ public class Pubclient implements java.io.Serializable {
 		this.publicaccount = publicaccount;
 		this.url = url;
 		this.token = token;
+		this.encodingaeskey = encodingaeskey;
 		this.accounttype = accounttype;
 		this.appid = appid;
 		this.appsecret = appsecret;
@@ -132,7 +134,7 @@ public class Pubclient implements java.io.Serializable {
 		this.url = url;
 	}
 
-	@Column(name = "token", length = 30)
+	@Column(name = "token", length = 32)
 	public String getToken() {
 		return this.token;
 	}
@@ -241,5 +243,16 @@ public class Pubclient implements java.io.Serializable {
 	public void setImgurl(String imgurl) {
 		this.imgurl = imgurl;
 	}
+
+	@Column(name = "encodingaeskey", length = 43)
+	public String getEncodingaeskey() {
+		return encodingaeskey;
+	}
+
+	public void setEncodingaeskey(String encodingaeskey) {
+		this.encodingaeskey = encodingaeskey;
+	}
+	
+	
 
 }

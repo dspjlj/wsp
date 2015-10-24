@@ -14,32 +14,25 @@ public interface IPubclientService {
 
 	public abstract void update(Pubclient pubclient);
 
-	public abstract void updatePwd(String newpwd, Integer id);
-
 	public abstract List<Pubclient> getPubclients();
-
-	public abstract boolean exists(String username) throws Exception;
 
 	public abstract Pubclient loadById(int id);
 
-	public abstract Pubclient userlogin(String username, String password);
-
 	public abstract int getPageCount(int totalCount, int size);
 
-	public abstract int getTotalCount(int con, String convalue, int status,
-			int pid);
+	public abstract int getTotalCount(int con, String convalue, int selfid);
 
 	public abstract List<Pubclient> queryList(int con, String convalue,
-			int status, int pid, int page, int size);
-
-	public abstract List<Pubclient> queryList(int depid);
-
-	public abstract List<Pubclient> queryList(int con, String convalue,
-			int depid);
+			int selfid, int page, int size);
 
 	public abstract Pubclient queryPubclientByFrontpa(String frontpa);
 
-	public abstract void updateBaseInfoById(String phone, String qq,
-			String email, int id);
+
+	public abstract int getAllTotalCount(int con, String convalue);
+
+	public abstract List<Pubclient> queryAllList(int con, String convalue,
+			int page, int size);
+
+	public abstract Pubclient getById(int id);
 
 }

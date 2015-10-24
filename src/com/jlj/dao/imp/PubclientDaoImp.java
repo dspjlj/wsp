@@ -181,6 +181,14 @@ public class PubclientDaoImp implements IPubclientDao {
 	}
 	
 	/* (non-Javadoc)
+	 * @see com.jlj.dao.imp.IPubclientDao#getById(int)
+	 * 根据id查询一条记录
+	 */
+	public Pubclient getById(int id) {
+		return (Pubclient) this.hibernateTemplate.get(Pubclient.class, id);
+	}
+	
+	/* (non-Javadoc)
 	 * @see com.jlj.dao.imp.IPubclientDao#queryByNamedParam(java.lang.String, java.lang.String[], java.lang.Object[])
 	 * 根据hql语句、条件、值来查询一条记录
 	 */

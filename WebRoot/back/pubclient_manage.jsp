@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="box-content nozypadding">
               <div class="row-fluid">
                 <div class="span8 control-group">
-                  <a class="btn" href="javascript:alert('您已成功绑定微信公众平台，无需重复操作！');"> <i class="icon-plus"></i>
+                  <a class="btn" href="pubclient_add.jsp"> <i class="icon-plus"></i>
                     添加公众帐号
                   </a>
                   <a href="http://wpa.qq.com/msgrd?v=3&uin=793495478&site=qq&menu=yes" target="_blank" class="btn btn-warning" style="cursor:pointer">在线咨询</a>
@@ -73,60 +73,89 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       <tr>
 
                         <th width="290">公众号名称</th>
-                        <th width="150">升级级别</th>
+                        <th width="150">公众号类型</th>
                         <th>创建时间/到期时间</th>
                         <th>会员套餐</th>
-
                         <th>已定义/上限</th>
                         <th>请求数</th>
-                        <th>增值服务</th>
                         <th>操作</th>
                       </tr>
                     </thead>
                     <tbody>
+                    
+                    <s:iterator value="pubclients" var="pubclient" status="index">
                       <tr>
                         <td style="text-align:center;">
-                          <img class="thumb_img" src="#" id="pic_apartpic" style="max-width:80px" />
-                          12121
+                        	<s:if test="imgurl!=null&&imgurl!=''">
+                        		<img class="thumb_img" src="../<s:property value="imgurl"/>" id="pic_apartpic" style="max-width:80px" />
+                        	</s:if>
+                        	<s:else>
+                        		<i class="icon-user"></i>
+                        	</s:else>
+                          	<s:property value="publicname"/>
                           <br />
                         </td>
-                        <td>无</td>
-                        <td style="text-align:left;" width="160">
-                          创建时间:2015-02-09
-                          <br/>
-                          到期时间:2015-02-12
-                        </td>
-                        <td align="center">行业版会员</td>
                         <td>
-                          文本：不限
-                          <br />
-                          图文：不限
-                          <br />
-                          语音：不限
-                          <br />
-                          LBS : 不限
-                          <br />
+                        	<s:if test="accounttype==0">
+                        		订阅号
+                        	</s:if>
+                        	<s:elseif test="accounttype==1">
+                        		已认证订阅号
+                        	</s:elseif>
+                        	<s:elseif test="accounttype==2">
+                        		服务号
+                        	</s:elseif>
+                        	<s:elseif test="accounttype==3">
+                        		已认证服务号
+                        	</s:elseif>
+                        </td>
+                        <td style="text-align:left;" width="160">
+	                          创建时间:<s:date name="createdate" format="yyyy-MM-dd"/>
+	                          <br/>
+	                          到期时间:<s:date name="deaddate" format="yyyy-MM-dd"/>
+                        </td>
+                        <td align="center">
+                        	<s:if test="protype==1">
+                        		基础版会员
+                        	</s:if>
+                        	<s:elseif test="protype==2">
+                        		升级版会员
+                        	</s:elseif>
+                        </td>
+                        <td>
+	                          文本：不限
+	                          <br />
+	                          图文：不限
+	                          <br />
+	                          语音：不限
+	                          <br />
+	                       LBS : 不限
+	                          <br />
                         </td>
 
                         <td>不限</td>
-                        <td>其他：0/条</td>
-
                         <td>
-                          <a href="public_update.html" class="btn" rel="tooltip" title="编辑" style="display: block;width: 70px;">
+                          <a href="pubclientAction!load?id=<s:property value="id"/>" class="btn" rel="tooltip" title="编辑" style="display: block;width: 70px;">
                             <i class="icon-edit"></i>
                             编辑
                           </a>
-                          <a href="javascript:;" onClick="delchat(10669,this);" class="btn" rel="tooltip" title="删除" style="display: block;margin-top: 10px;width: 70px;">
-                            <i class="icon-remove"></i>
-                            删除
+                          <a href="pubclientAction!loadbind?id=<s:property value="id"/>" class="btn" rel="tooltip" title="绑定" style="display: block;margin-top: 10px;width: 70px;">
+                            <i class="icon-edit"></i>
+                            绑定
                           </a>
-                          <a  href="javascript:;" onClick="parent.location.href='main2.html'" class="btn" rel="tooltip" title="管理" style="display: block;margin-top: 10px;width: 70px;">
+                          
+                          <a  href="javascript:;" onClick="parent.location.href='pubclientAction!loadpubfun?id=<s:property value="id"/>'" class="btn" rel="tooltip" title="管理" style="display: block;margin-top: 10px;width: 70px;">
                             <i class="icon-cog"></i>
                             管理
                           </a>
+                          
+                          <a href="pubclientAction!delete?id=<s:property value="id"/>&page=<s:property value="page"/>" onclick="return delpubclient();" class="btn" rel="tooltip" title="删除" style="display: block;margin-top: 10px;width: 70px;">
+                            <i class="icon-remove"></i>
+                            删除
+                          </a>
                         </td>
                       </tr>
-
+					</s:iterator>
                     </tbody>
 
                   </table>
@@ -153,6 +182,18 @@ function delchat(uid,o){
       }
     });
   }
+}
+
+function delpubclient(){
+	if(confirm('您确认删除该公众号吗？')){
+		if(confirm('公众号将无法恢复，您确定？')){
+			return true;
+		}else{
+			return false;
+		}
+	}else{
+		return false;
+	}
 }
 </script>
     
