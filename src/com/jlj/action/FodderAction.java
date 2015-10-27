@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
@@ -28,6 +31,8 @@ import com.jlj.model.Pubclient;
 import com.jlj.service.IFodderService;
 import com.jlj.service.IFodderarticleService;
 import com.jlj.util.DateTimeKit;
+import com.jlj.util.ToolKitUtil;
+import com.jlj.vo.NewVo;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Component("fodderAction")
@@ -59,81 +64,82 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	//条件
 	private int con;
 	private String convalue;
-	
+	//上传照片
+	private File picture;
+	private String pictureContentType;
+	private String pictureFileName;
 	
 	/**
-	 * 素材管理
+	 * 后台-素材管理
 	 */
 	public String list() throws Exception{
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
+		
 		if(convalue!=null&&!convalue.equals("")){
 			convalue=URLDecoder.decode(convalue, "utf-8");
 		}
 		if(page<1){
 			page=1;
 		}
+		//总记录数
+		totalCount=fodderService.getTotalCount(con,convalue,status,publicaccount);
 		//总页数
-		pageCount=fodderService.getPageCount(con,convalue,status,publicaccount,size);
+		pageCount=fodderService.getPageCount(totalCount,size);
 		if(page>pageCount&&pageCount!=0){
 			page=pageCount;
 		}
 		//所有当前页记录对象
 		fodders=fodderService.queryList(con,convalue,status,publicaccount,page,size);
-		//总记录数
-		totalCount=fodderService.getTotalCount(con,convalue,status,publicaccount);
+		
 		return "list";
 	}
 	/**
-	 * 跳转到添加页面
-	 * @return
-	 */
-	public String goToAdd(){
-		return "add";
-	}
-	/**
-	 * 添加
+	 * 添加-单图文
 	 * @return
 	 * @throws Exception
 	 */
 	private String musicdes;
 	private String newsdes;
 	public String add() throws Exception{
-		String paccount=fodder.getPublicaccount();
 		//保存图片以及图片链接
-		
 		if(picture!=null){
-			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-			this.upload(imageName);
-			fodder.setPicurl(paccount+"/"+imageName);
+			String paccount=fodder.getPublicaccount();//获取原始ID
+			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));//获取图片文件名称
+			ToolKitUtil.upload(paccount,imageName,picture);
+			fodder.setPicurl("res/"+paccount+"/"+imageName);//设置图片地址全称
 			
 		}
 		//保存正文描述
 		if(newsdes!=null&&!newsdes.equals("")){
 			fodder.setDescription(newsdes);
-		}else if(musicdes!=null&&!musicdes.equals("")){
-			fodder.setDescription(musicdes);
 		}
+//		else if(musicdes!=null&&!musicdes.equals("")){
+//			fodder.setDescription(musicdes);
+//		}
 		//保存素材类型
-		int savetype= fodder.getSavetype();
-		if(savetype==1){
-			fodder.setMsgtype("text");
-		}else if(savetype==5){
-			fodder.setMsgtype("music");
-		}else if(savetype==6){
-			fodder.setMsgtype("news");
-			//保存图文消息个数
-			if(fodder.getFuncflag()==0){
-				fodder.setArticlecount(1);
-			}else{
-				fodder.setArticlecount(0);
-			}
-			
-		}
+//		int savetype= fodder.getSavetype();
+		int savetype= 6;
+		fodder.setSavetype(savetype);//保存类型6、news
+//		if(savetype==1){
+//			fodder.setMsgtype("text");
+//		}else if(savetype==5){
+//			fodder.setMsgtype("music");
+//		}else if(savetype==6){
+			fodder.setMsgtype("news");//用于取数据回复到微信服务器
+//			//保存图文消息个数
+//			if(fodder.getFuncflag()==0){
+//				fodder.setArticlecount(1);
+//			}else{
+//				fodder.setArticlecount(0);
+//			}
+//			
+//		}
 		//保存创建日期
 		fodder.setCreatedate(new Date());
 		
 		fodderService.add(fodder);
 		
-		arg[0]="fodderAction!list?publicaccount="+paccount+"&status="+savetype;
+		arg[0]="fodderAction!list";
 		arg[1]="素材管理";
 		return SUCCESS;
 	}
@@ -145,100 +151,92 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 */
 	private List<Fodderarticle> fodderarticles;
 	private int fodderid;//供子图文页面显示
+	String data;
 	public String muladd() throws Exception{
-		//保存消息类型
-		fodder.setMsgtype("news");
-		//保存文章数量
-		fodder.setArticlecount(0);
-		//保存创建日期
-		fodder.setCreatedate(new Date());
-		//获取保存后返回的总图文ID
-		fodderid = fodderService.addreturn(fodder);
-		//查询该总图文ID的所有子图文信息并展示在子图文管理
-		fodderarticles = fodderarticleService.queryFodderarticlesByFodderid(fodderid);
-		return "fodderarticlelist";
+		System.out.println("muladd start");
+//		for (int i = 0; i < data.length; i++) {
+//			System.out.println(data[i].toString());
+//		}
+//		System.out.println(data);
+		String jsondata=data.substring(data.indexOf(":")+1, data.lastIndexOf("]")+1);
+//		System.out.println(jsondata);
+		JSONArray json =JSONArray.fromObject(jsondata);
+		List<NewVo> newvos =(List<NewVo>)JSONArray.toCollection(json,NewVo.class);
+		int articlecount = newvos.size();
+		String newstitle = newvos.get(0).getTit();
+		String coverurl = newvos.get(0).getPic();
+		fodder = new Fodder();
+		fodder.setArticlecount(articlecount);//保存文章数量
+//		fodder.setContent(content);
+		fodder.setCreatedate(new Date());//保存创建日期
+//		fodder.setDescription(description)
+//		fodder.setFodderarticles(fodderarticles)
+		fodder.setFuncflag(1);//单图文0、多图文1
+		fodder.setMsgtype("news");//保存消息类型
+		fodder.setPicurl(coverurl);
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
+		fodder.setPublicaccount(publicaccount);
+		fodder.setSavetype(6);//6:news
+		fodder.setTitle(newstitle);//图文总标题
+//		fodder.setUrl(url);
+		fodderid = fodderService.addreturn(fodder);//保存图文素材
+		
+		
+		//保存各个子图文的资源
+		for (int i = 0; i < articlecount; i++) {
+			NewVo newvo = newvos.get(i);
+			//解析data并获取每个数组中的值
+			String title = newvo.getTit();
+			String picurl = newvo.getPic();
+			String description = newvo.getCon();
+			String linkurl = newvo.getUrl();
+			Fodderarticle fodderarticle = new Fodderarticle();
+			fodderarticle.setDescription(description);
+			fodderarticle.setFodder(fodder);//父级news素材
+			fodderarticle.setPicurl(picurl);
+			fodderarticle.setTitle(title);
+			fodderarticle.setUrl(linkurl);
+			fodderarticleService.add(fodderarticle);
+			
+		}
+		return NONE;
 	}
 	
 	/**
-	 * 删除
+	 * 删除-单图文或多图文
 	 * @return
+	 * @throws Exception 
 	 */
-	public String delete(){
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
+	public String delete() throws Exception{
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		Fodder fodder=fodderService.loadById(id);
 		//删除图片
 		//如果是单图文，删除该记录中的图片即可，若是多图文，循环删除子图文的图；
+		if(fodder==null){
+			return this.list();
+		}
 		int savetype = fodder.getSavetype();
 		int funcflag = fodder.getFuncflag();
 		if(savetype==6&&funcflag==0){
+//			System.out.println(ServletActionContext.getServletContext().getRealPath("/")+fodder.getPicurl());
 			File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+fodder.getPicurl());
 			photofile.delete();
 		}else if(savetype==6&&funcflag==1){
 			List<Fodderarticle> fodderarticles = fodderarticleService.queryFodderarticlesByFodderid(id);
 			for (Fodderarticle fodderarticle : fodderarticles) {
-				File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+fodderarticle.getPicurl());
+				String sonpicurl = fodderarticle.getPicurl();
+				sonpicurl = ServletActionContext.getServletContext().getRealPath("/")+sonpicurl.substring(sonpicurl.indexOf("res/"));
+//				System.out.println(sonpicurl);
+				File photofile=new File(sonpicurl);
 				photofile.delete();
 			}
 		}
 		
 		fodderService.delete(fodder);
 		
-		arg[0]="fodderAction!list?publicaccount="+paccount+"&status="+fodder.getSavetype();
-		arg[1]="素材管理";
-		return SUCCESS;
+		return this.list();
 	}
-	/**
-	 * 修改
-	 * @return
-	 */
-	public String update() throws Exception{
-		String paccount=fodder.getPublicaccount();
-		//修改图片
-		
-		if(picture!=null){
-			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-			this.upload(imageName);
-			File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+fodder.getPicurl());
-			photofile.delete();
-			fodder.setPicurl(paccount+"/"+imageName);
-			
-		}
-		//保存正文描述
-		if(newsdes!=null&&!newsdes.equals("")){
-			fodder.setDescription(newsdes);
-		}else if(musicdes!=null&&!musicdes.equals("")){
-			fodder.setDescription(musicdes);
-		}
-		//保存素材类型
-		int savetype= fodder.getSavetype();
-		if(savetype==1){
-			fodder.setMsgtype("text");
-		}else if(savetype==5){
-			fodder.setMsgtype("music");
-		}else if(savetype==6){
-			fodder.setMsgtype("news");
-		}
-		//保存创建日期
-		fodder.setCreatedate(new Date());
-		fodderService.update(fodder);
-		arg[0]="fodderAction!list?publicaccount="+paccount+"&status="+savetype;
-		arg[1]="素材管理";
-		return SUCCESS;
-	}
-	/**
-	 * 查看信息
-	 * @return
-	 */
-	public String view(){
-		fodder=fodderService.loadById(id);
-		return "view";
-	}
+	
 	/**
 	 * 跳转到修改页面
 	 * @return
@@ -253,6 +251,144 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		}
 		return "load";
 	}
+	
+	/**
+	 * 跳转到单图文/多图文修改页面
+	 * @return
+	 */
+	public String loadnews() throws Exception{
+		fodder=fodderService.loadById(id);
+		int articlecount=fodder.getArticlecount();
+		if(articlecount==1){
+			//单图文
+			return "loadone";
+		}else{
+			//多图文
+			fodderarticles = fodder.getFodderarticles();
+			return "loadmore"; 
+		}
+		
+	}
+	
+	/**
+	 * 修改-单图文
+	 * @return
+	 */
+	public String updateone() throws Exception{
+		//保存图片以及图片链接
+		if(picture!=null){
+			String paccount=fodder.getPublicaccount();//获取原始ID
+			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));//获取图片文件名称
+			ToolKitUtil.upload(paccount,imageName,picture);
+			fodder.setPicurl("res/"+paccount+"/"+imageName);//设置图片地址全称
+			
+		}
+		//保存正文描述
+		if(newsdes!=null&&!newsdes.equals("")){
+			fodder.setDescription(newsdes);
+		}
+		
+		fodderService.update(fodder);
+		arg[0]="fodderAction!list";
+		arg[1]="素材管理";
+		return SUCCESS;
+	}
+	/**
+	 * 修改-多图文
+	 * @return
+	 */
+	public String updatemore() throws Exception{
+		System.out.println("updatemore start");
+//		System.out.println(data);
+		String fodderidstr = data.substring(data.indexOf("fodderid\":")+10,data.indexOf(",\"data\":"));
+//		System.out.println(fodderidstr);
+		String jsondata=data.substring(data.indexOf("data\":")+6, data.lastIndexOf("]")+1);
+//		System.out.println(jsondata);
+		
+		JSONArray json =JSONArray.fromObject(jsondata);
+		List<NewVo> newvos =(List<NewVo>)JSONArray.toCollection(json,NewVo.class);
+		
+		int fodderid = Integer.parseInt(fodderidstr);
+		Fodder afodder = fodderService.loadById(fodderid);
+		int oldarticlecount = afodder.getArticlecount();//原图文数量
+		int articlecount = newvos.size();//图文数量
+		//若删除某子图文，则需要删除该子图文
+		if(oldarticlecount>articlecount){
+			//存储可以删除的子图文id
+			List<Integer> canDelIds = new ArrayList<Integer>();
+			
+			List<Fodderarticle> fodderarticles = afodder.getFodderarticles();
+			for(int i = 0; i < oldarticlecount; i++) {
+				int farticleid = fodderarticles.get(i).getId();//循环获取旧的子图文的id
+				boolean isCanDel = false;
+				//循环匹配json字符串，找是否在里面，若没在里面，则标记
+				for (int j = 0; j < articlecount; j++) {
+					NewVo newvo = newvos.get(j);
+					//解析data并获取每个数组中的值
+					int articleid = newvo.getId();
+					if(farticleid==articleid){
+						//找到
+						break;
+					}
+					if(j==articlecount-1){
+						//本次循环都没找到该ID，说明已经被删除
+						isCanDel=true;
+					}
+				}
+				if(isCanDel){
+					canDelIds.add(farticleid);
+					
+				}
+				
+			}
+			
+			//循环删除这些子图文
+			for (Integer canDelId : canDelIds) {
+				System.out.println("canDelId="+canDelId);
+				Fodderarticle fodderarticle = fodderarticleService.loadById(canDelId);
+				afodder.getFodderarticles().remove(fodderarticle);
+				fodderarticle.setFodder(null);
+				fodderarticleService.delete(fodderarticle);
+			}
+			
+		}
+		
+		//修改各个子图文的资源
+		for (int i = 0; i < articlecount; i++) {
+			NewVo newvo = newvos.get(i);
+			//解析data并获取每个数组中的值
+			int articleid = newvo.getId();
+			String title = newvo.getTit();
+			String picurl = newvo.getPic();
+			String description = newvo.getCon();
+			String linkurl = newvo.getUrl();
+			//若已存在改id，修改；若不存在id，新增子图文
+			if(articleid!=0){
+				fodderarticleService.updateSomethingById(title,description,picurl,linkurl,articleid);
+				
+			}else{
+				
+				Fodderarticle fodderarticle = new Fodderarticle();
+				fodderarticle.setDescription(description);
+				fodderarticle.setPicurl(picurl);
+				fodderarticle.setTitle(title);
+				fodderarticle.setUrl(linkurl);
+				fodderarticle.setFodder(afodder);
+				fodderarticleService.add(fodderarticle);
+			}
+			
+		}
+		
+		
+		String newstitle = newvos.get(0).getTit();//大图文标题
+		String coverurl = newvos.get(0).getPic();//大图文图片地址
+		//修改大图文
+		fodderService.updateSomethingById(articlecount,newstitle,coverurl,fodderid);
+		return NONE;
+		
+	}
+	
+	
 	private String currentpage;
 	public String choosefodder(){
 		//所有当前页记录对象[根据条件、条件值、类型id、公众号原始ID]
@@ -275,34 +411,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	
 	
-	//上传照片
-	private File picture;
-	private String pictureContentType;
-	private String pictureFileName;
-	//文件上传
-	public void upload(String imageName) throws Exception{
-		String floderName=((Pubclient)session.get("pubclient")).getPublicaccount();
-		File saved=new File(ServletActionContext.getServletContext().getRealPath(floderName),imageName);
-		InputStream ins=null;
-		OutputStream ous=null;
-		try {
-			saved.getParentFile().mkdirs();
-			ins=new FileInputStream(picture);
-			ous=new FileOutputStream(saved);
-			byte[] b=new byte[1024];
-			int len = 0;
-			while((len=ins.read(b))!=-1){
-				ous.write(b,0,len);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally{
-			if(ous!=null)
-				ous.close();
-			if(ins!=null) 
-				ins.close();
-		}
-	}
+	
 	
 	//get、set-------------------------------------------
 	public IFodderService getFodderService() {
@@ -461,6 +570,14 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	public void setCurrentpage(String currentpage) {
 		this.currentpage = currentpage;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
 	}
 	
 	

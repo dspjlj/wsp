@@ -10,7 +10,7 @@
 				var uploadbutton = K.uploadbutton({
 					button : K('#uploadButton')[0],
 					fieldName : 'imgFile',
-					url : '../php/upload_json.php?dir=file',
+					url : '../jsp/upload_json.jsp?dir=image',
 					afterUpload : function(data) {
 						if (data.error === 0) {
 							var url = K.formatUrl(data.url, 'absolute');

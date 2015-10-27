@@ -6,13 +6,26 @@
 <%@ page import="org.apache.commons.fileupload.servlet.*"%>
 <%@ page import="org.json.simple.*"%>
 <%@ page import="org.apache.struts2.dispatcher.multipart.MultiPartRequestWrapper"%>
+<%@page import="com.jlj.model.Pubclient"%>
 
 <%
+Pubclient pubclient = (Pubclient)session.getAttribute("pubclient");
+StringBuffer sb =new StringBuffer("res/");
+if(pubclient==null){
+	response.sendRedirect("/back/login.jsp");
+	return;
+}else{
+	sb.append(pubclient.getPublicaccount());
+	sb.append("/");
+}
+String dir = sb.toString();
 //文件保存目录路径   
 //D:\Tomcat6.0\webapps\zswz\attached/
-String savePath = request.getSession().getServletContext().getRealPath("/") + "attached/";
+//String savePath = request.getSession().getServletContext().getRealPath("/") + "attached/";
+String savePath = request.getSession().getServletContext().getRealPath("/") + dir;
 //文件保存目录URL /zswz/attached/
-String saveUrl = request.getContextPath() + "/attached/";
+//String saveUrl = request.getContextPath() + "/attached/";
+String saveUrl = request.getContextPath() + "/"+dir;
 //定义允许上传的文件扩展名
 //定义允许上传的文件扩展名
 HashMap<String,String> extMap = new HashMap<String, String>();

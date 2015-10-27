@@ -65,6 +65,15 @@ public class FodderarticleServiceImp implements IFodderarticleService {
 		Object[] p = new Object[]{fodderid};
 		return fodderarticleDao.getObjectsByCondition(queryString, p);
 	}
+	//修改子图文的一些字段
+	public void updateSomethingById(String title, String description,
+			String picurl, String linkurl, int articleid) {
+		String hql = "update Fodderarticle mo set mo.title=:title,mo.description=:description,mo.picurl=:picurl,mo.url=:linkurl where mo.id=:articleid";
+		String[] paramNames = new String[]{"title","description","picurl","linkurl","articleid"};
+		Object[] values = new Object[]{title,description,picurl,linkurl,articleid};
+		fodderarticleDao.updateByHql(hql, paramNames, values);
+		
+	}
 
 	
 	

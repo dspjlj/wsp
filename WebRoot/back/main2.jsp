@@ -168,7 +168,7 @@ $(function(){
           <a href="material_keyword_manage.html">关键字回复</a>
         </li>
         <li>
-          <a href="material_manage.html">素材管理</a>
+          <a href="fodderAction!list">素材管理</a>
         </li>
         <li>
           <a href="material_diy.html">DIY宣传页</a>

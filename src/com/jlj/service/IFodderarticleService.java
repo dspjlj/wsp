@@ -21,4 +21,7 @@ public interface IFodderarticleService {
 	public abstract List<Fodderarticle> queryFodderarticlesByFodderid(
 			int fodderid);
 
+	public abstract void updateSomethingById(String title, String description,
+			String picurl, String linkurl, int articleid);
+
 }

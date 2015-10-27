@@ -20,8 +20,7 @@ public interface IFodderService {
 
 	public abstract Fodder loadById(int id);
 
-	public abstract int getPageCount(int con, String convalue, int status,
-			String publicaccount, int size);
+	public abstract int getPageCount(int totalCount, int size);
 
 	public abstract int getTotalCount(int con, String convalue, int status,
 			String publicaccount);
@@ -38,5 +37,8 @@ public interface IFodderService {
 			int status, String publicaccount);
 
 	public abstract List<Fodder> getFoddersByPublicAccount(String paccount);
+
+	public abstract void updateSomethingById(int articlecount,
+			String newstitle, String coverurl, int fodderid);
 
 }

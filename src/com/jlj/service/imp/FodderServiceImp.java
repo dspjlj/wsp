@@ -68,53 +68,44 @@ public class FodderServiceImp implements IFodderService{
 	public Fodder loadById(int id) {
 		return fodderDao.loadById(id);
 	}
-
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IFodderService#getPageCount(int, java.lang.String, int, java.lang.String, int)
-	 */
-	public int getPageCount(int con, String convalue, int status, String publicaccount,
-			int size) {
-		int totalCount=this.getTotalCount(con, convalue, status, publicaccount);
+	//查询素材列表==========================start
+	public int getPageCount(int totalCount,int size) {
 		return totalCount%size==0?totalCount/size:(totalCount/size+1);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IFodderService#getTotalCount(int, java.lang.String, int, java.lang.String)
-	 */
 	public int getTotalCount(int con, String convalue, int status, String publicaccount) {
-		String queryString = "select count(*) from Fodder mo where mo.publicaccount=? and mo.savetype=? ";
+		String queryString = "select count(*) from Fodder mo where mo.publicaccount=? ";
 		Object[] p = null;
 		if(con!=0&&convalue!=null&&!convalue.equals("")){
 			//标题名称
 			if(con==1){
 				queryString += "and mo.title like ? "; 
 			}
-			p = new Object[]{publicaccount,status,'%'+convalue+'%'};
+			p = new Object[]{publicaccount,'%'+convalue+'%'};
 		}else{
-			p = new Object[]{publicaccount,status};
+			p = new Object[]{publicaccount};
 		}
 		return fodderDao.getUniqueResult(queryString,p);
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IFodderService#queryList(int, java.lang.String, int, java.lang.String, int, int)
-	 */
 	public List<Fodder> queryList(int con, String convalue, int status,
 			String publicaccount, int page, int size) {
-		String queryString = "from Fodder mo where mo.publicaccount=? and mo.savetype=? ";
+		String queryString = "from Fodder mo where mo.publicaccount=? ";
 		Object[] p = null;
 		if(con!=0&&convalue!=null&&!convalue.equals("")){
 			//标题名称
 			if(con==1){
 				queryString += "and mo.title like ? "; 
 			}
-			p = new Object[]{publicaccount,status,'%'+convalue+'%'};
+			p = new Object[]{publicaccount,'%'+convalue+'%'};
 		}else{
-			p = new Object[]{publicaccount,status};
+			p = new Object[]{publicaccount};
 		}
 		queryString += " order by mo.id desc ";
 		return fodderDao.pageList(queryString,p,page,size);
 	}
+	//查询素材列表==========================end
+
 	
 	public void updateArticleCount(int articlecount, int fodderid) {
 		String hql = "update Fodder mo set mo.articlecount=:articlecount where mo.id=:fodderid";
@@ -183,6 +174,15 @@ public class FodderServiceImp implements IFodderService{
 		String queryString = "from Fodder mo where mo.publicaccount = ?";
 		Object[] p = new Object[]{paccount};
 		return fodderDao.getObjectsByCondition(queryString, p);
+	}
+	//修改大图文的一些字段
+	public void updateSomethingById(int articlecount, String newstitle,
+			String coverurl, int fodderid) {
+		String hql = "update Fodder mo set mo.articlecount=:articlecount,mo.title=:newstitle,mo.picurl=:coverurl where mo.id=:fodderid";
+		String[] paramNames = new String[]{"articlecount","newstitle","coverurl","fodderid"};
+		Object[] values = new Object[]{articlecount,newstitle,coverurl,fodderid};
+		fodderDao.updateByHql(hql, paramNames, values);
+		
 	}
 	
 	

@@ -851,7 +851,7 @@ function loading(txt){
 		$('.qp_lodediv').remove();
 	}else{
 		$('.qp_lodediv').remove();
-		var div = $('<div class="qp_lodediv" style="background: url('+yyuc_jspath+'/img/loadb.png);width: 269px;height: 107px;position: absolute;left: -1000px;top: -1000px;text-align: center;"><span style="color: #ffffff;line-height: 107px;font-size: 23px; white-space: nowrap;">&nbsp;&nbsp;&nbsp;<img src="'+yyuc_jspath+'/img/load.gif" style="vertical-align: middle;"/>&nbsp;&nbsp;'+txt+'</span></div>');
+		var div = $('<div class="qp_lodediv" style="background: url(../back/images/loadb.png);width: 269px;height: 107px;position: absolute;left: -1000px;top: -1000px;text-align: center;"><span style="color: #a0a9ae;line-height: 107px;font-size: 23px; white-space: nowrap;">&nbsp;&nbsp;&nbsp;<img src="../back/images/load.gif" style="vertical-align: middle;"/>&nbsp;&nbsp;'+txt+'</span></div>');
 		$('body').append(div);
 		div.css('zIndex',9999999);
 		div.css('left',parseInt(($(window).width()-div.width())/2));
