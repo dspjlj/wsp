@@ -74,32 +74,32 @@ public class FodderServiceImp implements IFodderService{
 	}
 
 	public int getTotalCount(int con, String convalue, int status, String publicaccount) {
-		String queryString = "select count(*) from Fodder mo where mo.publicaccount=? ";
+		String queryString = "select count(*) from Fodder mo where mo.publicaccount=? and mo.savetype=?  ";
 		Object[] p = null;
 		if(con!=0&&convalue!=null&&!convalue.equals("")){
 			//标题名称
 			if(con==1){
 				queryString += "and mo.title like ? "; 
 			}
-			p = new Object[]{publicaccount,'%'+convalue+'%'};
+			p = new Object[]{publicaccount,status,'%'+convalue+'%'};
 		}else{
-			p = new Object[]{publicaccount};
+			p = new Object[]{publicaccount,status};
 		}
 		return fodderDao.getUniqueResult(queryString,p);
 	}
 	
 	public List<Fodder> queryList(int con, String convalue, int status,
 			String publicaccount, int page, int size) {
-		String queryString = "from Fodder mo where mo.publicaccount=? ";
+		String queryString = "from Fodder mo where mo.publicaccount=? and mo.savetype=? ";
 		Object[] p = null;
 		if(con!=0&&convalue!=null&&!convalue.equals("")){
 			//标题名称
 			if(con==1){
 				queryString += "and mo.title like ? "; 
 			}
-			p = new Object[]{publicaccount,'%'+convalue+'%'};
+			p = new Object[]{publicaccount,status,'%'+convalue+'%'};
 		}else{
-			p = new Object[]{publicaccount};
+			p = new Object[]{publicaccount,status};
 		}
 		queryString += " order by mo.id desc ";
 		return fodderDao.pageList(queryString,p,page,size);

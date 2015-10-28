@@ -98,11 +98,17 @@
 		</global-results>
 		<action name="fodderAction" class="fodderAction">
 			<result name="list">/back/fodder_manage.jsp</result>
+			<result name="textlist">/back/fodder_manage_text.jsp</result>
+			<result name="imagelist">/back/fodder_manage_image.jsp</result>
+			<result name="voicelist">/back/fodder_manage_voice.jsp</result>
+			<result name="videolist">/back/fodder_manage_video.jsp</result>
+			<result name="musiclist">/back/fodder_manage_music.jsp</result>
 		
 			<result name="success">/back/op_success.jsp</result>
 			
 			<result name="loadone">/back/fodder_updateone.jsp</result>
 			<result name="loadmore">/back/fodder_updatemore.jsp</result>
+			<result name="loadtext">/back/fodder_update_text.jsp</result>
 			
 			<result name="fodderchooselist">/fodder_choose.jsp</result>
 			<result name="fodderarticlelist">/fodderarticle_manage.jsp</result>

@@ -69,12 +69,13 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private String pictureContentType;
 	private String pictureFileName;
 	
+	//查询列表===============================================start
 	/**
-	 * 后台-素材管理
+	 * 后台-素材管理-多图文列表
 	 */
 	public String list() throws Exception{
 		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
-		
+		status = 6;//图文news
 		if(convalue!=null&&!convalue.equals("")){
 			convalue=URLDecoder.decode(convalue, "utf-8");
 		}
@@ -93,6 +94,129 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		
 		return "list";
 	}
+	/**
+	 * 后台-素材管理-文本列表
+	 */
+	public String textlist() throws Exception{
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
+		status = 1;//文字text
+		if(convalue!=null&&!convalue.equals("")){
+			convalue=URLDecoder.decode(convalue, "utf-8");
+		}
+		if(page<1){
+			page=1;
+		}
+		//总记录数
+		totalCount=fodderService.getTotalCount(con,convalue,status,publicaccount);
+		//总页数
+		pageCount=fodderService.getPageCount(totalCount,size);
+		if(page>pageCount&&pageCount!=0){
+			page=pageCount;
+		}
+		//所有当前页记录对象
+		fodders=fodderService.queryList(con,convalue,status,publicaccount,page,size);
+		
+		return "textlist";
+	}
+	/**
+	 * 后台-素材管理-图片列表
+	 */
+	public String imagelist() throws Exception{
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
+		status = 2;//图片image
+		if(convalue!=null&&!convalue.equals("")){
+			convalue=URLDecoder.decode(convalue, "utf-8");
+		}
+		if(page<1){
+			page=1;
+		}
+		//总记录数
+		totalCount=fodderService.getTotalCount(con,convalue,status,publicaccount);
+		//总页数
+		pageCount=fodderService.getPageCount(totalCount,size);
+		if(page>pageCount&&pageCount!=0){
+			page=pageCount;
+		}
+		//所有当前页记录对象
+		fodders=fodderService.queryList(con,convalue,status,publicaccount,page,size);
+		
+		return "imagelist";
+	}
+	/**
+	 * 后台-素材管理-语音列表
+	 */
+	public String voicelist() throws Exception{
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
+		status = 3;//语音voice
+		if(convalue!=null&&!convalue.equals("")){
+			convalue=URLDecoder.decode(convalue, "utf-8");
+		}
+		if(page<1){
+			page=1;
+		}
+		//总记录数
+		totalCount=fodderService.getTotalCount(con,convalue,status,publicaccount);
+		//总页数
+		pageCount=fodderService.getPageCount(totalCount,size);
+		if(page>pageCount&&pageCount!=0){
+			page=pageCount;
+		}
+		//所有当前页记录对象
+		fodders=fodderService.queryList(con,convalue,status,publicaccount,page,size);
+		
+		return "voicelist";
+	}
+	/**
+	 * 后台-素材管理-视频列表
+	 */
+	public String videolist() throws Exception{
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
+		status = 4;//视频video
+		if(convalue!=null&&!convalue.equals("")){
+			convalue=URLDecoder.decode(convalue, "utf-8");
+		}
+		if(page<1){
+			page=1;
+		}
+		//总记录数
+		totalCount=fodderService.getTotalCount(con,convalue,status,publicaccount);
+		//总页数
+		pageCount=fodderService.getPageCount(totalCount,size);
+		if(page>pageCount&&pageCount!=0){
+			page=pageCount;
+		}
+		//所有当前页记录对象
+		fodders=fodderService.queryList(con,convalue,status,publicaccount,page,size);
+		
+		return "videolist";
+	}
+	/**
+	 * 后台-素材管理-音乐列表
+	 */
+	public String musiclist() throws Exception{
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
+		status = 5;//音乐music
+		if(convalue!=null&&!convalue.equals("")){
+			convalue=URLDecoder.decode(convalue, "utf-8");
+		}
+		if(page<1){
+			page=1;
+		}
+		//总记录数
+		totalCount=fodderService.getTotalCount(con,convalue,status,publicaccount);
+		//总页数
+		pageCount=fodderService.getPageCount(totalCount,size);
+		if(page>pageCount&&pageCount!=0){
+			page=pageCount;
+		}
+		//所有当前页记录对象
+		fodders=fodderService.queryList(con,convalue,status,publicaccount,page,size);
+		
+		return "musiclist";
+	}
+	//查询列表===============================================end
+	
+	//操作图文===============================================start
 	/**
 	 * 添加-单图文
 	 * @return
@@ -387,6 +511,53 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		return NONE;
 		
 	}
+	//操作图文===============================================end
+	
+	
+	//操作文本===============================================start
+	/**
+	 * 添加-单图文
+	 * @return
+	 * @throws Exception
+	 */
+	private String title;
+	private String content;
+	public String addtext() throws Exception{
+		fodder = new Fodder();
+		fodder.setMsgtype("text");//用于取数据回复到微信服务器
+		fodder.setSavetype(1);//保存类型1、text
+		fodder.setContent(content);
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		fodder.setPublicaccount(paccount);
+		fodder.setTitle(title);
+		//保存创建日期
+		fodder.setCreatedate(new Date());
+		
+		fodderService.add(fodder);
+		
+		arg[0]="fodderAction!textlist";
+		arg[1]="素材管理";
+		return SUCCESS;
+	}
+	
+	/**
+	 * 跳转到文本修改页面
+	 * @return
+	 */
+	public String loadtext() throws Exception{
+		fodder=fodderService.loadById(id);
+		return "loadtext";
+		
+	}
+	
+	public String updatetext() throws Exception{
+		
+		
+		arg[0]="fodderAction!textlist";
+		arg[1]="素材管理";
+		return SUCCESS;
+	}
+	//操作文本===============================================end
 	
 	
 	private String currentpage;
@@ -578,6 +749,18 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 
 	public void setData(String data) {
 		this.data = data;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	

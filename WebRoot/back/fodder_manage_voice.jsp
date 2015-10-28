@@ -434,10 +434,10 @@ function delfodder(){
 			   		<ul class="nav nav-list">
 			   		  <li><a href="fodderAction!textlist" target="mainFrame">文本</a></li>
 			   		  <li><a href="fodderAction!imagelist" target="mainFrame">图片</a></li>
-			   		  <li><a href="fodderAction!voicelist" target="mainFrame">语音</a></li>
+			   		  <li class="active"><a href="fodderAction!voicelist" target="mainFrame">语音</a></li>
 					  <li><a href="fodderAction!videolist" target="mainFrame">视频</a></li>
 					  <li><a href="fodderAction!musiclist" target="mainFrame">音乐</a></li>
-					  <li class="active"><a href="fodderAction!list" target="mainFrame">图文消息</a></li>
+					  <li><a href="fodderAction!list" target="mainFrame">图文消息</a></li>
 					</ul>
 			   	</div>
 			</div>
