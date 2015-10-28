@@ -109,6 +109,7 @@
 			<result name="loadone">/back/fodder_updateone.jsp</result>
 			<result name="loadmore">/back/fodder_updatemore.jsp</result>
 			<result name="loadtext">/back/fodder_update_text.jsp</result>
+			<result name="loadmusic">/back/fodder_update_music.jsp</result>
 			
 			<result name="fodderchooselist">/fodder_choose.jsp</result>
 			<result name="fodderarticlelist">/fodderarticle_manage.jsp</result>

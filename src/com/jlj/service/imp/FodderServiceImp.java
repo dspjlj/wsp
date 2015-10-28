@@ -184,6 +184,14 @@ public class FodderServiceImp implements IFodderService{
 		fodderDao.updateByHql(hql, paramNames, values);
 		
 	}
+	//修改文本素材的一些字段
+	public void updateTextFodder(String title, String content, int fodderid) {
+		String hql = "update Fodder mo set mo.title=:title,mo.content=:content where mo.id=:fodderid";
+		String[] paramNames = new String[]{"title","content","fodderid"};
+		Object[] values = new Object[]{title,content,fodderid};
+		fodderDao.updateByHql(hql, paramNames, values);
+		
+	}
 	
 	
 

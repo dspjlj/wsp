@@ -161,7 +161,7 @@ function delfodder(){
 				</div>
 				<div class="content">
 					<h3 class="page-sub-hd">
-						图文列表
+						图片列表
 					</h3>
 					<div class="group page-nav">
 						<div class="pagination">
@@ -177,9 +177,7 @@ function delfodder(){
 							<!-- 偶数内容 -->
 							<div id="first_col" class="b-dib vt msg-col">
 								<div id="addAppmsg" class="tc add-access">
-									<a href="fodder_addone.jsp" class="dib vm add-btn">+单图文消息</a>
-									<a href="fodder_addmore.jsp"
-										class="dib vm add-btn multi-access">+多图文消息</a>
+									<a href="fodder_add_image.jsp" class="dib vm add-btn">+图片消息</a>
 								</div>
 								
 								

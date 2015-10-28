@@ -516,7 +516,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	
 	//操作文本===============================================start
 	/**
-	 * 添加-单图文
+	 * 添加-文本
 	 * @return
 	 * @throws Exception
 	 */
@@ -549,15 +549,80 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		return "loadtext";
 		
 	}
-	
+	/**
+	 * 修改文本信息
+	 * @return
+	 * @throws Exception
+	 */
 	public String updatetext() throws Exception{
-		
-		
+		System.out.println(fodderid+","+title+","+content);
+		fodderService.updateTextFodder(title,content, fodderid);
 		arg[0]="fodderAction!textlist";
 		arg[1]="素材管理";
 		return SUCCESS;
 	}
+	/**
+	 * 删除-文本
+	 * @return
+	 * @throws Exception 
+	 */
+	public String deletetext() throws Exception{
+		fodderService.deleteById(id);
+		return this.textlist();
+	}
 	//操作文本===============================================end
+	
+	//操作音乐===============================================start
+	/**
+	 * 添加-音乐
+	 * @return
+	 * @throws Exception
+	 */
+	public String addmusic() throws Exception{
+		fodder.setMsgtype("music");//用于取数据回复到微信服务器
+		fodder.setSavetype(5);//保存类型5、music
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		fodder.setPublicaccount(paccount);
+		//保存创建日期
+		fodder.setCreatedate(new Date());
+		
+		fodderService.add(fodder);
+		
+		arg[0]="fodderAction!musiclist";
+		arg[1]="素材管理";
+		return SUCCESS;
+	}
+	
+	/**
+	 * 跳转到音乐修改页面
+	 * @return
+	 */
+	public String loadmusic() throws Exception{
+		fodder=fodderService.loadById(id);
+		return "loadmusic";
+		
+	}
+	/**
+	 * 修改音乐信息
+	 * @return
+	 * @throws Exception
+	 */
+	public String updatemusic() throws Exception{
+		fodderService.update(fodder);
+		arg[0]="fodderAction!musiclist";
+		arg[1]="素材管理";
+		return SUCCESS;
+	}
+	/**
+	 * 删除-音乐
+	 * @return
+	 * @throws Exception 
+	 */
+	public String deletemusic() throws Exception{
+		fodderService.deleteById(id);
+		return this.musiclist();
+	}
+	//操作音乐===============================================end
 	
 	
 	private String currentpage;

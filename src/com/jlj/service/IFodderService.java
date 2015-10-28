@@ -41,4 +41,7 @@ public interface IFodderService {
 	public abstract void updateSomethingById(int articlecount,
 			String newstitle, String coverurl, int fodderid);
 
+	public abstract void updateTextFodder(String title, String content,
+			int fodderid);
+
 }

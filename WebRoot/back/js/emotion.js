@@ -1,5 +1,5 @@
 Emotion = {
-    url: "/media/images/admin/emotion/",
+    url: "media/images/admin/emotion/",
     data: {
         0 : "微笑",
         1 : "撇嘴",

@@ -140,6 +140,19 @@ function delfodder(){
 		return false;
 	}
 }
+
+	function player(isplay,id){
+		if(isplay=="play"){
+			document.getElementById('bgaudio'+id).play();
+			document.getElementById('myimg'+id).innerHTML='<a href=# onclick=player("stop",'+id+');><img id=conimage'+id+' src=images/stop.jpg width=20px height=20px/></a>';
+			//conimage.src="stop.jpg";
+		}else{
+			document.getElementById('bgaudio'+id).pause();
+			document.getElementById('myimg'+id).innerHTML='<a href=# onclick=player("play",'+id+');><img id=conimage'+id+' src=images/play.jpg width=20px height=20px/></a>';
+		}
+		
+	}
+		
 </script>
 	</head>
 
@@ -148,7 +161,7 @@ function delfodder(){
 			style="display: none; position: absolute; z-index: 999999"
 			id="ddhpng">
 		<div class="container">
-			
+
 			<div class="containerBox" style="float: left;">
 				<div id="gotonext">
 					<img src="media/images/admin/v3/shouciguanzhu.png"></img>
@@ -161,7 +174,7 @@ function delfodder(){
 				</div>
 				<div class="content">
 					<h3 class="page-sub-hd">
-						图文列表
+						音乐列表
 					</h3>
 					<div class="group page-nav">
 						<div class="pagination">
@@ -177,242 +190,130 @@ function delfodder(){
 							<!-- 偶数内容 -->
 							<div id="first_col" class="b-dib vt msg-col">
 								<div id="addAppmsg" class="tc add-access">
-									<a href="fodder_addone.jsp" class="dib vm add-btn">+单图文消息</a>
-									<a href="fodder_addmore.jsp"
-										class="dib vm add-btn multi-access">+多图文消息</a>
+									<a href="fodder_add_music.jsp" class="dib vm add-btn">+音乐消息</a>
 								</div>
-								
-								
+
+
 								<s:iterator value="fodders" var="fodder" status="index">
-								<s:if test="#index.count%2==0">
-									<s:if test="articlecount==1">
+									<s:if test="#index.count%2==0">
 										<!-- 偶数列单图文 -->
 										<div class="msg-item-wrapper">
 											<div class="msg-item">
 												<h4 class="msg-t">
-													<a href="javascript:;" class="i-title"><s:property value="title" /></a>
+													<a href="javascript:;" class="i-title"><s:property
+															value="title" />
+													</a>
+													<audio id="bgaudio<s:property value="id" />" src="<s:property value="musicurl" />"></audio>
+													<span id="myimg<s:property value="id" />"> 
+													<a href="#" onclick="player('play',<s:property value="id" />);"><img id="conimage<s:property value="id" />"
+																src="images/play.jpg" width="20px" height="20px" />
+													</a> </span>
+
+
+
 												</h4>
 												<p class="msg-meta">
-													<span class="msg-date"><s:date name="createdate" format="yyyy-MM-dd"/></span>
+													<span class="msg-date"><s:date name="createdate"
+															format="yyyy-MM-dd" />
+													</span>
 												</p>
-												<div class="cover">
-													<p class="default-tip" style="display: none">
-														封面图片
-													</p>
-													<s:if test="picurl!=null&&picurl!=''">
-														<img src="../<s:property value="picurl" />" class="i-img">
+
+
+												<p class="msg-text">
+													<s:if test="description!=null&&description!=''">
+														<s:property value="description" />
 													</s:if>
 													<s:else>
-														<img src="images/noimg2.png" class="i-img">
+														没有描述
 													</s:else>
-													
-												</div>
-												<!-- 
-												<p class="msg-text">
-													点击进入微官网【演示版，请修改】
 												</p>
-												 -->
 											</div>
 											<div class="msg-opr">
 												<ul class="f0 msg-opr-list">
 													<li class="b-dib opr-item">
 														<a data-mul="false" class="block tc opr-btn edit-btn"
-															href="fodderAction!loadnews?id=<s:property value="id" />&page=<s:property value="page" />" data-rid="20330"><span
-															class="th vm dib opr-icon edit-icon">编辑</span>
-														</a>
-													</li>
-													<li class="b-dib opr-item">
-														<a class="block tc opr-btn del-btn" href="fodderAction!delete?id=<s:property value="id" />&page=<s:property value="page" />"
-															data-rid="20330" onclick="return delfodder();"><span
-															class="th vm dib opr-icon del-icon">删除</span>
-														</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</s:if>
-									<s:else>
-										<!-- 偶数列多图文 -->
-										<div class="msg-item-wrapper">
-											<div class="msg-item multi-msg">
-												<div class="appmsgItem">
-													<h4 class="msg-t">
-														<a href="javascript:;" class="i-title"><s:property value="title" /></a>
-													</h4>
-													<p class="msg-meta">
-														<span class="msg-date"><s:date name="createdate" format="yyyy-MM-dd"/></span>
-													</p>
-													<div class="cover">
-														<s:if test="picurl!=null&&picurl!=''">
-															<img src="<s:property value="picurl" />" class="i-img">
-														</s:if>
-														<s:else>
-															<img src="images/noimg2.png" class="i-img">
-														</s:else>
-													</div>
-													<!-- 
-													<p class="msg-text">
-														欢迎关注微信公众账号，点击进入微官网【演示版，请修改】
-													</p>
-													 -->
-												</div>
-												<s:iterator value="fodderarticles" var="fodderarticle" status="index2">
-													<s:if test="#index2.count!=1">
-														<div class="rel sub-msg-item appmsgItem">
-															<span class="thumb"> <img
-																	src="<s:property value="picurl" />" class="i-img" style="">
-															</span>
-															<h4 class="msg-t">
-																<a href="javascript:;" target="_blank" class="i-title"><s:property value="title" /></a>
-															</h4>
-														</div>
-													</s:if>
-												</s:iterator>
-											</div>
-											<div class="msg-opr">
-												<ul class="f0 msg-opr-list">
-													<li class="b-dib opr-item">
-														<a data-mul="true" class="block tc opr-btn edit-btn"
-															href="fodderAction!loadnews?id=<s:property value="id" />&page=<s:property value="page" />" data-rid="20331"><span
-															class="th vm dib opr-icon edit-icon">编辑</span>
-														</a>
+															href="fodderAction!loadmusic?id=<s:property value="id" />&page=<s:property value="page" />"
+															data-rid="20330"><span
+															class="th vm dib opr-icon edit-icon">编辑</span> </a>
 													</li>
 													<li class="b-dib opr-item">
 														<a class="block tc opr-btn del-btn"
-															href="fodderAction!delete?id=<s:property value="id" />&page=<s:property value="page" />" data-rid="20331" onclick="return delfodder();"><span
-															class="th vm dib opr-icon del-icon">删除</span>
-														</a>
+															href="fodderAction!deletemusic?id=<s:property value="id" />&page=<s:property value="page" />"
+															data-rid="20330" onclick="return delfodder();"><span
+															class="th vm dib opr-icon del-icon">删除</span> </a>
 													</li>
 												</ul>
 											</div>
 										</div>
-									</s:else>
-								
-								</s:if>
+
+									</s:if>
 								</s:iterator>
-								
-								
+
+
 							</div>
 							<!-- 奇数内容 -->
 							<div id="second_col" class="b-dib vt msg-col">
 								<s:if test="%{fodders.size()==0}">
 									<div id="addAppmsg" class="tc add-access">
-										暂无素材
+										暂无音乐
 									</div>
 								</s:if>
-								
+
 								<s:iterator value="fodders" var="fodder" status="index">
-								<s:if test="#index.count%2==1">
-									<s:if test="articlecount==1">
+									<s:if test="#index.count%2==1">
 										<!-- 奇数列单图文 -->
 										<div class="msg-item-wrapper">
 											<div class="msg-item">
 												<h4 class="msg-t">
-													<a href="javascript:;" class="i-title"><s:property value="title" /></a>
+													<a href="javascript:;" class="i-title"><s:property
+															value="title" />
+													</a>
+													<audio id="bgaudio<s:property value="id" />" src="<s:property value="musicurl" />"></audio>
+													<span id="myimg<s:property value="id" />"> 
+													<a href="#" onclick="player('play',<s:property value="id" />);"><img id="conimage<s:property value="id" />"
+																src="images/play.jpg" width="20px" height="20px" />
+													</a> </span>
 												</h4>
 												<p class="msg-meta">
-													<span class="msg-date"><s:date name="createdate" format="yyyy-MM-dd"/></span>
+													<span class="msg-date"><s:date name="createdate"
+															format="yyyy-MM-dd" />
+													</span>
 												</p>
-												<div class="cover">
-													<p class="default-tip" style="display: none">
-														封面图片
-													</p>
-													<s:if test="picurl!=null&&picurl!=''">
-														<img src="../<s:property value="picurl" />" class="i-img">
+
+												<p class="msg-text">
+													<s:if test="description!=null&&description!=''">
+														<s:property value="description" />
 													</s:if>
 													<s:else>
-														<img src="images/noimg2.png" class="i-img">
+														没有描述
 													</s:else>
-													
-												</div>
-												<!-- 
-												<p class="msg-text">
-													点击进入微官网【演示版，请修改】
 												</p>
-												 -->
 											</div>
 											<div class="msg-opr">
 												<ul class="f0 msg-opr-list">
 													<li class="b-dib opr-item">
 														<a data-mul="false" class="block tc opr-btn edit-btn"
-															href="fodderAction!loadnews?id=<s:property value="id" />&page=<s:property value="page" />" data-rid="20330"><span
-															class="th vm dib opr-icon edit-icon">编辑</span>
-														</a>
-													</li>
-													<li class="b-dib opr-item">
-														<a class="block tc opr-btn del-btn" href="fodderAction!delete?id=<s:property value="id" />&page=<s:property value="page" />"
-															data-rid="20330" onclick="return delfodder();"><span
-															class="th vm dib opr-icon del-icon">删除</span>
-														</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</s:if>
-									<s:else>
-										<!-- 奇数列多图文 -->
-										<div class="msg-item-wrapper">
-											<div class="msg-item multi-msg">
-												<div class="appmsgItem">
-													<h4 class="msg-t">
-														<a href="javascript:;" class="i-title"><s:property value="title" /></a>
-													</h4>
-													<p class="msg-meta">
-														<span class="msg-date"><s:date name="createdate" format="yyyy-MM-dd"/></span>
-													</p>
-													<div class="cover">
-														<s:if test="picurl!=null&&picurl!=''">
-															<img src="<s:property value="picurl" />" class="i-img">
-														</s:if>
-														<s:else>
-															<img src="images/noimg2.png" class="i-img">
-														</s:else>
-													</div>
-													<!-- 
-													<p class="msg-text">
-														欢迎关注微信公众账号，点击进入微官网【演示版，请修改】
-													</p>
-													 -->
-												</div>
-												<s:iterator value="fodderarticles" var="fodderarticle" status="index2">
-													<s:if test="#index2.count!=1">
-														<div class="rel sub-msg-item appmsgItem">
-															<span class="thumb"> <img
-																	src="<s:property value="picurl" />" class="i-img" style="">
-															</span>
-															<h4 class="msg-t">
-																<a href="javascript:;" target="_blank" class="i-title"><s:property value="title" /></a>
-															</h4>
-														</div>
-													</s:if>
-												</s:iterator>
-											</div>
-											<div class="msg-opr">
-												<ul class="f0 msg-opr-list">
-													<li class="b-dib opr-item">
-														<a data-mul="true" class="block tc opr-btn edit-btn"
-															href="fodderAction!loadnews?id=<s:property value="id" />&page=<s:property value="page" />" data-rid="20331"><span
-															class="th vm dib opr-icon edit-icon">编辑</span>
-														</a>
+															href="fodderAction!loadmusic?id=<s:property value="id" />&page=<s:property value="page" />"
+															data-rid="20330"><span
+															class="th vm dib opr-icon edit-icon">编辑</span> </a>
 													</li>
 													<li class="b-dib opr-item">
 														<a class="block tc opr-btn del-btn"
-															href="fodderAction!delete?id=<s:property value="id" />&page=<s:property value="page" />" data-rid="20331" onclick="return delfodder();"><span
-															class="th vm dib opr-icon del-icon">删除</span>
-														</a>
+															href="fodderAction!deletemusic?id=<s:property value="id" />&page=<s:property value="page" />"
+															data-rid="20330" onclick="return delfodder();"><span
+															class="th vm dib opr-icon del-icon">删除</span> </a>
 													</li>
 												</ul>
 											</div>
 										</div>
-									</s:else>
-								
-								</s:if>
+
+									</s:if>
 								</s:iterator>
 
-								
-								
-								
-								
+
+
+
+
 							</div>
 						</div>
 
@@ -421,25 +322,34 @@ function delfodder(){
 
 
 				</div>
-				 
-			
-			
+
+
+
 
 				<div class="clr">
 				</div>
 			</div>
 
-			<div class="sideBar" style="float: left;width: 86px;height: 78px;margin-top: 20px;">
-			   	<div class="menu">
-			   		<ul class="nav nav-list">
-			   		  <li><a href="fodderAction!textlist" target="mainFrame">文本</a></li>
+			<div class="sideBar"
+				style="float: left; width: 86px; height: 78px; margin-top: 20px;">
+				<div class="menu">
+					<ul class="nav nav-list">
+						<li>
+							<a href="fodderAction!textlist" target="mainFrame">文本</a>
+						</li>
+						<!-- 
 			   		  <li><a href="fodderAction!imagelist" target="mainFrame">图片</a></li>
 			   		  <li><a href="fodderAction!voicelist" target="mainFrame">语音</a></li>
 					  <li><a href="fodderAction!videolist" target="mainFrame">视频</a></li>
-					  <li class="active"><a href="fodderAction!musiclist" target="mainFrame">音乐</a></li>
-					  <li><a href="fodderAction!list" target="mainFrame">图文消息</a></li>
+					   -->
+						<li class="active">
+							<a href="fodderAction!musiclist" target="mainFrame">音乐</a>
+						</li>
+						<li>
+							<a href="fodderAction!list" target="mainFrame">图文消息</a>
+						</li>
 					</ul>
-			   	</div>
+				</div>
 			</div>
 		</div>
 

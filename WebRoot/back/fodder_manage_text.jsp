@@ -192,10 +192,14 @@ function delfodder(){
 												<p class="msg-meta">
 													<span class="msg-date"><s:date name="createdate" format="yyyy-MM-dd"/></span>
 												</p>
-												
 												<!-- 
 												<p class="msg-text">
-													点击进入微官网【演示版，请修改】
+													<s:if test="content!=null&&content!=''">
+														<s:property value="content" />
+													</s:if>
+													<s:else>
+														没有内容
+													</s:else>
 												</p>
 												 -->
 											</div>
@@ -245,7 +249,12 @@ function delfodder(){
 												
 												<!-- 
 												<p class="msg-text">
-													点击进入微官网【演示版，请修改】
+													<s:if test="content!=null&&content!=''">
+														<s:property value="content" />
+													</s:if>
+													<s:else>
+														没有内容
+													</s:else>
 												</p>
 												 -->
 											</div>
@@ -294,9 +303,11 @@ function delfodder(){
 			   	<div class="menu">
 			   		<ul class="nav nav-list">
 			   		  <li class="active"><a href="fodderAction!textlist" target="mainFrame">文本</a></li>
+			   		  <!-- 
 			   		  <li><a href="fodderAction!imagelist" target="mainFrame">图片</a></li>
 			   		  <li><a href="fodderAction!voicelist" target="mainFrame">语音</a></li>
 					  <li><a href="fodderAction!videolist" target="mainFrame">视频</a></li>
+					   -->
 					  <li><a href="fodderAction!musiclist" target="mainFrame">音乐</a></li>
 					  <li><a href="fodderAction!list" target="mainFrame">图文消息</a></li>
 					</ul>

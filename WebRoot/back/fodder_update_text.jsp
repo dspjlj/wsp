@@ -87,6 +87,7 @@
     }
     </script>
 	<form class="form-horizontal" id="reply_form" style="margin-left: 10px;margin-top:10px;" action="fodderAction!updatetext" method="post">	        
+			<input type="hidden" name="fodderid" value="<s:property value="fodder.id"/>"/>
 			<div class="control-group">
 			  <label class="control-label" for="answertype" style="text-align: right;margin-top: -4px;">标题:</label>
 			    <div class="controls">
@@ -241,7 +242,7 @@
 		<div class="clr"></div>
 	</div>
 	<div class="editArea">
-		<textarea id="welcome" name="content" style="display: none;"><s:property value="fodder.content"/></textarea>
+		<textarea id="welcome" name="content" style="display: none;"></textarea>
 		<div style="overflow-y: auto; overflow-x: hidden;" contenteditable="true">
 		</div>
 	</div>
@@ -322,7 +323,7 @@ $(function(){
 	
 	
 	//content (string)回复内容
-	var itemData = {"id":"10865","wid":"10652","typ":"0","content":"请填写"};
+	var itemData = {"id":"10865","wid":"10652","typ":"0","content":"<s:property value="fodder.content"/>"};
 	var articleData = null;
 	var wuid = 10652;
 	
