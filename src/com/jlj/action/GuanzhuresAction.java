@@ -52,17 +52,16 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int pageCount;
 	private int totalCount;
 	private int status;//按状态
-	private int pid;//按用户id
-	private String publicaccount;//公众号原始ID
 	//条件
 	private int con;
 	private String convalue;
 	
 	
 	/**
-	 * 素材管理
+	 * 首页关注管理-管理员用（暂无）
 	 */
 	public String list() throws Exception{
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
 		if(convalue!=null&&!convalue.equals("")){
 			convalue=URLDecoder.decode(convalue, "utf-8");
 		}
@@ -94,65 +93,39 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 */
 	
 	public String add() throws Exception{
-		String paccount=guanzhures.getPublicaccount();
 		guanzhuresService.add(guanzhures);
-		
-		arg[0]="guanzhuresAction!view?publicaccount="+paccount;
-		arg[1]="我的素材";
-		return SUCCESS;
+		return this.view();
 	}
-	/**
-	 * 删除
-	 * @return
-	 */
-	public String delete(){
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
-		Guanzhures guanzhures=guanzhuresService.loadById(id);
-		guanzhuresService.delete(guanzhures);
-		
-		arg[0]="guanzhuresAction!list?publicaccount="+paccount;
-		arg[1]="素材管理";
-		return SUCCESS;
-	}
+	
 	/**
 	 * 修改
 	 * @return
 	 */
 	public String update() throws Exception{
-		String paccount=guanzhures.getPublicaccount();
 		guanzhuresService.update(guanzhures);
-		arg[0]="guanzhuresAction!view?publicaccount="+paccount;
-		arg[1]="我的素材";
-		return SUCCESS;
+		return this.view();
 	}
 	/**
-	 * 查看信息
+	 * 首次关注设置-判断是显示还是新增关注设置
 	 * @return
 	 */
 	private Fodder fodder;
 	public String view(){
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
 		//若客户第一次浏览该页，首先进入添加关注回复页面;否则，直接进入查看页面
 		List<Guanzhures> guanzhureslist= guanzhuresService.queryListByPublicAccount(publicaccount);
 		if(guanzhureslist.size()>0){
-			guanzhures=guanzhureslist.get(0);
-			
-			if(guanzhures!=null){
-				fodder=fodderService.loadById(guanzhures.getFodderid());
-				return "view";
-			}else{
-				String errorInfo="会话失效了，请重新登录";
-				request.put("errorInfo", errorInfo);
-				return "operror";
-			}
-			
+			guanzhures=guanzhureslist.get(0);//有关注回复对象，则直接load
+			//查出该素材
+			int fodderid=guanzhures.getFodderid();
+			fodder=fodderService.loadById(fodderid);
+			session.put("sucainame", fodder.getTitle());
+			session.put("fodderid", fodderid);
+			session.put("guanzhures", guanzhures);
+			return "load";
 			
 		}else{
+			//清空session，并跳转到add页
 			session.put("sucainame", "");
 			session.put("fodderid", "");
 			return this.goToAdd();
@@ -165,6 +138,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 */
 	public String load() throws Exception{
 		guanzhures=guanzhuresService.loadById(id);
+		//为查询素材标题
 		int fodderid=guanzhures.getFodderid();
 		fodder = fodderService.loadById(fodderid);
 		session.put("sucainame", fodder.getTitle());
@@ -173,34 +147,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		return "load";
 	}
 	
-	//上传照片
-	private File picture;
-	private String pictureContentType;
-	private String pictureFileName;
-	//文件上传
-	public void upload(String imageName) throws Exception{
-		String floderName=((Pubclient)session.get("pubclient")).getPublicaccount();
-		File saved=new File(ServletActionContext.getServletContext().getRealPath(floderName),imageName);
-		InputStream ins=null;
-		OutputStream ous=null;
-		try {
-			saved.getParentFile().mkdirs();
-			ins=new FileInputStream(picture);
-			ous=new FileOutputStream(saved);
-			byte[] b=new byte[1024];
-			int len = 0;
-			while((len=ins.read(b))!=-1){
-				ous.write(b,0,len);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally{
-			if(ous!=null)
-				ous.close();
-			if(ins!=null) 
-				ins.close();
-		}
-	}
 	
 	//get、set-------------------------------------------
 	public IGuanzhuresService getGuanzhuresService() {
@@ -287,41 +233,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public int getPid() {
-		return pid;
-	}
-	public void setPid(int pid) {
-		this.pid = pid;
-	}
 	public String[] getArg() {
 		return arg;
 	}
 	public void setArg(String[] arg) {
 		this.arg = arg;
-	}
-	public String getPublicaccount() {
-		return publicaccount;
-	}
-	public void setPublicaccount(String publicaccount) {
-		this.publicaccount = publicaccount;
-	}
-	public File getPicture() {
-		return picture;
-	}
-	public void setPicture(File picture) {
-		this.picture = picture;
-	}
-	public String getPictureContentType() {
-		return pictureContentType;
-	}
-	public void setPictureContentType(String pictureContentType) {
-		this.pictureContentType = pictureContentType;
-	}
-	public String getPictureFileName() {
-		return pictureFileName;
-	}
-	public void setPictureFileName(String pictureFileName) {
-		this.pictureFileName = pictureFileName;
 	}
 	public IFodderService getFodderService() {
 		return fodderService;

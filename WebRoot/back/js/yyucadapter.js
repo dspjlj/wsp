@@ -659,7 +659,7 @@ function pophtml(html,w,h,comefrom,maskopacity,during){
 	var jmask = $('<div id="yyucmask" style="filter:alpha(opacity=55);WIDTH: 100%;position: absolute;left:0px;top:0px;z-index:10000;background:gray;" id="yyucpop"></div>');
 	
 	
-	jpop.append('<table id="yyucpophtmltable" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><th colspan="2" height="20px;" style="background:#336699;"></th><th width="20px;" style="background:#336699;width:20px;" id="yyucpopclose"><b>╳</b></th></tr><th width="20px;"  style="background:#336699;">&nbsp;</th><td style="background-color: #dfdfdf;" height="'+(h-50)+'px" width="'+(w-40)+'px" >'+html+'</td><th width="20px;" style="background:#336699;width:20px;">&nbsp;</th></tr><tr><th colspan="3"  height="20px;" style="background:#336699;"></th></tr></table>');
+	jpop.append('<table id="yyucpophtmltable" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><th colspan="2" height="20px;" style="background:#336699;"></th><th width="20px;" style="background:#336699;width:20px;font-size:16px;" id="yyucpopclose"><b>[╳]</b></th></tr><th width="20px;"  style="background:#336699;">&nbsp;</th><td style="background-color: #dfdfdf;" height="'+(h-50)+'px" width="'+(w-40)+'px" >'+html+'</td><th width="20px;" style="background:#336699;width:20px;">&nbsp;</th></tr><tr><th colspan="3"  height="20px;" style="background:#336699;"></th></tr></table>');
 	$('body').append(jpop);
 
 	var top = parseInt($(window).scrollTop()+($(window).height()-h)/2);
@@ -755,7 +755,7 @@ function pop(oid,w,h,comefrom){
 	var jpop = $('<div id="yyucpop" style="overflow:hidden;position: absolute;left:-1000px;top:-1000px;z-index:811201;width:'+w+'px;height:'+h+'px;"></div>');
 	var jmask = $('<div id="yyucmask" style="position: absolute;left:0px;top:0px;z-index:99;background:gray;" id="yyucpop"></div>');
 	jmask.css('opacity',0.4);
-	jpop.append('<table id="yyucpophtmltable" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><th colspan="2" height="20px;" style="background:#336699;"></th><th width="20px;" style="background:#336699;" id="yyucpopclose"><b>╳</b></th></tr><th width="20px;"  style="background:#336699;"></th><td class="yyucappendtd"></td><th width="20px;" style="background:#336699;"></th></tr><tr><th colspan="3"  height="20px;" style="background:#336699;"></th></tr></table>');
+	jpop.append('<table id="yyucpophtmltable" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><th colspan="2" height="20px;" style="background:#336699;"></th><th width="20px;" style="background:#336699;font-size:16px;" id="yyucpopclose"><b>[╳]</b></th></tr><th width="20px;"  style="background:#336699;"></th><td class="yyucappendtd"></td><th width="20px;" style="background:#336699;"></th></tr><tr><th colspan="3"  height="20px;" style="background:#336699;"></th></tr></table>');
 	jpop.find('.yyucappendtd').append($('#'+oid).show());
 	$('body').append(jpop);
 

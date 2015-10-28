@@ -162,7 +162,7 @@ $(function(){
       </div>
       <ul class="subnav-menu" style="display: none">
         <li>
-          <a href="material_firstAttention.html">首次关注</a>
+          <a href="guanzhuresAction!view">首次关注</a>
         </li>
         <li>
           <a href="material_keyword_manage.html">关键字回复</a>

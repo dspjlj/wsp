@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="box-content">
 
 
-                            <form id="foddermusicform" action="fodderAction!addmusic" method="post" class="form-horizontal form-validate" novalidate="novalidate" enctype="multipart/form-data">
+                            <form id="foddermusicform" action="fodderAction!addmusic" method="post" class="form-horizontal form-validate" novalidate="novalidate">
                                 <div class="control-group">
                                     <label for="name" class="control-label">标题 :</label>
                                     <div class="controls">

@@ -111,8 +111,12 @@
 			<result name="loadtext">/back/fodder_update_text.jsp</result>
 			<result name="loadmusic">/back/fodder_update_music.jsp</result>
 			
-			<result name="fodderchooselist">/fodder_choose.jsp</result>
-			<result name="fodderarticlelist">/fodderarticle_manage.jsp</result>
+			<result name="fodderchooselist">/back/fodder_choose.jsp</result>
+			<result name="guanzhuresadd">/back/guanzhures_add.jsp</result>
+			<result name="guanzhuresupdate">/back/guanzhures_update.jsp</result>
+			
+			
+			<result name="fodderarticlelist">/back/fodderarticle_manage.jsp</result>
 			
 			
 			<result name="invalid.token">/back/op_error.jsp</result>
@@ -123,6 +127,40 @@
             </interceptor-ref>
 		</action>
 	</package>
+	
+	<package name="guanzhures" extends="struts-default">
+		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
+        <interceptors>
+            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
+            <interceptor-stack name="mystack">
+                <interceptor-ref name="loginedCheck" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+		<global-results>
+			<result name="adminLogin">/back/login.jsp</result>
+			<result name="opsessiongo">/back/op_sessiongo.jsp</result>
+		</global-results>
+		<action name="guanzhuresAction" class="guanzhuresAction">
+			<result name="success">/back/op_success.jsp</result>
+			
+			<result name="add">/back/guanzhures_add.jsp</result>
+			<result name="load">/back/guanzhures_update.jsp</result>
+			<result name="view">/back/guanzhures_view.jsp</result>
+			
+			<result name="opfail">/back/op_failure.jsp</result>
+			<result name="operror">/back/op_error.jsp</result>
+			
+			<result name="invalid.token">/back/op_error.jsp</result>
+			<interceptor-ref name="mystack" />
+            <interceptor-ref name="token" >
+            	<param name="includeMethods">add</param>
+            	<param name="excludeMethods">default</param>
+            </interceptor-ref>
+		</action>
+	</package>
+	
 	
 	<package name="custommenu" extends="struts-default">
 		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
@@ -368,39 +406,7 @@
 		</action>
 	</package>
 	
-	<package name="guanzhures" extends="struts-default">
-		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
-        <interceptors>
-            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
-            <interceptor-stack name="mystack">
-                <interceptor-ref name="loginedCheck" />
-                <interceptor-ref name="defaultStack" />
-            </interceptor-stack>
-        </interceptors>
-        
-		<global-results>
-			<result name="adminLogin">/login.jsp</result>
-			<result name="opsessiongo">/op_sessiongo.jsp</result>
-		</global-results>
-		<action name="guanzhuresAction" class="guanzhuresAction">
-			<result name="success">/op_success.jsp</result>
-			<result name="fail">/op_failure.jsp</result>
-			<result name="operror">/op_error.jsp</result>
-			
-			<result name="list">/guanzhures_manage.jsp</result>
-			
-			<result name="add">/guanzhures_add.jsp</result>
-			<result name="load">/guanzhures_update.jsp</result>
-			<result name="view">/guanzhures_view.jsp</result>
-			
-			<result name="invalid.token">/op_failure.jsp</result>
-			<interceptor-ref name="mystack" />
-            <interceptor-ref name="token" >
-            	<param name="includeMethods">add</param>
-            	<param name="excludeMethods">default</param>
-            </interceptor-ref>
-		</action>
-	</package>
+	
 	
 	<package name="fodderarticle" extends="struts-default">
 		<!-- 配置自定义拦截器LoginedCheckInterceptor -->

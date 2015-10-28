@@ -39,56 +39,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="box">
                         <div class="box-title">
                             <div class="span10">
-                                <h3><i class="icon-edit"></i>添加音乐</h3>
+                                <h3><i class="icon-edit"></i>首次关注设置</h3>
                             </div>
                             <div class="span2"><a class="btn" href="Javascript:window.history.go(-1)">返回</a></div>
                         </div>
 
                         <div class="box-content">
 
-
-                            <form id="foddermusicform" action="fodderAction!updatemusic" method="post" class="form-horizontal form-validate" novalidate="novalidate">
-                                <s:hidden name="fodder.id"></s:hidden>
-                                <s:hidden name="fodder.msgtype"></s:hidden>
-                                <s:hidden name="fodder.savetype"></s:hidden>
-                                <s:hidden name="fodder.publicaccount"></s:hidden>
-                                <s:hidden name="fodder.createdate"></s:hidden>
+							<script type="text/javascript">
+    $(function(){
+    	$('input[name="hflx"]').click(function(){
+    		var val = $('input[name="hflx"]:checked').val();
+    		$('#answertype').val(val).trigger('change');
+    		if(val=='1'){
+    			 openscset();
+    		}
+    	});
+    });
+    
+    function openscset(){
+		pophtml('<iframe src="fodderAction!choosefodder?currentpage=guanzhures_add" style="width:880px;height:470px;border:none;background-color: #dfdfdf;" width="880px" height="475px"></iframe>',920,510,true);
+	}
+    
+    function setselid(id){
+    	$('input[relval="'+id+'"]').prop('checked',true);
+    	$('#multiArticle11if').attr('src','/admin/baseService/contresourceshowone-'+id+'.html');
+    	
+    }
+    </script>
+                            <form id="guanzhuresform" action="guanzhuresAction!add" method="post" class="form-horizontal form-validate" novalidate="novalidate">
+                                <s:hidden name="guanzhures.publicaccount" value="%{#session.pubclient.publicaccount}"></s:hidden>
+                                <s:hidden name="guanzhures.ison" value="1"></s:hidden>
+                                <div class="control-group">
+                                    <label for="name" class="control-label">选择素材 :</label>
+                                    <div class="controls">
+                                    	<s:textfield name="sucainame" value="%{#session.sucainame}" cssClass="input-xlarge" readonly="true" />
+	  									
+	  									<input type='button' class="coolbg np" onClick="openscset();" value='选择' style="width:80" />
+      									<s:hidden name="guanzhures.fodderid" value="%{#session.fodderid}"></s:hidden>
+      									
+                                    	<span class="maroon">*</span><span class="help-inline"></span>
+									</div>
+                                </div>
                                 
-                                <div class="control-group">
-                                    <label for="name" class="control-label">标题 :</label>
-                                    <div class="controls">
-                                    	<s:textfield name="fodder.title" id="publicname" cssClass="input-xlarge"></s:textfield>
-                                    	<span class="maroon">*</span><span class="help-inline"></span>
-									</div>
-                                </div>
-                                <div class="control-group">
-                                    <label for="name" class="control-label">音乐链接 :</label>
-                                    <div class="controls">
-                                    	<s:textfield name="fodder.musicurl" id="publicno" cssClass="input-xxlarge"></s:textfield>
-                                    	<span class="maroon">*</span><span class="help-inline"></span>
-									</div>
-                                </div>
-                                <div class="control-group">
-                                    <label for="name" class="control-label">高品质音乐链接 :</label>
-                                    <div class="controls">
-                                    	<s:textfield name="fodder.hqmusicurl" id="publicaccount" cssClass="input-xxlarge"></s:textfield>
-                                    	<span class="maroon">*</span><span class="help-inline"></span>
-									</div>
-                                </div>
-                                
-                                <div class="control-group">
-                                    <label for="name" class="control-label">音乐描述 :</label>
-                                    <div class="controls">
-                                    	<s:textarea name="fodder.description" id="comtel" cssStyle="width:288px;height:160px;"></s:textarea>
-                                    	<span class="maroon">*</span><span class="help-inline"></span>
-									</div>
-                                </div>
                                 
 								
                                 <div class="form-actions">
                                 	<s:token></s:token>
                                     <button type="submit" class="btn btn-primary">保存</button>
-                                    <a class="btn" href="Javascript:document.getElementById('foddermusicform').reset();">取消</a>
+                                    <a class="btn" href="Javascript:document.getElementById('guanzhuresform').reset();">取消</a>
 
                                 </div>
                             </form>

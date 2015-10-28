@@ -625,15 +625,24 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	//操作音乐===============================================end
 	
 	
-	private String currentpage;
+	private String currentpage;//由哪个页面传入
+	/**
+	 * 跳转到-选择素材页面
+	 * @return
+	 */
 	public String choosefodder(){
+		session.put("currentpage", currentpage);
+		String publicaccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		//所有当前页记录对象[根据条件、条件值、类型id、公众号原始ID]
 		fodders=fodderService.querySavetypeList(con,convalue,status,publicaccount);
 		//总记录数
 		totalCount=fodderService.getSavetypeTotalCount(con,convalue,status,publicaccount);
 		return "fodderchooselist";
 	}
-	
+	/**
+	 * 刷新关注修改页中session选中的素材id
+	 * @return
+	 */
 	public String refreshSessionAs(){
 		Fodder thisfodder = fodderService.loadById(fodderid);
 		if(thisfodder!=null){
@@ -641,9 +650,15 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 			session.put("sucainame", sucainame);
 			session.put("fodderid", fodderid);
 		}
-		arg[0]=currentpage+".jsp";
-		arg[1]="素材选定";
-		return SUCCESS;
+		String currentpage = (String)session.get("currentpage");
+		if(currentpage!=null&&currentpage.equals("guanzhures_add")){
+			return "guanzhuresadd";
+		}else if(currentpage!=null&&currentpage.equals("guanzhures_update")){
+			return "guanzhuresupdate";
+		}else{
+			System.out.println("[------------guanzhures is bad--------------]");
+			return NONE;
+		}
 	}
 	
 	
