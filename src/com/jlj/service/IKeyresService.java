@@ -18,8 +18,7 @@ public interface IKeyresService {
 
 	public abstract Keyres loadById(int id);
 
-	public abstract int getPageCountByPkid(int con, String convalue,
-			int status, int pkid, int size);
+	public abstract int getPageCountByPkid(int totalCount, int size);
 
 	public abstract int getTotalCountByPkid(int con, String convalue,
 			int status, int pkid);

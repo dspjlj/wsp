@@ -42,42 +42,35 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private final int size=10;
 	private int pageCount;
 	private int totalCount;
-	private int status;//按状态
-	private int pid;//按用户id
-	private String publicaccount;//公众号原始ID
 	//条件
 	private int con;
 	private String convalue;
 	
 	
 	/**
-	 * 关键词管理
+	 * 关键词分组管理
 	 */
 	public String list() throws Exception{
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
 		if(convalue!=null&&!convalue.equals("")){
 			convalue=URLDecoder.decode(convalue, "utf-8");
 		}
 		if(page<1){
 			page=1;
 		}
+		//总记录数
+		totalCount=publickeyService.getTotalCount(con,convalue,publicaccount);
 		//总页数
-		pageCount=publickeyService.getPageCount(con,convalue,status,publicaccount,size);
+		pageCount=publickeyService.getPageCount(totalCount,size);
 		if(page>pageCount&&pageCount!=0){
 			page=pageCount;
 		}
 		//所有当前页记录对象
-		publickeys=publickeyService.queryList(con,convalue,status,publicaccount,page,size);
-		//总记录数
-		totalCount=publickeyService.getTotalCount(con,convalue,status,publicaccount);
+		publickeys=publickeyService.queryList(con,convalue,publicaccount,page,size);
+		
 		return "list";
 	}
-	/**
-	 * 跳转到添加页面
-	 * @return
-	 */
-	public String goToAdd(){
-		return "add";
-	}
+	
 	/**
 	 * 添加
 	 * @return
@@ -85,66 +78,22 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 */
 	
 	public String add() throws Exception{
-		String paccount=publickey.getPublicaccount();
 		publickeyService.add(publickey);
 		
-		arg[0]="publickeyAction!view?publicaccount="+paccount;
-		arg[1]="查看关键词";
+		arg[0]="publickeyAction!list";
+		arg[1]="关键词分组管理";
 		return SUCCESS;
 	}
 	/**
 	 * 删除
 	 * @return
+	 * @throws Exception 
 	 */
-	public String delete(){
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
-		Publickey publickey=publickeyService.loadById(id);
-		publickeyService.delete(publickey);
-		
-		arg[0]="publickeyAction!list?publicaccount="+paccount;
-		arg[1]="关键词管理";
-		return SUCCESS;
+	public String delete() throws Exception{
+		publickeyService.deleteById(id);
+		return this.list();
 	}
-	/**
-	 * 修改
-	 * @return
-	 */
-	public String update() throws Exception{
-		String paccount=publickey.getPublicaccount();
-		publickeyService.update(publickey);
-		arg[0]="publickeyAction!view?publicaccount="+paccount;
-		arg[1]="查看关键词";
-		return SUCCESS;
-	}
-	/**
-	 * 查看信息
-	 * @return
-	 */
-	public String view(){
-		//若客户第一次浏览该页，首先进入添加关键词;否则，直接进入查看页面
-		List<Publickey> publickeylist= publickeyService.queryListByPublicAccount(publicaccount);
-		if(publickeylist.size()>0){
-			publickey=publickeylist.get(0);
-			
-			if(publickey!=null){
-				return "view";
-			}else{
-				String errorInfo="会话失效了，请重新登录";
-				request.put("errorInfo", errorInfo);
-				return "operror";
-			}
-			
-			
-		}else{
-			return this.goToAdd();
-		}
-	}
+	
 	/**
 	 * 跳转到修改页面
 	 * @return
@@ -153,6 +102,20 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		publickey=publickeyService.loadById(id);
 		return "load";
 	}
+	
+	/**
+	 * 修改
+	 * @return
+	 */
+	public String update() throws Exception{
+		publickeyService.update(publickey);
+		
+		arg[0]="publickeyAction!list";
+		arg[1]="关键词分组管理";
+		return SUCCESS;
+	}
+	
+	
 	
 	
 	//get、set-------------------------------------------
@@ -234,30 +197,14 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setConvalue(String convalue) {
 		this.convalue = convalue;
 	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	public int getPid() {
-		return pid;
-	}
-	public void setPid(int pid) {
-		this.pid = pid;
-	}
+	
 	public String[] getArg() {
 		return arg;
 	}
 	public void setArg(String[] arg) {
 		this.arg = arg;
 	}
-	public String getPublicaccount() {
-		return publicaccount;
-	}
-	public void setPublicaccount(String publicaccount) {
-		this.publicaccount = publicaccount;
-	}
+	
 	
 	
 }

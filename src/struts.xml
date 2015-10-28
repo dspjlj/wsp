@@ -12,6 +12,7 @@
 	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 	
+	<!-- 基础接口start -->
 	<package name="dspuser" extends="struts-default">
 		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
         <interceptors>
@@ -161,6 +162,102 @@
 		</action>
 	</package>
 	
+	<package name="publickey" extends="struts-default">
+		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
+        <interceptors>
+            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
+            <interceptor-stack name="mystack">
+                <interceptor-ref name="loginedCheck" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+		<global-results>
+			<result name="adminLogin">/back/login.jsp</result>
+			<result name="opsessiongo">/back/op_sessiongo.jsp</result>
+		</global-results>
+		<action name="publickeyAction" class="publickeyAction">
+			<result name="success">/back/op_success.jsp</result>
+			<result name="opfail">/back/op_failure.jsp</result>
+			
+			<result name="list">/back/publickey_manage.jsp</result>
+			
+			<result name="load">/back/publickey_update.jsp</result>
+			
+			<result name="invalid.token">/back/op_error.jsp</result>
+			<interceptor-ref name="mystack" />
+            <interceptor-ref name="token" >
+            	<param name="includeMethods">add</param>
+            	<param name="excludeMethods">default</param>
+            </interceptor-ref>
+		</action>
+	</package>
+	
+	<package name="keyres" extends="struts-default">
+		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
+        <interceptors>
+            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
+            <interceptor-stack name="mystack">
+                <interceptor-ref name="loginedCheck" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+		<global-results>
+			<result name="adminLogin">/back/login.jsp</result>
+			<result name="opsessiongo">/back/op_sessiongo.jsp</result>
+		</global-results>
+		<action name="keyresAction" class="keyresAction">
+			<result name="success">/back/op_success.jsp</result>
+			<result name="opfail">/back/op_failure.jsp</result>
+			
+			<result name="list">/back/keyres_manage.jsp</result>
+			
+			<result name="add">/back/keyres_add.jsp</result>
+			<result name="load">/back/keyres_update.jsp</result>
+			
+			<result name="invalid.token">/back/op_error.jsp</result>
+			<interceptor-ref name="mystack" />
+            <interceptor-ref name="token" >
+            	<param name="includeMethods">add</param>
+            	<param name="excludeMethods">default</param>
+            </interceptor-ref>
+		</action>
+	</package>
+	
+	<package name="autores" extends="struts-default">
+		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
+        <interceptors>
+            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
+            <interceptor-stack name="mystack">
+                <interceptor-ref name="loginedCheck" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+		<global-results>
+			<result name="adminLogin">/login.jsp</result>
+			<result name="opsessiongo">/op_sessiongo.jsp</result>
+		</global-results>
+		<action name="autoresAction" class="autoresAction">
+			<result name="success">/op_success.jsp</result>
+			<result name="fail">/op_failure.jsp</result>
+			<result name="operror">/op_error.jsp</result>
+			
+			<result name="list">/autores_manage.jsp</result>
+			
+			<result name="add">/autores_add.jsp</result>
+			<result name="load">/autores_update.jsp</result>
+			<result name="view">/autores_view.jsp</result>
+			
+			<result name="invalid.token">/op_failure.jsp</result>
+			<interceptor-ref name="mystack" />
+            <interceptor-ref name="token" >
+            	<param name="includeMethods">add</param>
+            	<param name="excludeMethods">default</param>
+            </interceptor-ref>
+		</action>
+	</package>
 	
 	<package name="custommenu" extends="struts-default">
 		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
@@ -228,6 +325,8 @@
             </interceptor-ref>
 		</action>
 	</package>
+	<!-- 基础接口end -->
+	
 	
 	<package name="photo" extends="struts-default">
 		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
@@ -303,108 +402,12 @@
 		</action>
 	</package>
 	
-	<package name="keyres" extends="struts-default">
-		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
-        <interceptors>
-            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
-            <interceptor-stack name="mystack">
-                <interceptor-ref name="loginedCheck" />
-                <interceptor-ref name="defaultStack" />
-            </interceptor-stack>
-        </interceptors>
-        
-		<global-results>
-			<result name="adminLogin">/login.jsp</result>
-			<result name="opsessiongo">/op_sessiongo.jsp</result>
-		</global-results>
-		<action name="keyresAction" class="keyresAction">
-			<result name="success">/op_success.jsp</result>
-			<result name="fail">/op_failure.jsp</result>
-			<result name="operror">/op_error.jsp</result>
-			
-			<result name="list">/keyres_manage.jsp</result>
-			
-			<result name="add">/keyres_add.jsp</result>
-			<result name="load">/keyres_update.jsp</result>
-			<result name="view">/keyres_view.jsp</result>
-			
-			<result name="invalid.token">/op_failure.jsp</result>
-			<interceptor-ref name="mystack" />
-            <interceptor-ref name="token" >
-            	<param name="includeMethods">add</param>
-            	<param name="excludeMethods">default</param>
-            </interceptor-ref>
-		</action>
-	</package>
 	
 	
-	<package name="publickey" extends="struts-default">
-		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
-        <interceptors>
-            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
-            <interceptor-stack name="mystack">
-                <interceptor-ref name="loginedCheck" />
-                <interceptor-ref name="defaultStack" />
-            </interceptor-stack>
-        </interceptors>
-        
-		<global-results>
-			<result name="adminLogin">/login.jsp</result>
-			<result name="opsessiongo">/op_sessiongo.jsp</result>
-		</global-results>
-		<action name="publickeyAction" class="publickeyAction">
-			<result name="success">/op_success.jsp</result>
-			<result name="fail">/op_failure.jsp</result>
-			<result name="operror">/op_error.jsp</result>
-			
-			<result name="list">/publickey_manage.jsp</result>
-			
-			<result name="add">/publickey_add.jsp</result>
-			<result name="load">/publickey_update.jsp</result>
-			<result name="view">/publickey_view.jsp</result>
-			
-			<result name="invalid.token">/op_failure.jsp</result>
-			<interceptor-ref name="mystack" />
-            <interceptor-ref name="token" >
-            	<param name="includeMethods">add</param>
-            	<param name="excludeMethods">default</param>
-            </interceptor-ref>
-		</action>
-	</package>
 	
-	<package name="autores" extends="struts-default">
-		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
-        <interceptors>
-            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
-            <interceptor-stack name="mystack">
-                <interceptor-ref name="loginedCheck" />
-                <interceptor-ref name="defaultStack" />
-            </interceptor-stack>
-        </interceptors>
-        
-		<global-results>
-			<result name="adminLogin">/login.jsp</result>
-			<result name="opsessiongo">/op_sessiongo.jsp</result>
-		</global-results>
-		<action name="autoresAction" class="autoresAction">
-			<result name="success">/op_success.jsp</result>
-			<result name="fail">/op_failure.jsp</result>
-			<result name="operror">/op_error.jsp</result>
-			
-			<result name="list">/autores_manage.jsp</result>
-			
-			<result name="add">/autores_add.jsp</result>
-			<result name="load">/autores_update.jsp</result>
-			<result name="view">/autores_view.jsp</result>
-			
-			<result name="invalid.token">/op_failure.jsp</result>
-			<interceptor-ref name="mystack" />
-            <interceptor-ref name="token" >
-            	<param name="includeMethods">add</param>
-            	<param name="excludeMethods">default</param>
-            </interceptor-ref>
-		</action>
-	</package>
+	
+	
+	
 	
 	
 	

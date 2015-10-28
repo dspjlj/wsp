@@ -18,14 +18,13 @@ public interface IPublickeyService {
 
 	public abstract Publickey loadById(int id);
 
-	public abstract int getPageCount(int con, String convalue, int status,
-			String publicaccount, int size);
+	public abstract int getPageCount(int totalCount, int size);
 
-	public abstract int getTotalCount(int con, String convalue, int status,
+	public abstract int getTotalCount(int con, String convalue,
 			String publicaccount);
 
 	public abstract List<Publickey> queryList(int con, String convalue,
-			int status, String publicaccount, int page, int size);
+			 String publicaccount, int page, int size);
 
 	public abstract List<Publickey> queryListByPublicAccount(
 			String publicaccount);

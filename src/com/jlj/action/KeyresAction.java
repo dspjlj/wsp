@@ -52,7 +52,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int con;
 	private String convalue;
 	
-	
 	/**
 	 * 关键词管理
 	 */
@@ -63,15 +62,16 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(page<1){
 			page=1;
 		}
+		//总记录数
+		totalCount=keyresService.getTotalCountByPkid(con,convalue,status,pkid);
 		//总页数
-		pageCount=keyresService.getPageCountByPkid(con,convalue,status,pkid,size);
+		pageCount=keyresService.getPageCountByPkid(totalCount,size);
 		if(page>pageCount&&pageCount!=0){
 			page=pageCount;
 		}
 		//所有当前页记录对象
 		keyress=keyresService.queryListByPkid(con,convalue,status,pkid,page,size);
-		//总记录数
-		totalCount=keyresService.getTotalCountByPkid(con,convalue,status,pkid);
+		
 		return "list";
 	}
 	/**
@@ -124,14 +124,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		arg[1]="关键词管理";
 		return SUCCESS;
 	}
-	/**
-	 * 查看信息
-	 * @return
-	 */
-	public String view(){
-		keyres=keyresService.loadById(id);
-		return "view";
-	}
+	
 	/**
 	 * 跳转到修改页面
 	 * @return

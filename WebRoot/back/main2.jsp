@@ -165,7 +165,7 @@ $(function(){
           <a href="guanzhuresAction!view">首次关注</a>
         </li>
         <li>
-          <a href="material_keyword_manage.html">关键字回复</a>
+          <a href="publickeyAction!list">关键字回复</a>
         </li>
         <li>
           <a href="fodderAction!list">素材管理</a>

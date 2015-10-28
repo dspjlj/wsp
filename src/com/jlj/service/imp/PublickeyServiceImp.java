@@ -61,23 +61,16 @@ public class PublickeyServiceImp implements IPublickeyService{
 		return publickeyDao.loadById(id);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IPublickeyService#getPageCount(int, java.lang.String, int, java.lang.String, int)
-	 */
-	public int getPageCount(int con, String convalue, int status, String publicaccount,
-			int size) {
-		int totalCount=this.getTotalCount(con, convalue, status, publicaccount);
+	//查询公众号关键字分类列表==============================start
+	public int getPageCount(int totalCount,int size) {
 		return totalCount%size==0?totalCount/size:(totalCount/size+1);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IPublickeyService#getTotalCount(int, java.lang.String, int, java.lang.String)
-	 */
-	public int getTotalCount(int con, String convalue, int status, String publicaccount) {
+	public int getTotalCount(int con, String convalue,  String publicaccount) {
 		String queryString = "select count(*) from Publickey mo where mo.publicaccount=? ";
 		Object[] p = null;
 		if(con!=0&&convalue!=null&&!convalue.equals("")){
-			//大类别名称
+			//类别名称
 			if(con==1){
 				queryString += "and mo.title like ? "; 
 			}
@@ -88,15 +81,11 @@ public class PublickeyServiceImp implements IPublickeyService{
 		return publickeyDao.getUniqueResult(queryString,p);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IPublickeyService#queryList(int, java.lang.String, int, java.lang.String, int, int)
-	 */
-	public List<Publickey> queryList(int con, String convalue, int status,
-			String publicaccount, int page, int size) {
+	public List<Publickey> queryList(int con, String convalue, String publicaccount, int page, int size) {
 		String queryString = "from Publickey mo where mo.publicaccount=? ";
 		Object[] p = null;
 		if(con!=0&&convalue!=null&&!convalue.equals("")){
-			//大类别名称
+			//类别名称
 			if(con==1){
 				queryString += "and mo.title like ? "; 
 			}
@@ -107,6 +96,8 @@ public class PublickeyServiceImp implements IPublickeyService{
 		queryString += " order by mo.id desc ";
 		return publickeyDao.pageList(queryString,p,page,size);
 	}
+	//查询公众号关键字分类列表==============================end
+	
 	public List<Publickey> queryListByPublicAccount(String publicaccount) {
 		String queryString = "from Publickey mo where mo.publicaccount = ?";
 		Object[] p = new Object[]{publicaccount};

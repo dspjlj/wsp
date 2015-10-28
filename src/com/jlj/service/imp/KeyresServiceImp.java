@@ -62,19 +62,11 @@ public class KeyresServiceImp implements IKeyresService{
 	public Keyres loadById(int id) {
 		return keyresDao.loadById(id);
 	}
-
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IKeyresService#getPageCountByPkid(int, java.lang.String, int, int, int)
-	 */
-	public int getPageCountByPkid(int con, String convalue, int status, int pkid,
-			int size) {
-		int totalCount=this.getTotalCountByPkid(con, convalue, status, pkid);
+	//查询关键字回复列表=============================start
+	public int getPageCountByPkid(int totalCount, int size) {
 		return totalCount%size==0?totalCount/size:(totalCount/size+1);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IKeyresService#getTotalCountByPkid(int, java.lang.String, int, int)
-	 */
 	public int getTotalCountByPkid(int con, String convalue, int status, int pkid) {
 		String queryString = "select count(*) from Keyres mo where mo.publickey.id=? ";
 		Object[] p = null;
@@ -90,9 +82,6 @@ public class KeyresServiceImp implements IKeyresService{
 		return keyresDao.getUniqueResult(queryString,p);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IKeyresService#queryListByPkid(int, java.lang.String, int, int, int, int)
-	 */
 	public List<Keyres> queryListByPkid(int con, String convalue, int status,
 			int pkid, int page, int size) {
 		String queryString = "from Keyres mo where mo.publickey.id=? ";
@@ -109,5 +98,5 @@ public class KeyresServiceImp implements IKeyresService{
 		queryString += " order by mo.id desc ";
 		return keyresDao.pageList(queryString,p,page,size);
 	}
-
+	//查询关键字回复列表=============================end
 }
