@@ -54,7 +54,7 @@ public class DiypuffServiceImp implements IDiypuffService {
 		if(con!=0&&convalue!=null&&!convalue.equals("")){
 			//条件1
 			if(con==1){
-				queryString += " and mo.name like ? "; 
+				queryString += " and mo.title like ? "; 
 			}
 			p = new Object[]{publicaccount,'%'+convalue+'%'};
 		}else{
@@ -70,21 +70,27 @@ public class DiypuffServiceImp implements IDiypuffService {
 		if(con!=0&&convalue!=null&&!convalue.equals("")){
 			//条件1
 			if(con==1){
-				queryString += " and mo.name like ? "; 
+				queryString += " and mo.title like ? "; 
 			}
 			p = new Object[]{publicaccount,'%'+convalue+'%'};
 		}else{
 			p = new Object[]{publicaccount};
 		}
-		queryString += " order by mo.orderid asc ";
+		queryString += " order by mo.id desc ";
 		return diypuffDao.pageList(queryString,p,page,size);
 	}
-	
+	//后台查询某公众号的diypuff列表
+	public List<Diypuff> queryListByPublicAccount(String publicaccount) {
+		String queryString = "from Diypuff mo where mo.publicaccount = ? order by mo.id desc ";
+		Object[] p= new Object[]{publicaccount};
+		return diypuffDao.getObjectsByCondition(queryString, p);
+	}
 	
 	public List<Diypuff> getFrontDiypuffsByPublicAccount(String paccount) {
-		String queryString = "from Diypuff mo where mo.publicaccount = ? and mo.ison = 1 order by mo.orderid asc ";
+		String queryString = "from Diypuff mo where mo.publicaccount = ? order by mo.id asc ";
 		Object[] p= new Object[]{paccount};
 		return diypuffDao.getObjectsByCondition(queryString, p);
 	}
+	
 
 }

@@ -29,4 +29,6 @@ public interface IDiypuffService {
 	public abstract List<Diypuff> getFrontDiypuffsByPublicAccount(
 			String paccount);
 
+	public abstract List<Diypuff> queryListByPublicAccount(String publicaccount);
+
 }

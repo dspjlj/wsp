@@ -174,7 +174,7 @@ $(function(){
           <a href="fodderAction!list">素材管理</a>
         </li>
         <li>
-          <a href="material_diy.html">DIY宣传页</a>
+          <a href="diypuffAction!view">DIY宣传页</a>
         </li>
         <li>
           <a href="material_lbs_manage.html">LBS设置</a>

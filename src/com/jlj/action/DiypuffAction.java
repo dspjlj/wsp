@@ -1,5 +1,6 @@
 package com.jlj.action;
 
+import java.io.File;
 import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
@@ -15,9 +17,13 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.jlj.model.Autores;
 import com.jlj.model.Diypuff;
+import com.jlj.model.Pubclient;
 import com.jlj.service.IDiypuffService;
 import com.jlj.service.IPubclientService;
+import com.jlj.util.DateTimeKit;
+import com.jlj.util.ToolKitUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Component("diypuffAction")
@@ -50,38 +56,44 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int con;
 	private String convalue;
 	private String frontpa;
+	
+	//上传照片
+	private File picture;
+	private String pictureContentType;
+	private String pictureFileName;
 	//=========前台显示=================================================
 	/**
 	 * Diy宣传页展示
 	 */
-	public String frontDiypuffs(){
+	public String frontDiypuff(){
 		diypuffs = diypuffService.getFrontDiypuffsByPublicAccount(frontpa);
-		request.put("diypuffs", diypuffs);
+		Diypuff diypuff = diypuffs.get(0);
+		request.put("diypuff", diypuff);
 		return NONE;
 	}
 	//=========后台管理=================================================
 	/**
 	 * Diy宣传页管理
 	 */
-	public String list() throws Exception{
-		if(convalue!=null&&!convalue.equals("")){
-			convalue=URLDecoder.decode(convalue, "utf-8");
-		}
-		if(page<1){
-			page=1;
-		}
-		//总记录数
-		totalCount=diypuffService.getTotalCount(con,convalue,status,publicaccount);
-		//总页数
-		pageCount=diypuffService.getPageCount(totalCount,size);
-		if(page>pageCount&&pageCount!=0){
-			page=pageCount;
-		}
-		//所有当前页记录对象
-		diypuffs=diypuffService.queryList(con,convalue,status,publicaccount,page,size);
-		
-		return "list";
-	}
+//	public String list() throws Exception{
+//		if(convalue!=null&&!convalue.equals("")){
+//			convalue=URLDecoder.decode(convalue, "utf-8");
+//		}
+//		if(page<1){
+//			page=1;
+//		}
+//		//总记录数
+//		totalCount=diypuffService.getTotalCount(con,convalue,status,publicaccount);
+//		//总页数
+//		pageCount=diypuffService.getPageCount(totalCount,size);
+//		if(page>pageCount&&pageCount!=0){
+//			page=pageCount;
+//		}
+//		//所有当前页记录对象
+//		diypuffs=diypuffService.queryList(con,convalue,status,publicaccount,page,size);
+//		
+//		return "list";
+//	}
 	/**
 	 * 跳转到添加页面
 	 * @return
@@ -96,32 +108,60 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @throws Exception
 	 */
 	public String add() throws Exception{
+		System.out.println("add");
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
+		//保存二维码图片
+		if(picture!=null){
+			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));//获取图片文件名称
+			ToolKitUtil.upload(publicaccount,imageName,picture);
+			diypuff.setEwmimg("res/"+publicaccount+"/"+imageName);//设置图片地址全称
+		}
+		//保存链接地址
+		diypuff.setLinkurl("http://www.di3p.com:8088/wsp/front/diypuff.jsp?frontpa="+publicaccount);
+		//保存公众号
+		diypuff.setPublicaccount(publicaccount);
 		diypuffService.add(diypuff);
-		arg[0]="diypuffAction!list";
-		arg[1]="Diy宣传页管理";
-		return SUCCESS;
+		return this.view();
 	}
 	
 	/**
 	 * 删除
 	 * @return
 	 */
-	public String delete(){
-		diypuffService.deleteById(id);
-		arg[0]="diypuffAction!list";
-		arg[1]="Diy宣传页管理";
-		return SUCCESS;
-	}
+//	public String delete(){
+//		diypuffService.deleteById(id);
+//		arg[0]="diypuffAction!list";
+//		arg[1]="Diy宣传页管理";
+//		return SUCCESS;
+//	}
+	
+	/**
+	 * 跳转到修改页面
+	 * @return
+	 */
+//	public String load() throws Exception{
+//		diypuff=diypuffService.loadById(id);
+//		return "load";
+//	}
 	
 	/**
 	 * 修改
 	 * @return
 	 */
 	public String update() throws Exception{
+		//上传并记录图片地址
+		if(picture!=null){
+			String paccount = diypuff.getPublicaccount();//获取原始ID
+			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));//获取图片文件名称
+			ToolKitUtil.upload(paccount,imageName,picture);
+			//删除原来的图片
+			File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+diypuff.getEwmimg());
+			photofile.delete();
+			diypuff.setEwmimg("res/"+paccount+"/"+imageName);//设置图片地址全称
+		}
+		
 		diypuffService.update(diypuff);
-		arg[0]="diypuffAction!list";
-		arg[1]="Diy宣传页管理";
-		return SUCCESS;
+		return this.view();
 	}
 	
 	/**
@@ -129,17 +169,17 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @return
 	 */
 	public String view(){
-		diypuff=diypuffService.loadById(id);
-		return "view";
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
+		//若客户第一次浏览该页，首先进入添加自动关注回复页面;否则，直接进入查看页面
+		List<Diypuff> diypufflist= diypuffService.queryListByPublicAccount(publicaccount);
+		if(diypufflist.size()>0){
+			diypuff=diypufflist.get(0);
+			return "load";
+		}else{
+			return this.goToAdd();
+		}
 	}
-	/**
-	 * 跳转到修改页面
-	 * @return
-	 */
-	public String load() throws Exception{
-		diypuff=diypuffService.loadById(id);
-		return "load";
-	}
+	
 	
 	
 	//get、set-------------------------------------------
@@ -255,6 +295,24 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	public void setFrontpa(String frontpa) {
 		this.frontpa = frontpa;
+	}
+	public File getPicture() {
+		return picture;
+	}
+	public void setPicture(File picture) {
+		this.picture = picture;
+	}
+	public String getPictureContentType() {
+		return pictureContentType;
+	}
+	public void setPictureContentType(String pictureContentType) {
+		this.pictureContentType = pictureContentType;
+	}
+	public String getPictureFileName() {
+		return pictureFileName;
+	}
+	public void setPictureFileName(String pictureFileName) {
+		this.pictureFileName = pictureFileName;
 	}
 	
 }

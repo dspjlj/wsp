@@ -155,7 +155,7 @@
 	line-height: 48px;
 }
 </style>
-	<script type="text/javascript">
+<script type="text/javascript">
 	//改变上传图片的页面预览图片
 function changePreImg() {
     var pic = document.getElementById("myimage"),pic2 = document.getElementById("myimage2"),
@@ -209,8 +209,7 @@ function changePreImg() {
      }
  }
 	</script>
-	
-	</head>
+</head>
 	<body class="theme-blue">
 		<div id="main">
 			<div class="container-fluid">
@@ -230,8 +229,13 @@ function changePreImg() {
 									<tbody>
 										<tr>
 											<td width="50%">
-												<form action="diypuffAction!add" method="post"
+												<form action="diypuffAction!update" method="post"
 													class="form-horizontal form-validate" enctype="multipart/form-data">
+													<s:hidden name="diypuff.id"></s:hidden>
+													<s:hidden name="diypuff.ewmimg"></s:hidden>
+													<s:hidden name="diypuff.linkurl"></s:hidden>
+													<s:hidden name="diypuff.publicaccount"></s:hidden>
+													
 													<div class="control-group">
 														<label class="control-label" for="title">
 															宣传页标题：
@@ -249,7 +253,7 @@ function changePreImg() {
 															二维码设置
 														</label>
 														<div class="controls">
-															<img class="thumb_img" src="images/ewmimg.jpg" id="myimage"
+															<img class="thumb_img" src="../<s:property value="diypuff.ewmimg"/>" id="myimage"
 																style="max-height: 100px;" />
 															<span class="help-inline">
 																<s:file name="picture" onchange="changePreImg();" id="myfile"></s:file>
@@ -278,13 +282,13 @@ function changePreImg() {
 															<span class="help-block">15文字以内</span>
 														</div>
 													</div>
-													<s:if test="diypuff.id!=null&&diypuff!=0">
+													<s:if test="diypuff.id!=null&&diypuff.id!=0">
 													<div class="control-group">
 														<label class="control-label" for="brief">
 															链接地址
 														</label>
 														<div class="controls">
-															生成中...
+															<s:property value="diypuff.linkurl"/>
 														</div>
 													</div>
 													</s:if>
@@ -294,8 +298,8 @@ function changePreImg() {
 															data-loading-text="提交中..." class="btn btn-primary">
 															保存
 														</button>
-														<s:if test="diypuff.id!=null&&diypuff!=0">
-														<a href="javascript:;"
+														<s:if test="diypuff.id!=null&&diypuff.id!=0">
+														<a href="<s:property value="diypuff.linkurl"/>"
 															target="_blank" class="btn btn-primary ">查看推广页</a>
 														</s:if>
 													</div>
@@ -305,9 +309,9 @@ function changePreImg() {
 
 											<td rowspan="6" valign="top" class="yulan" style="text-align: center;width: 300px;height: auto;">
 												<div class="content" id="gzhinfo">
-													<h1 id="adtitle" align="center">标题</h1>
+													<h1 id="adtitle" align="center"><s:property value="diypuff.title"/></h1>
 													<div class="erweima" style="text-align: center;margin: 20px;">
-														<img id="myimage2" src="images/ewmimg.jpg" />
+														<img id="myimage2" src="../<s:property value="diypuff.ewmimg"/>" />
 													</div>
 													<div class="beizhu">
 														<div class="beizhubg">
@@ -318,11 +322,11 @@ function changePreImg() {
 															</p>
 														</div>
 													</div>
-													<span id="adfuninfo">功能介绍</span>
+													<span id="adfuninfo"><s:property value="diypuff.funinfo"/></span>
 												</div>
 												<div class="clr"></div>
 												<div class="footer">
-													<p id="gzhcopyright">版权信息</p>
+													<p id="gzhcopyright"><s:property value="diypuff.copyright"/></p>
 												</div>
 											</td>
 										<tr>
