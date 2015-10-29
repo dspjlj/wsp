@@ -655,6 +655,10 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 			return "guanzhuresadd";
 		}else if(currentpage!=null&&currentpage.equals("guanzhures_update")){
 			return "guanzhuresupdate";
+		}else if(currentpage!=null&&currentpage.equals("keyres_add")){
+			return "keyresadd";
+		}else if(currentpage!=null&&currentpage.equals("keyres_update")){
+			return "keyresupdate";
 		}else{
 			System.out.println("[------------guanzhures is bad--------------]");
 			return NONE;

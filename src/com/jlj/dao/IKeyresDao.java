@@ -43,5 +43,7 @@ public interface IKeyresDao {
 
 	public abstract boolean checkClientExistsWithName(String queryString,
 			Object[] p);
+	
+	public abstract void deleteBatchByHql(final String queryString,final String ids);
 
 }

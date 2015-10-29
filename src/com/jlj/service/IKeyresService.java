@@ -26,4 +26,6 @@ public interface IKeyresService {
 	public abstract List<Keyres> queryListByPkid(int con, String convalue,
 			int status, int pkid, int page, int size);
 
+	public abstract void deleteByIds(String ids);
+
 }

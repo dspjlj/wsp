@@ -1,6 +1,7 @@
 package com.jlj.dao.imp;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -140,5 +141,27 @@ public class KeyresDaoImp implements IKeyresDao {
 		return list.size()>0 ? true : false;
 	}
 
+	public void deleteBatchByHql(final String queryString,final String ids) {
+		// TODO Auto-generated method stub
+		this.hibernateTemplate.execute(new HibernateCallback(){
 
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				// TODO Auto-generated method stub
+				Query query=session.createQuery(queryString);
+				String[] ids2=ids.split(",");
+				List<Integer> idsint=new ArrayList<Integer>();
+				for (int i = 0; i < ids2.length; i++) {
+					idsint.add(Integer.parseInt(ids2[i]));
+				}
+				if(idsint.size()==0){
+					return null;
+				}
+				query.setParameterList("ids", idsint);
+				query.executeUpdate();
+				return null;
+			}
+			
+		});
+	}
 }

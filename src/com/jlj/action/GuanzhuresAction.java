@@ -116,7 +116,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		List<Guanzhures> guanzhureslist= guanzhuresService.queryListByPublicAccount(publicaccount);
 		if(guanzhureslist.size()>0){
 			guanzhures=guanzhureslist.get(0);//有关注回复对象，则直接load
-			//查出该素材
+			//查出该素材，并重新覆盖素材名、素材编号和关注回复对象
 			int fodderid=guanzhures.getFodderid();
 			fodder=fodderService.loadById(fodderid);
 			session.put("sucainame", fodder.getTitle());

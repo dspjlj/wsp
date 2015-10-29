@@ -99,4 +99,10 @@ public class KeyresServiceImp implements IKeyresService{
 		return keyresDao.pageList(queryString,p,page,size);
 	}
 	//查询关键字回复列表=============================end
+	
+	//批量删除关键词
+	public void deleteByIds(String ids) {
+		String queryString = "delete from Keyres mo where mo.id in(:ids) ";
+		keyresDao.deleteBatchByHql(queryString, ids);
+	}
 }

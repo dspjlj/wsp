@@ -1,5 +1,6 @@
 package com.jlj.action;
 
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 import com.jlj.model.Fodder;
 import com.jlj.model.Keyres;
-import com.jlj.model.Pubclient;
+import com.jlj.model.Publickey;
 import com.jlj.service.IFodderService;
 import com.jlj.service.IKeyresService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,6 +29,7 @@ public class KeyresAction extends ActionSupport implements RequestAware,
 SessionAware,ServletResponseAware,ServletRequestAware {
 	
 	private static final long serialVersionUID = 1L;
+	//sevice
 	private IKeyresService keyresService;
 	private IFodderService fodderService;
 	
@@ -47,7 +49,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int totalCount;
 	private int status;//按状态
 	private int pkid;//按用户id
-	private String publicaccount;//公众号原始ID
 	//条件
 	private int con;
 	private String convalue;
@@ -78,16 +79,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * 跳转到添加页面
 	 * @return
 	 */
-	List<Fodder> fodders;
 	public String goToAdd(){
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
-		fodders = fodderService.getFoddersByPublicAccount(paccount);
+		//清空session，并跳转到add页
+		session.put("sucainame", "");
+		session.put("fodderid", "");
+		session.put("pkid", pkid);
 		return "add";
 	}
 	/**
@@ -97,6 +93,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 */
 	
 	public String add() throws Exception{
+		pkid = (Integer)session.get("pkid");
 		keyresService.add(keyres);
 		
 		arg[0]="keyresAction!list?pkid="+pkid;
@@ -106,23 +103,33 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	/**
 	 * 删除
 	 * @return
+	 * @throws Exception 
 	 */
-	public String delete(){
+	public String delete() throws Exception{
 		keyresService.deleteById(id);
-		
-		arg[0]="keyresAction!list?pkid="+pkid;
-		arg[1]="关键词管理";
-		return SUCCESS;
+		return this.list();
 	}
+	
 	/**
-	 * 修改
+	 * 批量删除
 	 * @return
+	 * @throws Exception 
 	 */
-	public String update() throws Exception{
-		keyresService.update(keyres);
-		arg[0]="keyresAction!list?pkid="+pkid;
-		arg[1]="关键词管理";
-		return SUCCESS;
+	private String ids;
+	public String deleteids(){
+		System.out.println(ids);
+
+		PrintWriter out= null;
+		try {
+			out=response.getWriter();
+			keyresService.deleteByIds(ids);
+			out.print(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			out.print(0);
+		}
+		
+		return NONE;
 	}
 	
 	/**
@@ -130,17 +137,31 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @return
 	 */
 	public String load() throws Exception{
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
-		fodders = fodderService.getFoddersByPublicAccount(paccount);
 		keyres=keyresService.loadById(id);
+		
+		//查出该素材，并重新覆盖素材名、素材编号和关键词回复对象
+		int fodderid=keyres.getFodderid();
+		Fodder fodder=fodderService.loadById(fodderid);
+		session.put("sucainame", fodder.getTitle());
+		session.put("fodderid", fodderid);
+		session.put("keyres", keyres);
+		session.put("pkid", pkid);
 		return "load";
 	}
+	
+	/**
+	 * 修改
+	 * @return
+	 */
+	public String update() throws Exception{
+		pkid = (Integer)session.get("pkid");
+		keyresService.update(keyres);
+		arg[0]="keyresAction!list?pkid="+pkid;
+		arg[1]="关键词管理";
+		return SUCCESS;
+	}
+	
+	
 	
 	
 	//get、set-------------------------------------------
@@ -242,12 +263,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setArg(String[] arg) {
 		this.arg = arg;
 	}
-	public String getPublicaccount() {
-		return publicaccount;
-	}
-	public void setPublicaccount(String publicaccount) {
-		this.publicaccount = publicaccount;
-	}
 	public IFodderService getFodderService() {
 		return fodderService;
 	}
@@ -255,11 +270,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setFodderService(IFodderService fodderService) {
 		this.fodderService = fodderService;
 	}
-	public List<Fodder> getFodders() {
-		return fodders;
+	public String getIds() {
+		return ids;
 	}
-	public void setFodders(List<Fodder> fodders) {
-		this.fodders = fodders;
+	public void setIds(String ids) {
+		this.ids = ids;
 	}
 	
 	

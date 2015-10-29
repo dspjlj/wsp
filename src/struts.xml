@@ -115,6 +115,8 @@
 			<result name="fodderchooselist">/back/fodder_choose.jsp</result>
 			<result name="guanzhuresadd">/back/guanzhures_add.jsp</result>
 			<result name="guanzhuresupdate">/back/guanzhures_update.jsp</result>
+			<result name="keyresadd">/back/keyres_add.jsp</result>
+			<result name="keyresupdate">/back/keyres_update.jsp</result>
 			
 			
 			<result name="fodderarticlelist">/back/fodderarticle_manage.jsp</result>

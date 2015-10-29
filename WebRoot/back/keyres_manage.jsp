@@ -79,7 +79,7 @@
 								<div class="row-fluid">
 									<div class="span8 control-group">
 										<div class="span3">
-											<a class="btn" href="material_keyword_add.html"><i
+											<a class="btn" href="keyresAction!goToAdd?pkid=<s:property value="pkid"/>"><i
 												class="icon-plus"></i>添加</a>
 											<a class="btn" href="javascript:location.reload();"><i
 												class="icon-refresh"></i>
@@ -156,7 +156,8 @@
 														<s:property value="fodderid" />
 													</td>
 													<td>
-														<span class="label label-satgreen"><s:if test="1">模糊</s:if>
+														<span class="label label-satgreen">
+															<s:if test="matchtype==1">模糊</s:if>
 															<s:else>全匹配</s:else>
 														</span>
 													</td>
@@ -217,11 +218,11 @@
 				 });
 				 if (idsArray.length > 0) {
 					 var qids = idsArray.join(','); 
-					 $.get("keyword.html", { type:'dels', ids:qids}, function (data){
+					 $.get("keyresAction!deleteids", {ids:qids}, function (data){
 						 if(data == 1){
-							 tusi('删除成功！');
+							 alert('删除成功！');
 						 }else{
-							 tusi('操作异常！');
+							 alert('操作异常！');
 						 }
 						 location.reload(true);
 					 },'text');
