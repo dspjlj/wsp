@@ -20,10 +20,10 @@ public interface ILbsService {
 
 	public abstract int getPageCount(int totalCount, int size);
 
-	public abstract int getTotalCount(int con, String convalue, int status,
+	public abstract int getTotalCount(int con, String convalue, 
 			String publicaccount);
 
-	public abstract List<Lbs> queryList(int con, String convalue, int status,
+	public abstract List<Lbs> queryList(int con, String convalue, 
 			String publicaccount, int page, int size);
 
 	public abstract List<Lbs> getFrontLbssByPublicAccount(String paccount);

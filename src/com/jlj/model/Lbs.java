@@ -25,11 +25,11 @@ public class Lbs implements java.io.Serializable {
 	private String bigtype;
 	private String sontype;
 	private String address;
-	private String xyloaction;
+	private String xylocation;
 	private String phone;
 	private String showimg;
 	private String info;
-	private String publcaccount;
+	private String publicaccount;
 
 	// Constructors
 
@@ -39,8 +39,8 @@ public class Lbs implements java.io.Serializable {
 
 	/** full constructor */
 	public Lbs(String name, String province, String city, String area,
-			String bigtype, String sontype, String address, String xyloaction,
-			String phone, String showimg, String info, String publcaccount) {
+			String bigtype, String sontype, String address, String xylocation,
+			String phone, String showimg, String info, String publicaccount) {
 		this.name = name;
 		this.province = province;
 		this.city = city;
@@ -48,11 +48,11 @@ public class Lbs implements java.io.Serializable {
 		this.bigtype = bigtype;
 		this.sontype = sontype;
 		this.address = address;
-		this.xyloaction = xyloaction;
+		this.xylocation = xylocation;
 		this.phone = phone;
 		this.showimg = showimg;
 		this.info = info;
-		this.publcaccount = publcaccount;
+		this.publicaccount = publicaccount;
 	}
 
 	// Property accessors
@@ -130,13 +130,13 @@ public class Lbs implements java.io.Serializable {
 		this.address = address;
 	}
 
-	@Column(name = "xyloaction", length = 40)
-	public String getXyloaction() {
-		return this.xyloaction;
+	@Column(name = "xylocation", length = 40)
+	public String getXylocation() {
+		return this.xylocation;
 	}
 
-	public void setXyloaction(String xyloaction) {
-		this.xyloaction = xyloaction;
+	public void setXylocation(String xylocation) {
+		this.xylocation = xylocation;
 	}
 
 	@Column(name = "phone", length = 20)
@@ -166,13 +166,13 @@ public class Lbs implements java.io.Serializable {
 		this.info = info;
 	}
 
-	@Column(name = "publcaccount", length = 30)
-	public String getPublcaccount() {
-		return this.publcaccount;
+	@Column(name = "publicaccount", length = 30)
+	public String getPublicaccount() {
+		return this.publicaccount;
 	}
 
-	public void setPublcaccount(String publcaccount) {
-		this.publcaccount = publcaccount;
+	public void setPublicaccount(String publicaccount) {
+		this.publicaccount = publicaccount;
 	}
 
 }

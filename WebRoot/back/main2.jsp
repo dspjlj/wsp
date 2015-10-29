@@ -177,7 +177,7 @@ $(function(){
           <a href="diypuffAction!view">DIY宣传页</a>
         </li>
         <li>
-          <a href="material_lbs_manage.html">LBS设置</a>
+          <a href="lbsAction!list">LBS设置</a>
         </li>
       </ul>
     </div>

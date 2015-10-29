@@ -43,16 +43,16 @@ public class LbsServiceImp implements ILbsService {
 	public Lbs loadById(int id) {
 		return lbsDao.loadById(id);
 	}
-
+	//查询列表=============start
 	public int getPageCount(int totalCount,int size) {
 		return totalCount%size==0?totalCount/size:(totalCount/size+1);
 	}
 
-	public int getTotalCount(int con, String convalue, int status, String publicaccount) {
+	public int getTotalCount(int con, String convalue, String publicaccount) {
 		String queryString = "select count(*) from Lbs mo where mo.publicaccount=? ";
 		Object[] p = null;
 		if(con!=0&&convalue!=null&&!convalue.equals("")){
-			//条件1
+			//商家名称
 			if(con==1){
 				queryString += " and mo.name like ? "; 
 			}
@@ -63,12 +63,12 @@ public class LbsServiceImp implements ILbsService {
 		return lbsDao.getUniqueResult(queryString,p);
 	}
 
-	public List<Lbs> queryList(int con, String convalue, int status,
+	public List<Lbs> queryList(int con, String convalue, 
 			String publicaccount, int page, int size) {
 		String queryString = "from Lbs mo where mo.publicaccount=? ";
 		Object[] p = null;
 		if(con!=0&&convalue!=null&&!convalue.equals("")){
-			//条件1
+			//商家名称
 			if(con==1){
 				queryString += " and mo.name like ? "; 
 			}
@@ -76,10 +76,10 @@ public class LbsServiceImp implements ILbsService {
 		}else{
 			p = new Object[]{publicaccount};
 		}
-		queryString += " order by mo.orderid asc ";
+		queryString += " order by mo.id desc ";
 		return lbsDao.pageList(queryString,p,page,size);
 	}
-	
+	//查询列表=============end
 	
 	public List<Lbs> getFrontLbssByPublicAccount(String paccount) {
 		String queryString = "from Lbs mo where mo.publicaccount = ? and mo.ison = 1 order by mo.orderid asc ";
