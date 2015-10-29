@@ -238,21 +238,18 @@
         </interceptors>
         
 		<global-results>
-			<result name="adminLogin">/login.jsp</result>
-			<result name="opsessiongo">/op_sessiongo.jsp</result>
+			<result name="adminLogin">/back/login.jsp</result>
+			<result name="opsessiongo">/back/op_sessiongo.jsp</result>
 		</global-results>
 		<action name="autoresAction" class="autoresAction">
-			<result name="success">/op_success.jsp</result>
-			<result name="fail">/op_failure.jsp</result>
-			<result name="operror">/op_error.jsp</result>
+			<result name="success">/back/op_success.jsp</result>
+			<result name="opfail">/back/op_failure.jsp</result>
+			<result name="operror">/back/op_error.jsp</result>
 			
-			<result name="list">/autores_manage.jsp</result>
+			<result name="add">/back/autores_add.jsp</result>
+			<result name="load">/back/autores_update.jsp</result>
 			
-			<result name="add">/autores_add.jsp</result>
-			<result name="load">/autores_update.jsp</result>
-			<result name="view">/autores_view.jsp</result>
-			
-			<result name="invalid.token">/op_failure.jsp</result>
+			<result name="invalid.token">/back/op_error.jsp</result>
 			<interceptor-ref name="mystack" />
             <interceptor-ref name="token" >
             	<param name="includeMethods">add</param>

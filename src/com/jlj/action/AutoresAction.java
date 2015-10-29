@@ -27,8 +27,8 @@ public class AutoresAction extends ActionSupport implements RequestAware,
 SessionAware,ServletResponseAware,ServletRequestAware {
 	
 	private static final long serialVersionUID = 1L;
+	//service
 	private IAutoresService autoresService;
-	private IFodderService fodderService;
 	Map<String,Object> request;
 	Map<String,Object> session;
 	private javax.servlet.http.HttpServletResponse response;
@@ -44,16 +44,15 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int pageCount;
 	private int totalCount;
 	private int status;//按状态
-	private int pid;//按用户id
-	private String publicaccount;//公众号原始ID
 	//条件
 	private int con;
 	private String convalue;
 	
 	
 	/**
-	 * 自动回复管理
+	 * 自动回复管理-给管理员用的
 	 */
+	/*
 	public String list() throws Exception{
 		if(convalue!=null&&!convalue.equals("")){
 			convalue=URLDecoder.decode(convalue, "utf-8");
@@ -72,6 +71,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		totalCount=autoresService.getTotalCount(con,convalue,status,publicaccount);
 		return "list";
 	}
+	*/
 	/**
 	 * 跳转到添加页面
 	 * @return
@@ -86,17 +86,16 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 */
 	
 	public String add() throws Exception{
-		String paccount=autores.getPublicaccount();
+		
 		autoresService.add(autores);
 		
-		arg[0]="autoresAction!view?publicaccount="+paccount;
-		arg[1]="自动回复";
-		return SUCCESS;
+		return this.view();
 	}
 	/**
-	 * 删除
+	 * 删除-给管理员
 	 * @return
 	 */
+	/*
 	public String delete(){
 		Pubclient pubclient = (Pubclient)session.get("pubclient");
 		if(pubclient==null){
@@ -112,49 +111,43 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		arg[1]="自动回复管理";
 		return SUCCESS;
 	}
+	*/
+	/**
+	 * 跳转到修改页面-给管理员
+	 * @return
+	 */
+	/*
+	public String load() throws Exception{
+		
+		autores=autoresService.loadById(id);
+		return "load";
+	}
+	*/
 	/**
 	 * 修改
 	 * @return
 	 */
 	public String update() throws Exception{
-		String paccount=autores.getPublicaccount();
 		autoresService.update(autores);
-		arg[0]="autoresAction!view?publicaccount="+paccount;
-		arg[1]="自动回复";
-		return SUCCESS;
+		return this.view();
 	}
 	/**
 	 * 查看信息
 	 * @return
 	 */
 	public String view(){
+		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();
 		//若客户第一次浏览该页，首先进入添加自动关注回复页面;否则，直接进入查看页面
 		List<Autores> autoreslist= autoresService.queryListByPublicAccount(publicaccount);
 		if(autoreslist.size()>0){
 			autores=autoreslist.get(0);
-			
-			if(autores!=null){
-				return "view";
-			}else{
-				String errorInfo="会话失效了，请重新登录";
-				request.put("errorInfo", errorInfo);
-				return "operror";
-			}
-			
-			
+			return "load";
 		}else{
 			return this.goToAdd();
 		}
 		
 	}
-	/**
-	 * 跳转到修改页面
-	 * @return
-	 */
-	public String load() throws Exception{
-		autores=autoresService.loadById(id);
-		return "load";
-	}
+	
 	
 	
 	//get、set-------------------------------------------
@@ -242,30 +235,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public int getPid() {
-		return pid;
-	}
-	public void setPid(int pid) {
-		this.pid = pid;
-	}
 	public String[] getArg() {
 		return arg;
 	}
 	public void setArg(String[] arg) {
 		this.arg = arg;
-	}
-	public String getPublicaccount() {
-		return publicaccount;
-	}
-	public void setPublicaccount(String publicaccount) {
-		this.publicaccount = publicaccount;
-	}
-	public IFodderService getFodderService() {
-		return fodderService;
-	}
-	@Resource
-	public void setFodderService(IFodderService fodderService) {
-		this.fodderService = fodderService;
 	}
 	
 }

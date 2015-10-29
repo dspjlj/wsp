@@ -165,6 +165,9 @@ $(function(){
           <a href="guanzhuresAction!view">首次关注</a>
         </li>
         <li>
+          <a href="autoresAction!view">自动回复</a>
+        </li>
+        <li>
           <a href="publickeyAction!list">关键字回复</a>
         </li>
         <li>
