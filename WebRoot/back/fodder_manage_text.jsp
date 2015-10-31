@@ -287,7 +287,16 @@ function delfodder(){
 						</div>
 
 					</div>
-
+					<div class="pagination" style="text-align: center;">
+										  <ul>
+										
+										    <li style="float: left;"><a href="fodderAction!textlist?page=1" target="mainFrame"><span>首&nbsp;&nbsp;页</span></a></li>
+										    <li style="float: left;"><a href="fodderAction!textlist?page=<s:property value="page-1"/>" target="mainFrame"><span>上&nbsp;&nbsp;页</span></a></li>
+										    <li style="float: left;"><a href="fodderAction!textlist?page=<s:property value="page+1"/>" target="mainFrame"><span>下&nbsp;&nbsp;页</span></a></li>
+										    <li style="float: left;"><a href="fodderAction!textlist?page=<s:property value="pageCount"/>" target="mainFrame"><span>尾&nbsp;&nbsp;页</span></a></li>
+										  </ul>
+										  
+										</div>
 
 
 				</div>

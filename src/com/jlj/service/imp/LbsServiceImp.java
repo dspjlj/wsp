@@ -86,5 +86,10 @@ public class LbsServiceImp implements ILbsService {
 		Object[] p= new Object[]{paccount};
 		return lbsDao.getObjectsByCondition(queryString, p);
 	}
+	//批量删除lbs
+	public void deleteByIds(String ids) {
+		String queryString = "delete from Lbs mo where mo.id in(:ids) ";
+		lbsDao.deleteBatchByHql(queryString, ids);
+	}
 
 }

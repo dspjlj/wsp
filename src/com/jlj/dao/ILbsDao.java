@@ -69,4 +69,6 @@ public interface ILbsDao {
 	public abstract boolean checkClientExistsWithName(String queryString,
 			Object[] p);
 
+	public abstract void deleteBatchByHql(String queryString, String ids);
+
 }

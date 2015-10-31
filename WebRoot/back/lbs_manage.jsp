@@ -41,7 +41,7 @@ function dellbs(id,o){
 			$('td').find('input[type="checkbox"]:checked').each(function(){
 				ids[ids.length] = $(this).val();
 			});
-			ajax('lbsAction!deleteids',{ id:ids.join(',')},function(){
+			ajax('lbsAction!deleteids',{ ids:ids.join(',')},function(){
 				$('td').find('input[type="checkbox"]:checked').each(function(){
 					$(this).parent().parent().remove();
 				});
@@ -134,6 +134,16 @@ function selallck(o){
 					</s:iterator>
 				</tbody>
 			</table>
+										<div class="pagination" style="text-align: center;">
+										  <ul>
+										
+										    <li style="float: left;"><a href="lbsAction!list?page=1" target="mainFrame"><span>首&nbsp;&nbsp;页</span></a></li>
+										    <li style="float: left;"><a href="lbsAction!list?page=<s:property value="page-1"/>" target="mainFrame"><span>上&nbsp;&nbsp;页</span></a></li>
+										    <li style="float: left;"><a href="lbsAction!list?page=<s:property value="page+1"/>" target="mainFrame"><span>下&nbsp;&nbsp;页</span></a></li>
+										    <li style="float: left;"><a href="lbsAction!list?page=<s:property value="pageCount"/>" target="mainFrame"><span>尾&nbsp;&nbsp;页</span></a></li>
+										  </ul>
+										  
+										</div>
 		</div>
 
 

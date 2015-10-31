@@ -19,9 +19,9 @@ import com.jlj.model.Bigtype;
 import com.jlj.model.Pubclient;
 import com.jlj.model.Screenimg;
 import com.jlj.service.IBigtypeService;
+import com.jlj.service.IPubclientService;
 import com.jlj.service.IScreenimgService;
 import com.jlj.service.IVcoreService;
-import com.jlj.service.imp.VcoreService;
 import com.jlj.util.SignUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -34,6 +34,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private IVcoreService vcoreService;
 	private IScreenimgService screenimgService;
 	private IBigtypeService bigtypeService;
+	private IPubclientService pubclientService;
 	
 	Map<String,Object> request;
 	Map<String,Object> session;
@@ -41,10 +42,16 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private javax.servlet.http.HttpServletRequest req;
 	//成为开发者
 	public String vcheck() throws Exception{
-		// 1、获取微信公众账号英文名
+		// 1、获取微信公众账号原始ID
 		String vxinpublic = req.getParameter("vxinpublic");
 		// 2、判断是否数据库存在该注册公众号，若有则提取该公众账号的信息token用
-		String token = "jsjlj1988";
+		Pubclient pubclient = pubclientService.queryPubclientByFrontpa(vxinpublic);
+		if(pubclient==null){
+			System.out.println(vxinpublic+"----------- is bad");
+			return null;
+		}
+		String token = pubclient.getToken();
+		System.out.println("vcheck--------------vxinpublic="+vxinpublic+",token="+token);
 		// 3、检查是否来自微信，是否校验成功
 		
 		// 微信加密签名
@@ -73,8 +80,13 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		// 1、获取微信公众账号英文名
 		String vxinpublic = req.getParameter("vxinpublic");
 		// 2、判断是否数据库存在该注册公众号，若有则提取该公众账号的信息token用
-		String token = "jsjlj1988";
-		System.out.println("vxinpublic="+vxinpublic+",token="+token);
+		Pubclient pubclient = pubclientService.queryPubclientByFrontpa(vxinpublic);
+		if(pubclient==null){
+			System.out.println(vxinpublic+"----------- is bad");
+			return null;
+		}
+		String token = pubclient.getToken();
+		System.out.println("vresponse--------------vxinpublic="+vxinpublic+",token="+token);
 		// 微信加密签名
 		String signature = req.getParameter("signature");
 		// 时间戳
@@ -115,14 +127,29 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		bigtypes = bigtypeService.getBigtypesByPublicAccount(frontpa);
 		return "travel";
 	}
-	//跳转到大酒店首页
-	public String vhotel(){
-		session.put("frontpa", frontpa);
-		session.put("openid", openid);
-		screenimgs = screenimgService.getScreenimgsByCondition(2, frontpa);
-		return "hotel";
-	}
 	//get、set-------------------------------------------
+	public IPubclientService getPubclientService() {
+		return pubclientService;
+	}
+	@Resource
+	public void setPubclientService(IPubclientService pubclientService) {
+		this.pubclientService = pubclientService;
+	}
+	public IScreenimgService getScreenimgService() {
+		return screenimgService;
+	}
+	@Resource
+	public void setScreenimgService(IScreenimgService screenimgService) {
+		this.screenimgService = screenimgService;
+	}
+	public IBigtypeService getBigtypeService() {
+		return bigtypeService;
+	}
+	@Resource
+	public void setBigtypeService(IBigtypeService bigtypeService) {
+		this.bigtypeService = bigtypeService;
+	}
+	
 	public IVcoreService getVcoreService() {
 		return vcoreService;
 	}
@@ -166,20 +193,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setScreenimgs(List<Screenimg> screenimgs) {
 		this.screenimgs = screenimgs;
 	}
-	public IScreenimgService getScreenimgService() {
-		return screenimgService;
-	}
-	@Resource
-	public void setScreenimgService(IScreenimgService screenimgService) {
-		this.screenimgService = screenimgService;
-	}
-	public IBigtypeService getBigtypeService() {
-		return bigtypeService;
-	}
-	@Resource
-	public void setBigtypeService(IBigtypeService bigtypeService) {
-		this.bigtypeService = bigtypeService;
-	}
+	
 	public List<Bigtype> getBigtypes() {
 		return bigtypes;
 	}

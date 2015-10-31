@@ -28,4 +28,6 @@ public interface ILbsService {
 
 	public abstract List<Lbs> getFrontLbssByPublicAccount(String paccount);
 
+	public abstract void deleteByIds(String ids);
+
 }

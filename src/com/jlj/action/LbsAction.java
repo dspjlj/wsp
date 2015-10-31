@@ -123,13 +123,35 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @throws Exception 
 	 */
 	public String delete() throws Exception{
-		String publicaccount = ((Pubclient)session.get("pubclient")).getPublicaccount();//获取原始ID
 		//删除图片
-		lbsService.deleteById(id);
-		//删除该公众号的所有资源res/{paccount}
+		lbs = lbsService.loadById(id);
+		String showimg = lbs.getShowimg();
+		lbsService.delete(lbs);
+		//删除该公众号的该资源
 		if(publicaccount!=null&&!publicaccount.equals("")){
-			ToolKitUtil.deleteFile(ServletActionContext.getServletContext().getRealPath("/")+"res/"+publicaccount);
+			ToolKitUtil.deleteFile(ServletActionContext.getServletContext().getRealPath("/")+showimg);
 		}
+		return this.list();
+	}
+	
+	/**
+	 * 删除ids
+	 * @return
+	 * @throws Exception 
+	 */
+	private String ids;
+	public String deleteids() throws Exception{
+		String[] idsstr = ids.split(",");
+		for (int i = 0; i < idsstr.length; i++) {
+			Integer oneid = Integer.parseInt(idsstr[i]);
+			Lbs onelbs = lbsService.loadById(oneid);
+			String showimg = onelbs.getShowimg();
+			//删除该公众号的该资源
+			ToolKitUtil.deleteFile(ServletActionContext.getServletContext().getRealPath("/")+showimg);
+		}
+		//删除图片
+		lbsService.deleteByIds(ids);
+		
 		return this.list();
 	}
 	
@@ -298,6 +320,12 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	public void setPictureFileName(String pictureFileName) {
 		this.pictureFileName = pictureFileName;
+	}
+	public String getIds() {
+		return ids;
+	}
+	public void setIds(String ids) {
+		this.ids = ids;
 	}
 	
 }

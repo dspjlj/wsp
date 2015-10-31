@@ -140,7 +140,7 @@ public class VcoreService implements IVcoreService {
 					                	Article article = new Article();  
 					                    article.setTitle(fodderarticle.getTitle()); 
 					                    article.setDescription(fodderarticle.getDescription());  
-					                    article.setPicUrl("http://gxxx.vxg197.10000net.cn/vxinsub/"+fodderarticle.getPicurl());  
+					                    article.setPicUrl("http://www.di3p.com:8080/wsp/"+fodderarticle.getPicurl());  
 					                    article.setUrl(fodderarticle.getUrl()+"&openid="+fromUserName); 
 					                    articleList.add(article);  
 									}
@@ -148,7 +148,7 @@ public class VcoreService implements IVcoreService {
 				                	Article article = new Article();  
 				                    article.setTitle(fodder.getTitle()); 
 				                    article.setDescription(fodder.getDescription());  
-				                    article.setPicUrl("http://gxxx.vxg197.10000net.cn/vxinsub/"+fodder.getPicurl());  
+				                    article.setPicUrl("http://www.di3p.com:8080/wsp/"+fodder.getPicurl());  
 				                    article.setUrl(fodder.getUrl()+"&openid="+fromUserName); 
 				                    articleList.add(article); 
 				                }
@@ -332,7 +332,7 @@ public class VcoreService implements IVcoreService {
 					                	Article article = new Article();  
 					                    article.setTitle(fodderarticle.getTitle()); 
 					                    article.setDescription(fodderarticle.getDescription());  
-					                    article.setPicUrl("http://gxxx.vxg197.10000net.cn/vxinsub/"+fodderarticle.getPicurl());  
+					                    article.setPicUrl("http://www.di3p.com:8080/wsp/"+fodderarticle.getPicurl());  
 					                    article.setUrl(fodderarticle.getUrl()+"&openid="+fromUserName); 
 					                    articleList.add(article);  
 									}
@@ -340,7 +340,7 @@ public class VcoreService implements IVcoreService {
 				                	Article article = new Article();  
 				                    article.setTitle(fodder.getTitle()); 
 				                    article.setDescription(fodder.getDescription());  
-				                    article.setPicUrl("http://gxxx.vxg197.10000net.cn/vxinsub/"+fodder.getPicurl());  
+				                    article.setPicUrl("http://www.di3p.com:8080/wsp/"+fodder.getPicurl());  
 				                    article.setUrl(fodder.getUrl()+"&openid="+fromUserName); 
 				                    articleList.add(article); 
 				                }
@@ -462,7 +462,7 @@ public class VcoreService implements IVcoreService {
 						                	Article article = new Article();  
 						                    article.setTitle(fodderarticle.getTitle()); 
 						                    article.setDescription(fodderarticle.getDescription());  
-						                    article.setPicUrl("http://gxxx.vxg197.10000net.cn/vxinsub/"+fodderarticle.getPicurl());  
+						                    article.setPicUrl("http://www.di3p.com:8080/wsp/"+fodderarticle.getPicurl());  
 						                    article.setUrl(fodderarticle.getUrl()+"&openid="+fromUserName); 
 						                    articleList.add(article);  
 										}
@@ -470,7 +470,7 @@ public class VcoreService implements IVcoreService {
 					                	Article article = new Article();  
 					                    article.setTitle(fodder.getTitle()); 
 					                    article.setDescription(fodder.getDescription());  
-					                    article.setPicUrl("http://gxxx.vxg197.10000net.cn/vxinsub/"+fodder.getPicurl());  
+					                    article.setPicUrl("http://www.di3p.com:8080/wsp/"+fodder.getPicurl());  
 					                    article.setUrl(fodder.getUrl()+"&openid="+fromUserName); 
 					                    articleList.add(article); 
 					                }
