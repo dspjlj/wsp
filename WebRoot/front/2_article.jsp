@@ -1,4 +1,12 @@
-
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -10,15 +18,15 @@
   <meta content="telephone=no" name="format-detection">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>完美泡芙的制作工艺</title>
+  <title>关于麦香村</title>
 
   <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01.css"/>
   <link type="text/css" rel="stylesheet" href="stylesheets/font-awesome.css"/>
-  <link href="stylesheets/vweisiteV01/article/article3.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="stylesheets/vweisiteV01/article/article6.css" media="screen" rel="stylesheet" type="text/css" />
 
   <script src="assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
   <meta content="authenticity_token" name="csrf-param" />
-  <meta content="rjcZLVvkHwtIiVZet0CTm58AuMsNNjgv8IU/CajlIVg=" name="csrf-token" />
+  <meta content="uu4elJjeyZd8k/ARutXFPy7LP4D5o+kT1gTnvZ8OwRo=" name="csrf-token" />
 </head>
 
 <body>
@@ -32,24 +40,40 @@
           <div class="article ckeditor_content" id="article">
 
             <div class="hd">
-              <h1>完美泡芙的制作工艺</h1>
-              <small>完美泡芙三大关键</small>
+              <h1>关于麦香村</h1>
+              <small>2014-06-25 11:04</small>
             </div>
 
             <div class="bd">
-              <img alt="Fvg2rhfqnaao2xolc8hbrs7eqxqm" src="pictures/FvG2rhfqnaaO2xolc8hBRs7EQXqm" />
-              <p>
-                &nbsp; &nbsp;&nbsp;大家都知道泡芙好吃，但是不知道泡芙也是有工艺考究的哦~~下面小编就给大家说明好吃的泡芙的三大关键点。
-              </p>
 
-              <p>
-                &nbsp; &nbsp;&nbsp;泡芙是一种膨松的中间空洞的小点心，里面填有香甜的馅料。在我的记忆中，以前泡芙在国内并不流行，自从几家泡芙店火了以后，得益于广大西点店的纷纷效仿，泡芙现在绝对属于最热门的西点之一，到哪儿都离不了它的身影。
-              </p>
-
-              <p>
-                &nbsp;&nbsp;&nbsp;&nbsp;泡芙的外皮有着酥脆的口感，只有在吃之前才会填上馅料。因为如果过早填入馅料，外皮会吸收馅料里的水分而变得湿软。正规的泡芙店，只有当你购买泡芙前，才在里面填上新鲜的馅料，使泡芙保持最佳的口感。目前市面上有很多西点店为了省事，大多都是提前就将馅料填好摆在店铺里出售，以至于我们买到泡芙的时候，外皮都已经是软软的了。不幸的是，这样的泡芙吃得多了，大部分人认为这样的泡芙才是泡芙，反而把那些外皮酥脆的泡芙视为另类。
-              </p>
-
+              <div>
+                <br></div>
+              麦香村蛋糕房不止是一块蛋糕。麦香村蛋糕房的自然色必须控制在三色以内。在麦香村的厨房、仓储室，呈现在眼前的是一个高科技、严标准的运作形态。厨房室温保持在22℃，目的是防止制作蛋糕过程中，巧克力、乳脂奶油等食材融化，破坏蛋糕造型。
+              <div>
+                <br></div>
+              <div>
+                <img src="pictures/template2_article_3.jpg">
+                <br></div>
+              <div>
+                <br></div>
+              <div>
+                <img src="pictures/tempate2_article_1.jpg">
+                <br></div>
+              <div>
+                <br></div>
+              <div>
+                <img src="pictures/template2_article_2.jpg">
+                <br></div>
+              <div>
+                <br></div>
+              <div> <b>门店地址：</b>
+                吴江市黎里镇北厍麦香村美食店
+              </div>
+              <div> <b>联系方式：</b>
+                <a href="tel:15895502978" style="font-size: 13px; line-height: 1.5;">15895502978</a>
+              </div>
+              <div>
+                <br></div>
             </div>
 
           </div>
@@ -61,33 +85,6 @@ $(function(){
 </script>
 
         </div>
-      </section>
-
-      <section class="mod-navLine navLine-2">
-        <ul class="navLine-ul">
-          <li>
-            <a href="javascript:;" class="dev-prev"> <i class="fa fa-reply"></i>
-              <small>后退</small>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;" class="dev-next"> <i class="fa fa-share"></i>
-              <small>前进</small>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;" class="dev-index">
-              <i class="fa fa-home"></i>
-              <small>首页</small>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;" class="dev-refresh">
-              <i class="fa fa-refresh"></i>
-              <small>刷新</small>
-            </a>
-          </li>
-        </ul>
       </section>
 
     </div>
@@ -110,7 +107,7 @@ $(function(){
           在【添加朋友】—【查找公众号】中搜索
         </p>
         <p>
-          <span class="alert-btn">西树泡芙</span>
+          <span class="alert-btn">麦香村蛋糕</span>
           （长按可复制）
         </p>
         <p>
@@ -136,7 +133,7 @@ $(function(){
     </div>
   </div>
 
-  <footer>技术支持：第三屏</footer>
+  <footer>第三屏</footer>
 
   
 
@@ -229,6 +226,34 @@ $(function(){
     });
 </script>
 
+  <!-- 快捷菜单 Start -->
+  <div class="mod-navPop navPop-1">
+    <div class="navPop-wrap hide" id="navPop-wrap">
+      <b class="navPop-btn" id="navPop-btn"><i class="fa fa-plus" id="fa-btn" onclick="toggleToClass('#navPop-btn','active')"></i></b> 
+      <div>
+        <a href="tel:15861521065" class=""> <i class="fa fa-phone"></i>
+        </a>
+      </div>
+      <div>
+        <a href="#location" class="">
+          <i class="fa fa-location-arrow"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- 快捷菜单 End -->
+
+  <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01/animateBg/snower1.css"/>
+  <div class="mod-snower snower1" id="snower1">
+    <script type="text/javascript">var urls = ["assets/mobile/vweisiteV01/animateBg/snower9.png"]</script>
+    <script type="text/javascript" src="javascripts/vweisiteV01/animateBg/snower1.js"></script>
+    <script>
+             $(function(){
+                 snowsFn(16);
+             });
+         </script>
+  </div>
+
   <a href="javascript:scroll(0,0)" class="btn-up btn-up-1">
     <i class="fa fa-arrow-up"></i>
   </a>
@@ -241,13 +266,22 @@ $(function(){
   <script type="text/javascript">
       $(document).ready(function(){
 
-            $("body").addClass("body-navLine-bottom");
+                indexSwipe("index", ["", "", "", "", ""]);
+        bannerSet({
+            background: "#000000",
+            opacity: "50",
+            color: "#FFFFFF"
+        })
+        // 静态背景图
+        //$(".html").css("background-image", "url(pictures/FqJknzulpXhKRkr-uaIGRE1bg4d2)");
+      navPop1("#navPop-wrap","#navPop-btn"); // 快捷菜单    
+      $("#navPop-wrap").show();
 
 
         showBtnUp(100);
 
         $("a.dev-prev").click(function(){
-            location.href = history.back();
+            history.back();
         });
 
         $("a.dev-next").click(function(){
@@ -255,7 +289,7 @@ $(function(){
         });
 
         $("a.dev-index").click(function(){
-          location.href = "5_index_mianbao.html";
+          location.href = "6_index_dangao.html";
         });
 
         $("a.dev-refresh").click(function(){

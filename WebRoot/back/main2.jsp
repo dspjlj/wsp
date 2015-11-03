@@ -217,7 +217,7 @@ $(function(){
           </li>
 		
 		  <li>
-            <a href="wgwAction!template">模板预览</a>
+            <a href="wgwAction!template">模板设置</a>
           </li>
         
 	      <li>

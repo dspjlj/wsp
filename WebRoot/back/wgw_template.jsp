@@ -31,8 +31,40 @@
 		<script type="text/javascript" src="js/yyucadapter.js"></script>
 		<script src="http://api.map.baidu.com/api?v=1.5&amp;ak=1b0ace7dde0245f796844a06fb112734"></script><script type="text/javascript" src="http://api.map.baidu.com/getscript?v=1.5&amp;ak=1b0ace7dde0245f796844a06fb112734&amp;services=&amp;t=20150522094656"></script>
 		<link rel="shortcut icon" href="/favicon.ico">
+		<script type="text/javascript">
+			function initcheck(){
+				var template1value = <s:property value="wgw.template1"/>;
+				var template2value = <s:property value="wgw.template2"/>;
+				var template3value = <s:property value="wgw.template3"/>;
+				var template4value = <s:property value="wgw.template4"/>;
+				var template1 = document.getElementsByName("template1"); 
+				for(var i=0;i<template1.length;i++){ 
+					if(template1[i].value==template1value) { 
+						template1[i].checked = true;
+					} 
+				} 
+				var template2 = document.getElementsByName("template2"); 
+				for(var i=0;i<template2.length;i++){ 
+					if(template2[i].value==template2value) { 
+						template2[i].checked = true;
+					} 
+				} 
+				var template3 = document.getElementsByName("template3"); 
+				for(var i=0;i<template3.length;i++){ 
+					if(template3[i].value==template3value) { 
+						template3[i].checked = true;
+					} 
+				} 
+				var template4 = document.getElementsByName("template4"); 
+				for(var i=0;i<template4.length;i++){ 
+					if(template4[i].value==template4value) { 
+						template4[i].checked = true;
+					} 
+				} 
+			}
+		</script>
 	</head>
-	<body class="theme-blue" style="overflow: hidden;">
+	<body class="theme-blue" style="overflow: hidden;" onload="initcheck();">
 		<div id="main">
 			<div class="container-fluid">
 				<div class="row-fluid">
@@ -72,31 +104,31 @@
 									<div class="tab-pane active in" id="relli0">
 										<ul class="nav nav-tabs nav-tabs-google" style="border-bottom: none"></ul>
 										<ul class="cateradio unstyled">
-										<li class="phoneareali"><label><img src="res/mbpic/1.png"><input type="radio" name="template1" value="1">模板1</label></li>
-										<li class="phoneareali"><label><img src="res/mbpic/1.png"><input type="radio" name="template1" value="2">模板2</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/1_index.png"><input type="radio" name="template1" value="1">模板1</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/2_index.png"><input type="radio" name="template1" value="2">模板2</label></li>
 										</ul>
 									</div>
 									<div class="tab-pane" id="relli1">
 										<ul class="nav nav-tabs nav-tabs-google" style="border-bottom: none"></ul>
 										<ul class="cateradio unstyled">
-										<li class="phoneareali"><label><img src="res/mbpic/2.png"><input type="radio" name="template2" value="1">模板1</label></li>
-										<li class="phoneareali"><label><img src="res/mbpic/2.png"><input type="radio" name="template2" value="2">模板2</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/1_type.png"><input type="radio" name="template2" value="1">模板1</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/2_type.png"><input type="radio" name="template2" value="2">模板2</label></li>
 										
 										</ul>
 									</div>
 									<div class="tab-pane" id="relli2">
 										<ul class="nav nav-tabs nav-tabs-google" style="border-bottom: none"></ul>
 										<ul class="cateradio unstyled">
-										<li class="phoneareali"><label><img src="res/mbpic/3.png"><input type="radio" name="template3" value="1">模板1</label></li>
-										<li class="phoneareali"><label><img src="res/mbpic/3.png"><input type="radio" name="template3" value="2">模板2</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/1_list.png"><input type="radio" name="template3" value="1">模板1</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/2_list.png"><input type="radio" name="template3" value="2">模板2</label></li>
 										
 										</ul>
 									</div>
 									<div class="tab-pane" id="relli3">
 										<ul class="nav nav-tabs nav-tabs-google" style="border-bottom: none"></ul>
 										<ul class="cateradio unstyled">
-										<li class="phoneareali"><label><img src="res/mbpic/4.png"><input type="radio" name="template4" value="1">模板1</label></li>
-										<li class="phoneareali"><label><img src="res/mbpic/4.png"><input type="radio" name="template4" value="2">模板2</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/1_article.png"><input type="radio" name="template4" value="1">模板1</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/2_article.png"><input type="radio" name="template4" value="2">模板2</label></li>
 										
 										</ul>
 									</div>

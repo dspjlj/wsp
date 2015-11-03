@@ -1,4 +1,12 @@
-
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -33,7 +41,7 @@
             <ul class="slider-list">
               <li>
                 <a>
-                  <img alt="Fopmvbdnsgxg3dpel5ht_iltpmnl" src="pictures/FopmvbDnSGxg3DPeL5hT_IltPmNL" />
+                  <img alt="Fopmvbdnsgxg3dpel5ht_iltpmnl" src="pictures/template2_list_1.jpg" />
                 </a>
               </li>
             </ul>
@@ -45,8 +53,8 @@
           <div class="list">
             <ul>
               <li>
-                <a href="6_article.html">
-                  <div class="list-img"> <b><img alt="Ftvtpds6ike2hxedy6fxzxy9_mfi" src="pictures/FtVTpdS6iKe2hXEdy6fXZXy9_mFI" /></b> 
+                <a href="2_article.jsp">
+                  <div class="list-img"> <b><img alt="Ftvtpds6ike2hxedy6fxzxy9_mfi" src="pictures/template2_list_2.jpg" /></b> 
                   </div>
 
                   <div class="list-text">
@@ -56,8 +64,8 @@
                 </a>
               </li>
               <li>
-                <a href="6_article.html">
-                  <div class="list-img"> <b><img alt="Frg37risas7ih1kasqwmiam8ytxr" src="pictures/Frg37RisaS7IH1KASqWmiaM8yTXR" /></b> 
+                <a href="2_article.jsp">
+                  <div class="list-img"> <b><img alt="Frg37risas7ih1kasqwmiam8ytxr" src="pictures/template2_list_3.jpg" /></b> 
                   </div>
 
                   <div class="list-text">

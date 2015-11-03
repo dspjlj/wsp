@@ -1,4 +1,12 @@
-
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -10,15 +18,15 @@
   <meta content="telephone=no" name="format-detection">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>关于麦香村</title>
+  <title>产品介绍</title>
 
   <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01.css"/>
   <link type="text/css" rel="stylesheet" href="stylesheets/font-awesome.css"/>
-  <link href="stylesheets/vweisiteV01/article/article6.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="stylesheets/vweisiteV01/list/list2.css" media="screen" rel="stylesheet" type="text/css" />
 
   <script src="assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
   <meta content="authenticity_token" name="csrf-param" />
-  <meta content="uu4elJjeyZd8k/ARutXFPy7LP4D5o+kT1gTnvZ8OwRo=" name="csrf-token" />
+  <meta content="rjcZLVvkHwtIiVZet0CTm58AuMsNNjgv8IU/CajlIVg=" name="csrf-token" />
 </head>
 
 <body>
@@ -29,54 +37,70 @@
 
         <div class="body">
 
-          <div class="article ckeditor_content" id="article">
-
-            <div class="hd">
-              <h1>关于麦香村</h1>
-              <small>2014-06-25 11:04</small>
+          <div class="mod-slider slider-hor" id="index">
+            <ul class="slider-list">
+              <li>
+                <a>
+                  <img alt="Flbor5npmzxrptictyzu4ptatcdy" src="pictures/template1_list_1.jpg" />
+                </a>
+              </li>
+            </ul>
+            <div class="slider-text">
+              <span class="fl slider-span" id="slider-span">产品介绍</span>
             </div>
-
-            <div class="bd">
-
-              <div>
-                <br></div>
-              麦香村蛋糕房不止是一块蛋糕。麦香村蛋糕房的自然色必须控制在三色以内。在麦香村的厨房、仓储室，呈现在眼前的是一个高科技、严标准的运作形态。厨房室温保持在22℃，目的是防止制作蛋糕过程中，巧克力、乳脂奶油等食材融化，破坏蛋糕造型。
-              <div>
-                <br></div>
-              <div>
-                <img src="pictures/FuhoXd9IzzOsfweAJpS9M9__3wKq">
-                <br></div>
-              <div>
-                <br></div>
-              <div>
-                <img src="pictures/Fvq_qJTiikwTozTccu9aWc-2oySs">
-                <br></div>
-              <div>
-                <br></div>
-              <div>
-                <img src="pictures/Flea1894qVqC5yayofxWW-qSvrw0">
-                <br></div>
-              <div>
-                <br></div>
-              <div> <b>门店地址：</b>
-                吴江市黎里镇北厍麦香村美食店
-              </div>
-              <div> <b>联系方式：</b>
-                <a href="tel:15895502978" style="font-size: 13px; line-height: 1.5;">15895502978</a>
-              </div>
-              <div>
-                <br></div>
-            </div>
-
           </div>
 
-          <script>
-$(function(){
-  $(".ckeditor_content img").css({"height":"auto","width":"auto","max-width":"100%"});
-});
-</script>
+          <div class="list">
+            <ul>
+              <li>
+                <a href="1_article.jsp">
+
+                  <div class="list-text">
+                    <h1>产品介绍</h1>
+                    <h2>2014-06-13 13:37</h2>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="1_article.jsp">
+
+                  <div class="list-text">
+                    <h1>制作工艺</h1>
+                    <h2>2014-06-13 13:38</h2>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
 
         </div>
+      </section>
+
+      <section class="mod-navLine navLine-2">
+        <ul class="navLine-ul">
+          <li>
+            <a href="javascript:;" class="dev-prev"> <i class="fa fa-reply"></i>
+              <small>后退</small>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;" class="dev-next"> <i class="fa fa-share"></i>
+              <small>前进</small>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;" class="dev-index">
+              <i class="fa fa-home"></i>
+              <small>首页</small>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;" class="dev-refresh">
+              <i class="fa fa-refresh"></i>
+              <small>刷新</small>
+            </a>
+          </li>
+        </ul>
       </section>
 
     </div>
@@ -99,7 +123,7 @@ $(function(){
           在【添加朋友】—【查找公众号】中搜索
         </p>
         <p>
-          <span class="alert-btn">麦香村蛋糕</span>
+          <span class="alert-btn">西树泡芙</span>
           （长按可复制）
         </p>
         <p>
@@ -125,10 +149,9 @@ $(function(){
     </div>
   </div>
 
-  <footer>第三屏</footer>
+  <footer>技术支持：第三屏</footer>
 
   
-
   <style type="text/css">
         /*pop*/
     .pop-zoom{display:none;width:100%;height:100%;color:#fff;position:fixed;left:0;top:0;background:rgba(0,0,0,0.5);z-index:10000;}
@@ -218,34 +241,6 @@ $(function(){
     });
 </script>
 
-  <!-- 快捷菜单 Start -->
-  <div class="mod-navPop navPop-1">
-    <div class="navPop-wrap hide" id="navPop-wrap">
-      <b class="navPop-btn" id="navPop-btn"><i class="fa fa-plus" id="fa-btn" onclick="toggleToClass('#navPop-btn','active')"></i></b> 
-      <div>
-        <a href="tel:15861521065" class=""> <i class="fa fa-phone"></i>
-        </a>
-      </div>
-      <div>
-        <a href="#location" class="">
-          <i class="fa fa-location-arrow"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-  <!-- 快捷菜单 End -->
-
-  <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01/animateBg/snower1.css"/>
-  <div class="mod-snower snower1" id="snower1">
-    <script type="text/javascript">var urls = ["assets/mobile/vweisiteV01/animateBg/snower9.png"]</script>
-    <script type="text/javascript" src="javascripts/vweisiteV01/animateBg/snower1.js"></script>
-    <script>
-             $(function(){
-                 snowsFn(16);
-             });
-         </script>
-  </div>
-
   <a href="javascript:scroll(0,0)" class="btn-up btn-up-1">
     <i class="fa fa-arrow-up"></i>
   </a>
@@ -258,22 +253,13 @@ $(function(){
   <script type="text/javascript">
       $(document).ready(function(){
 
-                indexSwipe("index", ["", "", "", "", ""]);
-        bannerSet({
-            background: "#000000",
-            opacity: "50",
-            color: "#FFFFFF"
-        })
-        // 静态背景图
-        //$(".html").css("background-image", "url(pictures/FqJknzulpXhKRkr-uaIGRE1bg4d2)");
-      navPop1("#navPop-wrap","#navPop-btn"); // 快捷菜单    
-      $("#navPop-wrap").show();
+            $("body").addClass("body-navLine-bottom");
 
 
         showBtnUp(100);
 
         $("a.dev-prev").click(function(){
-            history.back();
+            location.href = history.back();
         });
 
         $("a.dev-next").click(function(){
@@ -281,7 +267,7 @@ $(function(){
         });
 
         $("a.dev-index").click(function(){
-          location.href = "6_index_dangao.html";
+          location.href = "5_index_mianbao.html";
         });
 
         $("a.dev-refresh").click(function(){

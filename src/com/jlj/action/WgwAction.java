@@ -164,7 +164,9 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public String updatetemplate(){
 		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		wgwService.updateTemplateByPublicAccount(template1,template2,template3,template4,paccount);
-		return NONE;
+		arg[0]="wgwAction!template";
+		arg[1]="微官网模板设置";
+		return SUCCESS;
 	}
 	//get、set-------------------------------------------
 	//service注入

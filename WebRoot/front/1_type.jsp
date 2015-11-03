@@ -1,4 +1,12 @@
-
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -10,20 +18,20 @@
   <meta content="telephone=no" name="format-detection">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>麦香村蛋糕</title>
+  <title>产品介绍</title>
 
   <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01.css"/>
   <link type="text/css" rel="stylesheet" href="stylesheets/font-awesome.css"/>
-  <link href="stylesheets/vweisiteV01/index/index96.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="stylesheets/vweisiteV01/list/list2.css" media="screen" rel="stylesheet" type="text/css" />
 
   <script src="assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
   <meta content="authenticity_token" name="csrf-param" />
-  <meta content="uu4elJjeyZd8k/ARutXFPy7LP4D5o+kT1gTnvZ8OwRo=" name="csrf-token" />
+  <meta content="rjcZLVvkHwtIiVZet0CTm58AuMsNNjgv8IU/CajlIVg=" name="csrf-token" />
 </head>
 
 <body>
 
-  <div class="html" style="background-image: url(pictures/FqJknzulpXhKRkr-uaIGRE1bg4d2)">
+  <div class="html" style="">
     <div class="stage" id="stage">
       <section id="sec-index">
 
@@ -32,95 +40,67 @@
           <div class="mod-slider slider-hor" id="index">
             <ul class="slider-list">
               <li>
-                <a href="">
-                  <img alt="Fooqvkay7orku5fnjtfkjci5l-na" src="pictures/FoOQvKAY7OrKu5fnjtFkjCi5L-na" />
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <img alt="Fvlqrmpwwrh5wipac3xwvm3v7wpn" src="pictures/FvlqrmPWWRH5wiPAC3xWVm3v7WpN" />
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <img alt="Fm1bafkhadgddsvdpwdgc21mmu7y" src="pictures/Fm1bAFkhADgdDSVdpwdgC21Mmu7y" />
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <img alt="Fsn967fbk156m3a01_wlwk_zawwr" src="pictures/Fsn967fbK156m3a01_wLwK_zawWR" />
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <img alt="Ftp_gf0mshnfocbifkojsbntg-ir" src="pictures/FtP_gF0MsHnFOcbiFkojSBNtg-ir" />
+                <a>
+                  <img alt="Flbor5npmzxrptictyzu4ptatcdy" src="pictures/template1_list_1.jpg" />
                 </a>
               </li>
             </ul>
             <div class="slider-text">
-              <span class="fl slider-span" id="slider-span"></span>
-              <div id="pagenavi" class="fr slider-page">
-                <a href="#" class="active">1</a>
-                <a href="#" class="">2</a>
-                <a href="#" class="">3</a>
-                <a href="#" class="">4</a>
-                <a href="#" class="">5</a>
-              </div>
+              <span class="fl slider-span" id="slider-span">产品介绍</span>
             </div>
           </div>
 
-          <div class="index">
-            <a href="6_article.html" class="box mod-index"> <i><img alt='麦香村' src='pictures/FhNdBvrJvTkDDei_AOcMBMtIl2Uw' /></i> 
-              <small>麦香村</small>
-            </a>
-            <a href="6_list1.html" class="box mod-index"> <i><img alt='糕点展' src='pictures/Fr-n6LugZmEwZs8NORvH4RxfOejG' /></i> 
-              <small>糕点展</small>
-            </a>
-            <a href="6_list1.html" class="box mod-index">
-              <i>
-                <img alt='美食展' src='pictures/FqRNueAfg5iH9FijUoXFcMIGwXNH' />
-              </i>
-              <small>美食展</small>
-            </a>
-            <a href="tel:15861521065" class="box mod-index">
-              <i>
-                <img alt='订蛋糕' src='pictures/FlaN5BtFDNGQHl6CMvCPqBGgWpo0' />
-              </i>
-              <small>订蛋糕</small>
-            </a>
-            <a href="6_list1.html" class="box mod-index">
-              <i>
-                <img alt='会员卡' src='pictures/FrGnMUw9UnQ3zZ0pmiANzbLi4-fz' />
-              </i>
-              <small>会员卡</small>
-            </a>
-            <a href="6_list1.html" class="box mod-index">
-              <i>
-                <img alt='好优惠' src='pictures/Fo-g0WWvEKAne30vQXUt-rQ_HUjc' />
-              </i>
-              <small>好优惠</small>
-            </a>
-            <a href="6_list1.html" class="box mod-index">
-              <i>
-                <img alt='小知识' src='pictures/Fu_Wxin_uXOxW6Jk8wdvicejMppE' />
-              </i>
-              <small>小知识</small>
-            </a>
-            <a href="6_list1.html" class="box mod-index">
-              <i>
-                <img alt='小助手' src='pictures/FkrMEm_JPTHa-O-uA99OEZ2K99fD' />
-              </i>
-              <small>小助手</small>
-            </a>
-            <a href="6_list1.html" class="box mod-index">
-              <i>
-                <img alt='小游戏' src='pictures/FqnRi1f3F6F6EJwF8heGGjzHHEAv' />
-              </i>
-              <small>小游戏</small>
-            </a>
+          <div class="list">
+            <ul>
+              <li>
+                <a href="1_article.jsp">
+
+                  <div class="list-text">
+                    <h1>产品介绍</h1>
+                    <h2>2014-06-13 13:37</h2>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="1_article.jsp">
+
+                  <div class="list-text">
+                    <h1>制作工艺</h1>
+                    <h2>2014-06-13 13:38</h2>
+                  </div>
+                </a>
+              </li>
+            </ul>
           </div>
 
         </div>
+      </section>
+
+      <section class="mod-navLine navLine-2">
+        <ul class="navLine-ul">
+          <li>
+            <a href="javascript:;" class="dev-prev"> <i class="fa fa-reply"></i>
+              <small>后退</small>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;" class="dev-next"> <i class="fa fa-share"></i>
+              <small>前进</small>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;" class="dev-index">
+              <i class="fa fa-home"></i>
+              <small>首页</small>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;" class="dev-refresh">
+              <i class="fa fa-refresh"></i>
+              <small>刷新</small>
+            </a>
+          </li>
+        </ul>
       </section>
 
     </div>
@@ -143,7 +123,7 @@
           在【添加朋友】—【查找公众号】中搜索
         </p>
         <p>
-          <span class="alert-btn">麦香村蛋糕</span>
+          <span class="alert-btn">西树泡芙</span>
           （长按可复制）
         </p>
         <p>
@@ -169,10 +149,9 @@
     </div>
   </div>
 
-  <footer>第三屏</footer>
+  <footer>技术支持：第三屏</footer>
 
   
-
   <style type="text/css">
         /*pop*/
     .pop-zoom{display:none;width:100%;height:100%;color:#fff;position:fixed;left:0;top:0;background:rgba(0,0,0,0.5);z-index:10000;}
@@ -262,34 +241,6 @@
     });
 </script>
 
-  <!-- 快捷菜单 Start -->
-  <div class="mod-navPop navPop-1">
-    <div class="navPop-wrap hide" id="navPop-wrap"> <b class="navPop-btn" id="navPop-btn"><i class="fa fa-plus" id="fa-btn" onclick="toggleToClass('#navPop-btn','active')"></i></b> 
-      <div>
-        <a href="tel:15861521065" class="">
-          <i class="fa fa-phone"></i>
-        </a>
-      </div>
-      <div>
-        <a href="#location" class="">
-          <i class="fa fa-location-arrow"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-  <!-- 快捷菜单 End -->
-
-  <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01/animateBg/snower1.css"/>
-  <div class="mod-snower snower1" id="snower1">
-    <script type="text/javascript">var urls = ["assets/mobile/vweisiteV01/animateBg/snower9.png"]</script>
-    <script type="text/javascript" src="javascripts/vweisiteV01/animateBg/snower1.js"></script>
-    <script>
-             $(function(){
-                 snowsFn(16);
-             });
-         </script>
-  </div>
-
   <a href="javascript:scroll(0,0)" class="btn-up btn-up-1">
     <i class="fa fa-arrow-up"></i>
   </a>
@@ -302,22 +253,13 @@
   <script type="text/javascript">
       $(document).ready(function(){
 
-                indexSwipe("index", ["", "", "", "", ""]);
-        bannerSet({
-            background: "#000000",
-            opacity: "50",
-            color: "#FFFFFF"
-        })
-        // 静态背景图
-        //$(".html").css("background-image", "url(pictures/FqJknzulpXhKRkr-uaIGRE1bg4d2)");
-      navPop1("#navPop-wrap","#navPop-btn"); // 快捷菜单    
-      $("#navPop-wrap").show();
+            $("body").addClass("body-navLine-bottom");
 
 
         showBtnUp(100);
 
         $("a.dev-prev").click(function(){
-            history.back();
+            location.href = history.back();
         });
 
         $("a.dev-next").click(function(){
@@ -325,7 +267,7 @@
         });
 
         $("a.dev-index").click(function(){
-          location.href = "6_index_dangao.html";
+          location.href = "5_index_mianbao.html";
         });
 
         $("a.dev-refresh").click(function(){
