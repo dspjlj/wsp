@@ -23,16 +23,13 @@ public class Wgw implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private String keyword;
 	private String title;
 	private String linkurl;
-	private String imageurl;
-	private Integer ison;
 	private String info;
 	private Integer template1;
 	private Integer template2;
 	private Integer template3;
-	private Integer tempate4;
+	private Integer template4;
 	private String publicaccount;
 	private Set<Screenimg> screenimgs = new HashSet<Screenimg>(0);
 	private Set<Bgmusic> bgmusics = new HashSet<Bgmusic>(0);
@@ -47,21 +44,18 @@ public class Wgw implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Wgw(String keyword, String title, String linkurl, String imageurl,
-			Integer ison, String info, Integer template1, Integer template2,
-			Integer template3, Integer tempate4, String publicaccount,
+	public Wgw(String title, String linkurl, 
+			String info, Integer template1, Integer template2,
+			Integer template3, Integer template4, String publicaccount,
 			Set<Screenimg> screenimgs, Set<Bgmusic> bgmusics,
 			Set<Wgwmenu> wgwmenus, Set<Footer> footers, Set<Bigtype> bigtypes) {
-		this.keyword = keyword;
 		this.title = title;
 		this.linkurl = linkurl;
-		this.imageurl = imageurl;
-		this.ison = ison;
 		this.info = info;
 		this.template1 = template1;
 		this.template2 = template2;
 		this.template3 = template3;
-		this.tempate4 = tempate4;
+		this.template4 = template4;
 		this.publicaccount = publicaccount;
 		this.screenimgs = screenimgs;
 		this.bgmusics = bgmusics;
@@ -82,15 +76,6 @@ public class Wgw implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "keyword", length = 20)
-	public String getKeyword() {
-		return this.keyword;
-	}
-
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-
 	@Column(name = "title", length = 60)
 	public String getTitle() {
 		return this.title;
@@ -107,24 +92,6 @@ public class Wgw implements java.io.Serializable {
 
 	public void setLinkurl(String linkurl) {
 		this.linkurl = linkurl;
-	}
-
-	@Column(name = "imageurl", length = 100)
-	public String getImageurl() {
-		return this.imageurl;
-	}
-
-	public void setImageurl(String imageurl) {
-		this.imageurl = imageurl;
-	}
-
-	@Column(name = "ison")
-	public Integer getIson() {
-		return this.ison;
-	}
-
-	public void setIson(Integer ison) {
-		this.ison = ison;
 	}
 
 	@Column(name = "info", length = 300)
@@ -163,13 +130,13 @@ public class Wgw implements java.io.Serializable {
 		this.template3 = template3;
 	}
 
-	@Column(name = "tempate4")
-	public Integer getTempate4() {
-		return this.tempate4;
+	@Column(name = "template4")
+	public Integer getTemplate4() {
+		return this.template4;
 	}
 
-	public void setTempate4(Integer tempate4) {
-		this.tempate4 = tempate4;
+	public void setTemplate4(Integer template4) {
+		this.template4 = template4;
 	}
 
 	@Column(name = "publicaccount", length = 30)

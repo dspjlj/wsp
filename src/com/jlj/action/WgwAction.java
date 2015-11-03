@@ -15,6 +15,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.jlj.model.Pubclient;
 import com.jlj.model.Wgw;
 import com.jlj.service.IPubclientService;
 import com.jlj.service.IWgwService;
@@ -60,88 +61,111 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		return NONE;
 	}
 	//=========后台管理=================================================
+//	/**
+//	 * 微官网管理
+//	 */
+//	public String list() throws Exception{
+//		if(convalue!=null&&!convalue.equals("")){
+//			convalue=URLDecoder.decode(convalue, "utf-8");
+//		}
+//		if(page<1){
+//			page=1;
+//		}
+//		//总记录数
+//		totalCount=wgwService.getTotalCount(con,convalue,status,publicaccount);
+//		//总页数
+//		pageCount=wgwService.getPageCount(totalCount,size);
+//		if(page>pageCount&&pageCount!=0){
+//			page=pageCount;
+//		}
+//		//所有当前页记录对象
+//		wgws=wgwService.queryList(con,convalue,status,publicaccount,page,size);
+//		
+//		return "list";
+//	}
+//	/**
+//	 * 删除
+//	 * @return
+//	 */
+//	public String delete(){
+//		wgwService.deleteById(id);
+//		arg[0]="wgwAction!list";
+//		arg[1]="微官网管理";
+//		return SUCCESS;
+//	}
+//	/**
+//	 * 跳转到修改页面
+//	 * @return
+//	 */
+//	public String load() throws Exception{
+//		wgw=wgwService.loadById(id);
+//		return "load";
+//	}
 	/**
-	 * 微官网管理
-	 */
-	public String list() throws Exception{
-		if(convalue!=null&&!convalue.equals("")){
-			convalue=URLDecoder.decode(convalue, "utf-8");
-		}
-		if(page<1){
-			page=1;
-		}
-		//总记录数
-		totalCount=wgwService.getTotalCount(con,convalue,status,publicaccount);
-		//总页数
-		pageCount=wgwService.getPageCount(totalCount,size);
-		if(page>pageCount&&pageCount!=0){
-			page=pageCount;
-		}
-		//所有当前页记录对象
-		wgws=wgwService.queryList(con,convalue,status,publicaccount,page,size);
-		
-		return "list";
-	}
-	/**
-	 * 跳转到添加页面
+	 * 微官网-设置
 	 * @return
 	 */
-	public String goToAdd(){
-		return "add";
+	public String view(){
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		//判断该公众号的微官网是否存在，不存在跳转到add；存在跳转到load页
+		wgw=wgwService.queryWgwByPublicAccount(paccount);
+		if(wgw!=null){
+			return "load";
+		}else{
+			return "add";
+		}
 	}
-	
+
 	/**
-	 * 添加
+	 * 微官网-设置-添加
 	 * @return
 	 * @throws Exception
 	 */
 	public String add() throws Exception{
+		wgw.setLinkurl("http://#daiding");
 		wgwService.add(wgw);
-		arg[0]="wgwAction!list";
-		arg[1]="微官网管理";
+		arg[0]="wgwAction!view";
+		arg[1]="微官网设置";
 		return SUCCESS;
 	}
 	
 	/**
-	 * 删除
-	 * @return
-	 */
-	public String delete(){
-		wgwService.deleteById(id);
-		arg[0]="wgwAction!list";
-		arg[1]="微官网管理";
-		return SUCCESS;
-	}
-	
-	/**
-	 * 修改
+	 * 微官网-设置-修改
 	 * @return
 	 */
 	public String update() throws Exception{
 		wgwService.update(wgw);
-		arg[0]="wgwAction!list";
-		arg[1]="微官网管理";
+		arg[0]="wgwAction!view";
+		arg[1]="微官网设置";
 		return SUCCESS;
 	}
-	
 	/**
-	 * 查看信息
+	 * 进入微官网模板设置页
 	 * @return
 	 */
-	public String view(){
-		wgw=wgwService.loadById(id);
-		return "view";
+	public String template(){
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		//判断该公众号的微官网是否存在，不存在跳转到add；存在跳转到loadtemplate
+		wgw=wgwService.queryWgwByPublicAccount(paccount);
+		if(wgw!=null){
+			return "loadtemplate";
+		}else{
+			return "add";
+		}
 	}
 	/**
-	 * 跳转到修改页面
+	 * 修改模板信息
 	 * @return
 	 */
-	public String load() throws Exception{
-		wgw=wgwService.loadById(id);
-		return "load";
+	private int template1;
+	private int template2;
+	private int template3;
+	private int template4;
+	public String updatetemplate(){
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		wgwService.updateTemplateByPublicAccount(template1,template2,template3,template4,paccount);
+		return NONE;
 	}
-	
-	
 	//get、set-------------------------------------------
 	//service注入
 	public IPubclientService getPubclientService() {
@@ -255,6 +279,30 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	public void setFrontpa(String frontpa) {
 		this.frontpa = frontpa;
+	}
+	public int getTemplate1() {
+		return template1;
+	}
+	public void setTemplate1(int template1) {
+		this.template1 = template1;
+	}
+	public int getTemplate2() {
+		return template2;
+	}
+	public void setTemplate2(int template2) {
+		this.template2 = template2;
+	}
+	public int getTemplate3() {
+		return template3;
+	}
+	public void setTemplate3(int template3) {
+		this.template3 = template3;
+	}
+	public int getTemplate4() {
+		return template4;
+	}
+	public void setTemplate4(int template4) {
+		this.template4 = template4;
 	}
 	
 }

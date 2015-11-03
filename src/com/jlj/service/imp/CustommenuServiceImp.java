@@ -117,6 +117,7 @@ public class CustommenuServiceImp implements ICustommenuService {
 		Object[] p= new Object[]{paccount};
 		return custommenuDao.getObjectsByCondition(queryString, p);
 	}
+	//根据公众号原始ID查询自定义菜单对象
 	public Custommenu queryCustommenuByPublicAccount(String paccount) {
 		String queryString = "from Custommenu mo where mo.publicaccount=:paccount ";
 		String[] paramNames = new String[]{"paccount"};

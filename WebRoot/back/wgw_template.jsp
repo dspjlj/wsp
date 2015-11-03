@@ -1,0 +1,162 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<!doctype html>
+<html><head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!-- Apple devices fullscreen -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- Apple devices fullscreen -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<base target="mainFrame">
+		<link rel="stylesheet" type="text/css" href="css/wm/index.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/wm/bootstrap_min.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/wm/bootstrap_responsive_min.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/wm/style.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/wm/themes.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/wm/todc_bootstrap.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/wm/official.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/wm/inside.css" media="all">
+		<title>第三屏—国内免费的微信公众服务平台</title>
+		<script type="text/javascript">var yyuc_jspath = "";</script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/yyucadapter.js"></script>
+		<script src="http://api.map.baidu.com/api?v=1.5&amp;ak=1b0ace7dde0245f796844a06fb112734"></script><script type="text/javascript" src="http://api.map.baidu.com/getscript?v=1.5&amp;ak=1b0ace7dde0245f796844a06fb112734&amp;services=&amp;t=20150522094656"></script>
+		<link rel="shortcut icon" href="/favicon.ico">
+	</head>
+	<body class="theme-blue" style="overflow: hidden;">
+		<div id="main">
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-title">
+								<div class="span12">
+									<h3>
+										<i class="icon-edit"></i>模板管理
+									</h3>
+								</div>
+							</div>
+							<form action="wgwAction!updatetemplate" method="post">
+							<div class="box-content" style="overflow: auto; height: 865px;">
+								<ul class="nav nav-tabs" id="liclickli">
+									<li class="active">
+										<a href="javascript:;" did="#relli0" data-toggle="tab">栏目首页模板风格</a>
+									</li>
+									<li>
+										<a href="javascript:;" did="#relli1" data-toggle="tab">频道模板风格</a>
+									</li>
+									<li>
+										<a href="javascript:;" did="#relli2" data-toggle="tab">图文列表模板风格</a>
+									</li>
+									<li>
+										<a href="javascript:;" did="#relli3" data-toggle="tab">图文详细页模板</a>
+									</li>
+									<li>
+										<button id="bsubmit" type="submit" class="btn btn-primary">
+											保存
+										</button>
+										
+									</li>
+								</ul>
+								
+								<div class="tab-content">
+									<div class="tab-pane active in" id="relli0">
+										<ul class="nav nav-tabs nav-tabs-google" style="border-bottom: none"></ul>
+										<ul class="cateradio unstyled">
+										<li class="phoneareali"><label><img src="res/mbpic/1.png"><input type="radio" name="template1" value="1">模板1</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/1.png"><input type="radio" name="template1" value="2">模板2</label></li>
+										</ul>
+									</div>
+									<div class="tab-pane" id="relli1">
+										<ul class="nav nav-tabs nav-tabs-google" style="border-bottom: none"></ul>
+										<ul class="cateradio unstyled">
+										<li class="phoneareali"><label><img src="res/mbpic/2.png"><input type="radio" name="template2" value="1">模板1</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/2.png"><input type="radio" name="template2" value="2">模板2</label></li>
+										
+										</ul>
+									</div>
+									<div class="tab-pane" id="relli2">
+										<ul class="nav nav-tabs nav-tabs-google" style="border-bottom: none"></ul>
+										<ul class="cateradio unstyled">
+										<li class="phoneareali"><label><img src="res/mbpic/3.png"><input type="radio" name="template3" value="1">模板1</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/3.png"><input type="radio" name="template3" value="2">模板2</label></li>
+										
+										</ul>
+									</div>
+									<div class="tab-pane" id="relli3">
+										<ul class="nav nav-tabs nav-tabs-google" style="border-bottom: none"></ul>
+										<ul class="cateradio unstyled">
+										<li class="phoneareali"><label><img src="res/mbpic/4.png"><input type="radio" name="template4" value="1">模板1</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/4.png"><input type="radio" name="template4" value="2">模板2</label></li>
+										
+										</ul>
+									</div>
+									<!-- 
+								<div class="tab-pane" id="relli0">
+									
+								</div>
+								 -->
+								</div>
+								
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+$(function(){
+	$('.box-content').height($(window).height()-90);
+	
+	$('#liclickli').children('li').click(function(){
+		var divid = $(this).find('a').attr('did');
+		$('.tab-pane').hide();
+		$(divid).fadeIn();
+		$('#liclickli').children('li').removeClass('active');
+		$(this).addClass('active');
+	});
+	
+	
+	$('.phoneareali').click(function(){
+		$('.phoneareali').removeClass('active');
+		$(this).addClass('active');
+	});
+	
+	
+});
+function setthisone(){
+	var rad = $('input[type="radio"]:checked');
+	if(rad.size<=0){
+		return;
+	}
+	var tdind = rad.val();
+	var commonhtm = $('#mainxztr').children('td').eq(parseInt(tdind)).find('.ppdiv').html();
+	if(parent.endmbxz){
+		parent.endmbxz(commonhtm);
+	}	
+}
+function closethisone(){
+	if(parent.endmbxz){
+		parent.endmbxz('0');
+	}	
+}
+</script>
+		<br>
+		<br>
+		<br>
+
+
+		
+	
+</body></html>

@@ -212,47 +212,37 @@ $(function(){
       </div>
       <ul class="subnav-menu" style="display: none">
         
-        <li>
-          <a href="wgw_keyword_set.html">关键字设置</a>
-        </li>
+          <li>
+            <a href="wgwAction!view">微官网设置</a>
+          </li>
 		
-		<li>
-          <a href="wgw_template_set.html">模板预览</a>
-        </li>
-        <!--
-        <li>
-          <a href="wsite.html">
-            微官网设置
-          </a>
-        </li>
+		  <li>
+            <a href="wgwAction!template">模板预览</a>
+          </li>
         
-                              <li>
-        <a href="/admin/web/beifen.html">微网站备份</a>
-      </li>
-      -->
-      <li>
-        <a href="wgw_bgmusic_set.html">背景音乐设置</a>
-      </li>
-	  <li>
-        <a href="wgw_lunbo.html">背景轮播设置</a>
-      </li>
-	  
-	  <li>
-        <a href="wgw_bigtype_manage.html">首页类别管理</a>
-      </li>
-	  
-	  
-	  <li>
-        <a href="wgw_pagearticle_manage.html">文章管理</a>
-      </li>
-	  
-      <li>
-        <a href="wgw_menu_set.html">菜单导航设置</a>
-      </li>
-      
-      <li>
-        <a href="wgw_version.html">底部版权设置</a>
-      </li>
+	      <li>
+	        <a href="wgw_bgmusic_set.html">背景音乐设置</a>
+	      </li>
+		  <li>
+	        <a href="wgw_lunbo.html">背景轮播设置</a>
+	      </li>
+		  
+		  <li>
+	        <a href="wgw_bigtype_manage.html">首页类别管理</a>
+	      </li>
+		  
+		  
+		  <li>
+	        <a href="wgw_pagearticle_manage.html">文章管理</a>
+	      </li>
+		  
+	      <li>
+	        <a href="wgw_menu_set.html">菜单导航设置</a>
+	      </li>
+	      
+	      <li>
+	        <a href="wgw_version.html">底部版权设置</a>
+	      </li>
     </ul>
   </div>
 

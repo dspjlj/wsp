@@ -28,4 +28,9 @@ public interface IWgwService {
 
 	public abstract List<Wgw> getFrontWgwsByPublicAccount(String paccount);
 
+	public abstract Wgw queryWgwByPublicAccount(String paccount);
+
+	public abstract void updateTemplateByPublicAccount(int template1,
+			int template2, int template3, int template4, String paccount);
+
 }

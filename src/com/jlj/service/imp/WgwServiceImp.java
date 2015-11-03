@@ -86,5 +86,20 @@ public class WgwServiceImp implements IWgwService {
 		Object[] p= new Object[]{paccount};
 		return wgwDao.getObjectsByCondition(queryString, p);
 	}
+	//根据公众号ID查询该微官网
+	public Wgw queryWgwByPublicAccount(String paccount) {
+		String queryString = "from Wgw mo where mo.publicaccount=:paccount ";
+		String[] paramNames = new String[]{"paccount"};
+		Object[] values = new Object[]{paccount};
+		return wgwDao.queryByNamedParam(queryString, paramNames, values);
+	}
+	//根据公众号原始ID修改模板
+	public void updateTemplateByPublicAccount(int template1, int template2,
+			int template3, int template4, String paccount) {
+		String hql = "update Wgw mo set mo.template1=:template1,mo.template2=:template2,mo.template3=:template3,mo.template4=:template4 where mo.publicaccount=:paccount";
+		String[] paramNames = new String[]{"template1","template2","template3","template4","paccount"};
+		Object[] values = new Object[]{template1,template2,template3,template4,paccount};
+		wgwDao.updateByHql(hql, paramNames, values);
+	}
 
 }
