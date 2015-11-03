@@ -35,4 +35,7 @@ public interface IPubclientService {
 
 	public abstract Pubclient getById(int id);
 
+	public abstract void updateAppAuthById(String appid, String appsecret,
+			int pubid);
+
 }

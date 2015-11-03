@@ -116,6 +116,7 @@ public class Custommenu implements java.io.Serializable {
 	private Integer menu3son5resid;
 	private Date createdate;
 	private String publicaccount;
+	private String alldata;
 
 	// Constructors
 
@@ -156,7 +157,7 @@ public class Custommenu implements java.io.Serializable {
 			Integer menu2son4resid, Integer menu2son5resid,
 			Integer menu3son1resid, Integer menu3son2resid,
 			Integer menu3son3resid, Integer menu3son4resid,
-			Integer menu3son5resid, Date createdate, String publicaccount) {
+			Integer menu3son5resid, Date createdate, String publicaccount,String alldata) {
 		this.menu1 = menu1;
 		this.menu2 = menu2;
 		this.menu3 = menu3;
@@ -252,6 +253,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu3son5resid = menu3son5resid;
 		this.createdate = createdate;
 		this.publicaccount = publicaccount;
+		this.alldata = alldata;
 	}
 
 	// Property accessors
@@ -1121,5 +1123,16 @@ public class Custommenu implements java.io.Serializable {
 	public void setPublicaccount(String publicaccount) {
 		this.publicaccount = publicaccount;
 	}
+
+	@Column(name = "alldata", length = 65535)
+	public String getAlldata() {
+		return alldata;
+	}
+
+	public void setAlldata(String alldata) {
+		this.alldata = alldata;
+	}
+	
+	
 
 }

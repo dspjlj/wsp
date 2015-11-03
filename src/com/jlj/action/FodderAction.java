@@ -555,7 +555,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @throws Exception
 	 */
 	public String updatetext() throws Exception{
-		System.out.println(fodderid+","+title+","+content);
+		//System.out.println(fodderid+","+title+","+content);
 		fodderService.updateTextFodder(title,content, fodderid);
 		arg[0]="fodderAction!textlist";
 		arg[1]="素材管理";

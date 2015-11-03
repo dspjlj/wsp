@@ -194,10 +194,10 @@ $(function(){
       </div>
       <ul class="subnav-menu" style="display: none">
         <li>
-          <a href="customMenu_auth.html">授权设置</a>
+          <a href="pubclientAction!loadappauth">授权设置</a>
         </li>
         <li>
-          <a href="customMenu_set.html">菜单设置</a>
+          <a href="custommenuAction!view">菜单设置</a>
         </li>
       </ul>
     </div>

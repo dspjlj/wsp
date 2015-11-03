@@ -212,8 +212,28 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		session.put("pubclient", pubclient);
 		return "loadpubfun";
 	}
+	/**
+	 * 进入某公众号的功能列表进行管理
+	 * @return
+	 */
+	public String loadappauth(){
+		Pubclient sessionPub=(Pubclient)session.get("pubclient");
+		pubclient = pubclientService.loadById(sessionPub.getId());
+		return "loadappauth";
+	}
 	
-	
+	/**
+	 * 修改appid和appsecret
+	 * @return
+	 */
+	private int pubid;//用于接收需要修改appauth的id
+	private String appid;
+	private String appsecret;
+	public String updateAppAuth(){
+		pubclientService.updateAppAuthById(appid,appsecret,pubid);
+		pubclient = pubclientService.loadById(pubid);
+		return "loadappauth";
+	}
 	
 	//get、set-------------------------------------------
 	public IPubclientService getPubclientService() {
@@ -340,4 +360,29 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setPictureFileName(String pictureFileName) {
 		this.pictureFileName = pictureFileName;
 	}
+
+	public int getPubid() {
+		return pubid;
+	}
+
+	public void setPubid(int pubid) {
+		this.pubid = pubid;
+	}
+
+	public String getAppid() {
+		return appid;
+	}
+
+	public void setAppid(String appid) {
+		this.appid = appid;
+	}
+
+	public String getAppsecret() {
+		return appsecret;
+	}
+
+	public void setAppsecret(String appsecret) {
+		this.appsecret = appsecret;
+	}
+	
 }

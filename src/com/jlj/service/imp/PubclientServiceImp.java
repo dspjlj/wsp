@@ -118,5 +118,13 @@ public class PubclientServiceImp implements IPubclientService{
 	}
 	//查询管理员的公众号列表======================end
 	
+	//根据id修改appauth
+	public void updateAppAuthById(String appid, String appsecret, int pubid) {
+		String hql = "update Pubclient mo set mo.appid=:appid,mo.appsecret=:appsecret where mo.id=:pubid";
+		String[] paramNames = new String[]{"appid","appsecret","pubid"};
+		Object[] values = new Object[]{appid,appsecret,pubid};
+		pubclientDao.updateByHql(hql, paramNames, values);
+	}
+	
 
 }
