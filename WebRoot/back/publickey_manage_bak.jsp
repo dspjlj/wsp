@@ -49,7 +49,7 @@
 							<div class="box-title">
 								<div class="span10">
 									<h3>
-										<i class="icon-edit"></i>首页类别管理 ( 1 条记录 1/1 页 )
+										<i class="icon-edit"></i>类别管理 ( 1 条记录 1/1 页 )
 									</h3>
 								</div>
 								<div class="span2">

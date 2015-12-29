@@ -229,7 +229,7 @@ $(function(){
 						</li>
 
 						<li>
-							<a href="wgw_bigtype_manage.html">首页类别管理</a>
+							<a href="bigtypeAction!list">类别管理</a>
 						</li>
 
 

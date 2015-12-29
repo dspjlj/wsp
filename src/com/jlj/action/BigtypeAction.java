@@ -5,8 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URLDecoder;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -24,8 +22,10 @@ import org.springframework.stereotype.Component;
 
 import com.jlj.model.Bigtype;
 import com.jlj.model.Pubclient;
+import com.jlj.model.Wgw;
 import com.jlj.service.IBigtypeService;
 import com.jlj.service.IPubclientService;
+import com.jlj.service.IWgwService;
 import com.jlj.util.DateTimeKit;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -35,6 +35,7 @@ public class BigtypeAction extends ActionSupport implements RequestAware,
 SessionAware,ServletResponseAware,ServletRequestAware {
 	
 	private static final long serialVersionUID = 1L;
+	private IWgwService wgwService;
 	private IBigtypeService bigtypeService;
 	private IPubclientService pubclientService;
 	Map<String,Object> request;
@@ -44,6 +45,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	//单个对象
 	private int id;
 	private Bigtype bigtype;
+	private Wgw wgw;
 	//分页显示
 	private String[] arg=new String[2];
 	private List<Bigtype> bigtypes;
@@ -57,8 +59,13 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	//条件
 	private int con;
 	private String convalue;
+	//上传照片
+	private File picture;
+	private String pictureContentType;
+	private String pictureFileName;
 	
 	private String frontpa;
+	//=========前台类别=================================================
 	public String frontBigtypes(){
 		bigtypes = bigtypeService.getFrontBigtypesByPublicAccount(frontpa);
 		request.put("bigtypes", bigtypes);
@@ -68,54 +75,63 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 //		session.put("template", template);
 		return NONE;
 	}
-	//=========后台首页类别=================================================
+	//=========后台类别管理=================================================
 	/**
-	 * 首页类别管理
+	 * 类别管理
 	 */
 	public String list() throws Exception{
-		if(convalue!=null&&!convalue.equals("")){
-			convalue=URLDecoder.decode(convalue, "utf-8");
-		}
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		if(page<1){
 			page=1;
 		}
+		//总记录数
+		totalCount=bigtypeService.getTotalCount(paccount);
 		//总页数
-		pageCount=bigtypeService.getPageCount(con,convalue,status,publicaccount,size);
+		pageCount=bigtypeService.getPageCount(totalCount,size);
 		if(page>pageCount&&pageCount!=0){
 			page=pageCount;
 		}
 		//所有当前页记录对象
-		bigtypes=bigtypeService.queryList(con,convalue,status,publicaccount,page,size);
-		//总记录数
-		totalCount=bigtypeService.getTotalCount(con,convalue,status,publicaccount);
+		bigtypes=bigtypeService.queryList(paccount,page,size);
 		return "list";
+		
 	}
 	/**
 	 * 跳转到添加页面
 	 * @return
 	 */
 	public String goToAdd(){
-		return "add";
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		wgw=wgwService.queryWgwByPublicAccount(paccount);
+		if(wgw!=null){
+			return "add";
+		}else{
+			//请先设置微官网
+			arg[0]="wgwAction!view";
+			arg[1]="微官网设置";
+			String goInfo = "请先设置微官网";
+			request.put("goInfo", goInfo);
+			return "goanother";
+		}
 	}
 	/**
 	 * 添加
 	 * @return
 	 * @throws Exception
 	 */
-	
 	public String add() throws Exception{
-		String paccount=bigtype.getPublicaccount();
-		
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		if(picture!=null){
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-			this.upload(imageName);
+			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
+			this.upload(imageName,picture,folderUrl);
 			bigtype.setImageurl(paccount+"/"+imageName);
-			
 		}
+		bigtype.setPublicaccount(paccount);
 		bigtypeService.add(bigtype);
 		
-		arg[0]="bigtypeAction!list?publicaccount="+paccount;
-		arg[1]="首页类别管理";
+		arg[0]="bigtypeAction!list";
+		arg[1]="类别管理";
 		return SUCCESS;
 	}
 	/**
@@ -123,21 +139,15 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @return
 	 */
 	public String delete(){
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		Bigtype bigtype=bigtypeService.loadById(id);
 		//删除图片
 		File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+bigtype.getImageurl());
 		photofile.delete();
 		bigtypeService.delete(bigtype);
 		
-		arg[0]="bigtypeAction!list?publicaccount="+paccount;
-		arg[1]="首页类别管理";
+		arg[0]="bigtypeAction!list";
+		arg[1]="类别管理";
 		return SUCCESS;
 	}
 	/**
@@ -145,29 +155,24 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @return
 	 */
 	public String update() throws Exception{
-		String paccount=bigtype.getPublicaccount();
-		
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		if(picture!=null){
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-			this.upload(imageName);
+			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
+			this.upload(imageName,picture,folderUrl);
+			//删除原图片
 			File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+bigtype.getImageurl());
 			photofile.delete();
 			bigtype.setImageurl(paccount+"/"+imageName);
-			
 		}
+		bigtype.setPublicaccount(paccount);
 		bigtypeService.update(bigtype);
-		arg[0]="bigtypeAction!list?publicaccount="+paccount;
-		arg[1]="首页类别管理";
+		
+		arg[0]="bigtypeAction!list";
+		arg[1]="类别管理";
 		return SUCCESS;
 	}
-	/**
-	 * 查看信息
-	 * @return
-	 */
-	public String view(){
-		bigtype=bigtypeService.loadById(id);
-		return "view";
-	}
+	
 	/**
 	 * 跳转到修改页面
 	 * @return
@@ -177,14 +182,10 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		return "load";
 	}
 	
-	//上传照片
-	private File picture;
-	private String pictureContentType;
-	private String pictureFileName;
+	
 	//文件上传
-	public void upload(String imageName) throws Exception{
-		String floderName=((Pubclient)session.get("pubclient")).getPublicaccount();
-		File saved=new File(ServletActionContext.getServletContext().getRealPath(floderName),imageName);
+	public void upload(String imageName,File picture,String floderUrl) throws Exception{
+		File saved=new File(floderUrl,imageName);
 		InputStream ins=null;
 		OutputStream ous=null;
 		try {
@@ -343,6 +344,19 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	@Resource
 	public void setPubclientService(IPubclientService pubclientService) {
 		this.pubclientService = pubclientService;
+	}
+	public IWgwService getWgwService() {
+		return wgwService;
+	}
+	@Resource
+	public void setWgwService(IWgwService wgwService) {
+		this.wgwService = wgwService;
+	}
+	public Wgw getWgw() {
+		return wgw;
+	}
+	public void setWgw(Wgw wgw) {
+		this.wgw = wgw;
 	}
 	
 	

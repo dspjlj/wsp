@@ -31,4 +31,10 @@ public interface IBigtypeService {
 	
 	public abstract List<Bigtype> getFrontBigtypesByPublicAccount(String paccount);
 
+	public abstract int getTotalCount(String paccount);
+
+	public abstract int getPageCount(int totalCount, int size);
+
+	public abstract List<Bigtype> queryList(String paccount, int page, int size);
+
 }

@@ -1,0 +1,150 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <base target="mainFrame" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>第三屏</title>
+    <link href="weiqiwx/tpl/User/default/common/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="weiqiwx/tpl/User/default/common/css/stylet.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="weiqiwx/tpl/User/default/common/js/jquery.min.js"></script>
+    <script type="text/javascript" src="weiqiwx/tpl/User/default/common/js/main.js"></script>
+    <script type="text/javascript" src="weiqiwx/tpl/User/default/common/js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/wm/bootstrap_min.css?dddf" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/bootstrap_responsive_min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/themes.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/todc_bootstrap.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/inside.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/album.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/uploadify_t.css" media="all" />
+    <script src="weiqiwx/tpl/static/jquery-1.4.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/yyucadapter.js"></script>
+    <link rel="stylesheet" type="text/css" href="uploadify/uploadify.css"/>
+    <script type="text/javascript" src="uploadify/jquery.uploadify.js"></script>
+    <link rel="stylesheet" type="text/css" href="res/mbaudio/css/miniplayer.css" title="style" media="screen"/>
+    <link href="weiqiwx/tpl/static/font-awesome/font-awesome.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 7]><link rel="stylesheet" href="weiqiwx/tpl/static/font-awesome/font-awesome-ie7.min.css"><![endif]-->
+    <style>
+    /*UP*/
+    a.a_upload,a.a_choose{border:1px solid #3d810c;box-shadow:0 1px #CCCCCC;-moz-box-shadow:0 1px #CCCCCC;-webkit-box-shadow:0 1px #CCCCCC;cursor:pointer;display:inline-block;text-align:center;vertical-align:bottom;overflow:visible;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;vertical-align:middle;background-color:#f1f1f1;background-image: -webkit-linear-gradient(bottom, #CCC 0%, #E5E5E5 3%, #FFF 97%, #FFF 100%); background-image: -moz-linear-gradient(bottom, #CCC 0%, #E5E5E5 3%, #FFF 97%, #FFF 100%); background-image: -ms-linear-gradient(bottom, #CCC 0%, #E5E5E5 3%, #FFF 97%, #FFF 100%); color:#000;border:1px solid #AAA;padding:2px 8px 2px 8px;text-shadow: 0 1px #FFFFFF;font-size: 14px;line-height: 1.5;
+    }
+    span[class*="icon"]:before{
+        color:#fff;
+        font-size:25px;
+        line-height:25px;
+    }
+    </style><script type="text/javascript">
+    function ying(){
+     document.getElementById('tiduser').style.display="none";
+     document.getElementById('quit').style.display="block";
+ }
+ function xian(){
+     document.getElementById('tiduser').style.display="block";
+     document.getElementById('quit').style.display="none";
+
+ }
+ setTimeout(xian,5000);
+</script>
+</head>
+<body>
+    <div>
+        <div id="floatline"></div>
+<script src="weiqiwx/tpl/static/jquery-1.4.2.min.js" type="text/javascript"></script>
+<div id="Content" ></div>
+<html>
+<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!-- Apple devices fullscreen -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- Apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<base target="mainFrame" />
+<link rel="stylesheet" type="text/css" href="weiqiwx/tpl/User/default/common/css/cymain.css" />
+<div class="content" style="width:80%; border:none; border:none; margin-bottom:30px;" >
+    <link rel="stylesheet" type="text/css" href="css/wm/index.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/bootstrap_min.css?dddf" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/bootstrap_responsive_min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/themes.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/todc_bootstrap.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/inside.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/album.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/wm/uploadify_t.css" media="all" />
+    <title>第三屏—国内免费的微信公众服务平台</title>
+    <script type="text/javascript">var yyuc_jspath = "";</script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/yyucadapter.js"></script>
+    <script type="text/javascript" src="res/mbaudio/inc/jquery.jplayer.min.js"></script>
+    <script type="text/javascript" src="res/mbaudio/inc/jquery.mb.miniPlayer.js"></script>
+    <link rel="stylesheet" type="text/css" href="uploadify/uploadify.css"/>
+    <script type="text/javascript" src="uploadify/jquery.uploadify.js"></script>
+    <link rel="stylesheet" type="text/css" href="res/mbaudio/css/miniplayer.css" title="style" media="screen"/>
+    <body class="{Session::get('maintheme')}">
+        <div id="main">
+            <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                <div class="box">
+                    <div class="box-title">
+                        <div class="span10">
+                            <h3><i class="icon-edit"></i>类别管理 ( 1 条记录 1/1 页          ) </h3>
+                        </div>
+                        <div class="span2">
+                            <a class="btn" href="javascript:history.go(-1);">返回</a>
+                        </div>
+                    </div>
+                    <div class="box-content"><!--tab end-->
+                        <div class="cLine">
+                            <div class="pageNavigator left">
+                                <a href="bigtypeAction!goToAdd" title="新增分类" class="btn" id="add_menu">
+                                    <i class="icon-plus"></i>新增分类
+                                </a>
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="msgWrap">
+                            <form method="post" action="" id="info">
+                                <input name="delall" type="hidden" value=""/>
+                                <table  class="table table-bordered table-hover dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th >分类名称</th>
+                                            <th  class="norightborder">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="text-align:center;">
+                                    	<s:if test="%{bigtypes.size()==0}">
+                                    		<tr>
+	                                            <td colspan="2" >暂无类别</td>
+	                                        </tr>
+                                    	</s:if>
+                                    	<s:iterator value="bigtypes" var="bigtype" status="index">
+                                    		<tr>
+	                                            <td><s:property value="name"/></td>
+	                                            <td class="norightborder">
+	                                                <a href="wgw_sontype_manage.html" class="btn">子分类</a>&nbsp;
+	                                                <a href="bigtypeAction!load?id=<s:property value="id"/>" class="btn"><i class="icon-edit"></i></a> &nbsp;
+	                                                <a href="javascript:drop_confirm('您确定要删除吗?', 'bigtypeAction!delete?id=<s:property value="id"/>');" class="btn"><i class="icon-remove"></i></a>
+	                                            </td>
+	                                        </tr>
+                                    	</s:iterator>
+                                        
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="cLine">
+                            <div class="pageNavigator"></div>
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div><!--end Frame-->
+            </body>
+            </html>

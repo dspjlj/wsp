@@ -93,5 +93,20 @@ public class BigtypeServiceImp implements IBigtypeService{
 		Object[] p= new Object[]{paccount};
 		return bigtypeDao.getObjectsByCondition(queryString, p);
 	}
-
+	
+	//后台管理大类别==================================================start
+	public int getPageCount(int totalCount, int size) {
+		return totalCount%size==0?totalCount/size:(totalCount/size+1);
+	}
+	public int getTotalCount(String paccount) {
+		String queryString = "select count(*) from Bigtype mo where mo.publicaccount=? ";
+		Object[] p = new Object[]{paccount};
+		return bigtypeDao.getUniqueResult(queryString,p);
+	}
+	public List<Bigtype> queryList(String paccount, int page, int size) {
+		String queryString = "from Bigtype mo where mo.publicaccount=? order by mo.orderid asc  ";
+		Object[] p = new Object[]{paccount};
+		return bigtypeDao.pageList(queryString,p,page,size);
+	}
+	//后台管理大类别==================================================end
 }
