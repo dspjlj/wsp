@@ -221,7 +221,7 @@ $(function(){
           </li>
         
 	      <li>
-	        <a href="wgw_bgmusic_set.html">背景音乐设置</a>
+	        <a href="bgmusicAction!view">背景音乐设置</a>
 	      </li>
 		  <li>
 	        <a href="wgw_lunbo.html">背景轮播设置</a>

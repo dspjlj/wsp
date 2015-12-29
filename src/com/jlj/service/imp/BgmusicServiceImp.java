@@ -86,5 +86,13 @@ public class BgmusicServiceImp implements IBgmusicService {
 		Object[] p= new Object[]{paccount};
 		return bgmusicDao.getObjectsByCondition(queryString, p);
 	}
+	
+	//根据公众号查询背景音乐
+	public Bgmusic queryBgmusicByPublicAccount(String paccount) {
+		String queryString = "from Bgmusic mo where mo.publicaccount=:paccount ";
+		String[] paramNames = new String[]{"paccount"};
+		Object[] values = new Object[]{paccount};
+		return bgmusicDao.queryByNamedParam(queryString, paramNames, values);
+	}
 
 }

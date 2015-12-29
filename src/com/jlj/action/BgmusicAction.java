@@ -16,8 +16,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.jlj.model.Bgmusic;
+import com.jlj.model.Pubclient;
+import com.jlj.model.Wgw;
 import com.jlj.service.IBgmusicService;
 import com.jlj.service.IPubclientService;
+import com.jlj.service.IWgwService;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Component("bgmusicAction")
@@ -27,6 +30,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	//序列化
 	private static final long serialVersionUID = 1L;
 	//service
+	private IWgwService wgwService;
 	private IBgmusicService bgmusicService;
 	private IPubclientService pubclientService;
 	//全局请求、会话
@@ -37,6 +41,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	//单个对象
 	private int id;
 	private Bgmusic bgmusic;
+	private Wgw wgw;
 	//分页显示
 	private String[] arg=new String[2];
 	private List<Bgmusic> bgmusics;
@@ -61,28 +66,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	//=========后台管理=================================================
 	/**
-	 * 背景音乐管理
-	 */
-	public String list() throws Exception{
-		if(convalue!=null&&!convalue.equals("")){
-			convalue=URLDecoder.decode(convalue, "utf-8");
-		}
-		if(page<1){
-			page=1;
-		}
-		//总记录数
-		totalCount=bgmusicService.getTotalCount(con,convalue,status,publicaccount);
-		//总页数
-		pageCount=bgmusicService.getPageCount(totalCount,size);
-		if(page>pageCount&&pageCount!=0){
-			page=pageCount;
-		}
-		//所有当前页记录对象
-		bgmusics=bgmusicService.queryList(con,convalue,status,publicaccount,page,size);
-		
-		return "list";
-	}
-	/**
 	 * 跳转到添加页面
 	 * @return
 	 */
@@ -96,31 +79,35 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @throws Exception
 	 */
 	public String add() throws Exception{
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		bgmusic.setPublicaccount(paccount);
 		bgmusicService.add(bgmusic);
-		arg[0]="bgmusicAction!list";
-		arg[1]="背景音乐管理";
+		arg[0]="bgmusicAction!view";
+		arg[1]="背景音乐设置";
 		return SUCCESS;
 	}
 	
-	/**
-	 * 删除
-	 * @return
-	 */
-	public String delete(){
-		bgmusicService.deleteById(id);
-		arg[0]="bgmusicAction!list";
-		arg[1]="背景音乐管理";
-		return SUCCESS;
-	}
+//	/**
+//	 * 删除
+//	 * @return
+//	 */
+//	public String delete(){
+//		bgmusicService.deleteById(id);
+//		arg[0]="bgmusicAction!list";
+//		arg[1]="背景音乐管理";
+//		return SUCCESS;
+//	}
 	
 	/**
 	 * 修改
 	 * @return
 	 */
 	public String update() throws Exception{
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		bgmusic.setPublicaccount(paccount);
 		bgmusicService.update(bgmusic);
-		arg[0]="bgmusicAction!list";
-		arg[1]="背景音乐管理";
+		arg[0]="bgmusicAction!view";
+		arg[1]="背景音乐设置";
 		return SUCCESS;
 	}
 	
@@ -129,16 +116,25 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @return
 	 */
 	public String view(){
-		bgmusic=bgmusicService.loadById(id);
-		return "view";
-	}
-	/**
-	 * 跳转到修改页面
-	 * @return
-	 */
-	public String load() throws Exception{
-		bgmusic=bgmusicService.loadById(id);
-		return "load";
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		wgw=wgwService.queryWgwByPublicAccount(paccount);
+		if(wgw!=null){
+			//判断该公众号的背景音乐是否存在，不存在跳转到add；存在跳转到load页
+			bgmusic=bgmusicService.queryBgmusicByPublicAccount(paccount);
+			if(bgmusic!=null){
+				return "load";
+			}else{
+				return "add";
+			}
+		}else{
+			//请先设置微官网
+			arg[0]="wgwAction!view";
+			arg[1]="微官网设置";
+			String goInfo = "请先设置微官网";
+			request.put("goInfo", goInfo);
+			return "goanother";
+		}
+		
 	}
 	
 	
@@ -158,6 +154,14 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	@Resource
 	public void setBgmusicService(IBgmusicService bgmusicService) {
 		this.bgmusicService = bgmusicService;
+	}
+	 
+	public IWgwService getWgwService() {
+		return wgwService;
+	}
+	@Resource
+	public void setWgwService(IWgwService wgwService) {
+		this.wgwService = wgwService;
 	}
 	// 获得HttpServletResponse对象
     public void setServletResponse(HttpServletResponse response)
@@ -255,6 +259,12 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	public void setFrontpa(String frontpa) {
 		this.frontpa = frontpa;
+	}
+	public Wgw getWgw() {
+		return wgw;
+	}
+	public void setWgw(Wgw wgw) {
+		this.wgw = wgw;
 	}
 	
 }

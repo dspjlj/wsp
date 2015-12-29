@@ -29,4 +29,6 @@ public interface IBgmusicService {
 	public abstract List<Bgmusic> getFrontBgmusicsByPublicAccount(
 			String paccount);
 
+	public abstract Bgmusic queryBgmusicByPublicAccount(String paccount);
+
 }
