@@ -1,6 +1,5 @@
 package com.jlj.action;
 
-import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 
@@ -55,23 +54,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int con;
 	private String convalue;
 	private String frontpa;
-	//=========前台显示=================================================
-	/**
-	 * 背景音乐展示
-	 */
-	public String frontBgmusics(){
-		bgmusics = bgmusicService.getFrontBgmusicsByPublicAccount(frontpa);
-		request.put("bgmusics", bgmusics);
-		return NONE;
-	}
 	//=========后台管理=================================================
-	/**
-	 * 跳转到添加页面
-	 * @return
-	 */
-	public String goToAdd(){
-		return "add";
-	}
 	
 	/**
 	 * 添加
@@ -87,16 +70,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		return SUCCESS;
 	}
 	
-//	/**
-//	 * 删除
-//	 * @return
-//	 */
-//	public String delete(){
-//		bgmusicService.deleteById(id);
-//		arg[0]="bgmusicAction!list";
-//		arg[1]="背景音乐管理";
-//		return SUCCESS;
-//	}
 	
 	/**
 	 * 修改

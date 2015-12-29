@@ -72,6 +72,13 @@ public class ScreenimgServiceImp implements IScreenimgService {
 		Object[] p = new Object[]{imgtype,publicaccount};
 		return screenimgDao.getObjectsByCondition(queryString, p);
 	}
+	//根据公众号查询轮播图片
+	public Screenimg queryScreenimgByPublicAccount(String paccount) {
+		String queryString = "from Screenimg mo where mo.publicaccount=:paccount ";
+		String[] paramNames = new String[]{"paccount"};
+		Object[] values = new Object[]{paccount};
+		return screenimgDao.queryByNamedParam(queryString, paramNames, values);
+	}
 
 
 }

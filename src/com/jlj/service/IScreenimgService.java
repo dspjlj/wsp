@@ -24,4 +24,6 @@ public interface IScreenimgService {
 	public abstract List<Screenimg> getScreenimgsByCondition(int imgtype,
 			String publicaccount);
 
+	public abstract Screenimg queryScreenimgByPublicAccount(String paccount);
+
 }
