@@ -54,9 +54,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="title">是否子类别：</label>
+                                    <label class="control-label" for="title">有无子类别：</label>
                                     <div class="controls">
-                                     <input type="radio" name="bigtype.isend" value="1" checked="checked"/>是&nbsp;&nbsp;<input type="radio" name="bigtype.isend" value="0"/>不是
+                                     <input type="radio" name="bigtype.isend" value="1" checked="checked"/>有&nbsp;&nbsp;<input type="radio" name="bigtype.isend" value="0"/>没有
                                     </div>
                                 </div>
                                 <div class="control-group">

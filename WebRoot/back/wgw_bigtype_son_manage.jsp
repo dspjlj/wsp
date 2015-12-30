@@ -34,11 +34,10 @@
 			media="all" />
 		<link rel="stylesheet" type="text/css"
 			href="weiqiwx/tpl/User/default/common/css/cymain.css" />
-			<link rel="stylesheet" type="text/css" href="css/wm/index.css"
-				media="all" />
-			
-	<script type="text/javascript" src="weiqiwx/tpl/User/default/common/js/common.js"></script>
-</head>
+		<link rel="stylesheet" type="text/css" href="css/wm/index.css"
+			media="all" />
+		<script type="text/javascript" src="weiqiwx/tpl/User/default/common/js/common.js"></script>
+	</head>
     <body class="{Session::get('maintheme')}">
         <div id="main">
             <div class="container-fluid">
@@ -47,7 +46,7 @@
                 <div class="box">
                     <div class="box-title">
                         <div class="span10">
-                            <h3><i class="icon-edit"></i>类别管理 ( <s:property value="totalCount"/> 条记录 <s:property value="page"/>/<s:property value="pageCount"/> 页 ) </h3>
+                            <h3><i class="icon-edit"></i>子类别管理 ( <s:property value="totalCount"/> 条记录 <s:property value="page"/>/<s:property value="pageCount"/> 页 ) </h3>
                         </div>
                         <div class="span2">
                             <a class="btn" href="javascript:history.go(-1);">返回</a>
@@ -56,53 +55,54 @@
                     <div class="box-content"><!--tab end-->
                         <div class="cLine">
                             <div class="pageNavigator left">
-                                <a href="bigtypeAction!goToAdd" title="新增分类" class="btn" id="add_menu">
-                                    <i class="icon-plus"></i>新增分类
+                                <a href="bigtypeAction!goToAddSon?pid=<s:property value="pid"/>" title="新增子分类" class="btn" id="add_menu">
+                                    <i class="icon-plus"></i>新增子分类
                                 </a>
                             </div>
                             <div class="clr"></div>
                         </div>
                         <div class="msgWrap">
                             <form method="post" action="" id="info">
-                                <input name="delall" type="hidden" value=""/>
                                 <table  class="table table-bordered table-hover dataTable">
                                     <thead>
                                         <tr>
-                                            <th >分类名称</th>
+                                            <th >上级分类</th>
+                                            <th >子类别名称</th>
                                             <th  class="norightborder">操作</th>
                                         </tr>
                                     </thead>
                                     <tbody style="text-align:center;">
-                                    	<s:if test="%{bigtypes.size()==0}">
+                                        <s:if test="%{bigtypes.size()==0}">
                                     		<tr>
-	                                            <td colspan="2" >暂无类别</td>
+	                                            <td colspan="2" >暂无子类别</td>
 	                                        </tr>
                                     	</s:if>
                                     	<s:iterator value="bigtypes" var="bigtype" status="index">
-                                    		<tr>
+	                                        <tr>
+	                                            <td><s:property value="bigtype.name"/></td>
 	                                            <td><s:property value="name"/></td>
 	                                            <td class="norightborder">
-	                                            	<s:if test="isend==1">
+	                                                <s:if test="isend==1">
 	                                            		<a href="bigtypeAction!sonlist?pid=<s:property value="id"/>" class="btn">子分类</a>&nbsp;
 	                                            	</s:if>
 	                                                <s:else>
 	                                                	<a href="javascript:alert('该类别已设置为无子分类，请编辑！');" class="btn">无子类</a>&nbsp;
 	                                                </s:else>
-	                                                <a href="bigtypeAction!load?id=<s:property value="id"/>" class="btn"><i class="icon-edit"></i></a> &nbsp;
-	                                                <a href="javascript:drop_confirm('您确定要删除吗?', 'bigtypeAction!delete?id=<s:property value="id"/>&page=<s:property value="page"/>');" class="btn"><i class="icon-remove"></i></a>
+	                                                <a href="bigtypeAction!loadson?pid=<s:property value="pid"/>&id=<s:property value="id"/>" class="btn"><i class="icon-edit"></i></a>&nbsp;
+	                                                <a href="javascript:drop_confirm('您确定要删除吗?', 'bigtypeAction!deleteson?pid=<s:property value="pid"/>&id=<s:property value="id"/>&page=<s:property value="page"/>');" class="btn"><i class="icon-remove"></i></a>
 	                                            </td>
 	                                        </tr>
-                                    	</s:iterator>
-                                        
+                                        </s:iterator>
                                     </tbody>
                                 </table>
+                                
                                 <div class="pagination" style="text-align: center;">
 										  <ul>
 										
-										    <li style="float: left;"><a href="bigtypeAction!list?page=1" target="mainFrame"><span>首&nbsp;&nbsp;页</span></a></li>
-										    <li style="float: left;"><a href="bigtypeAction!list?page=<s:property value="page-1"/>" target="mainFrame"><span>上&nbsp;&nbsp;页</span></a></li>
-										    <li style="float: left;"><a href="bigtypeAction!list?page=<s:property value="page+1"/>" target="mainFrame"><span>下&nbsp;&nbsp;页</span></a></li>
-										    <li style="float: left;"><a href="bigtypeAction!list?page=<s:property value="pageCount"/>" target="mainFrame"><span>尾&nbsp;&nbsp;页</span></a></li>
+										    <li style="float: left;"><a href="bigtypeAction!sonlist?pid=<s:property value="pid"/>&page=1" target="mainFrame"><span>首&nbsp;&nbsp;页</span></a></li>
+										    <li style="float: left;"><a href="bigtypeAction!sonlist?pid=<s:property value="pid"/>&page=<s:property value="page-1"/>" target="mainFrame"><span>上&nbsp;&nbsp;页</span></a></li>
+										    <li style="float: left;"><a href="bigtypeAction!sonlist?pid=<s:property value="pid"/>&page=<s:property value="page+1"/>" target="mainFrame"><span>下&nbsp;&nbsp;页</span></a></li>
+										    <li style="float: left;"><a href="bigtypeAction!sonlist?pid=<s:property value="pid"/>&page=<s:property value="pageCount"/>" target="mainFrame"><span>尾&nbsp;&nbsp;页</span></a></li>
 										  </ul>
 										  
 								</div>

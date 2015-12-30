@@ -37,4 +37,9 @@ public interface IBigtypeService {
 
 	public abstract List<Bigtype> queryList(String paccount, int page, int size);
 
+	public abstract int getTotalCount(int pid, String paccount);
+
+	public abstract List<Bigtype> queryList(int pid, String paccount, int page,
+			int size);
+
 }

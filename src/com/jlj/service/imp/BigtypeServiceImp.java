@@ -99,14 +99,27 @@ public class BigtypeServiceImp implements IBigtypeService{
 		return totalCount%size==0?totalCount/size:(totalCount/size+1);
 	}
 	public int getTotalCount(String paccount) {
-		String queryString = "select count(*) from Bigtype mo where mo.publicaccount=? ";
+		String queryString = "select count(*) from Bigtype mo where mo.publicaccount=? and mo.bigtype.id is null ";
 		Object[] p = new Object[]{paccount};
 		return bigtypeDao.getUniqueResult(queryString,p);
 	}
 	public List<Bigtype> queryList(String paccount, int page, int size) {
-		String queryString = "from Bigtype mo where mo.publicaccount=? order by mo.orderid asc  ";
+		String queryString = "from Bigtype mo where mo.publicaccount=? and mo.bigtype.id is null order by mo.orderid asc  ";
 		Object[] p = new Object[]{paccount};
 		return bigtypeDao.pageList(queryString,p,page,size);
 	}
 	//后台管理大类别==================================================end
+	
+	//子类别管理==================================================start
+	public int getTotalCount(int pid, String paccount) {
+		String queryString = "select count(*) from Bigtype mo where mo.publicaccount=? and mo.bigtype.id=? ";
+		Object[] p = new Object[]{paccount,pid};
+		return bigtypeDao.getUniqueResult(queryString,p);
+	}
+	public List<Bigtype> queryList(int pid, String paccount, int page, int size) {
+		String queryString = "from Bigtype mo where mo.publicaccount=? and mo.bigtype.id=? order by mo.orderid asc  ";
+		Object[] p = new Object[]{paccount,pid};
+		return bigtypeDao.pageList(queryString,p,page,size);
+	}
+	//子类别管理==================================================end
 }

@@ -39,17 +39,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="box">
                         <div class="box-title">
                             <div class="span12">
-                                <h3><i class="icon-cog"></i>微官网--类别管理--修改分类</h3>
+                                <h3><i class="icon-cog"></i>微官网--类别管理--子类别管理--【<s:property value="parentBigtype.name"/>】--修改分类</h3>
                             </div>
                         </div>
                         <div class="box-content">
-                            <form action="bigtypeAction!update" method="post" class="form-horizontal form-validate" enctype="multipart/form-data">
+                            <form action="bigtypeAction!updateson" method="post" class="form-horizontal form-validate" enctype="multipart/form-data">
                                 <s:hidden name="bigtype.wgw.id"></s:hidden>
                                 <s:if test="bigtype.bigtype!=null">
                                 	<s:hidden name="bigtype.bigtype.id"></s:hidden>
                                 </s:if>
                                 <s:hidden name="bigtype.imageurl"></s:hidden>
                                 <s:hidden name="bigtype.id"></s:hidden>
+                                <s:hidden name="pid"></s:hidden>
+                                
                                 <div class="control-group">
                                     <label class="control-label" for="keyword">类别名:</label>
                                     <div class="controls">

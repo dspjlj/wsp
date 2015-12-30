@@ -139,7 +139,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @return
 	 */
 	public String delete(){
-		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		Bigtype bigtype=bigtypeService.loadById(id);
 		//删除图片
 		File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+bigtype.getImageurl());
@@ -205,6 +204,97 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 			if(ins!=null) 
 				ins.close();
 		}
+	}
+	
+	//子类别管理============================================start
+	/**
+	 * 子类别管理
+	 */
+	public String sonlist() throws Exception{
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		if(page<1){
+			page=1;
+		}
+		//总记录数
+		totalCount=bigtypeService.getTotalCount(pid,paccount);
+		//总页数
+		pageCount=bigtypeService.getPageCount(totalCount,size);
+		if(page>pageCount&&pageCount!=0){
+			page=pageCount;
+		}
+		//所有当前页记录对象
+		bigtypes=bigtypeService.queryList(pid,paccount,page,size);
+		return "sonlist";
+		
+	}
+	
+	private Bigtype parentBigtype;
+	/**
+	 * 跳转到添加页面-子类别
+	 * @return
+	 */
+	public String goToAddSon(){
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		wgw=wgwService.queryWgwByPublicAccount(paccount);
+		if(wgw!=null){
+			parentBigtype = bigtypeService.loadById(pid);
+			return "sonadd";
+		}else{
+			//请先设置微官网
+			arg[0]="wgwAction!view";
+			arg[1]="微官网设置";
+			String goInfo = "请先设置微官网";
+			request.put("goInfo", goInfo);
+			return "goanother";
+		}
+		
+	}
+	
+	/**
+	 * 添加-子类别
+	 * @return
+	 * @throws Exception
+	 */
+	public String addson() throws Exception{
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		if(picture!=null){
+			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
+			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
+			this.upload(imageName,picture,folderUrl);
+			bigtype.setImageurl(paccount+"/"+imageName);
+		}
+		bigtype.setPublicaccount(paccount);
+		bigtypeService.add(bigtype);
+		
+		arg[0]="bigtypeAction!sonlist?pid="+pid;
+		arg[1]="子类别管理";
+		return SUCCESS;
+	}
+	
+	/**
+	 * 跳转到修改页面-子分类
+	 * @return
+	 */
+	public String loadson() throws Exception{
+		parentBigtype = bigtypeService.loadById(pid);
+		bigtype=bigtypeService.loadById(id);
+		return "loadson";
+	}
+	
+	/**
+	 * 删除-子分类
+	 * @return
+	 */
+	public String deleteson(){
+		Bigtype bigtype=bigtypeService.loadById(id);
+		//删除图片
+		File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+bigtype.getImageurl());
+		photofile.delete();
+		bigtypeService.delete(bigtype);
+		
+		arg[0]="bigtypeAction!sonlist?pid="+pid;
+		arg[1]="子类别管理";
+		return SUCCESS;
 	}
 	
 	//get、set-------------------------------------------
@@ -357,6 +447,12 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	public void setWgw(Wgw wgw) {
 		this.wgw = wgw;
+	}
+	public Bigtype getParentBigtype() {
+		return parentBigtype;
+	}
+	public void setParentBigtype(Bigtype parentBigtype) {
+		this.parentBigtype = parentBigtype;
 	}
 	
 	

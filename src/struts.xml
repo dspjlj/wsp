@@ -506,6 +506,11 @@
 			<result name="list">/back/wgw_bigtype_manage.jsp</result>
 			<result name="add">/back/wgw_bigtype_add.jsp</result>
 			<result name="load">/back/wgw_bigtype_update.jsp</result>
+			
+			<result name="sonlist">/back/wgw_bigtype_son_manage.jsp</result>
+			<result name="sonadd">/back/wgw_bigtype_son_add.jsp</result>
+			<result name="loadson">/back/wgw_bigtype_son_update.jsp</result>
+			
 			<result name="invalid.token">/back/op_error.jsp</result>
 			<interceptor-ref name="mystack" />
             <interceptor-ref name="token" >
