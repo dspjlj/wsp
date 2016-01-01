@@ -20,60 +20,36 @@ public class FooterServiceImp implements IFooterService {
 		this.footerDao = footerDao;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IFooterService#add(com.jlj.model.Footer)
-	 */
 	public void add(Footer footer) throws Exception {
 		footerDao.save(footer);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IFooterService#delete(com.jlj.model.Footer)
-	 */
 	public void delete(Footer footer) {
 		footerDao.delete(footer);
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IFooterService#deleteById(int)
-	 */
 	public void deleteById(int id) {
 		footerDao.deleteById(id);
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IFooterService#update(com.jlj.model.Footer)
-	 */
 	public void update(Footer footer) {
 		footerDao.update(footer);
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IFooterService#getFooters()
-	 */
 	public List<Footer> getFooters() {
 		return footerDao.getFooters();
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IFooterService#loadById(int)
-	 */
 	public Footer loadById(int id) {
 		return footerDao.loadById(id);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IFooterService#getPageCount(int, java.lang.String, int, java.lang.String, int)
-	 */
 	public int getPageCount(int con, String convalue, int status, String publicaccount,
 			int size) {
 		int totalCount=this.getTotalCount(con, convalue, status, publicaccount);
 		return totalCount%size==0?totalCount/size:(totalCount/size+1);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IFooterService#getTotalCount(int, java.lang.String, int, java.lang.String)
-	 */
 	public int getTotalCount(int con, String convalue, int status, String publicaccount) {
 		String queryString = "select count(*) from Footer mo where mo.publicaccount=? ";
 		Object[] p = null;
@@ -89,9 +65,6 @@ public class FooterServiceImp implements IFooterService {
 		return footerDao.getUniqueResult(queryString,p);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IFooterService#queryList(int, java.lang.String, int, java.lang.String, int, int)
-	 */
 	public List<Footer> queryList(int con, String convalue, int status,
 			String publicaccount, int page, int size) {
 		String queryString = "from Footer mo where mo.publicaccount=? ";
@@ -113,6 +86,13 @@ public class FooterServiceImp implements IFooterService {
 		String queryString = "from Footer mo where mo.publicaccount=:publicaccount";
 		String[] paramNames=new String[]{"publicaccount"};
 		Object[] values = new Object[]{publicaccount};
+		return footerDao.queryByNamedParam(queryString, paramNames, values);
+	}
+	//根据公众号查询底部版权设置
+	public Footer queryFooterByPublicAccount(String paccount) {
+		String queryString = "from Footer mo where mo.publicaccount=:paccount ";
+		String[] paramNames = new String[]{"paccount"};
+		Object[] values = new Object[]{paccount};
 		return footerDao.queryByNamedParam(queryString, paramNames, values);
 	}
 	

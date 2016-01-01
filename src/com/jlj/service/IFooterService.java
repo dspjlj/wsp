@@ -29,4 +29,6 @@ public interface IFooterService {
 
 	public abstract Footer queryByPublicaccount(String publicaccount);
 
+	public abstract Footer queryFooterByPublicAccount(String paccount);
+
 }

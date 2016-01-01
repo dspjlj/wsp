@@ -496,8 +496,6 @@
 			<result name="adminLogin">/back/login.jsp</result>
 			<result name="opsessiongo">/back/op_sessiongo.jsp</result>
 		</global-results>
-		<action name="toolkitAction" class="toolkitAction">
-		</action>
 		<action name="bigtypeAction" class="bigtypeAction">
 			<result name="success">/back/op_success.jsp</result>
 			<result name="opfail">/back/op_failure.jsp</result>
@@ -510,6 +508,108 @@
 			<result name="sonlist">/back/wgw_bigtype_son_manage.jsp</result>
 			<result name="sonadd">/back/wgw_bigtype_son_add.jsp</result>
 			<result name="loadson">/back/wgw_bigtype_son_update.jsp</result>
+			
+			<result name="invalid.token">/back/op_error.jsp</result>
+			<interceptor-ref name="mystack" />
+            <interceptor-ref name="token" >
+            	<param name="includeMethods">add</param>
+            	<param name="excludeMethods">default</param>
+            </interceptor-ref>
+		</action>
+	</package>
+	
+	
+	<package name="pagearticle" extends="struts-default">
+		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
+        <interceptors>
+            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
+            <interceptor-stack name="mystack">
+                <interceptor-ref name="loginedCheck" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+	
+		<global-results>
+			<result name="adminLogin">/back/login.jsp</result>
+			<result name="opsessiongo">/back/op_sessiongo.jsp</result>
+		</global-results>
+		<action name="pagearticleAction" class="pagearticleAction">
+			<result name="frontpagearticle">/${template}/front_pagearticle.jsp</result>
+			<result name="frontview">/${template}/front_pagearticleview.jsp</result>
+			<result name="sessiongo">/front_sessiongo.jsp</result>
+		
+			<result name="success">/back/op_success.jsp</result>
+			<result name="opfail">/back/op_failure.jsp</result>
+			<result name="goanother">/back/op_go_another.jsp</result>
+			
+			<result name="list">/back/wgw_pagearticle_manage.jsp</result>
+			<result name="add">/back/wgw_pagearticle_add.jsp</result>
+			<result name="load">/back/wgw_pagearticle_update.jsp</result>
+			
+			<result name="invalid.token">/back/op_error.jsp</result>
+			<interceptor-ref name="mystack" />
+            <interceptor-ref name="token" >
+            	<param name="includeMethods">add</param>
+            	<param name="excludeMethods">default</param>
+            </interceptor-ref>
+		</action>
+	</package>
+	
+	
+	<package name="wgwmenu" extends="struts-default">
+		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
+        <interceptors>
+            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
+            <interceptor-stack name="mystack">
+                <interceptor-ref name="loginedCheck" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+		<global-results>
+			<result name="adminLogin">/back/login.jsp</result>
+			<result name="opsessiongo">/back/op_sessiongo.jsp</result>
+		</global-results>
+		<action name="wgwmenuAction" class="wgwmenuAction">
+			<result name="success">/back/op_success.jsp</result>
+			<result name="opfail">/back/op_failure.jsp</result>
+			<result name="operror">/back/op_error.jsp</result>
+			<result name="goanother">/back/op_go_another.jsp</result>
+			
+			<result name="add">/back/wgw_menu_add.jsp</result>
+			<result name="load">/back/wgw_menu_update.jsp</result>
+			
+			<result name="invalid.token">/back/op_error.jsp</result>
+			<interceptor-ref name="mystack" />
+            <interceptor-ref name="token" >
+            	<param name="includeMethods">add</param>
+            	<param name="excludeMethods">default</param>
+            </interceptor-ref>
+		</action>
+	</package>
+	
+	<package name="footer" extends="struts-default">
+		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
+        <interceptors>
+            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
+            <interceptor-stack name="mystack">
+                <interceptor-ref name="loginedCheck" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+		<global-results>
+			<result name="adminLogin">/back/login.jsp</result>
+			<result name="opsessiongo">/back/op_sessiongo.jsp</result>
+		</global-results>
+		<action name="footerAction" class="footerAction">
+			<result name="success">/back/op_success.jsp</result>
+			<result name="opfail">/back/op_failure.jsp</result>
+			<result name="operror">/back/op_error.jsp</result>
+			<result name="goanother">/back/op_go_another.jsp</result>
+			
+			<result name="add">/back/wgw_footer_add.jsp</result>
+			<result name="load">/back/wgw_footer_update.jsp</result>
 			
 			<result name="invalid.token">/back/op_error.jsp</result>
 			<interceptor-ref name="mystack" />
@@ -628,38 +728,6 @@
 		</action>
 	</package>
 	
-	<package name="screenimg" extends="struts-default">
-		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
-        <interceptors>
-            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
-            <interceptor-stack name="mystack">
-                <interceptor-ref name="loginedCheck" />
-                <interceptor-ref name="defaultStack" />
-            </interceptor-stack>
-        </interceptors>
-        
-		<global-results>
-			<result name="adminLogin">/login.jsp</result>
-			<result name="opsessiongo">/op_sessiongo.jsp</result>
-		</global-results>
-		<action name="screenimgAction" class="screenimgAction">
-			<result name="success">/op_success.jsp</result>
-			<result name="fail">/op_failure.jsp</result>
-			<result name="operror">/op_error.jsp</result>
-			
-			<result name="imglist">/screenimg_imglist.jsp</result>
-			<result name="add">/screenimg_add.jsp</result>
-			<result name="load">/screenimg_update.jsp</result>
-			<result name="view">/screenimg_view.jsp</result>
-			
-			<result name="invalid.token">/op_failure.jsp</result>
-			<interceptor-ref name="mystack" />
-            <interceptor-ref name="token" >
-            	<param name="includeMethods">add</param>
-            	<param name="excludeMethods">default</param>
-            </interceptor-ref>
-		</action>
-	</package>
 	
 	<package name="footer" extends="struts-default">
 		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
@@ -694,48 +762,7 @@
 		</action>
 	</package>
 	
-	<package name="pagearticle" extends="struts-default">
-		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
-        <interceptors>
-            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
-            <interceptor-stack name="mystack">
-                <interceptor-ref name="loginedCheck" />
-                <interceptor-ref name="defaultStack" />
-            </interceptor-stack>
-        </interceptors>
-        
-		<global-results>
-			<result name="adminLogin">/login.jsp</result>
-			<result name="opsessiongo">/op_sessiongo.jsp</result>
-		</global-results>
-		<action name="pagearticleAction" class="pagearticleAction">
-			<result name="frontpagearticle">/${template}/front_pagearticle.jsp</result>
-			<result name="frontview">/${template}/front_pagearticleview.jsp</result>
-			<result name="sessiongo">/front_sessiongo.jsp</result>
-		
-			<result name="success">/op_success.jsp</result>
-			<result name="fail">/op_failure.jsp</result>
-			<result name="operror">/op_error.jsp</result>
-			
-			<result name="list">/pagearticle_manage.jsp</result>
-			<result name="add">/pagearticle_add.jsp</result>
-			<result name="load">/pagearticle_update.jsp</result>
-			<result name="view">/pagearticle_view.jsp</result>
-			
-			<result name="newslist">/pagenew_manage.jsp</result>
-			<result name="add2">/pagenew_add.jsp</result>
-			<result name="load2">/pagenew_update.jsp</result>
-			<result name="view2">/pagenew_view.jsp</result>
-			
-			
-			<result name="invalid.token">/op_failure.jsp</result>
-			<interceptor-ref name="mystack" />
-            <interceptor-ref name="token" >
-            	<param name="includeMethods">add</param>
-            	<param name="excludeMethods">default</param>
-            </interceptor-ref>
-		</action>
-	</package>
+	
 	
 	<package name="sontype" extends="struts-default">
 		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
@@ -780,111 +807,6 @@
 		</action>
 	</package>
 	
-	<package name="bigtype" extends="struts-default">
-		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
-        <interceptors>
-            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
-            <interceptor-stack name="mystack">
-                <interceptor-ref name="loginedCheck" />
-                <interceptor-ref name="defaultStack" />
-            </interceptor-stack>
-        </interceptors>
-        
-		<global-results>
-			<result name="adminLogin">/login.jsp</result>
-			<result name="opsessiongo">/op_sessiongo.jsp</result>
-		</global-results>
-		<action name="bigtypeAction" class="bigtypeAction">
-			<result name="success">/op_success.jsp</result>
-			<result name="fail">/op_failure.jsp</result>
-			<result name="operror">/op_error.jsp</result>
-			
-			<result name="list">/bigtype_manage.jsp</result>
-			<result name="add">/bigtype_add.jsp</result>
-			<result name="load">/bigtype_update.jsp</result>
-			<result name="view">/bigtype_view.jsp</result>
-			
-			<result name="invalid.token">/op_failure.jsp</result>
-			<interceptor-ref name="mystack" />
-            <interceptor-ref name="token" >
-            	<param name="includeMethods">add</param>
-            	<param name="excludeMethods">default</param>
-            </interceptor-ref>
-		</action>
-	</package>
-	
-	
-	
-	<package name="hotel" extends="struts-default">
-		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
-        <interceptors>
-            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
-            <interceptor-stack name="mystack">
-                <interceptor-ref name="loginedCheck" />
-                <interceptor-ref name="defaultStack" />
-            </interceptor-stack>
-        </interceptors>
-        
-		<global-results>
-			<result name="adminLogin">/login.jsp</result>
-			<result name="opsessiongo">/op_sessiongo.jsp</result>
-		</global-results>
-		<action name="hotelAction" class="hotelAction">
-			<result name="success">/op_success.jsp</result>
-			<result name="fail">/op_failure.jsp</result>
-			<result name="operror">/op_error.jsp</result>
-			
-			<result name="list">/hotel_manage.jsp</result>
-			<result name="add">/hotel_add.jsp</result>
-			<result name="load">/hotel_update.jsp</result>
-			<result name="view">/hotel_view.jsp</result>
-			
-			<result name="invalid.token">/op_failure.jsp</result>
-			<interceptor-ref name="mystack" />
-            <interceptor-ref name="token" >
-            	<param name="includeMethods">add</param>
-            	<param name="excludeMethods">default</param>
-            </interceptor-ref>
-		</action>
-	</package>
-	
-	<package name="room" extends="struts-default">
-		<!-- 配置自定义拦截器LoginedCheckInterceptor -->
-        <interceptors>
-            <interceptor name="loginedCheck" class="com.jlj.filter.LoginedCheckInterceptor"/>
-            <interceptor-stack name="mystack">
-                <interceptor-ref name="loginedCheck" />
-                <interceptor-ref name="defaultStack" />
-            </interceptor-stack>
-        </interceptors>
-        
-		<global-results>
-			<result name="adminLogin">/login.jsp</result>
-			<result name="opsessiongo">/op_sessiongo.jsp</result>
-		</global-results>
-		<action name="roomAction" class="roomAction">
-			<result name="frontroomlist">/front_room_list.jsp</result>
-			<result name="frontroomdetail">/front_room_detail.jsp</result>
-			
-			<result name="sessiongo">/${template}/front_sessiongo.jsp</result>
-		
-			<result name="success">/op_success.jsp</result>
-			<result name="fail">/op_failure.jsp</result>
-			<result name="operror">/op_error.jsp</result>
-			
-			<result name="list">/room_manage.jsp</result>
-			<result name="add">/room_add.jsp</result>
-			<result name="load">/room_update.jsp</result>
-			<result name="view">/room_view.jsp</result>
-			
-			<result name="invalid.token">/op_failure.jsp</result>
-			<interceptor-ref name="mystack" />
-            <interceptor-ref name="token" >
-            	<param name="includeMethods">add</param>
-            	<param name="excludeMethods">default</param>
-            </interceptor-ref>
-		</action>
-	</package>
 	
 	<package name="vcore" extends="struts-default">
 		<global-results>

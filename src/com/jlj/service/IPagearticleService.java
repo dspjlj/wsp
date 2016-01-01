@@ -18,9 +18,6 @@ public interface IPagearticleService {
 
 	public abstract Pagearticle loadById(int id);
 
-	public abstract int getPageCount(int con, String convalue, int status,
-			String publicaccount, int size);
-
 	public abstract int getTotalCount(int con, String convalue, int status,
 			String publicaccount);
 
@@ -36,5 +33,7 @@ public interface IPagearticleService {
 
 	public abstract List<Pagearticle> queryFrontIndexList(String frontpa,int isshow, int page,
 			int psize);
+
+	public abstract int getPageCount(int totalCount, int size);
 
 }

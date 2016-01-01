@@ -116,6 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <strong>微官网</strong>
                             </div>
                         </a>
+                        <!-- 
                         <a href="/admin/weiqishop/shopkeyword.html" class="tile not tile-themed">
                             <i class="icon-shopping-cart"></i>
                             <div class="tile-info">
@@ -204,6 +205,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <strong>关键词回复</strong>
                             </div>
                         </a>
+                         -->
+                        
                         <!--
                         <a href="/admin/userCenter/sysapp.html" class="tile not tile-themed">
                             <i class="icon-magic"></i>

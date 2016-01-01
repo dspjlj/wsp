@@ -234,15 +234,15 @@ $(function(){
 
 
 						<li>
-							<a href="wgw_pagearticle_manage.html">文章管理</a>
+							<a href="pagearticleAction!list">文章管理</a>
 						</li>
 
 						<li>
-							<a href="wgw_menu_set.html">菜单导航设置</a>
+							<a href="wgwmenuAction!view">菜单导航设置</a>
 						</li>
 
 						<li>
-							<a href="wgw_version.html">底部版权设置</a>
+							<a href="footerAction!view">底部版权设置</a>
 						</li>
 					</ul>
 				</div>

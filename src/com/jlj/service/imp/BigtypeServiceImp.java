@@ -122,4 +122,12 @@ public class BigtypeServiceImp implements IBigtypeService{
 		return bigtypeDao.pageList(queryString,p,page,size);
 	}
 	//子类别管理==================================================end
+	
+	//根据条件查询可用子类别-for添加文章
+	public List<Bigtype> getBigtypesBycondition(int ison, int ttype,
+			int hastype, String paccount) {
+		String queryString = "from Bigtype mo where mo.publicaccount = ? and mo.ison = ? and mo.ttype = ? and mo.isend = ? order by mo.orderid asc ";
+		Object[] p= new Object[]{paccount,ison,ttype,hastype};
+		return bigtypeDao.getObjectsByCondition(queryString, p);
+	}
 }

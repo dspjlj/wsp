@@ -118,7 +118,7 @@ public class Pagearticle implements java.io.Serializable {
 		this.ison = ison;
 	}
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "createtime", length = 19)
 	public Date getCreatetime() {
 		return this.createtime;

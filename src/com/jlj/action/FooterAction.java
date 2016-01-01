@@ -1,6 +1,5 @@
 package com.jlj.action;
 
-import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +16,9 @@ import org.springframework.stereotype.Component;
 
 import com.jlj.model.Footer;
 import com.jlj.model.Pubclient;
+import com.jlj.model.Wgw;
 import com.jlj.service.IFooterService;
+import com.jlj.service.IWgwService;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Component("footerAction")
@@ -26,6 +27,8 @@ public class FooterAction extends ActionSupport implements RequestAware,
 SessionAware,ServletResponseAware,ServletRequestAware {
 	
 	private static final long serialVersionUID = 1L;
+	//service
+	private IWgwService wgwService;
 	private IFooterService footerService;
 	Map<String,Object> request;
 	Map<String,Object> session;
@@ -33,6 +36,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private javax.servlet.http.HttpServletRequest req;
 	//单个对象
 	private int id;
+	private Wgw wgw;
 	private Footer footer;
 	//分页显示
 	private String[] arg=new String[2];
@@ -48,35 +52,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int con;
 	private String convalue;
 	
-	
-	/**
-	 * 页脚管理
-	 */
-	public String list() throws Exception{
-		if(convalue!=null&&!convalue.equals("")){
-			convalue=URLDecoder.decode(convalue, "utf-8");
-		}
-		if(page<1){
-			page=1;
-		}
-		//总页数
-		pageCount=footerService.getPageCount(con,convalue,status,publicaccount,size);
-		if(page>pageCount&&pageCount!=0){
-			page=pageCount;
-		}
-		//所有当前页记录对象
-		footers=footerService.queryList(con,convalue,status,publicaccount,page,size);
-		//总记录数
-		totalCount=footerService.getTotalCount(con,convalue,status,publicaccount);
-		return "list";
-	}
-	/**
-	 * 跳转到添加页面
-	 * @return
-	 */
-	public String goToAdd(){
-		return "add";
-	}
+	//=========后台管理=================================================
 	/**
 	 * 添加
 	 * @return
@@ -84,42 +60,26 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 */
 	
 	public String add() throws Exception{
-		String paccount=footer.getPublicaccount();
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		footer.setPublicaccount(paccount);
 		footerService.add(footer);
 		
-		arg[0]="main.jsp";
-		arg[1]="主页";
+		arg[0]="footerAction!view";
+		arg[1]="底部版权设置";
 		return SUCCESS;
 	}
-	/**
-	 * 删除
-	 * @return
-	 */
-	public String delete(){
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
-		Footer footer=footerService.loadById(id);
-		footerService.delete(footer);
-		
-		arg[0]="main.jsp";
-		arg[1]="主页";
-		return SUCCESS;
-	}
+	
 	/**
 	 * 修改
 	 * @return
 	 */
 	public String update() throws Exception{
-		String paccount=footer.getPublicaccount();
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		footer.setPublicaccount(paccount);
 		footerService.update(footer);
 		
-		arg[0]="main.jsp";
-		arg[1]="主页";
+		arg[0]="footerAction!view";
+		arg[1]="底部版权设置";
 		return SUCCESS;
 	}
 	/**
@@ -127,21 +87,25 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @return
 	 */
 	public String view(){
-		footer=footerService.queryByPublicaccount(publicaccount);
-		if(footer!=null){
-			return "view";
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		wgw=wgwService.queryWgwByPublicAccount(paccount);
+		if(wgw!=null){
+			//判断该公众号的轮播图片是否存在，不存在跳转到add；存在跳转到load页
+			footer=footerService.queryFooterByPublicAccount(paccount);
+			if(footer!=null){
+				return "load";
+			}else{
+				return "add";
+			}
 		}else{
-			return "add";
+			//请先设置微官网
+			arg[0]="wgwAction!view";
+			arg[1]="微官网设置";
+			String goInfo = "请先设置微官网";
+			request.put("goInfo", goInfo);
+			return "goanother";
 		}
 		
-	}
-	/**
-	 * 跳转到修改页面
-	 * @return
-	 */
-	public String load() throws Exception{
-		footer=footerService.loadById(id);
-		return "load";
 	}
 	
 	
@@ -152,6 +116,13 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	@Resource
 	public void setFooterService(IFooterService footerService) {
 		this.footerService = footerService;
+	}
+	public IWgwService getWgwService() {
+		return wgwService;
+	}
+	@Resource
+	public void setWgwService(IWgwService wgwService) {
+		this.wgwService = wgwService;
 	}
 	// 获得HttpServletResponse对象
     public void setServletResponse(HttpServletResponse response)
@@ -247,6 +218,13 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	public void setPublicaccount(String publicaccount) {
 		this.publicaccount = publicaccount;
+	}
+
+	public Wgw getWgw() {
+		return wgw;
+	}
+	public void setWgw(Wgw wgw) {
+		this.wgw = wgw;
 	}
 	
 	

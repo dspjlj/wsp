@@ -32,6 +32,7 @@ import com.jlj.service.IPagearticleService;
 import com.jlj.service.IPubclientService;
 //import com.jlj.service.ISontypeService;
 import com.jlj.util.DateTimeKit;
+import com.jlj.util.ToolKitUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Component("pagearticleAction")
@@ -41,7 +42,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	
 	private static final long serialVersionUID = 1L;
 	private IPagearticleService pagearticleService;
-//	private ISontypeService sontypeService;
+	private IBigtypeService bigtypeService;
 	private IPubclientService pubclientService;
 	
 	Map<String,Object> request;
@@ -61,7 +62,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int pageCount;
 	private int totalCount;
 	private int status;//按状态
-	private int pid;//按用户id
 	private String publicaccount;//公众号原始ID
 	//条件
 	private int con;
@@ -69,9 +69,13 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	
 	private int stid;//子类别id
 	private List<Bigtype> bigtypes;
-	private IBigtypeService bigtypeService;
 	private String frontpa;//传入参数，查询所有大类别信息
 	private String template;
+	//上传照片
+	private File picture;
+	private String pictureContentType;
+	private String pictureFileName;
+	//前台=======================================
 	/**
 	 * 前台-分页显示文章列表
 	 * @return
@@ -136,26 +140,28 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		request.put("pagearticles", pagearticles);
 		return null;
 	}
-	//============产品===========================
+	//后台管理============文章管理===========================
 	/**
-	 * 后台-产品管理
+	 * 后台-文章管理
 	 */
 	public String list() throws Exception{
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		if(convalue!=null&&!convalue.equals("")){
 			convalue=URLDecoder.decode(convalue, "utf-8");
 		}
 		if(page<1){
 			page=1;
 		}
+		//总记录数
+		totalCount=pagearticleService.getTotalCount(con,convalue,status,paccount);
 		//总页数
-		pageCount=pagearticleService.getPageCount(con,convalue,status,publicaccount,size);
+		pageCount=pagearticleService.getPageCount(totalCount,size);
 		if(page>pageCount&&pageCount!=0){
 			page=pageCount;
 		}
 		//所有当前页记录对象
-		pagearticles=pagearticleService.queryList(con,convalue,status,publicaccount,page,size);
-		//总记录数
-		totalCount=pagearticleService.getTotalCount(con,convalue,status,publicaccount);
+		pagearticles=pagearticleService.queryList(con,convalue,status,paccount,page,size);
+		
 		return "list";
 	}
 	
@@ -165,17 +171,22 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @return
 	 */
 	public String goToAdd(){
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		int ison = 1;//启用
+		int ttype = 0;//类别
+		int hastype = 0;//无子类别
+		bigtypes = bigtypeService.getBigtypesBycondition(ison,ttype,hastype,paccount);
+		//若无子类别，则跳转到先添加子类别
+		if(bigtypes!=null&&bigtypes.size()>0){
+			return "add";
+		}else{
+			//请先设置微官网
+			arg[0]="bigtypeAction!list";
+			arg[1]="类别管理";
+			String goInfo = "请先设置类别，必需1个以上类别（该类别没有子类别）";
+			request.put("goInfo", goInfo);
+			return "goanother";
 		}
-		String paccount=pubclient.getPublicaccount();
-		
-		int producttype=1;
-//		sontypes = sontypeService.getSontypesByPublicAccount(paccount,producttype);
-		return "add";
 	}
 	
 	/**
@@ -184,26 +195,21 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @throws Exception
 	 */
 	public String add() throws Exception{
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		
 		if(picture!=null){
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-			this.upload(imageName);
+			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
+			ToolKitUtil.upload(imageName,picture,folderUrl);
 			pagearticle.setImageurl(paccount+"/"+imageName);
 			
 		}
-		//设置创建日期
-		pagearticle.setCreatetime(new Date());
+		pagearticle.setPublicaccount(paccount);
+		pagearticle.setCreatetime(new Date());//设置创建日期
 		pagearticleService.add(pagearticle);
 		
-		arg[0]="pagearticleAction!list?publicaccount="+paccount+"&status="+pagearticle.getArticletype();
-		arg[1]="产品管理";
+		arg[0]="pagearticleAction!list";
+		arg[1]="文章管理";
 		return SUCCESS;
 	}
 	
@@ -212,25 +218,13 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @return
 	 */
 	public String delete(){
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
 		Pagearticle pagearticle=pagearticleService.loadById(id);
-		
-		
-		arg[0]="pagearticleAction!list?publicaccount="+paccount+"&status="+pagearticle.getArticletype();
-		arg[1]="产品管理";
-		
 		//删除图片
 		File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+pagearticle.getImageurl());
 		photofile.delete();
 		pagearticleService.delete(pagearticle);
-		
-		
+		arg[0]="pagearticleAction!list";
+		arg[1]="文章管理";
 		return SUCCESS;
 	}
 	/**
@@ -238,243 +232,43 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @return
 	 */
 	public String update() throws Exception{
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		
 		if(picture!=null){
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-			this.upload(imageName);
+			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
+			ToolKitUtil.upload(imageName,picture,folderUrl);
+			//删除原图片
 			File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+pagearticle.getImageurl());
 			photofile.delete();
 			pagearticle.setImageurl(paccount+"/"+imageName);
 			
 		}
-		//设置创建日期
-		pagearticle.setCreatetime(new Date());
+		pagearticle.setPublicaccount(paccount);
+//		//设置创建日期
+//		pagearticle.setCreatetime(new Date());
 //		//设置详细描述
 //		pagearticle.setDescription(htmlspecialchars(pagearticle.getDescription()));
 		pagearticleService.update(pagearticle);
-		arg[0]="pagearticleAction!list?publicaccount="+paccount+"&status="+pagearticle.getArticletype();
-		arg[1]="产品管理";
+		arg[0]="pagearticleAction!list";
+		arg[1]="文章管理";
 		return SUCCESS;
-	}
-	/**
-	 * 后台-查看信息
-	 * @return
-	 */
-	public String view(){
-		pagearticle=pagearticleService.loadById(id);
-		return "view";
 	}
 	/**
 	 * 后台-跳转到修改页面
 	 * @return
 	 */
 	public String load() throws Exception{
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
-		int producttype=1;
-//		sontypes = sontypeService.getSontypesByPublicAccount(paccount,producttype);
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		int ison = 1;//启用
+		int ttype = 0;//类别
+		int hastype = 0;//无子类别
+		bigtypes = bigtypeService.getBigtypesBycondition(ison,ttype,hastype,paccount);
+		//文章对象
 		pagearticle=pagearticleService.loadById(id);
 		return "load";
 	}
-	//------------新闻管理----------------------------------
 	
-	/**
-	 * 后台新闻-新闻管理
-	 */
-	public String newslist() throws Exception{
-		if(convalue!=null&&!convalue.equals("")){
-			convalue=URLDecoder.decode(convalue, "utf-8");
-		}
-		if(page<1){
-			page=1;
-		}
-		//总页数
-		pageCount=pagearticleService.getPageCount(con,convalue,status,publicaccount,size);
-		if(page>pageCount&&pageCount!=0){
-			page=pageCount;
-		}
-		//所有当前页记录对象
-		pagearticles=pagearticleService.queryList(con,convalue,status,publicaccount,page,size);
-		//总记录数
-		totalCount=pagearticleService.getTotalCount(con,convalue,status,publicaccount);
-		return "newslist";
-	}
-	
-	/**
-	 * 后台新闻-跳转到添加页面
-	 * @return
-	 */
-	public String goToAdd2(){
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
-		int producttype=0;
-//		sontypes = sontypeService.getSontypesByPublicAccount(paccount,producttype);
-		return "add2";
-	}
-	
-	/**
-	 * 后台新闻-添加
-	 * @return
-	 * @throws Exception
-	 */
-	public String add2() throws Exception{
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
-		
-		if(picture!=null){
-			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-			this.upload(imageName);
-			pagearticle.setImageurl(paccount+"/"+imageName);
-			
-		}
-		//设置创建日期
-		pagearticle.setCreatetime(new Date());
-		pagearticleService.add(pagearticle);
-		
-		arg[0]="pagearticleAction!newslist?publicaccount="+paccount+"&status="+pagearticle.getArticletype();
-		arg[1]="新闻管理";
-		return SUCCESS;
-	}
-	
-	/**
-	 * 后台新闻-删除
-	 * @return
-	 */
-	public String delete2(){
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
-		Pagearticle pagearticle=pagearticleService.loadById(id);
-		
-		
-		arg[0]="pagearticleAction!newslist?publicaccount="+paccount+"&status="+pagearticle.getArticletype();
-		arg[1]="新闻管理";
-		
-		//删除图片
-		File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+pagearticle.getImageurl());
-		photofile.delete();
-		pagearticleService.delete(pagearticle);
-		
-		
-		return SUCCESS;
-	}
-	/**
-	 * 后台新闻-修改
-	 * @return
-	 */
-	public String update2() throws Exception{
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
-		
-		if(picture!=null){
-			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-			this.upload(imageName);
-			File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+pagearticle.getImageurl());
-			photofile.delete();
-			pagearticle.setImageurl(paccount+"/"+imageName);
-			
-		}
-		//设置创建日期
-		pagearticle.setCreatetime(new Date());
-//		//设置详细描述
-//		pagearticle.setDescription(htmlspecialchars(pagearticle.getDescription()));
-		pagearticleService.update(pagearticle);
-		arg[0]="pagearticleAction!newslist?publicaccount="+paccount+"&status="+pagearticle.getArticletype();
-		arg[1]="新闻管理";
-		return SUCCESS;
-	}
-	/**
-	 * 后台新闻-查看信息
-	 * @return
-	 */
-	public String view2(){
-		pagearticle=pagearticleService.loadById(id);
-		return "view2";
-	}
-	/**
-	 * 后台新闻-跳转到修改页面
-	 * @return
-	 */
-	public String load2() throws Exception{
-		Pubclient pubclient = (Pubclient)session.get("pubclient");
-		if(pubclient==null){
-			String errorInfo="会话失效，请重新登录";
-			request.put("errorInfo", errorInfo);
-			return "operror";
-		}
-		String paccount=pubclient.getPublicaccount();
-		int producttype=0;
-//		sontypes = sontypeService.getSontypesByPublicAccount(paccount,producttype);
-		pagearticle=pagearticleService.loadById(id);
-		return "load2";
-	}
-	
-	//上传照片
-	private File picture;
-	private String pictureContentType;
-	private String pictureFileName;
-	//文件上传
-	public void upload(String imageName) throws Exception{
-		String floderName=((Pubclient)session.get("pubclient")).getPublicaccount();
-		File saved=new File(ServletActionContext.getServletContext().getRealPath(floderName),imageName);
-		InputStream ins=null;
-		OutputStream ous=null;
-		try {
-			saved.getParentFile().mkdirs();
-			ins=new FileInputStream(picture);
-			ous=new FileOutputStream(saved);
-			byte[] b=new byte[1024];
-			int len = 0;
-			while((len=ins.read(b))!=-1){
-				ous.write(b,0,len);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally{
-			if(ous!=null)
-				ous.close();
-			if(ins!=null) 
-				ins.close();
-		}
-	}
-	private String htmlspecialchars(String str) {
-		str = str.replaceAll("&", "&amp;");
-		str = str.replaceAll("<", "&lt;");
-		str = str.replaceAll(">", "&gt;");
-		str = str.replaceAll("\"", "&quot;");
-		return str;
-	}
 	//get、set-------------------------------------------
 	public IPagearticleService getPagearticleService() {
 		return pagearticleService;
@@ -482,6 +276,20 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	@Resource
 	public void setPagearticleService(IPagearticleService pagearticleService) {
 		this.pagearticleService = pagearticleService;
+	}
+	public IBigtypeService getBigtypeService() {
+		return bigtypeService;
+	}
+	@Resource
+	public void setBigtypeService(IBigtypeService bigtypeService) {
+		this.bigtypeService = bigtypeService;
+	}
+	public IPubclientService getPubclientService() {
+		return pubclientService;
+	}
+	@Resource
+	public void setPubclientService(IPubclientService pubclientService) {
+		this.pubclientService = pubclientService;
 	}
 	// 获得HttpServletResponse对象
     public void setServletResponse(HttpServletResponse response)
@@ -560,12 +368,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public int getPid() {
-		return pid;
-	}
-	public void setPid(int pid) {
-		this.pid = pid;
-	}
 	public String[] getArg() {
 		return arg;
 	}
@@ -613,13 +415,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		this.bigtypes = bigtypes;
 	}
 
-	public IBigtypeService getBigtypeService() {
-		return bigtypeService;
-	}
-	@Resource
-	public void setBigtypeService(IBigtypeService bigtypeService) {
-		this.bigtypeService = bigtypeService;
-	}
+	
 	public String getFrontpa() {
 		return frontpa;
 	}
@@ -632,13 +428,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setTemplate(String template) {
 		this.template = template;
 	}
-	public IPubclientService getPubclientService() {
-		return pubclientService;
-	}
-	@Resource
-	public void setPubclientService(IPubclientService pubclientService) {
-		this.pubclientService = pubclientService;
-	}
+	
 	
 	
 }

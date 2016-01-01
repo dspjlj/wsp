@@ -10,7 +10,7 @@
 
 <%
 Pubclient pubclient = (Pubclient)session.getAttribute("pubclient");
-StringBuffer sb =new StringBuffer("res/");
+StringBuffer sb =new StringBuffer();
 if(pubclient==null){
 	response.sendRedirect("/back/login.jsp");
 	return;

@@ -42,4 +42,7 @@ public interface IBigtypeService {
 	public abstract List<Bigtype> queryList(int pid, String paccount, int page,
 			int size);
 
+	public abstract List<Bigtype> getBigtypesBycondition(int ison, int ttype,
+			int hastype, String paccount);
+
 }

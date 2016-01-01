@@ -29,4 +29,6 @@ public interface IWgwmenuService {
 	public abstract List<Wgwmenu> getFrontWgwmenusByPublicAccount(
 			String paccount);
 
+	public abstract Wgwmenu queryWgwmenuByPublicAccount(String paccount);
+
 }

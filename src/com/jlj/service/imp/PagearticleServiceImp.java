@@ -20,96 +20,69 @@ public class PagearticleServiceImp implements IPagearticleService{
 		this.pagearticleDao = pagearticleDao;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IPagearticleService#add(com.jlj.model.Pagearticle)
-	 */
 	public void add(Pagearticle pagearticle) throws Exception {
 		pagearticleDao.save(pagearticle);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IPagearticleService#delete(com.jlj.model.Pagearticle)
-	 */
 	public void delete(Pagearticle pagearticle) {
 		pagearticleDao.delete(pagearticle);
 	}
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IPagearticleService#deleteById(int)
-	 */
 	public void deleteById(int id) {
 		pagearticleDao.deleteById(id);
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IPagearticleService#update(com.jlj.model.Pagearticle)
-	 */
 	public void update(Pagearticle pagearticle) {
 		pagearticleDao.update(pagearticle);
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IPagearticleService#getPagearticles()
-	 */
 	public List<Pagearticle> getPagearticles() {
 		return pagearticleDao.getPagearticles();
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IPagearticleService#loadById(int)
-	 */
 	public Pagearticle loadById(int id) {
 		return pagearticleDao.loadById(id);
 	}
-
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IPagearticleService#getPageCount(int, java.lang.String, int, java.lang.String, int)
-	 */
-	public int getPageCount(int con, String convalue, int status, String publicaccount,
-			int size) {
-		int totalCount=this.getTotalCount(con, convalue, status, publicaccount);
+	//后台管理===================start
+	public int getPageCount(int totalCount, int size) {
 		return totalCount%size==0?totalCount/size:(totalCount/size+1);
 	}
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IPagearticleService#getTotalCount(int, java.lang.String, int, java.lang.String)
-	 */
 	public int getTotalCount(int con, String convalue, int status, String publicaccount) {
-		String queryString = "select count(*) from Pagearticle mo where mo.articletype=? and mo.publicaccount=? ";
+		String queryString = "select count(*) from Pagearticle mo where mo.publicaccount=? ";
 		Object[] p = null;
 		if(con!=0&&convalue!=null&&!convalue.equals("")){
 			//文章标题、子类别名称
 			if(con==1){
 				queryString += "and mo.name like ? "; 
 			}else if(con==2){
-				queryString += "and mo.sontype.name like ? "; 
+				queryString += "and mo.bigtype.name like ? "; 
 			}
-			p = new Object[]{status,publicaccount,'%'+convalue+'%'};
+			p = new Object[]{publicaccount,'%'+convalue+'%'};
 		}else{
-			p = new Object[]{status,publicaccount};
+			p = new Object[]{publicaccount};
 		}
 		return pagearticleDao.getUniqueResult(queryString,p);
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.jlj.service.imp.IPagearticleService#queryList(int, java.lang.String, int, java.lang.String, int, int)
-	 */
 	public List<Pagearticle> queryList(int con, String convalue, int status,
 			String publicaccount, int page, int size) {
-		String queryString = "from Pagearticle mo where mo.articletype=? and mo.publicaccount=? ";
+		String queryString = "from Pagearticle mo where mo.publicaccount=? ";
 		Object[] p = null;
 		if(con!=0&&convalue!=null&&!convalue.equals("")){
 			//文章标题、子类别名称
 			if(con==1){
 				queryString += "and mo.name like ? "; 
 			}else if(con==2){
-				queryString += "and mo.sontype.name like ? "; 
+				queryString += "and mo.bigtype.name like ? "; 
 			}
-			p = new Object[]{status,publicaccount,'%'+convalue+'%'};
+			p = new Object[]{publicaccount,'%'+convalue+'%'};
 		}else{
-			p = new Object[]{status,publicaccount};
+			p = new Object[]{publicaccount};
 		}
 		queryString += " order by mo.id desc ";
 		return pagearticleDao.pageList(queryString,p,page,size);
 	}
+	//后台管理===================end
+	
 	public int getFrontPageCount(int stid, int size) {
 		int totalCount=this.getFrontTotalCount(stid);
 		return totalCount%size==0?totalCount/size:(totalCount/size+1);
@@ -129,6 +102,7 @@ public class PagearticleServiceImp implements IPagearticleService{
 		Object[] p = new Object[]{isshow,frontpa};
 		return pagearticleDao.pageList(queryString,p,page,psize);
 	}
+	
 	
 	
 

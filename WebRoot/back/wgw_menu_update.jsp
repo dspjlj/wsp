@@ -1,4 +1,12 @@
-
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!doctype html>
 <html>
 <head>
@@ -36,61 +44,73 @@
                             </div>
                         </div>
                         <div class="box-content">
-                            <form action="" method="post" class="form-horizontal form-validate"><input type="hidden" value="54d9a8283eee8" name="YYUC_FORM_TOKEN"/><input type="hidden" value = "511" name="WFpWQl1qEgRaEVxbOV4HHEAKEwBlClE=" id="micro_weiweb_keywordid" />								<input type="hidden" name="aid" id="aid" value="33260"/>
+                            <form action="wgwmenuAction!update" method="post" class="form-horizontal form-validate">
+                            	<s:hidden name="wgwmenu.id"></s:hidden>
+                            	<s:hidden name="wgwmenu.wgw.id" value="%{wgw.id}"></s:hidden>
+                            	
                                 <div class="control-group">
                                     <label class="control-label" for="keyword">菜单1:</label>
                                     <div class="controls">
-                                    <input type="text"   value="微官网" name="caidan1" id="micro_weiweb_keywordgjz" class="input-xlarge" required="required"/>                                          <span class="maroon">*</span>
+										<s:textfield name="wgwmenu.menu1" cssClass="input-xlarge" required="required"></s:textfield>
+										<span class="maroon">*</span>
                                         <span class="help-inline"></span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="title">菜单1地址：</label>
                                     <div class="controls">
-		 							 <input type="text"   value="微官网" name="caidan1地址" id="micro_weiweb_keywordname" class="input-xlarge" required="required"/>                                     <span class="maroon">*</span>
+		 							 	<s:textfield name="wgwmenu.menu1url" cssClass="input-xlarge" required="required"></s:textfield>
+										<span class="maroon">*</span>
                                     </div>
                                 </div>
 								<div class="control-group">
                                     <label class="control-label" for="keyword">菜单2:</label>
                                     <div class="controls">
-                                    <input type="text"   value="微官网" name="caidan2" id="micro_weiweb_keywordgjz" class="input-xlarge" required="required"/>                                          <span class="maroon">*</span>
+	                                    <s:textfield name="wgwmenu.menu2" cssClass="input-xlarge" required="required"></s:textfield>
+										<span class="maroon">*</span>
                                         <span class="help-inline"></span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="title">菜单2地址：</label>
                                     <div class="controls">
-		 							 <input type="text"   value="微官网" name="caidan2地址" id="micro_weiweb_keywordname" class="input-xlarge" required="required"/>                                     <span class="maroon">*</span>
+		 							 	<s:textfield name="wgwmenu.menu2url" cssClass="input-xlarge" required="required"></s:textfield>
+										<span class="maroon">*</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="keyword">菜单3:</label>
                                     <div class="controls">
-                                    <input type="text"   value="微官网" name="caidan3" id="micro_weiweb_keywordgjz" class="input-xlarge" required="required"/>                                          <span class="maroon">*</span>
+                                    	<s:textfield name="wgwmenu.menu3" cssClass="input-xlarge" required="required"></s:textfield>
+										<span class="maroon">*</span>
                                         <span class="help-inline"></span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="title">菜单3地址：</label>
                                     <div class="controls">
-		 							 <input type="text"   value="微官网" name="caidan3地址" id="micro_weiweb_keywordname" class="input-xlarge" required="required"/>                                     <span class="maroon">*</span>
+		 							 	<s:textfield name="wgwmenu.menu3url" cssClass="input-xlarge" required="required"></s:textfield>
+										<span class="maroon">*</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="keyword">菜单4:</label>
                                     <div class="controls">
-                                    <input type="text"   value="微官网" name="caidan4" id="micro_weiweb_keywordgjz" class="input-xlarge" required="required"/>                                          <span class="maroon">*</span>
+                                    	<s:textfield name="wgwmenu.menu4" cssClass="input-xlarge" required="required"></s:textfield>
+										<span class="maroon">*</span>
                                         <span class="help-inline"></span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="title">菜单4地址：</label>
                                     <div class="controls">
-		 							 <input type="text"   value="微官网" name="caidan4地址" id="micro_weiweb_keywordname" class="input-xlarge" required="required"/>                                     <span class="maroon">*</span>
+		 							 	<s:textfield name="wgwmenu.menu4url" cssClass="input-xlarge" required="required"></s:textfield>
+										<span class="maroon">*</span>
                                     </div>
                                 </div>
                                  
                                 <div class="form-actions">
+                                	<s:token></s:token>
                                     <button id="bsubmit" type="submit" data-loading-text="提交中..." class="btn btn-primary">保存</button>
                                 </div>
                             </form>

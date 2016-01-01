@@ -188,7 +188,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @return
 	 */
 	public String view(){
-		screenimg=screenimgService.loadById(id);
 		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		wgw=wgwService.queryWgwByPublicAccount(paccount);
 		if(wgw!=null){

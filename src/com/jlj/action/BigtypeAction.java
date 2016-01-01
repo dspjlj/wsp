@@ -27,6 +27,7 @@ import com.jlj.service.IBigtypeService;
 import com.jlj.service.IPubclientService;
 import com.jlj.service.IWgwService;
 import com.jlj.util.DateTimeKit;
+import com.jlj.util.ToolKitUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Component("bigtypeAction")
@@ -124,7 +125,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(picture!=null){
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
 			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
-			this.upload(imageName,picture,folderUrl);
+			ToolKitUtil.upload(imageName,picture,folderUrl);
 			bigtype.setImageurl(paccount+"/"+imageName);
 		}
 		bigtype.setPublicaccount(paccount);
@@ -158,7 +159,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(picture!=null){
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
 			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
-			this.upload(imageName,picture,folderUrl);
+			ToolKitUtil.upload(imageName,picture,folderUrl);
 			//删除原图片
 			File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+bigtype.getImageurl());
 			photofile.delete();
@@ -182,29 +183,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	
 	
-	//文件上传
-	public void upload(String imageName,File picture,String floderUrl) throws Exception{
-		File saved=new File(floderUrl,imageName);
-		InputStream ins=null;
-		OutputStream ous=null;
-		try {
-			saved.getParentFile().mkdirs();
-			ins=new FileInputStream(picture);
-			ous=new FileOutputStream(saved);
-			byte[] b=new byte[1024];
-			int len = 0;
-			while((len=ins.read(b))!=-1){
-				ous.write(b,0,len);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally{
-			if(ous!=null)
-				ous.close();
-			if(ins!=null) 
-				ins.close();
-		}
-	}
 	
 	//子类别管理============================================start
 	/**
@@ -260,7 +238,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(picture!=null){
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
 			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
-			this.upload(imageName,picture,folderUrl);
+			ToolKitUtil.upload(imageName,picture,folderUrl);
 			bigtype.setImageurl(paccount+"/"+imageName);
 		}
 		bigtype.setPublicaccount(paccount);
@@ -291,6 +269,29 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+bigtype.getImageurl());
 		photofile.delete();
 		bigtypeService.delete(bigtype);
+		
+		arg[0]="bigtypeAction!sonlist?pid="+pid;
+		arg[1]="子类别管理";
+		return SUCCESS;
+	}
+	
+	/**
+	 * 修改-子分类
+	 * @return
+	 */
+	public String updateson() throws Exception{
+		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
+		if(picture!=null){
+			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
+			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
+			ToolKitUtil.upload(imageName,picture,folderUrl);
+			//删除原图片
+			File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+bigtype.getImageurl());
+			photofile.delete();
+			bigtype.setImageurl(paccount+"/"+imageName);
+		}
+		bigtype.setPublicaccount(paccount);
+		bigtypeService.update(bigtype);
 		
 		arg[0]="bigtypeAction!sonlist?pid="+pid;
 		arg[1]="子类别管理";

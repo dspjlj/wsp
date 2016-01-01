@@ -86,5 +86,13 @@ public class WgwmenuServiceImp implements IWgwmenuService {
 		Object[] p= new Object[]{paccount};
 		return wgwmenuDao.getObjectsByCondition(queryString, p);
 	}
+	
+	//根据公众号查找微官网导航菜单
+	public Wgwmenu queryWgwmenuByPublicAccount(String paccount) {
+		String queryString = "from Wgwmenu mo where mo.publicaccount=:paccount ";
+		String[] paramNames = new String[]{"paccount"};
+		Object[] values = new Object[]{paccount};
+		return wgwmenuDao.queryByNamedParam(queryString, paramNames, values);
+	}
 
 }
