@@ -93,12 +93,32 @@ function changePreImg(myimage,myfile) {
 							<div class="control-group">
 									<label for="title" class="control-label">说明：</label>
 									<div class="controls">
-									    如需使用背景轮播请先删除微官网图片<br>
-									    此操作智能在微官网没有背景图片的情况下才能使用背景轮播<!--微企助手-->
+									    如需使用背景轮播请先开启
 										<span class="maroon"></span>
 										 <span class="help-inline"></span> 
 									</div>
 								</div><BR>
+								
+								<div class="control-group">
+                                        <label for="title" class="control-label">是否开启背景轮播：</label>
+                                        <div class="controls">
+                                        	<input type="radio" name="screenimg.ison" value="0" checked="checked" />关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1"  />开启&nbsp;&nbsp;
+                    						<span class="maroon">*</span>
+                                        </div>
+                                </div>
+								
+                                <div class="control-group">
+									<label class="control-label">背景图片：</label>
+									<div class="controls">
+										<img class="thumb_img" src="../front/pictures/template1_index_1.jpg"  id="myimage0" style="max-height:100px;" />
+										<span class="help-inline">
+											<s:file name="picture0" cssStyle="width:80%" onchange="changePreImg('myimage0','myfile0');" title="上传" id="myfile0"></s:file>
+											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
+										</span>
+									</div>
+								</div>
+								
+                                
 								<div class="control-group">
 									<label for="title" class="control-label">轮播间隔时间：</label>
 									<div class="controls">
@@ -110,7 +130,7 @@ function changePreImg(myimage,myfile) {
 								<div class="control-group">
 									<label class="control-label">轮播1：</label>
 									<div class="controls">
-										<img class="thumb_img" src="res/meirong/1.jpg"  id="myimage1" style="max-height:100px;" />
+										<img class="thumb_img" src="images/noimg.jpg"  id="myimage1" style="max-height:100px;" />
 										<span class="help-inline">
 											<s:file name="picture1" cssStyle="width:80%" onchange="changePreImg('myimage1','myfile1');" title="上传" id="myfile1"></s:file>
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
@@ -121,7 +141,7 @@ function changePreImg(myimage,myfile) {
 								<div class="control-group">
 									<label class="control-label">轮播2：</label>
 									<div class="controls">
-									<img class="thumb_img" src="res/meirong/2.jpg" id="myimage2"  style="max-height:100px;" />
+									<img class="thumb_img" src="images/noimg.jpg" id="myimage2"  style="max-height:100px;" />
 										<span class="help-inline">
 											<s:file name="picture2" cssStyle="width:80%" onchange="changePreImg('myimage2','myfile2');" title="上传" id="myfile2"></s:file>
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
@@ -131,7 +151,7 @@ function changePreImg(myimage,myfile) {
 								<div class="control-group">
 									<label class="control-label">轮播3：</label>
 									<div class="controls">
-									<img class="thumb_img" src="res/meirong/3.jpg" id="myimage3"  style="max-height:100px;" />
+									<img class="thumb_img" src="images/noimg.jpg" id="myimage3"  style="max-height:100px;" />
 										<span class="help-inline">
 											<s:file name="picture3" cssStyle="width:80%" onchange="changePreImg('myimage3','myfile3');" title="上传" id="myfile3"></s:file>
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
@@ -143,7 +163,7 @@ function changePreImg(myimage,myfile) {
 									<label class="control-label">轮播4：</label>
 									<div class="controls">
 									
-									<img class="thumb_img" src="res/meirong/4.jpg" id="myimage4" style="max-height:100px;" />
+									<img class="thumb_img" src="images/noimg.jpg" id="myimage4" style="max-height:100px;" />
 										<span class="help-inline">
 											<s:file name="picture4" cssStyle="width:80%" onchange="changePreImg('myimage4','myfile4');" title="上传" id="myfile4"></s:file>
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
@@ -153,19 +173,13 @@ function changePreImg(myimage,myfile) {
 									<div class="control-group">
 									<label class="control-label">轮播5：</label>
 									<div class="controls">
-									<img class="thumb_img" src="res/meirong/5.jpg" id="myimage5" style="max-height:100px;" />
+									<img class="thumb_img" src="images/noimg.jpg" id="myimage5" style="max-height:100px;" />
 										<span class="help-inline">
 											<s:file name="picture5" cssStyle="width:80%" onchange="changePreImg('myimage5','myfile5');" title="上传" id="myfile5"></s:file>
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
 										</span>
 									</div>
-                                    <div class="control-group">
-                                        <label for="title" class="control-label">是否开启背景轮播：</label>
-                                        <div class="controls">
-                                        	<input type="radio" name="screenimg.ison" value="0" checked="checked" />关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1"  />开启&nbsp;&nbsp;
-                    						<span class="maroon">*</span>
-                                        </div>
-                                    </div>								
+                                    								
 						
 								</div>								
 								

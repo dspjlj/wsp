@@ -7,6 +7,9 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<s:action name="wgwAction!index">
+	<s:param name="frontpa" value="#parameters.frontpa"></s:param>
+</s:action>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -18,86 +21,41 @@
   <meta content="telephone=no" name="format-detection">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>微官网</title>
+  <title><s:property value="#request.wgw.title"/></title>
 
-  <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01.css"/>
-  <link type="text/css" rel="stylesheet" href="stylesheets/font-awesome.css"/>
-  <link href="stylesheets/vweisiteV01/index/index93.css" media="screen" rel="stylesheet" type="text/css" />
+  <link type="text/css" rel="stylesheet" href="../stylesheets/vweisiteV01.css"/>
+  <link type="text/css" rel="stylesheet" href="../stylesheets/font-awesome.css"/>
+  <link href="../stylesheets/vweisiteV01/index/index93.css" media="screen" rel="stylesheet" type="text/css" />
 
-  <script src="assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
+  <script src="../assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
   <meta content="authenticity_token" name="csrf-param" />
   <meta content="uu4elJjeyZd8k/ARutXFPy7LP4D5o+kT1gTnvZ8OwRo=" name="csrf-token" />
+  <script src="../assets/mobile/lib/iscroll-cecd28ae7bd05946cc2efbf28ef43a74.js" type="text/javascript"></script>
 </head>
 
 <body>
 
-  <div class="html" style="background-image: url(pictures/template1_index_1.jpg)">
+  <div class="html" style="background-image: url(<%=basePath %><s:property value="#request.screenimg.bgimg"/>)">
     <div class="stage" id="stage">
       <section id="sec-index">
 
         <div class="body">
 
-          <script src="assets/mobile/lib/iscroll-cecd28ae7bd05946cc2efbf28ef43a74.js" type="text/javascript"></script>
+          
           <div class="index" id="indexList">
             <ul class="index-wrap">
-              <li>
-                <a href="1_article.jsp" class="box mod-index" style="background-image:url();">
-                  <div class="index-name">我的面包</div>
-                  <div class="index-line"></div>
-                  <div class="index-icon"> <i class="fa fa-heart-o"></i>
-                  </div>
-                  <div class="index-summary">我的面包在这里</div>
-                </a>
-              </li>
-              <li>
-                <a href="1_list.jsp" class="box mod-index" style="background-image:url();">
-                  <div class="index-name">蛋糕DIY</div>
-                  <div class="index-line"></div>
-                  <div class="index-icon"> <i class="fa fa-thumbs-o-up"></i>
-                  </div>
-                  <div class="index-summary">凯宾斯基五星级酒店西点师傅</div>
-                </a>
-              </li>
-              <li>
-                <a href="1_list.jsp" class="box mod-index" style="background-image:url();">
-                  <div class="index-name">外卖有约</div>
-                  <div class="index-line"></div>
-                  <div class="index-icon">
-                    <i class="fa fa-fighter-jet"></i>
-                  </div>
-                  <div class="index-summary">2小时生日蛋糕配送到家</div>
-                </a>
-              </li>
-              <li>
-                <a href="1_list.jsp" class="box mod-index" style="background-image:url();">
-                  <div class="index-name">最新优惠</div>
-                  <div class="index-line"></div>
-                  <div class="index-icon">
-                    <i class="fa fa-gift"></i>
-                  </div>
-                  <div class="index-summary">VIP优惠活动</div>
-                </a>
-              </li>
-              <li>
-                <a href="http://ec.vcooline.com/mobile/shops/s?wx_user_id=&amp;wx_mp_user_id=gh_d8d1a3547b18" class="box mod-index" style="background-image:url();">
-                  <div class="index-name">蛋糕商城</div>
-                  <div class="index-line"></div>
-                  <div class="index-icon">
-                    <i class="fa fa-shopping-cart"></i>
-                  </div>
-                  <div class="index-summary">多种分类，价格实惠！</div>
-                </a>
-              </li>
-              <li>
-                <a href="tel:15861521065" class="box mod-index" style="background-image:url();">
-                  <div class="index-name">联系我们</div>
-                  <div class="index-line"></div>
-                  <div class="index-icon">
-                    <i class="fa fa-phone"></i>
-                  </div>
-                  <div class="index-summary">拿起电话，蛋糕到家！</div>
-                </a>
-              </li>
+            	<s:iterator value="#request.bigtypes" var="bigtype">
+	              <li>
+	                <a href="1_article.jsp" class="box mod-index" style="background-image:url(<%=basePath %><s:property value="imageurl"/>);">
+	                  <div class="index-name"><s:property value="name"/></div>
+	                  <div class="index-line"></div>
+	                  <div class="index-icon"><i class="fa fa-heart-o"></i>
+	                  </div>
+	                  <div class="index-summary"><s:property value="enname"/></div>
+	                </a>
+	              </li>
+	            </s:iterator>
+              
             </ul>
           </div>
 
@@ -183,7 +141,7 @@
     .zoom-close{position:fixed;right:5px;top:5px;display:block;z-index:99999;}
     .zoom-close .fa{width:30px;height:30px;font-size:25px;line-height:30px;border-radius:50%;color:#fff;background:#999;}
 </style>
-  <script src="assets/mobile/lib/iScroll-4.2.5.js"></script>
+  <script src="../assets/mobile/lib/iScroll-4.2.5.js"></script>
   <script type="text/javascript">
     var flag = true; css_reg = /^[\w]*font-awesome\.min[\w]*/;
     $.each($('link[type="text/css"]'), function(){
@@ -197,7 +155,7 @@
         }
     });
     if(flag){
-        document.write('<link rel="stylesheet" href="assets/font/font-awesome.min.css">')
+        document.write('<link rel="stylesheet" href="../assets/font/font-awesome.min.css">')
     }
     var img_zoom_myscroll, img_zoom_scrollTop;
 

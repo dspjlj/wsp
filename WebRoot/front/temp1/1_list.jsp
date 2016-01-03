@@ -18,112 +18,89 @@
   <meta content="telephone=no" name="format-detection">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>微官网</title>
+  <title>产品介绍</title>
 
   <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01.css"/>
   <link type="text/css" rel="stylesheet" href="stylesheets/font-awesome.css"/>
-  <link href="stylesheets/vweisiteV01/index/index93.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="stylesheets/vweisiteV01/list/list2.css" media="screen" rel="stylesheet" type="text/css" />
 
   <script src="assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
   <meta content="authenticity_token" name="csrf-param" />
-  <meta content="uu4elJjeyZd8k/ARutXFPy7LP4D5o+kT1gTnvZ8OwRo=" name="csrf-token" />
+  <meta content="rjcZLVvkHwtIiVZet0CTm58AuMsNNjgv8IU/CajlIVg=" name="csrf-token" />
 </head>
 
 <body>
 
-  <div class="html" style="background-image: url(pictures/template1_index_1.jpg)">
+  <div class="html" style="">
     <div class="stage" id="stage">
       <section id="sec-index">
 
         <div class="body">
 
-          <script src="assets/mobile/lib/iscroll-cecd28ae7bd05946cc2efbf28ef43a74.js" type="text/javascript"></script>
-          <div class="index" id="indexList">
-            <ul class="index-wrap">
+          <div class="mod-slider slider-hor" id="index">
+            <ul class="slider-list">
               <li>
-                <a href="1_article.jsp" class="box mod-index" style="background-image:url();">
-                  <div class="index-name">我的面包</div>
-                  <div class="index-line"></div>
-                  <div class="index-icon"> <i class="fa fa-heart-o"></i>
+                <a>
+                  <img alt="Flbor5npmzxrptictyzu4ptatcdy" src="pictures/template1_list_1.jpg" />
+                </a>
+              </li>
+            </ul>
+            <div class="slider-text">
+              <span class="fl slider-span" id="slider-span">产品介绍</span>
+            </div>
+          </div>
+
+          <div class="list">
+            <ul>
+              <li>
+                <a href="1_article.jsp">
+
+                  <div class="list-text">
+                    <h1>产品介绍</h1>
+                    <h2>2014-06-13 13:37</h2>
                   </div>
-                  <div class="index-summary">我的面包在这里</div>
                 </a>
               </li>
               <li>
-                <a href="1_list.jsp" class="box mod-index" style="background-image:url();">
-                  <div class="index-name">蛋糕DIY</div>
-                  <div class="index-line"></div>
-                  <div class="index-icon"> <i class="fa fa-thumbs-o-up"></i>
+                <a href="1_article.jsp">
+
+                  <div class="list-text">
+                    <h1>制作工艺</h1>
+                    <h2>2014-06-13 13:38</h2>
                   </div>
-                  <div class="index-summary">凯宾斯基五星级酒店西点师傅</div>
-                </a>
-              </li>
-              <li>
-                <a href="1_list.jsp" class="box mod-index" style="background-image:url();">
-                  <div class="index-name">外卖有约</div>
-                  <div class="index-line"></div>
-                  <div class="index-icon">
-                    <i class="fa fa-fighter-jet"></i>
-                  </div>
-                  <div class="index-summary">2小时生日蛋糕配送到家</div>
-                </a>
-              </li>
-              <li>
-                <a href="1_list.jsp" class="box mod-index" style="background-image:url();">
-                  <div class="index-name">最新优惠</div>
-                  <div class="index-line"></div>
-                  <div class="index-icon">
-                    <i class="fa fa-gift"></i>
-                  </div>
-                  <div class="index-summary">VIP优惠活动</div>
-                </a>
-              </li>
-              <li>
-                <a href="http://ec.vcooline.com/mobile/shops/s?wx_user_id=&amp;wx_mp_user_id=gh_d8d1a3547b18" class="box mod-index" style="background-image:url();">
-                  <div class="index-name">蛋糕商城</div>
-                  <div class="index-line"></div>
-                  <div class="index-icon">
-                    <i class="fa fa-shopping-cart"></i>
-                  </div>
-                  <div class="index-summary">多种分类，价格实惠！</div>
-                </a>
-              </li>
-              <li>
-                <a href="tel:15861521065" class="box mod-index" style="background-image:url();">
-                  <div class="index-name">联系我们</div>
-                  <div class="index-line"></div>
-                  <div class="index-icon">
-                    <i class="fa fa-phone"></i>
-                  </div>
-                  <div class="index-summary">拿起电话，蛋糕到家！</div>
                 </a>
               </li>
             </ul>
           </div>
 
-          <script type="text/javascript">
-    $(function(){
-        vcScroll();
-        // 静态背景图
-        //$(".html").css("background-image", "url(pictures/FsughMLV_Qobvz6d7GGFj69R2PVD)");
-    });
-    function vcScroll (id) {
-        var myScroll = new IScroll("#indexList", {
-            scrollX: true,
-            scrollY: false,
-            mouseWheel: true,
-            scrollbars: false,
-            mouseWheel: true,
-            interactiveScrollbars: true,
-            shrinkScrollbars: 'scale',
-            fadeScrollbars: true,
-            click: true
-        });
-        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-    }
-</script>
-
         </div>
+      </section>
+
+      <section class="mod-navLine navLine-2">
+        <ul class="navLine-ul">
+          <li>
+            <a href="javascript:;" class="dev-prev"> <i class="fa fa-reply"></i>
+              <small>后退</small>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;" class="dev-next"> <i class="fa fa-share"></i>
+              <small>前进</small>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;" class="dev-index">
+              <i class="fa fa-home"></i>
+              <small>首页</small>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;" class="dev-refresh">
+              <i class="fa fa-refresh"></i>
+              <small>刷新</small>
+            </a>
+          </li>
+        </ul>
       </section>
 
     </div>
@@ -146,7 +123,7 @@
           在【添加朋友】—【查找公众号】中搜索
         </p>
         <p>
-          <span class="alert-btn">我的面包</span>
+          <span class="alert-btn">西树泡芙</span>
           （长按可复制）
         </p>
         <p>
@@ -174,6 +151,7 @@
 
   <footer>技术支持：第三屏</footer>
 
+  
   <style type="text/css">
         /*pop*/
     .pop-zoom{display:none;width:100%;height:100%;color:#fff;position:fixed;left:0;top:0;background:rgba(0,0,0,0.5);z-index:10000;}
@@ -275,12 +253,13 @@
   <script type="text/javascript">
       $(document).ready(function(){
 
-        
+            $("body").addClass("body-navLine-bottom");
+
 
         showBtnUp(100);
 
         $("a.dev-prev").click(function(){
-            history.back();
+            location.href = history.back();
         });
 
         $("a.dev-next").click(function(){
@@ -288,7 +267,7 @@
         });
 
         $("a.dev-index").click(function(){
-          location.href = "5_index_miaobao.html";
+          location.href = "5_index_mianbao.html";
         });
 
         $("a.dev-refresh").click(function(){

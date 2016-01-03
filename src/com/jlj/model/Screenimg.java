@@ -23,6 +23,7 @@ public class Screenimg implements java.io.Serializable {
 	private Integer id;
 	private Wgw wgw;
 	private Integer imginterval;
+	private String bgimg;
 	private String imageurl1;
 	private String imageurl3;
 	private String imageurl2;
@@ -43,13 +44,14 @@ public class Screenimg implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Screenimg(Wgw wgw, Integer imginterval, String imageurl1,
+	public Screenimg(Wgw wgw, Integer imginterval, String bgimg,String imageurl1,
 			String imageurl3, String imageurl2, String imageurl5,
 			String linkurl3, String linkurl1, String imageurl4,
 			String linkurl4, String linkurl5, String linkurl2, Integer ison,
 			String publicaccount) {
 		this.wgw = wgw;
 		this.imginterval = imginterval;
+		this.bgimg = bgimg;
 		this.imageurl1 = imageurl1;
 		this.imageurl3 = imageurl3;
 		this.imageurl2 = imageurl2;
@@ -203,4 +205,14 @@ public class Screenimg implements java.io.Serializable {
 		this.publicaccount = publicaccount;
 	}
 
+	@Column(name = "bgimg", length = 100)
+	public String getBgimg() {
+		return bgimg;
+	}
+
+	public void setBgimg(String bgimg) {
+		this.bgimg = bgimg;
+	}
+
+	
 }

@@ -1,6 +1,5 @@
 package com.jlj.action;
 
-import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 
@@ -15,9 +14,12 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.jlj.model.Bigtype;
 import com.jlj.model.Pubclient;
+import com.jlj.model.Screenimg;
 import com.jlj.model.Wgw;
-import com.jlj.service.IPubclientService;
+import com.jlj.service.IBigtypeService;
+import com.jlj.service.IScreenimgService;
 import com.jlj.service.IWgwService;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -29,7 +31,8 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private static final long serialVersionUID = 1L;
 	//service
 	private IWgwService wgwService;
-	private IPubclientService pubclientService;
+	private IBigtypeService bigtypeService;
+	private IScreenimgService screenimgService;
 	//全局请求、会话
 	Map<String,Object> request;
 	Map<String,Object> session;
@@ -38,6 +41,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	//单个对象
 	private int id;
 	private Wgw wgw;
+	private Screenimg screenimg;
 	//分页显示
 	private String[] arg=new String[2];
 	private List<Wgw> wgws;
@@ -50,57 +54,26 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private String publicaccount;//公众号原始ID
 	private int con;
 	private String convalue;
+	//仅仅前台
 	private String frontpa;
+	private List<Bigtype> bigtypes;
 	//=========前台显示=================================================
 	/**
-	 * 微官网展示
+	 * 微官网首页显示
 	 */
-	public String frontWgws(){
-		wgws = wgwService.getFrontWgwsByPublicAccount(frontpa);
-		request.put("wgws", wgws);
+	public String index(){
+		wgw = wgwService.queryWgwByPublicAccount(frontpa);
+		if(wgw==null){
+			return NONE;
+		}
+		bigtypes = bigtypeService.queryIndexBigtypesByWgwId(wgw.getId());
+		screenimg = screenimgService.queryScreenimgByWgwId(wgw.getId());
+		request.put("wgw", wgw);
+		request.put("screenimg", screenimg);
+		request.put("bigtypes", bigtypes);
 		return NONE;
 	}
 	//=========后台管理=================================================
-//	/**
-//	 * 微官网管理
-//	 */
-//	public String list() throws Exception{
-//		if(convalue!=null&&!convalue.equals("")){
-//			convalue=URLDecoder.decode(convalue, "utf-8");
-//		}
-//		if(page<1){
-//			page=1;
-//		}
-//		//总记录数
-//		totalCount=wgwService.getTotalCount(con,convalue,status,publicaccount);
-//		//总页数
-//		pageCount=wgwService.getPageCount(totalCount,size);
-//		if(page>pageCount&&pageCount!=0){
-//			page=pageCount;
-//		}
-//		//所有当前页记录对象
-//		wgws=wgwService.queryList(con,convalue,status,publicaccount,page,size);
-//		
-//		return "list";
-//	}
-//	/**
-//	 * 删除
-//	 * @return
-//	 */
-//	public String delete(){
-//		wgwService.deleteById(id);
-//		arg[0]="wgwAction!list";
-//		arg[1]="微官网管理";
-//		return SUCCESS;
-//	}
-//	/**
-//	 * 跳转到修改页面
-//	 * @return
-//	 */
-//	public String load() throws Exception{
-//		wgw=wgwService.loadById(id);
-//		return "load";
-//	}
 	/**
 	 * 微官网-设置
 	 * @return
@@ -170,13 +143,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	//get、set-------------------------------------------
 	//service注入
-	public IPubclientService getPubclientService() {
-		return pubclientService;
-	}
-	@Resource
-	public void setPubclientService(IPubclientService pubclientService) {
-		this.pubclientService = pubclientService;
-	}
+	
 	
 	public IWgwService getWgwService() {
 		return wgwService;
@@ -184,6 +151,21 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	@Resource
 	public void setWgwService(IWgwService wgwService) {
 		this.wgwService = wgwService;
+	}
+	
+	public IBigtypeService getBigtypeService() {
+		return bigtypeService;
+	}
+	@Resource
+	public void setBigtypeService(IBigtypeService bigtypeService) {
+		this.bigtypeService = bigtypeService;
+	}
+	public IScreenimgService getScreenimgService() {
+		return screenimgService;
+	}
+	@Resource
+	public void setScreenimgService(IScreenimgService screenimgService) {
+		this.screenimgService = screenimgService;
 	}
 	// 获得HttpServletResponse对象
     public void setServletResponse(HttpServletResponse response)
@@ -306,5 +288,8 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setTemplate4(int template4) {
 		this.template4 = template4;
 	}
+	
+	
+	
 	
 }

@@ -28,7 +28,69 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">var yyuc_jspath = "";</script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yyucadapter.js"></script>
-<script type="text/javascript" src="js/toolKit.js"></script>
+<script type="text/javascript">
+//清除图片
+function clearImg(myimage,myfile,isdelpic){
+	var pic = document.getElementById(myimage),
+		file = document.getElementById(myfile),
+        isdel = document.getElementById(isdelpic);
+    pic.src="images/noimg.jpg";
+    isdel.value=1;
+    
+    // for IE, Opera, Safari, Chrome
+	if (file.outerHTML) {
+		file.outerHTML = file.outerHTML;
+	} else { // FF(包括3.5)
+		file.value = "";
+	}
+}
+
+//改变上传图片的页面预览图片
+function changePreImg() {
+    var pic = document.getElementById("myimage"),
+        file = document.getElementById("myfile"),
+        isdel = document.getElementById("isdelpic");
+ 	//修改清除状态：不清除
+ 	isdel.value=0;
+    var ext=file.value.substring(file.value.lastIndexOf(".")+1).toLowerCase();
+ 
+     // gif在IE浏览器暂时无法显示
+     if(ext!='png'&&ext!='jpg'&&ext!='jpeg'){
+         alert("图片的格式必须为png或者jpg或者jpeg格式！"); 
+         return;
+     }
+     var isIE = navigator.userAgent.match(/MSIE/)!= null,
+         isIE6 = navigator.userAgent.match(/MSIE 6.0/)!= null;
+ 
+     if(isIE) {
+        file.select();
+        var reallocalpath = document.selection.createRange().text;
+ 
+        // IE6浏览器设置img的src为本地路径可以直接显示图片
+         if (isIE6) {
+            pic.src = reallocalpath;
+         }else {
+            // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+             pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+             // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+             pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+         }
+     }else {
+        html5Reader(file);
+     }
+     pic.alt = '图片';
+}
+ 
+ function html5Reader(file){
+     var file = file.files[0];
+     var reader = new FileReader();
+     reader.readAsDataURL(file);
+     reader.onload = function(e){
+         var pic = document.getElementById("myimage");
+         pic.src=this.result;
+     }
+ }
+</script>
 <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <body class="theme-blue">
@@ -75,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="control-group">
                                     <label class="control-label" for="title">简称：</label>
                                     <div class="controls">
-		 							 <s:textfield name="bigtype.enname"  cssClass="input-medium" required="required"></s:textfield>                                     <span class="maroon">*</span>
+		 							 <s:textfield name="bigtype.enname"  cssClass="input-xlarge" required="required"></s:textfield>                                     <span class="maroon">*</span>
                                     </div>
                                 </div>
                              
@@ -94,6 +156,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										
 										<span class="help-inline">
 											<s:file name="picture" cssStyle="width:80%" onchange="changePreImg();" title="上传" id="myfile"></s:file>
+											<br/>
+											<input type="button" value="删除图片" style="margin-top: 5px;" onclick="clearImg('myimage','myfile','isdelpic');">
+										  	<s:hidden name="isdelpic" value="0" id="isdelpic"></s:hidden>
+										  	
 											<span class="help-inline">建议尺寸：宽720像素，高400像素,图片大小不超过300K</span>
 										</span>
 									</div>
@@ -103,28 +169,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <label class="control-label" for="title">类型作用：</label>
                                     <div class="controls">
                                     <s:if test="bigtype.ttype==0">
-                                    	&nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="0" checked="checked"/>首页类别
+                                    	&nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="0" checked="checked"/>分类类别
                                         &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1"/>文章/链接地址
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="2"/>一键导航
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="3" />一键预约
                                     </s:if>
                                     <s:elseif test="bigtype.ttype==1">
-                                    	&nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="0"/>首页类别
+                                    	&nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="0"/>分类类别
                                         &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1"/ checked="checked">文章/链接地址
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="2"/>一键导航
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="3" />一键预约
-                                    </s:elseif>
-                                    <s:elseif test="bigtype.ttype==2">
-                                    	&nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="0"/>首页类别
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1"/>文章/链接地址
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="2" checked="checked"/>一键导航
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="3" />一键预约
-                                    </s:elseif>
-                                    <s:elseif test="bigtype.ttype==3">
-                                    	&nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="0"/>首页类别
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1"/>文章/链接地址
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="2"/>一键导航
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="3"  checked="checked"/>一键预约
                                     </s:elseif>
                                         
                                     

@@ -95,15 +95,42 @@ function changePreImg(myimage,myfile) {
 							<s:hidden name="screenimg.imageurl3"></s:hidden>
 							<s:hidden name="screenimg.imageurl4"></s:hidden>
 							<s:hidden name="screenimg.imageurl5"></s:hidden>
+							<s:hidden name="screenimg.bgimg"></s:hidden>
 							<div class="control-group">
 									<label for="title" class="control-label">说明：</label>
 									<div class="controls">
-									    如需使用背景轮播请先删除微官网图片<br>
-									    此操作智能在微官网没有背景图片的情况下才能使用背景轮播<!--微企助手-->
+									    如需使用背景轮播请先开启
 										<span class="maroon"></span>
 										 <span class="help-inline"></span> 
 									</div>
 								</div><BR>
+								<div class="control-group">
+                                        <label for="title" class="control-label">是否开启背景轮播：</label>
+                                        <div class="controls">
+                                        	<s:if test="screenimg.ison==0">
+                                        		<input type="radio" name="screenimg.ison" value="0" checked="checked" />关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1"  />开启&nbsp;&nbsp;
+                                        	</s:if>
+                                        	<s:else>
+                                        		<input type="radio" name="screenimg.ison" value="0" />关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1" checked="checked"/>开启&nbsp;&nbsp;
+                                        	</s:else>
+                    						<span class="maroon">*</span>
+                                        </div>
+                                </div>
+								<div class="control-group">
+									<label class="control-label">背景图片：</label>
+									<div class="controls">
+										<s:if test="screenimg.bgimg!=null&&screenimg.bgimg!=''">
+											<img class="thumb_img" src="<%=basePath %><s:property value="screenimg.bgimg"/>"  id="myimage0" style="max-height:100px;" />
+										</s:if>
+										<s:else>
+											<img class="thumb_img" src="../front/pictures/template1_index_1.jpg"  id="myimage0" style="max-height:100px;" />
+										</s:else>
+										<span class="help-inline">
+											<s:file name="picture0" cssStyle="width:80%" onchange="changePreImg('myimage0','myfile0');" title="上传" id="myfile0"></s:file>
+											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
+										</span>
+									</div>
+								</div>
 								<div class="control-group">
 									<label for="title" class="control-label">轮播间隔时间：</label>
 									<div class="controls">
@@ -119,7 +146,7 @@ function changePreImg(myimage,myfile) {
 											<img class="thumb_img" src="<%=basePath %><s:property value="screenimg.imageurl1"/>"  id="myimage1" style="max-height:100px;" />
 										</s:if>
 										<s:else>
-											<img class="thumb_img" src="res/meirong/1.jpg"  id="myimage1" style="max-height:100px;" />
+											<img class="thumb_img" src="images/noimg.jpg"  id="myimage1" style="max-height:100px;" />
 										</s:else>
 										<span class="help-inline">
 											<s:file name="picture1" cssStyle="width:80%" onchange="changePreImg('myimage1','myfile1');" title="上传" id="myfile1"></s:file>
@@ -135,7 +162,7 @@ function changePreImg(myimage,myfile) {
 											<img class="thumb_img" src="<%=basePath %><s:property value="screenimg.imageurl2"/>" id="myimage2"  style="max-height:100px;" />
 										</s:if>
 										<s:else>
-											<img class="thumb_img" src="res/meirong/2.jpg" id="myimage2"  style="max-height:100px;" />
+											<img class="thumb_img" src="images/noimg.jpg" id="myimage2"  style="max-height:100px;" />
 										</s:else>
 										
 										<span class="help-inline">
@@ -151,7 +178,7 @@ function changePreImg(myimage,myfile) {
 											<img class="thumb_img" src="<%=basePath %><s:property value="screenimg.imageurl3"/>" id="myimage3"  style="max-height:100px;" />
 										</s:if>
 										<s:else>
-											<img class="thumb_img" src="res/meirong/3.jpg" id="myimage3"  style="max-height:100px;" />
+											<img class="thumb_img" src="images/noimg.jpg" id="myimage3"  style="max-height:100px;" />
 										</s:else>
 										
 										<span class="help-inline">
@@ -168,7 +195,7 @@ function changePreImg(myimage,myfile) {
 											<img class="thumb_img" src="<%=basePath %><s:property value="screenimg.imageurl4"/>" id="myimage4" style="max-height:100px;" />
 										</s:if>
 										<s:else>
-											<img class="thumb_img" src="res/meirong/4.jpg" id="myimage4" style="max-height:100px;" />
+											<img class="thumb_img" src="images/noimg.jpg" id="myimage4" style="max-height:100px;" />
 										</s:else>
 										
 										<span class="help-inline">
@@ -177,32 +204,21 @@ function changePreImg(myimage,myfile) {
 										</span>
 									</div>
 								</div>
-									<div class="control-group">
+								<div class="control-group">
 									<label class="control-label">轮播5：</label>
 									<div class="controls">
 										<s:if test="screenimg.imageurl5!=null&&screenimg.imageurl5!=''">
 											<img class="thumb_img" src="<%=basePath %><s:property value="screenimg.imageurl5"/>" id="myimage5" style="max-height:100px;" />
 										</s:if>
 										<s:else>
-											<img class="thumb_img" src="res/meirong/5.jpg" id="myimage5" style="max-height:100px;" />
+											<img class="thumb_img" src="images/noimg.jpg" id="myimage5" style="max-height:100px;" />
 										</s:else>
 										<span class="help-inline">
 											<s:file name="picture5" cssStyle="width:80%" onchange="changePreImg('myimage5','myfile5');" title="上传" id="myfile5"></s:file>
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
 										</span>
 									</div>
-                                    <div class="control-group">
-                                        <label for="title" class="control-label">是否开启背景轮播：</label>
-                                        <div class="controls">
-                                        	<s:if test="screenimg.ison==0">
-                                        		<input type="radio" name="screenimg.ison" value="0" checked="checked" />关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1"  />开启&nbsp;&nbsp;
-                                        	</s:if>
-                                        	<s:else>
-                                        		<input type="radio" name="screenimg.ison" value="0" />关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1" checked="checked"/>开启&nbsp;&nbsp;
-                                        	</s:else>
-                    						<span class="maroon">*</span>
-                                        </div>
-                                    </div>								
+                                    							
 						
 								</div>								
 								

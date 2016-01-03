@@ -79,6 +79,13 @@ public class ScreenimgServiceImp implements IScreenimgService {
 		Object[] values = new Object[]{paccount};
 		return screenimgDao.queryByNamedParam(queryString, paramNames, values);
 	}
-
+	
+	//前台-根据微官网id-查询轮播图片
+	public Screenimg queryScreenimgByWgwId(int wgwid) {
+		String queryString = "from Screenimg mo where mo.wgw.id=:wgwid ";
+		String[] paramNames = new String[]{"wgwid"};
+		Object[] values = new Object[]{wgwid};
+		return screenimgDao.queryByNamedParam(queryString, paramNames, values);
+	}
 
 }

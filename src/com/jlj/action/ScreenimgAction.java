@@ -51,6 +51,10 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private List<Screenimg> screenimgs;
 	private String publicaccount;//公众号原始ID
 	private int imgtype;
+	//上传图片0
+	private File picture0;
+	private String picture0ContentType;
+	private String picture0FileName;
 	//上传图片1
 	private File picture1;
 	private String picture1ContentType;
@@ -90,7 +94,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 */
 	public String add() throws Exception{
 		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
-		
+		if(picture0!=null){
+			String imageName0=DateTimeKit.getDateRandom()+picture0FileName.substring(picture0FileName.indexOf("."));
+			this.upload(imageName0,picture0,paccount);
+			screenimg.setBgimg(paccount+"/"+imageName0);
+		}
 		if(picture1!=null){
 			String imageName1=DateTimeKit.getDateRandom()+picture1FileName.substring(picture1FileName.indexOf("."));
 			this.upload(imageName1,picture1,paccount);
@@ -129,7 +137,15 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 */
 	public String update() throws Exception{
 		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
-		
+		if(picture0!=null){
+			String imageName0=DateTimeKit.getDateRandom()+picture0FileName.substring(picture0FileName.indexOf("."));
+			this.upload(imageName0,picture0,paccount);
+			//删除原文件
+			File photofile0=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getBgimg());
+			photofile0.delete();
+			//设置新图片地址
+			screenimg.setBgimg(paccount+"/"+imageName0);
+		}
 		if(picture1!=null){
 			String imageName1=DateTimeKit.getDateRandom()+picture1FileName.substring(picture1FileName.indexOf("."));
 			this.upload(imageName1,picture1,paccount);
@@ -437,6 +453,30 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 
 	public void setPicture5FileName(String picture5FileName) {
 		this.picture5FileName = picture5FileName;
+	}
+
+	public File getPicture0() {
+		return picture0;
+	}
+
+	public void setPicture0(File picture0) {
+		this.picture0 = picture0;
+	}
+
+	public String getPicture0ContentType() {
+		return picture0ContentType;
+	}
+
+	public void setPicture0ContentType(String picture0ContentType) {
+		this.picture0ContentType = picture0ContentType;
+	}
+
+	public String getPicture0FileName() {
+		return picture0FileName;
+	}
+
+	public void setPicture0FileName(String picture0FileName) {
+		this.picture0FileName = picture0FileName;
 	}
 	
 }

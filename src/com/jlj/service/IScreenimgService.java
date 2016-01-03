@@ -26,4 +26,6 @@ public interface IScreenimgService {
 
 	public abstract Screenimg queryScreenimgByPublicAccount(String paccount);
 
+	public abstract Screenimg queryScreenimgByWgwId(int wgwid);
+
 }

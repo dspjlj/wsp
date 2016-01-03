@@ -130,4 +130,14 @@ public class BigtypeServiceImp implements IBigtypeService{
 		Object[] p= new Object[]{paccount,ison,ttype,hastype};
 		return bigtypeDao.getObjectsByCondition(queryString, p);
 	}
+	
+	
+	//前台查询===================================================start
+	public List<Bigtype> queryIndexBigtypesByWgwId(int wgwid) {
+		String queryString = "from Bigtype mo where mo.wgw.id = ? and mo.ison = 1 and mo.bigtype.id is null order by mo.orderid asc ";
+		Object[] p= new Object[]{wgwid};
+		return bigtypeDao.getObjectsByCondition(queryString, p);
+	}
+	
+	
 }

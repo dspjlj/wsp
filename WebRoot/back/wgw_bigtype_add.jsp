@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="control-group">
                                     <label class="control-label" for="title">简称：</label>
                                     <div class="controls">
-		 							 <s:textfield name="bigtype.enname"  cssClass="input-medium" required="required"></s:textfield>                                     <span class="maroon">*</span>
+		 							 <s:textfield name="bigtype.enname"  cssClass="input-xlarge" required="required"></s:textfield>                                     <span class="maroon">*</span>
                                     </div>
                                 </div>
                              
