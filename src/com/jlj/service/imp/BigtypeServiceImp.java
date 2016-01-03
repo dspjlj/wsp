@@ -130,12 +130,23 @@ public class BigtypeServiceImp implements IBigtypeService{
 		Object[] p= new Object[]{paccount,ison,ttype,hastype};
 		return bigtypeDao.getObjectsByCondition(queryString, p);
 	}
-	
+	//根据条件查询可用子类别-for添加文章2
+	public List<Bigtype> getBigtypesBycondition(int ison,
+			int hastype, String paccount) {
+		String queryString = "from Bigtype mo where mo.publicaccount = ? and mo.ison = ? and (mo.ttype = 0 or mo.ttype = 1) and mo.isend = ? order by mo.orderid asc ";
+		Object[] p= new Object[]{paccount,ison,hastype};
+		return bigtypeDao.getObjectsByCondition(queryString, p);
+	}
 	
 	//前台查询===================================================start
 	public List<Bigtype> queryIndexBigtypesByWgwId(int wgwid) {
 		String queryString = "from Bigtype mo where mo.wgw.id = ? and mo.ison = 1 and mo.bigtype.id is null order by mo.orderid asc ";
 		Object[] p= new Object[]{wgwid};
+		return bigtypeDao.getObjectsByCondition(queryString, p);
+	}
+	public List<Bigtype> querySonBigtypesByParentBigtypeId(int bigtypeid) {
+		String queryString = "from Bigtype mo where mo.ison = 1 and mo.bigtype.id =? order by mo.orderid asc ";
+		Object[] p= new Object[]{bigtypeid};
 		return bigtypeDao.getObjectsByCondition(queryString, p);
 	}
 	

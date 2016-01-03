@@ -65,6 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<s:hidden name="wgw.publicaccount"></s:hidden>
 									<s:hidden name="wgw.linkurl"></s:hidden>
 									
+									
 									<div class="control-group">
 										<label class="control-label" for="title">
 											标题：
@@ -94,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											链接地址
 										</label>
 										<div class="controls">
-											<s:property value="wgw.linkurl"/>
+											<%=basePath %><s:property value="wgw.linkurl"/>
 										</div>
 									</div>
 									<div class="form-actions">

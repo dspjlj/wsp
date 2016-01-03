@@ -96,6 +96,12 @@ public class FooterServiceImp implements IFooterService {
 		return footerDao.queryByNamedParam(queryString, paramNames, values);
 	}
 	
-	
+	//前台-根据微官网id-查询底部版权设置
+	public Footer queryFooterByWgwId(int wgwid) {
+		String queryString = "from Footer mo where mo.wgw.id=:wgwid and mo.ison=1 ";
+		String[] paramNames = new String[]{"wgwid"};
+		Object[] values = new Object[]{wgwid};
+		return footerDao.queryByNamedParam(queryString, paramNames, values);
+	}
 
 }

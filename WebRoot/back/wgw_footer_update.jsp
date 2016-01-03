@@ -57,7 +57,7 @@
 								<div class="control-group">
                                     <label class="control-label" for="title">底部名称</label>
                                     <div class="controls">
-										<s:textfield name="footer.foottitle" value="第三屏" cssClass="input-xlarge" required="required"></s:textfield>
+										<s:textfield name="footer.foottitle" cssClass="input-xlarge" required="required"></s:textfield>
 										<span class="maroon">提供技术支持</span>
 										<span class="help-block">请设置8字以内</span>
                                     </div>
@@ -65,7 +65,13 @@
 								<div class="control-group">
                                     <label class="control-label" for="title">是否启用：</label>
                                     <div class="controls">
-                                     	<input type="radio" name="footer.ison" value="1" checked="checked"/>启用&nbsp;&nbsp;<input type="radio" name="footer.ison" value="0"/>不启用
+                                    	<s:if test="footer.ison==1">
+                                    		<input type="radio" name="footer.ison" value="1" checked="checked"/>启用&nbsp;&nbsp;<input type="radio" name="footer.ison" value="0"/>不启用
+                                    	</s:if>
+                                    	<s:else>
+                                    		<input type="radio" name="footer.ison" value="1"/>启用&nbsp;&nbsp;<input type="radio" name="footer.ison" value="0" checked="checked"/>不启用
+                                    	</s:else>
+                                     	
                                     </div>
                                 </div>
                                 <div class="form-actions">

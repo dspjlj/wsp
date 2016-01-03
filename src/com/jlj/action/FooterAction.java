@@ -38,21 +38,19 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int id;
 	private Wgw wgw;
 	private Footer footer;
-	//分页显示
+	//操作参数
 	private String[] arg=new String[2];
-	private List<Footer> footers;
-	private int page;
-	private final int size=10;
-	private int pageCount;
-	private int totalCount;
-	private int status;//按状态
-	private int pid;//按用户id
-	private String publicaccount;//公众号原始ID
-	//条件
-	private int con;
-	private String convalue;
 	
-	//=========后台管理=================================================
+	//前台参数
+	private int wgwid;
+	//前台=======================================================start
+	public String frontFooter(){
+		footer = footerService.queryFooterByWgwId(wgwid);
+		request.put("footer", footer);
+		return NONE;
+	}
+	
+	//=========后台管理=================================================start
 	/**
 	 * 添加
 	 * @return
@@ -124,6 +122,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setWgwService(IWgwService wgwService) {
 		this.wgwService = wgwService;
 	}
+	
 	// 获得HttpServletResponse对象
     public void setServletResponse(HttpServletResponse response)
     {
@@ -132,6 +131,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
     public void setServletRequest(HttpServletRequest req) {
 		this.req = req;
 	}
+	
     public Map<String, Object> getRequest() {
 		return request;
 	}
@@ -144,7 +144,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-    
+    //传参
 	public int getId() {
 		return id;
 	}
@@ -159,65 +159,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public Footer getFooter() {
 		return footer;
 	}
-	public List<Footer> getFooters() {
-		return footers;
-	}
-	public void setFooters(List<Footer> footers) {
-		this.footers = footers;
-	}
-	public int getPage() {
-		return page;
-	}
-	public void setPage(int page) {
-		this.page = page;
-	}
-	public int getPageCount() {
-		return pageCount;
-	}
-	public void setPageCount(int pageCount) {
-		this.pageCount = pageCount;
-	}
-	public int getTotalCount() {
-		return totalCount;
-	}
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-	}
-	public int getCon() {
-		return con;
-	}
-	public void setCon(int con) {
-		this.con = con;
-	}
-	public String getConvalue() {
-		return convalue;
-	}
-	public void setConvalue(String convalue) {
-		this.convalue = convalue;
-	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	public int getPid() {
-		return pid;
-	}
-	public void setPid(int pid) {
-		this.pid = pid;
-	}
 	public String[] getArg() {
 		return arg;
 	}
 	public void setArg(String[] arg) {
 		this.arg = arg;
-	}
-	public String getPublicaccount() {
-		return publicaccount;
-	}
-	public void setPublicaccount(String publicaccount) {
-		this.publicaccount = publicaccount;
 	}
 
 	public Wgw getWgw() {
@@ -226,6 +172,15 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setWgw(Wgw wgw) {
 		this.wgw = wgw;
 	}
+
+	public int getWgwid() {
+		return wgwid;
+	}
+
+	public void setWgwid(int wgwid) {
+		this.wgwid = wgwid;
+	}
+	
 	
 	
 }

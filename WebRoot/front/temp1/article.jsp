@@ -6,6 +6,7 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	String front=basePath+"front/";
 %>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
@@ -18,13 +19,13 @@
   <meta content="telephone=no" name="format-detection">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>产品介绍</title>
+  <title><s:property value="pagearticle.name"/></title>
 
-  <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01.css"/>
-  <link type="text/css" rel="stylesheet" href="stylesheets/font-awesome.css"/>
-  <link href="stylesheets/vweisiteV01/list/list2.css" media="screen" rel="stylesheet" type="text/css" />
+  <link type="text/css" rel="stylesheet" href="<%=front %>stylesheets/vweisiteV01.css"/>
+  <link type="text/css" rel="stylesheet" href="<%=front %>stylesheets/font-awesome.css"/>
+  <link href="<%=front %>stylesheets/vweisiteV01/article/article3.css" media="screen" rel="stylesheet" type="text/css" />
 
-  <script src="assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
+  <script src="<%=front %>assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
   <meta content="authenticity_token" name="csrf-param" />
   <meta content="rjcZLVvkHwtIiVZet0CTm58AuMsNNjgv8IU/CajlIVg=" name="csrf-token" />
 </head>
@@ -37,41 +38,27 @@
 
         <div class="body">
 
-          <div class="mod-slider slider-hor" id="index">
-            <ul class="slider-list">
-              <li>
-                <a>
-                  <img alt="Flbor5npmzxrptictyzu4ptatcdy" src="pictures/template1_list_1.jpg" />
-                </a>
-              </li>
-            </ul>
-            <div class="slider-text">
-              <span class="fl slider-span" id="slider-span">产品介绍</span>
+          <div class="article ckeditor_content" id="article">
+
+            <div class="hd">
+              <h1><s:property value="pagearticle.name"/></h1>
+              <small><s:property value="pagearticle.shortname"/></small>
             </div>
+
+            <div class="bd">
+              <img alt="没有封面图片" src='<%=basePath %><s:property value="pagearticle.imageurl"/>' style="margin-bottom: 10px;"/>
+              <br/>
+              <s:property value="pagearticle.description" escapeHtml="false"/>
+
+            </div>
+
           </div>
 
-          <div class="list">
-            <ul>
-              <li>
-                <a href="1_article.jsp">
-
-                  <div class="list-text">
-                    <h1>产品介绍</h1>
-                    <h2>2014-06-13 13:37</h2>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="1_article.jsp">
-
-                  <div class="list-text">
-                    <h1>制作工艺</h1>
-                    <h2>2014-06-13 13:38</h2>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
+          <script>
+$(function(){
+  $(".ckeditor_content img").css({"height":"auto","width":"auto","max-width":"100%"});
+});
+</script>
 
         </div>
       </section>
@@ -149,9 +136,15 @@
     </div>
   </div>
 
-  <footer>技术支持：第三屏</footer>
+  	<s:action name="footerAction!frontFooter">
+		<s:param name="wgwid" value="%{#request.wgw.id}"></s:param>
+	</s:action>
+	<s:if test="#request.footer!=null">
+		<footer>技术支持：<s:property value="#request.footer.foottitle"/></footer>
+	</s:if>
 
   
+
   <style type="text/css">
         /*pop*/
     .pop-zoom{display:none;width:100%;height:100%;color:#fff;position:fixed;left:0;top:0;background:rgba(0,0,0,0.5);z-index:10000;}
@@ -161,7 +154,7 @@
     .zoom-close{position:fixed;right:5px;top:5px;display:block;z-index:99999;}
     .zoom-close .fa{width:30px;height:30px;font-size:25px;line-height:30px;border-radius:50%;color:#fff;background:#999;}
 </style>
-  <script src="assets/mobile/lib/iScroll-4.2.5.js"></script>
+  <script src="<%=front %>assets/mobile/lib/iScroll-4.2.5.js"></script>
   <script type="text/javascript">
     var flag = true; css_reg = /^[\w]*font-awesome\.min[\w]*/;
     $.each($('link[type="text/css"]'), function(){
@@ -175,7 +168,7 @@
         }
     });
     if(flag){
-        document.write('<link rel="stylesheet" href="assets/font/font-awesome.min.css">')
+        document.write('<link rel="stylesheet" href="<%=front %>assets/font/font-awesome.min.css">')
     }
     var img_zoom_myscroll, img_zoom_scrollTop;
 
@@ -267,22 +260,13 @@
         });
 
         $("a.dev-index").click(function(){
-          location.href = "5_index_mianbao.html";
+          location.href = 'wgwAction!frontindex?frontpa=<s:property value="#session.frontpa" />';
         });
 
         $("a.dev-refresh").click(function(){
           location.reload();
         });
 
-        $("a.dev-tel").attr("href", "tel:15861521065");
-
-        $("a.dev-member").click(function(){
-          $(this).attr("href", "#")
-        });
-
-        $("a.dev-location").click(function(){
-          $(this).attr("href", "#")
-        });
       });
     </script>
 

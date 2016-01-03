@@ -36,4 +36,7 @@ public interface IPagearticleService {
 
 	public abstract int getPageCount(int totalCount, int size);
 
+	public abstract List<Pagearticle> queryPagearticlesByEndBigtypeId(
+			int bigtypeid);
+
 }

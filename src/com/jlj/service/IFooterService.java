@@ -31,4 +31,6 @@ public interface IFooterService {
 
 	public abstract Footer queryFooterByPublicAccount(String paccount);
 
+	public abstract Footer queryFooterByWgwId(int wgwid);
+
 }

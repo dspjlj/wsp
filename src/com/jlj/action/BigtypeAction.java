@@ -47,6 +47,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int id;
 	private Bigtype bigtype;
 	private Wgw wgw;
+	private int wgwid;
 	//分页显示
 	private String[] arg=new String[2];
 	private List<Bigtype> bigtypes;
@@ -67,15 +68,21 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int isdelpic;
 	
 	private String frontpa;
+	private String temp2;
+	private int bigtypeid;
+	
 	//=========前台类别=================================================
 	public String frontBigtypes(){
-		bigtypes = bigtypeService.getFrontBigtypesByPublicAccount(frontpa);
-		request.put("bigtypes", bigtypes);
-		//查询该frontpa所用的模板信息
-		Pubclient pubclient = pubclientService.queryPubclientByFrontpa(frontpa);
-//		int template = pubclient.getTemplate();
-//		session.put("template", template);
-		return NONE;
+		wgw = wgwService.loadById(wgwid);
+		if(wgw==null){
+			return NONE;
+		}
+		bigtype = bigtypeService.loadById(bigtypeid);
+		bigtypes = bigtypeService.querySonBigtypesByParentBigtypeId(bigtypeid);
+		//模板
+		int temp = wgw.getTemplate2();
+		temp2="temp"+temp;
+		return "frontbigtypes";
 	}
 	//=========后台类别管理=================================================
 	/**
@@ -475,6 +482,24 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	public void setIsdelpic(int isdelpic) {
 		this.isdelpic = isdelpic;
+	}
+	public int getWgwid() {
+		return wgwid;
+	}
+	public void setWgwid(int wgwid) {
+		this.wgwid = wgwid;
+	}
+	public int getBigtypeid() {
+		return bigtypeid;
+	}
+	public void setBigtypeid(int bigtypeid) {
+		this.bigtypeid = bigtypeid;
+	}
+	public String getTemp2() {
+		return temp2;
+	}
+	public void setTemp2(String temp2) {
+		this.temp2 = temp2;
 	}
 	
 	

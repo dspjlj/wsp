@@ -61,6 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<s:hidden name="wgw.template3" value="1"></s:hidden>
 									<s:hidden name="wgw.template4" value="1"></s:hidden>
 									<s:hidden name="wgw.publicaccount" value="%{#session.pubclient.publicaccount}"></s:hidden>
+									<s:hidden name="wgw.linkurl" value="wgwAction!frontindex?frontpa=%{#session.pubclient.publicaccount}"></s:hidden>
 									
 									<div class="control-group">
 										<label class="control-label" for="title">

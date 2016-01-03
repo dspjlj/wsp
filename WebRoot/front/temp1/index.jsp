@@ -6,6 +6,7 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	String front=basePath+"front/";
 %>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
@@ -18,84 +19,99 @@
   <meta content="telephone=no" name="format-detection">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>完美泡芙的制作工艺</title>
+  <title><s:property value="#request.wgw.title"/></title>
 
-  <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01.css"/>
-  <link type="text/css" rel="stylesheet" href="stylesheets/font-awesome.css"/>
-  <link href="stylesheets/vweisiteV01/article/article3.css" media="screen" rel="stylesheet" type="text/css" />
+  <link type="text/css" rel="stylesheet" href="<%=front %>stylesheets/vweisiteV01.css"/>
+  <link type="text/css" rel="stylesheet" href="<%=front %>stylesheets/font-awesome.css"/>
+  <link href="<%=front %>stylesheets/vweisiteV01/index/index93.css" media="screen" rel="stylesheet" type="text/css" />
 
-  <script src="assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
+  <script src="<%=front %>assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
   <meta content="authenticity_token" name="csrf-param" />
-  <meta content="rjcZLVvkHwtIiVZet0CTm58AuMsNNjgv8IU/CajlIVg=" name="csrf-token" />
+  <meta content="uu4elJjeyZd8k/ARutXFPy7LP4D5o+kT1gTnvZ8OwRo=" name="csrf-token" />
+  <script src="<%=front %>assets/mobile/lib/iscroll-cecd28ae7bd05946cc2efbf28ef43a74.js" type="text/javascript"></script>
 </head>
 
 <body>
 
-  <div class="html" style="">
+  <div class="html" style="background-image: url(<%=basePath %><s:property value="#request.screenimg.bgimg"/>)">
     <div class="stage" id="stage">
       <section id="sec-index">
 
         <div class="body">
 
-          <div class="article ckeditor_content" id="article">
-
-            <div class="hd">
-              <h1>完美泡芙的制作工艺</h1>
-              <small>完美泡芙三大关键</small>
-            </div>
-
-            <div class="bd">
-              <img alt="Fvg2rhfqnaao2xolc8hbrs7eqxqm" src="pictures/template1_article_1.jpg" />
-              <p>
-                &nbsp; &nbsp;&nbsp;大家都知道泡芙好吃，但是不知道泡芙也是有工艺考究的哦~~下面小编就给大家说明好吃的泡芙的三大关键点。
-              </p>
-
-              <p>
-                &nbsp; &nbsp;&nbsp;泡芙是一种膨松的中间空洞的小点心，里面填有香甜的馅料。在我的记忆中，以前泡芙在国内并不流行，自从几家泡芙店火了以后，得益于广大西点店的纷纷效仿，泡芙现在绝对属于最热门的西点之一，到哪儿都离不了它的身影。
-              </p>
-
-              <p>
-                &nbsp;&nbsp;&nbsp;&nbsp;泡芙的外皮有着酥脆的口感，只有在吃之前才会填上馅料。因为如果过早填入馅料，外皮会吸收馅料里的水分而变得湿软。正规的泡芙店，只有当你购买泡芙前，才在里面填上新鲜的馅料，使泡芙保持最佳的口感。目前市面上有很多西点店为了省事，大多都是提前就将馅料填好摆在店铺里出售，以至于我们买到泡芙的时候，外皮都已经是软软的了。不幸的是，这样的泡芙吃得多了，大部分人认为这样的泡芙才是泡芙，反而把那些外皮酥脆的泡芙视为另类。
-              </p>
-
-            </div>
-
+          
+          <div class="index" id="indexList">
+            <ul class="index-wrap">
+            	<s:if test="#request.bigtypes.size()==0">
+              		<li>
+		                <a href='javascript:void(0);' class="box mod-index">
+		                  <div class="index-name">没有类别</div>
+		                  <div class="index-line"></div>
+		                  <div class="index-icon">
+		                  		<i class="fa fa-heart-o"></i>
+		                  </div>
+		                  <div class="index-summary">亲！掌柜的太忙！没有设置类别！</div>
+		                </a>
+		            </li>
+              	</s:if>
+            	
+            	<s:iterator value="#request.bigtypes" var="bigtype" status="index">
+	              <li>
+	                <a href='
+	                <s:if test="ttype!=0">
+	                	<s:property value="linkurl"/>
+	                </s:if>
+	                <s:else>
+	                	<s:if test="isend==1">
+	                		bigtypeAction!frontBigtypes?wgwid=<s:property value="#request.wgw.id"/>&bigtypeid=<s:property value="id"/>
+	                	</s:if>
+	                	<s:else>
+	                		pagearticleAction!frontPages?wgwid=<s:property value="#request.wgw.id"/>&bigtypeid=<s:property value="id"/>
+	                	</s:else>
+	                </s:else>
+	                ' class="box mod-index">
+	                  <div class="index-name"><s:property value="name"/></div>
+	                  <div class="index-line"></div>
+	                  <div class="index-icon">
+	                  <s:if test="#index.count%2==0">
+	                  		<i class="fa fa-heart"></i>
+	                  </s:if>
+	                  <s:else>
+	                  		<i class="fa fa-heart-o"></i>
+	                  </s:else>
+	                  
+	                  </div>
+	                  <div class="index-summary"><s:property value="enname"/></div>
+	                </a>
+	              </li>
+	            </s:iterator>
+              
+            </ul>
           </div>
 
-          <script>
-$(function(){
-  $(".ckeditor_content img").css({"height":"auto","width":"auto","max-width":"100%"});
-});
+          <script type="text/javascript">
+    $(function(){
+        vcScroll();
+        // 静态背景图
+        //$(".html").css("background-image", "url(pictures/FsughMLV_Qobvz6d7GGFj69R2PVD)");
+    });
+    function vcScroll (id) {
+        var myScroll = new IScroll("#indexList", {
+            scrollX: true,
+            scrollY: false,
+            mouseWheel: true,
+            scrollbars: false,
+            mouseWheel: true,
+            interactiveScrollbars: true,
+            shrinkScrollbars: 'scale',
+            fadeScrollbars: true,
+            click: true
+        });
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    }
 </script>
 
         </div>
-      </section>
-
-      <section class="mod-navLine navLine-2">
-        <ul class="navLine-ul">
-          <li>
-            <a href="javascript:;" class="dev-prev"> <i class="fa fa-reply"></i>
-              <small>后退</small>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;" class="dev-next"> <i class="fa fa-share"></i>
-              <small>前进</small>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;" class="dev-index">
-              <i class="fa fa-home"></i>
-              <small>首页</small>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;" class="dev-refresh">
-              <i class="fa fa-refresh"></i>
-              <small>刷新</small>
-            </a>
-          </li>
-        </ul>
       </section>
 
     </div>
@@ -118,7 +134,7 @@ $(function(){
           在【添加朋友】—【查找公众号】中搜索
         </p>
         <p>
-          <span class="alert-btn">西树泡芙</span>
+          <span class="alert-btn">我的面包</span>
           （长按可复制）
         </p>
         <p>
@@ -143,9 +159,12 @@ $(function(){
       </div>
     </div>
   </div>
-
-  <footer>技术支持：第三屏</footer>
-
+	<s:action name="footerAction!frontFooter">
+		<s:param name="wgwid" value="%{#request.wgw.id}"></s:param>
+	</s:action>
+	<s:if test="#request.footer!=null">
+		<footer>技术支持：<s:property value="#request.footer.foottitle"/></footer>
+	</s:if>
   
 
   <style type="text/css">
@@ -157,7 +176,7 @@ $(function(){
     .zoom-close{position:fixed;right:5px;top:5px;display:block;z-index:99999;}
     .zoom-close .fa{width:30px;height:30px;font-size:25px;line-height:30px;border-radius:50%;color:#fff;background:#999;}
 </style>
-  <script src="assets/mobile/lib/iScroll-4.2.5.js"></script>
+  <script src="<%=front %>assets/mobile/lib/iScroll-4.2.5.js"></script>
   <script type="text/javascript">
     var flag = true; css_reg = /^[\w]*font-awesome\.min[\w]*/;
     $.each($('link[type="text/css"]'), function(){
@@ -171,7 +190,7 @@ $(function(){
         }
     });
     if(flag){
-        document.write('<link rel="stylesheet" href="assets/font/font-awesome.min.css">')
+        document.write('<link rel="stylesheet" href="<%=front %>assets/font/font-awesome.min.css">')
     }
     var img_zoom_myscroll, img_zoom_scrollTop;
 
@@ -246,41 +265,7 @@ $(function(){
     <span class="text-share"></span>
   </div>
 
-  <script type="text/javascript">
-      $(document).ready(function(){
-
-            $("body").addClass("body-navLine-bottom");
-
-
-        showBtnUp(100);
-
-        $("a.dev-prev").click(function(){
-            location.href = history.back();
-        });
-
-        $("a.dev-next").click(function(){
-          history.go(1);
-        });
-
-        $("a.dev-index").click(function(){
-          location.href = "5_index_mianbao.html";
-        });
-
-        $("a.dev-refresh").click(function(){
-          location.reload();
-        });
-
-        $("a.dev-tel").attr("href", "tel:15861521065");
-
-        $("a.dev-member").click(function(){
-          $(this).attr("href", "#")
-        });
-
-        $("a.dev-location").click(function(){
-          $(this).attr("href", "#")
-        });
-      });
-    </script>
+  
 
 </body>
 </html>

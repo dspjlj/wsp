@@ -1,12 +1,7 @@
 package com.jlj.action;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URLDecoder;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -26,11 +21,11 @@ import org.springframework.stereotype.Component;
 import com.jlj.model.Bigtype;
 import com.jlj.model.Pagearticle;
 import com.jlj.model.Pubclient;
-//import com.jlj.model.Sontype;
+import com.jlj.model.Wgw;
 import com.jlj.service.IBigtypeService;
 import com.jlj.service.IPagearticleService;
 import com.jlj.service.IPubclientService;
-//import com.jlj.service.ISontypeService;
+import com.jlj.service.IWgwService;
 import com.jlj.util.DateTimeKit;
 import com.jlj.util.ToolKitUtil;
 import com.opensymphony.xwork2.ActionSupport;
@@ -42,6 +37,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	
 	private static final long serialVersionUID = 1L;
 	private IPagearticleService pagearticleService;
+	private IWgwService wgwService;
 	private IBigtypeService bigtypeService;
 	private IPubclientService pubclientService;
 	
@@ -52,6 +48,8 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	//单个对象
 	private int id;
 	private Pagearticle pagearticle;
+	private Wgw wgw;
+	private Bigtype bigtype;
 //	//添加页面显示大类别
 //	private List<Sontype> sontypes;
 	//分页显示
@@ -67,10 +65,12 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int con;
 	private String convalue;
 	
-	private int stid;//子类别id
 	private List<Bigtype> bigtypes;
 	private String frontpa;//传入参数，查询所有大类别信息
-	private String template;
+	private String temp3;
+	private String temp4;
+	private int wgwid;
+	private int bigtypeid;
 	//上传照片
 	private File picture;
 	private String pictureContentType;
@@ -80,65 +80,33 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * 前台-分页显示文章列表
 	 * @return
 	 */
-	public String frontpagearticle(){
-		//获取该账号的大类别
-		bigtypes = bigtypeService.getBigtypesByPublicAccount(frontpa);
-		int psize=10;//每页显示10条
-		if(page<1){
-			page=1;
+	public String frontPages(){
+		wgw = wgwService.loadById(wgwid);
+		if(wgw==null){
+			return NONE;
 		}
-		//总页数
-		pageCount=pagearticleService.getFrontPageCount(stid,psize);
-		if(page>pageCount&&pageCount!=0){
-			page=pageCount;
-		}
-		//所有当前页记录对象
-		pagearticles=pagearticleService.queryFrontList(stid,page,psize);
-		//总记录数
-		totalCount=pagearticleService.getFrontTotalCount(stid);
+		bigtype = bigtypeService.loadById(bigtypeid);
+		pagearticles = pagearticleService.queryPagearticlesByEndBigtypeId(bigtypeid);
 		//模板
-		int temp=0;
-		if(session.get("template")!=null){
-			temp = (Integer)session.get("template");
-		}else{
-			Pubclient pubclient = pubclientService.queryPubclientByFrontpa(frontpa);
-//			temp = pubclient.getTemplate();
-//			session.put("template",temp);
-		}
-		template="template"+temp;
-		return "frontpagearticle";
+		int temp = wgw.getTemplate3();
+		temp3="temp"+temp;
+		return "frontpages";
 	}
+	
 	/**
 	 * 前台-跳转到文章详细展示界面
 	 * @return
 	 */
-	public String frontview(){
-		//获取该账号的大类别
-		bigtypes = bigtypeService.getBigtypesByPublicAccount(frontpa);
-		pagearticle=pagearticleService.loadById(id);
-		//模板
-		int temp=0;
-		if(session.get("template")!=null){
-			temp = (Integer)session.get("template");
-		}else{
-			Pubclient pubclient = pubclientService.queryPubclientByFrontpa(frontpa);
-//			temp = pubclient.getTemplate();
-//			session.put("template",temp);
+	public String frontView(){
+		pagearticle = pagearticleService.loadById(id);
+		wgw = wgwService.loadById(wgwid);
+		if(wgw==null){
+			return NONE;
 		}
-		template="template"+temp;
+		//模板
+		int temp = wgw.getTemplate2();
+		temp4="temp"+temp;
 		return "frontview";
-	}
-	/**
-	 * 前台-首页-头版文章列表
-	 * @return
-	 */
-	public String frontindexview(){
-		int isshow = 2;//查询头版
-		int page = 1;//只提取第一页
-		int psize = 2;//只显示2条头版
-		pagearticles=pagearticleService.queryFrontIndexList(frontpa,isshow,page,psize);
-		request.put("pagearticles", pagearticles);
-		return null;
 	}
 	//后台管理============文章管理===========================
 	/**
@@ -173,9 +141,9 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public String goToAdd(){
 		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		int ison = 1;//启用
-		int ttype = 0;//类别
+//		int ttype = 0;//类别
 		int hastype = 0;//无子类别
-		bigtypes = bigtypeService.getBigtypesBycondition(ison,ttype,hastype,paccount);
+		bigtypes = bigtypeService.getBigtypesBycondition(ison,hastype,paccount);
 		//若无子类别，则跳转到先添加子类别
 		if(bigtypes!=null&&bigtypes.size()>0){
 			return "add";
@@ -261,9 +229,9 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public String load() throws Exception{
 		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		int ison = 1;//启用
-		int ttype = 0;//类别
+//		int ttype = 0;//类别
 		int hastype = 0;//无子类别
-		bigtypes = bigtypeService.getBigtypesBycondition(ison,ttype,hastype,paccount);
+		bigtypes = bigtypeService.getBigtypesBycondition(ison,hastype,paccount);
 		//文章对象
 		pagearticle=pagearticleService.loadById(id);
 		return "load";
@@ -290,6 +258,14 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	@Resource
 	public void setPubclientService(IPubclientService pubclientService) {
 		this.pubclientService = pubclientService;
+	}
+	
+	public IWgwService getWgwService() {
+		return wgwService;
+	}
+	@Resource
+	public void setWgwService(IWgwService wgwService) {
+		this.wgwService = wgwService;
 	}
 	// 获得HttpServletResponse对象
     public void setServletResponse(HttpServletResponse response)
@@ -399,14 +375,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		this.pictureFileName = pictureFileName;
 	}
 
-	public int getStid() {
-		return stid;
-	}
-
-	public void setStid(int stid) {
-		this.stid = stid;
-	}
-
 	public List<Bigtype> getBigtypes() {
 		return bigtypes;
 	}
@@ -415,18 +383,59 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		this.bigtypes = bigtypes;
 	}
 
-	
 	public String getFrontpa() {
 		return frontpa;
 	}
 	public void setFrontpa(String frontpa) {
 		this.frontpa = frontpa;
 	}
-	public String getTemplate() {
-		return template;
+
+	public Wgw getWgw() {
+		return wgw;
 	}
-	public void setTemplate(String template) {
-		this.template = template;
+
+	public void setWgw(Wgw wgw) {
+		this.wgw = wgw;
+	}
+
+	public Bigtype getBigtype() {
+		return bigtype;
+	}
+
+	public void setBigtype(Bigtype bigtype) {
+		this.bigtype = bigtype;
+	}
+
+	public String getTemp3() {
+		return temp3;
+	}
+
+	public void setTemp3(String temp3) {
+		this.temp3 = temp3;
+	}
+
+	public int getWgwid() {
+		return wgwid;
+	}
+
+	public void setWgwid(int wgwid) {
+		this.wgwid = wgwid;
+	}
+
+	public int getBigtypeid() {
+		return bigtypeid;
+	}
+
+	public void setBigtypeid(int bigtypeid) {
+		this.bigtypeid = bigtypeid;
+	}
+
+	public String getTemp4() {
+		return temp4;
+	}
+
+	public void setTemp4(String temp4) {
+		this.temp4 = temp4;
 	}
 	
 	

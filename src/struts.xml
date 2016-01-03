@@ -401,6 +401,8 @@
 			<result name="opsessiongo">/back/op_sessiongo.jsp</result>
 		</global-results>
 		<action name="wgwAction" class="wgwAction">
+			<result name="frontindex">/front/${temp1}/index.jsp</result>
+		
 			<result name="success">/back/op_success.jsp</result>
 			<result name="opfail">/back/op_failure.jsp</result>
 			<result name="operror">/back/op_error.jsp</result>
@@ -497,6 +499,8 @@
 			<result name="opsessiongo">/back/op_sessiongo.jsp</result>
 		</global-results>
 		<action name="bigtypeAction" class="bigtypeAction">
+			<result name="frontbigtypes">/front/${temp2}/types.jsp</result>
+		
 			<result name="success">/back/op_success.jsp</result>
 			<result name="opfail">/back/op_failure.jsp</result>
 			<result name="goanother">/back/op_go_another.jsp</result>
@@ -534,8 +538,9 @@
 			<result name="opsessiongo">/back/op_sessiongo.jsp</result>
 		</global-results>
 		<action name="pagearticleAction" class="pagearticleAction">
-			<result name="frontpagearticle">/${template}/front_pagearticle.jsp</result>
-			<result name="frontview">/${template}/front_pagearticleview.jsp</result>
+			<result name="frontpages">/front/${temp3}/list.jsp</result>
+			<result name="frontview">/front/${temp4}/article.jsp</result>
+			
 			<result name="sessiongo">/front_sessiongo.jsp</result>
 		
 			<result name="success">/back/op_success.jsp</result>

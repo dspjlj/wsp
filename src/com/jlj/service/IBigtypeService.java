@@ -47,4 +47,9 @@ public interface IBigtypeService {
 
 	public abstract List<Bigtype> queryIndexBigtypesByWgwId(int wgwid);
 
+	public abstract List<Bigtype> querySonBigtypesByParentBigtypeId(int bigtypeid);
+
+	public abstract List<Bigtype> getBigtypesBycondition(int ison, int hastype,
+			String paccount);
+
 }

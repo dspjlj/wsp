@@ -62,7 +62,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="control-group">
                                     <label class="control-label" for="title">简称：</label>
                                     <div class="controls">
-		 							 <s:textfield name="bigtype.enname"  cssClass="input-xlarge" required="required"></s:textfield>                                     <span class="maroon">*</span>
+		 							 <s:textfield name="bigtype.enname"  cssClass="input-xlarge"></s:textfield>
+										<span class="maroon">*</span>
                                     </div>
                                 </div>
                              
@@ -91,9 +92,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="title">文章链接：</label>
+                                    <label class="control-label" for="title">一键链接：</label>
                                     <div class="controls">
-                                    	<s:textfield name="bigtype.linkurl"  value="http://" cssClass="input-xxlarge" required="required"></s:textfield>
+                                    	<s:textfield name="bigtype.linkurl"  value="http://" cssClass="input-xxlarge"></s:textfield>
 										<span class="maroon">*</span>
                                     </div>
                                 </div>

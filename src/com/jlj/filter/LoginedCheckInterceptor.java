@@ -13,7 +13,7 @@ public class LoginedCheckInterceptor extends AbstractInterceptor {
 	public String intercept(ActionInvocation ai) throws Exception {
 		//取得请求的URL
 		String url = ServletActionContext.getRequest().getRequestURL().toString();
-//		System.out.println("url:"+url);
+		System.out.println("url:"+url);
 		HttpServletResponse response=ServletActionContext.getResponse();
 //		response.setHeader("Pragma","No-cache");          
 //		response.setHeader("Cache-Control","no-cache");   

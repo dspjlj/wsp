@@ -236,11 +236,11 @@ $(function(){
 						<li>
 							<a href="pagearticleAction!list">文章管理</a>
 						</li>
-
+						<!-- 
 						<li>
 							<a href="wgwmenuAction!view">菜单导航设置</a>
 						</li>
-
+						 -->
 						<li>
 							<a href="footerAction!view">底部版权设置</a>
 						</li>

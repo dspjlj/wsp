@@ -103,6 +103,13 @@ public class PagearticleServiceImp implements IPagearticleService{
 		return pagearticleDao.pageList(queryString,p,page,psize);
 	}
 	
+	//前台-根据无子类的分类ID查询所有文章列表
+	public List<Pagearticle> queryPagearticlesByEndBigtypeId(int bigtypeid) {
+		String queryString = "from Pagearticle mo where mo.bigtype.id =? and mo.ison=1 order by mo.id desc ";
+		Object[] p= new Object[]{bigtypeid};
+		return pagearticleDao.getObjectsByCondition(queryString, p);
+	}
+	
 	
 	
 

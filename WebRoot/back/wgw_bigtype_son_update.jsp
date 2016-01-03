@@ -137,7 +137,8 @@ function changePreImg() {
                                 <div class="control-group">
                                     <label class="control-label" for="title">简称：</label>
                                     <div class="controls">
-		 							 <s:textfield name="bigtype.enname"  cssClass="input-xlarge" required="required"></s:textfield>                                     <span class="maroon">*</span>
+		 							 <s:textfield name="bigtype.enname"  cssClass="input-xlarge" ></s:textfield>
+										<span class="maroon">*</span>
                                     </div>
                                 </div>
                              
@@ -184,7 +185,7 @@ function changePreImg() {
                                 <div class="control-group">
                                     <label class="control-label" for="title">文章链接：</label>
                                     <div class="controls">
-                                    	<s:textfield name="bigtype.linkurl" cssClass="input-xxlarge" required="required"></s:textfield>
+                                    	<s:textfield name="bigtype.linkurl" cssClass="input-xxlarge"></s:textfield>
 										<span class="maroon">*</span>
                                     </div>
                                 </div>
@@ -210,6 +211,22 @@ function changePreImg() {
                                     </div>
                                 </div>
 
+								<s:if test="bigtype.ttype==0">
+									<div class="control-group">
+	                                    <label class="control-label" for="title">生成链接：</label>
+	                                    <div class="controls">
+	                                    	
+	                                    	
+	                                    	
+	                                    	<s:if test="bigtype.isend==1">
+	                                    		<%=basePath %>bigtypeAction!frontBigtypes?wgwid=<s:property value="bigtype.wgw.id"/>&bigtypeid=<s:property value="bigtype.id"/>
+	                                    	</s:if>
+	                                    	<s:else>
+	                                    		<%=basePath %>pagearticleAction!frontPages?wgwid=<s:property value="bigtype.wgw.id"/>&bigtypeid=<s:property value="bigtype.id"/>
+	                                    	</s:else>
+	                                    </div>
+	                                </div>
+                                </s:if>
                                  
                                 <div class="form-actions">
                                 	<s:token></s:token>

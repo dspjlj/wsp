@@ -57,21 +57,26 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	//仅仅前台
 	private String frontpa;
 	private List<Bigtype> bigtypes;
+	private String temp1;
+	
 	//=========前台显示=================================================
 	/**
 	 * 微官网首页显示
 	 */
-	public String index(){
+	public String frontindex(){
+		if(frontpa!=null&&!frontpa.equals("")){
+			session.put("frontpa", frontpa);
+		}
 		wgw = wgwService.queryWgwByPublicAccount(frontpa);
 		if(wgw==null){
 			return NONE;
 		}
 		bigtypes = bigtypeService.queryIndexBigtypesByWgwId(wgw.getId());
 		screenimg = screenimgService.queryScreenimgByWgwId(wgw.getId());
-		request.put("wgw", wgw);
-		request.put("screenimg", screenimg);
-		request.put("bigtypes", bigtypes);
-		return NONE;
+		//模板
+		int temp = wgw.getTemplate1();
+		temp1="temp"+temp;
+		return "frontindex";
 	}
 	//=========后台管理=================================================
 	/**
@@ -95,7 +100,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @throws Exception
 	 */
 	public String add() throws Exception{
-		wgw.setLinkurl("http://#daiding");
 		wgwService.add(wgw);
 		arg[0]="wgwAction!view";
 		arg[1]="微官网设置";
@@ -287,6 +291,24 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	public void setTemplate4(int template4) {
 		this.template4 = template4;
+	}
+	public Screenimg getScreenimg() {
+		return screenimg;
+	}
+	public void setScreenimg(Screenimg screenimg) {
+		this.screenimg = screenimg;
+	}
+	public List<Bigtype> getBigtypes() {
+		return bigtypes;
+	}
+	public void setBigtypes(List<Bigtype> bigtypes) {
+		this.bigtypes = bigtypes;
+	}
+	public String getTemp1() {
+		return temp1;
+	}
+	public void setTemp1(String temp1) {
+		this.temp1 = temp1;
 	}
 	
 	
