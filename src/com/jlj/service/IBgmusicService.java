@@ -31,4 +31,6 @@ public interface IBgmusicService {
 
 	public abstract Bgmusic queryBgmusicByPublicAccount(String paccount);
 
+	public abstract Bgmusic queryBgmusicByWgwId(int wgwid);
+
 }

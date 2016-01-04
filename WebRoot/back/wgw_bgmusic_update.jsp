@@ -49,17 +49,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="control-group">
                                     <label class="control-label" for="title">音乐名称：</label>
                                     <div class="controls">
-		 							 <input type="text" name="bgmusic.name" value="<s:property value='bgmusic.name'/>" id="weiqi_web_musicname" class="input-xlarge" required="required"/>                                     <span class="maroon">*</span>
-									<span class="help-block"> 这里的名称只起一个备注作用，无其它用处！</span>
+		 							 	<input type="text" name="bgmusic.name" value="<s:property value='bgmusic.name'/>" id="weiqi_web_musicname" class="input-xlarge" required="required"/>
+										<span class="maroon">*</span>
+										<span class="help-block">请填写音乐名称</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="brief">音乐地址: </label>
                                     <div class="controls">
-										<textarea name="bgmusic.musicurl"  id="weiqi_web_musicmusic" class="input-large" style="height:80px;width:380px;"><s:property value='bgmusic.musicurl'/></textarea>	
+										<textarea name="bgmusic.musicurl" id="weiqi_web_musicmusic" class="input-large" style="height:80px;width:380px;"><s:property value='bgmusic.musicurl'/></textarea>	
                                         <span class="maroon">*</span>
-                                        <span class="help-block">填写音乐外联地址！请用MP3或者MAV格式的！<br>
-                                        示例：http://www.di3p.com/music/qingyinyue.mp3</span>
+                                        <span class="help-block">请填写音乐外链地址(MP3或者MAV格式)<br>
+                                        示例：<%=basePath %>front/music/spring.mp3</span>
                                     </div>
                                 </div>
 								 <div class="control-group">

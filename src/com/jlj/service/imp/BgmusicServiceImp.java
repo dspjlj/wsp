@@ -94,5 +94,12 @@ public class BgmusicServiceImp implements IBgmusicService {
 		Object[] values = new Object[]{paccount};
 		return bgmusicDao.queryByNamedParam(queryString, paramNames, values);
 	}
+	//前台-根据wgwid查询背景音乐
+	public Bgmusic queryBgmusicByWgwId(int wgwid) {
+		String queryString = "from Bgmusic mo where mo.wgw.id=:wgwid and mo.ison=1 ";
+		String[] paramNames = new String[]{"wgwid"};
+		Object[] values = new Object[]{wgwid};
+		return bgmusicDao.queryByNamedParam(queryString, paramNames, values);
+	}
 
 }

@@ -117,7 +117,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 			diypuff.setEwmimg("res/"+publicaccount+"/"+imageName);//设置图片地址全称
 		}
 		//保存链接地址
-		diypuff.setLinkurl("http://www.di3p.com:8088/wsp/front/diypuff.jsp?frontpa="+publicaccount);
+		diypuff.setLinkurl("front/diypuff.jsp?frontpa="+publicaccount);
 		//保存公众号
 		diypuff.setPublicaccount(publicaccount);
 		diypuffService.add(diypuff);

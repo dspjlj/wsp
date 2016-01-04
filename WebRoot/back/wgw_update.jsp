@@ -86,7 +86,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="controls">
 											<s:textarea name="wgw.info" id="info" cssClass="input-large"
 												cssStyle="height: 80px; width: 380px;"></s:textarea>
-											<span class="maroon">*</span>
 											<span class="help-block">150文字以内</span>
 										</div>
 									</div>

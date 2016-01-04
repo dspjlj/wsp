@@ -81,18 +81,19 @@
 							<div class="box-content" style="overflow: auto; height: 865px;">
 								<ul class="nav nav-tabs" id="liclickli">
 									<li class="active">
-										<a href="javascript:;" did="#relli0" data-toggle="tab">栏目首页模板风格</a>
+										<a href="javascript:;" did="#relli0" data-toggle="tab">首页风格</a>
 									</li>
 									<li>
-										<a href="javascript:;" did="#relli1" data-toggle="tab">频道模板风格</a>
+										<a href="javascript:;" did="#relli1" data-toggle="tab">分类频道风格</a>
 									</li>
 									<li>
-										<a href="javascript:;" did="#relli2" data-toggle="tab">图文列表模板风格</a>
+										<a href="javascript:;" did="#relli2" data-toggle="tab">图文列表风格</a>
 									</li>
 									<li>
-										<a href="javascript:;" did="#relli3" data-toggle="tab">图文详细页模板</a>
+										<a href="javascript:;" did="#relli3" data-toggle="tab">文章详细风格</a>
 									</li>
 									<li>
+										&nbsp;&nbsp;&nbsp;&nbsp;
 										<button id="bsubmit" type="submit" class="btn btn-primary">
 											保存
 										</button>

@@ -288,7 +288,7 @@ function changePreImg() {
 															链接地址
 														</label>
 														<div class="controls">
-															<s:property value="diypuff.linkurl"/>
+															<%=basePath %><s:property value="diypuff.linkurl"/>
 														</div>
 													</div>
 													</s:if>
@@ -299,7 +299,7 @@ function changePreImg() {
 															保存
 														</button>
 														<s:if test="diypuff.id!=null&&diypuff.id!=0">
-														<a href="<s:property value="diypuff.linkurl"/>"
+														<a href="<%=basePath %><s:property value="diypuff.linkurl"/>"
 															target="_blank" class="btn btn-primary ">查看推广页</a>
 														</s:if>
 													</div>

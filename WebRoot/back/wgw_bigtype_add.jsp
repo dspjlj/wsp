@@ -63,7 +63,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <label class="control-label" for="title">简称：</label>
                                     <div class="controls">
 		 							 <s:textfield name="bigtype.enname"  cssClass="input-xlarge"></s:textfield>
-										<span class="maroon">*</span>
                                     </div>
                                 </div>
                              
@@ -83,18 +82,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="control-group">
                                     <label class="control-label" for="title">类型作用：</label>
                                     <div class="controls">
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="0" checked="checked"/>首页类别
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1"/>文章/链接地址
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="2"/>一键导航
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="3" />一键预约
+                                        			<input type="radio" name="bigtype.ttype" value="0" checked="checked" onclick="isShowOneLink(this.value)"/>首页类别
+                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)"/>文章/链接地址
+                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="2" onclick="isShowOneLink(this.value)"/>一键导航
+                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="3" onclick="isShowOneLink(this.value)"/>一键预约
                                     
                                     </div>
                                 </div>
 
-                                <div class="control-group">
+                                <div class="control-group" id="onelink" style="display: none;">
                                     <label class="control-label" for="title">一键链接：</label>
                                     <div class="controls">
-                                    	<s:textfield name="bigtype.linkurl"  value="http://" cssClass="input-xxlarge"></s:textfield>
+                                    	<s:textfield name="bigtype.linkurl" id="onelinkurl" value="http://" cssClass="input-xxlarge"></s:textfield>
 										<span class="maroon">*</span>
                                     </div>
                                 </div>

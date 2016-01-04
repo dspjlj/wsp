@@ -73,6 +73,18 @@ function changePreImg(myimage,myfile) {
          pic.src=this.result;
      }
  }
+ 
+ function isShowScreenImg(radiovalue){
+ 	var divBg = document.getElementById("div_bg");
+ 	var divScreenImg = document.getElementById("div_screen_img");
+ 	if(radiovalue==1){
+ 		divBg.style.display="none";
+ 		divScreenImg.style.display="";
+ 	}else{
+ 		divBg.style.display="";
+ 		divScreenImg.style.display="none";
+ 	}
+ }
 </script>
 </head>
 <body class="theme-blue">
@@ -93,7 +105,8 @@ function changePreImg(myimage,myfile) {
 							<div class="control-group">
 									<label for="title" class="control-label">说明：</label>
 									<div class="controls">
-									    如需使用背景轮播请先开启
+									    1-设置的微官网模板必须支持背景轮播显示<br>
+									    2-请开启背景轮播并且配置好轮播图片
 										<span class="maroon"></span>
 										 <span class="help-inline"></span> 
 									</div>
@@ -102,15 +115,15 @@ function changePreImg(myimage,myfile) {
 								<div class="control-group">
                                         <label for="title" class="control-label">是否开启背景轮播：</label>
                                         <div class="controls">
-                                        	<input type="radio" name="screenimg.ison" value="0" checked="checked" />关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1"  />开启&nbsp;&nbsp;
-                    						<span class="maroon">*</span>
+                                        	<input type="radio" name="screenimg.ison" value="0" checked="checked"  onclick="isShowScreenImg(this.value)"/>关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1"  onclick="isShowScreenImg(this.value)" />开启&nbsp;&nbsp;
+                    						
                                         </div>
                                 </div>
 								
-                                <div class="control-group">
+                                <div class="control-group" id="div_bg">
 									<label class="control-label">背景图片：</label>
 									<div class="controls">
-										<img class="thumb_img" src="../front/pictures/template1_index_1.jpg"  id="myimage0" style="max-height:100px;" />
+										<img class="thumb_img" src="images/noimg.jpg"  id="myimage0" style="max-height:100px;" />
 										<span class="help-inline">
 											<s:file name="picture0" cssStyle="width:80%" onchange="changePreImg('myimage0','myfile0');" title="上传" id="myfile0"></s:file>
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
@@ -118,7 +131,7 @@ function changePreImg(myimage,myfile) {
 									</div>
 								</div>
 								
-                                
+                                <div id="div_screen_img" style="display: none;">
 								<div class="control-group">
 									<label for="title" class="control-label">轮播间隔时间：</label>
 									<div class="controls">
@@ -170,7 +183,7 @@ function changePreImg(myimage,myfile) {
 										</span>
 									</div>
 								</div>
-									<div class="control-group">
+								<div class="control-group">
 									<label class="control-label">轮播5：</label>
 									<div class="controls">
 									<img class="thumb_img" src="images/noimg.jpg" id="myimage5" style="max-height:100px;" />
@@ -182,6 +195,7 @@ function changePreImg(myimage,myfile) {
                                     								
 						
 								</div>								
+								</div>
 								
 								<div class="form-actions">
 									<s:token></s:token>

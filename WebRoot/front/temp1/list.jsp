@@ -266,7 +266,7 @@
         showBtnUp(100);
 
         $("a.dev-prev").click(function(){
-            location.href = history.back();
+          history.go(-1);
         });
 
         $("a.dev-next").click(function(){

@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <div class="box-content">
                     <div class="block block-tiles block-tiles-animated clearfix">
-                        <a href="/admin/businessModule/wsite.html" target="mainFrame" class="tile tile-themed">
+                        <a href="wgwAction!view" target="mainFrame" class="tile tile-themed">
                             <i class="icon-globe "></i>
                             <div class="tile-info">
                                 <strong>微官网</strong>

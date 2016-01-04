@@ -65,7 +65,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <label class="control-label" for="title">简称：</label>
                                     <div class="controls">
 		 							 <s:textfield name="bigtype.enname"  cssClass="input-xlarge"></s:textfield>
-										<span class="maroon">*</span>
                                     </div>
                                 </div>
                              
@@ -85,13 +84,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="control-group">
                                     <label class="control-label" for="title">类型作用：</label>
                                     <div class="controls">
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="0" checked="checked"/>分类类别
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1"/>文章/链接地址
+                                        			<input type="radio" name="bigtype.ttype" value="0" onclick="isShowOneLink(this.value)" checked="checked"/>分类类别
+                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)"/>文章/链接地址
                                     
                                     </div>
                                 </div>
 
-                                <div class="control-group">
+                                <div class="control-group" id="onelink" style="display: none;">
                                     <label class="control-label" for="title">文章链接：</label>
                                     <div class="controls">
                                     	<s:textfield name="bigtype.linkurl"  value="http://" cssClass="input-xxlarge"></s:textfield>

@@ -96,7 +96,6 @@
                                     <label class="control-label" for="title">标题简称：</label>
                                     <div class="controls">
 		 							 	<s:textfield name="pagearticle.shortname" cssClass="input-xlarge" required="required"></s:textfield>
-										<span class="maroon">*</span>
                                     </div>
                                 </div>
                              
@@ -135,7 +134,7 @@
                                     <label class="control-label" for="title">视频代码：</label>
                                     <div class="controls">
                                      <s:textfield name="pagearticle.videourl" cssClass="input-xxlarge"></s:textfield>
-                                     <span class="maroon">*提示：请先上传视频到优酷、土豆,再复制代码到这里;说明：高度height、宽度width</span>
+                                     <span class="maroon">提示：请先上传视频到优酷、土豆,再复制代码到这里;说明：高度height、宽度width</span>
                                     </div>
                                 </div>
 
@@ -143,7 +142,6 @@
                                     <label class="control-label" for="title">友情链接：</label>
                                     <div class="controls">
                                      	<s:textfield name="pagearticle.linkurl" cssClass="input-xxlarge"></s:textfield>
-										<span class="maroon">*</span>
                                     </div>
                                 </div>
 

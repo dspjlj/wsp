@@ -52,6 +52,23 @@ function changePreImg() {
          pic.src=this.result;
      }
  }
+ //是否显示链接文本框
+ function isShowOneLink(ttypevalue){
+ 	var onelink = document.getElementById("onelink");
+ 	var onelinkurl = document.getElementById("onelinkurl");
+ 	if(ttypevalue==0){
+ 		onelink.style.display="none";
+ 	}else if(ttypevalue==1){
+ 		onelink.style.display="";
+ 		onelinkurl.value="http://";
+ 	}else if(ttypevalue==2){
+ 		onelink.style.display="";
+ 		onelinkurl.value="http://";
+ 	}else if(ttypevalue==3){
+ 		onelink.style.display="";
+ 		onelinkurl.value="tel:";
+ 	}
+ }
 /*
 			function preImg(sourceId, targetId) {  
 			    if (typeof FileReader === 'undefined') {  

@@ -54,7 +54,15 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int con;
 	private String convalue;
 	private String frontpa;
-	//=========后台管理=================================================
+	private int wgwid;
+	//前台=============================================================start
+	public String frontBgmusic(){
+		bgmusic = bgmusicService.queryBgmusicByWgwId(wgwid);
+		request.put("bgmusic", bgmusic);
+		return NONE;
+	}
+	
+	//=========后台管理=================================================start
 	
 	/**
 	 * 添加
@@ -238,6 +246,14 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	public void setWgw(Wgw wgw) {
 		this.wgw = wgw;
+	}
+
+	public int getWgwid() {
+		return wgwid;
+	}
+
+	public void setWgwid(int wgwid) {
+		this.wgwid = wgwid;
 	}
 	
 }

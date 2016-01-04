@@ -284,7 +284,7 @@ function changePreImg() {
 															链接地址
 														</label>
 														<div class="controls">
-															生成中...
+															保存后生成
 														</div>
 													</div>
 													</s:if>

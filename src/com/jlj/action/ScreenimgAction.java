@@ -75,6 +75,13 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private File picture5;
 	private String picture5ContentType;
 	private String picture5FileName;
+	
+	private int isdelpic0;
+	private int isdelpic1;
+	private int isdelpic2;
+	private int isdelpic3;
+	private int isdelpic4;
+	private int isdelpic5;
 	//=========前台显示=================================================
 	/**
 	 * 前台-获取某种类型、某个公众账号的图片列表
@@ -137,60 +144,111 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 */
 	public String update() throws Exception{
 		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
-		if(picture0!=null){
-			String imageName0=DateTimeKit.getDateRandom()+picture0FileName.substring(picture0FileName.indexOf("."));
-			this.upload(imageName0,picture0,paccount);
+		if(isdelpic0==0){
+			if(picture0!=null){
+				String imageName0=DateTimeKit.getDateRandom()+picture0FileName.substring(picture0FileName.indexOf("."));
+				this.upload(imageName0,picture0,paccount);
+				//删除原文件
+				File photofile0=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getBgimg());
+				photofile0.delete();
+				//设置新图片地址
+				screenimg.setBgimg(paccount+"/"+imageName0);
+			}
+		}else{
 			//删除原文件
 			File photofile0=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getBgimg());
 			photofile0.delete();
-			//设置新图片地址
-			screenimg.setBgimg(paccount+"/"+imageName0);
+			screenimg.setBgimg(null);
 		}
-		if(picture1!=null){
-			String imageName1=DateTimeKit.getDateRandom()+picture1FileName.substring(picture1FileName.indexOf("."));
-			this.upload(imageName1,picture1,paccount);
+		
+		if(isdelpic1==0){
+			if(picture1!=null){
+				String imageName1=DateTimeKit.getDateRandom()+picture1FileName.substring(picture1FileName.indexOf("."));
+				this.upload(imageName1,picture1,paccount);
+				//删除原文件
+				File photofile1=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl1());
+				photofile1.delete();
+				//设置新图片地址
+				screenimg.setImageurl1(paccount+"/"+imageName1);
+			}
+		}else{
 			//删除原文件
 			File photofile1=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl1());
 			photofile1.delete();
-			//设置新图片地址
-			screenimg.setImageurl1(paccount+"/"+imageName1);
+			screenimg.setImageurl1(null);
 		}
-		if(picture2!=null){
-			String imageName2=DateTimeKit.getDateRandom()+picture2FileName.substring(picture2FileName.indexOf("."));
-			this.upload(imageName2,picture2,paccount);
+		
+		if(isdelpic2==0){
+			if(picture2!=null){
+				String imageName2=DateTimeKit.getDateRandom()+picture2FileName.substring(picture2FileName.indexOf("."));
+				this.upload(imageName2,picture2,paccount);
+				//删除原文件
+				File photofile2=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl2());
+				photofile2.delete();
+				//设置新图片地址
+				screenimg.setImageurl2(paccount+"/"+imageName2);
+			}
+		}else{
 			//删除原文件
 			File photofile2=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl2());
 			photofile2.delete();
-			//设置新图片地址
-			screenimg.setImageurl2(paccount+"/"+imageName2);
+			screenimg.setImageurl2(null);
 		}
-		if(picture3!=null){
-			String imageName3=DateTimeKit.getDateRandom()+picture3FileName.substring(picture3FileName.indexOf("."));
-			this.upload(imageName3,picture3,paccount);
+		
+		if(isdelpic3==0){
+			if(picture3!=null){
+				String imageName3=DateTimeKit.getDateRandom()+picture3FileName.substring(picture3FileName.indexOf("."));
+				this.upload(imageName3,picture3,paccount);
+				//删除原文件
+				File photofile3=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl3());
+				photofile3.delete();
+				//设置新图片地址
+				screenimg.setImageurl3(paccount+"/"+imageName3);
+			}
+		}else{
 			//删除原文件
 			File photofile3=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl3());
 			photofile3.delete();
 			//设置新图片地址
-			screenimg.setImageurl3(paccount+"/"+imageName3);
+			screenimg.setImageurl3(null);
 		}
-		if(picture4!=null){
-			String imageName4=DateTimeKit.getDateRandom()+picture4FileName.substring(picture4FileName.indexOf("."));
-			this.upload(imageName4,picture4,paccount);
+			
+		if(isdelpic4==0){
+			if(picture4!=null){
+				String imageName4=DateTimeKit.getDateRandom()+picture4FileName.substring(picture4FileName.indexOf("."));
+				this.upload(imageName4,picture4,paccount);
+				//删除原文件
+				File photofile4=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl4());
+				photofile4.delete();
+				//设置新图片地址
+				screenimg.setImageurl4(paccount+"/"+imageName4);
+			}
+		}else{
 			//删除原文件
 			File photofile4=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl4());
 			photofile4.delete();
 			//设置新图片地址
-			screenimg.setImageurl4(paccount+"/"+imageName4);
+			screenimg.setImageurl4(null);
 		}
-		if(picture5!=null){
-			String imageName5=DateTimeKit.getDateRandom()+picture5FileName.substring(picture5FileName.indexOf("."));
-			this.upload(imageName5,picture5,paccount);
+			
+		if(isdelpic5==0){
+			if(picture5!=null){
+				String imageName5=DateTimeKit.getDateRandom()+picture5FileName.substring(picture5FileName.indexOf("."));
+				this.upload(imageName5,picture5,paccount);
+				//删除原文件
+				File photofile5=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl5());
+				photofile5.delete();
+				//设置新图片地址
+				screenimg.setImageurl5(paccount+"/"+imageName5);
+			}
+		}else{
 			//删除原文件
 			File photofile5=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl5());
 			photofile5.delete();
 			//设置新图片地址
-			screenimg.setImageurl5(paccount+"/"+imageName5);
+			screenimg.setImageurl5(null);
 		}
+		
 		screenimg.setPublicaccount(paccount);
 		
 		screenimgService.update(screenimg);
@@ -478,5 +536,54 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setPicture0FileName(String picture0FileName) {
 		this.picture0FileName = picture0FileName;
 	}
+
+	public int getIsdelpic0() {
+		return isdelpic0;
+	}
+
+	public void setIsdelpic0(int isdelpic0) {
+		this.isdelpic0 = isdelpic0;
+	}
+
+	public int getIsdelpic1() {
+		return isdelpic1;
+	}
+
+	public void setIsdelpic1(int isdelpic1) {
+		this.isdelpic1 = isdelpic1;
+	}
+
+	public int getIsdelpic2() {
+		return isdelpic2;
+	}
+
+	public void setIsdelpic2(int isdelpic2) {
+		this.isdelpic2 = isdelpic2;
+	}
+
+	public int getIsdelpic3() {
+		return isdelpic3;
+	}
+
+	public void setIsdelpic3(int isdelpic3) {
+		this.isdelpic3 = isdelpic3;
+	}
+
+	public int getIsdelpic4() {
+		return isdelpic4;
+	}
+
+	public void setIsdelpic4(int isdelpic4) {
+		this.isdelpic4 = isdelpic4;
+	}
+
+	public int getIsdelpic5() {
+		return isdelpic5;
+	}
+
+	public void setIsdelpic5(int isdelpic5) {
+		this.isdelpic5 = isdelpic5;
+	}
+	
 	
 }

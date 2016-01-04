@@ -90,10 +90,26 @@ function changePreImg() {
          pic.src=this.result;
      }
  }
+ 
+ //是否显示链接文本框
+ function isShowOneLink(ttypevalue){
+ 	var onelink = document.getElementById("onelink");
+ 	var onelinkurl = document.getElementById("onelinkurl");
+ 	if(ttypevalue==0){
+ 		onelink.style.display="none";
+ 		onelinkurl.value="";
+ 	}else if(ttypevalue==1){
+ 		onelink.style.display="";
+ 		if(onelinkurl.value==null||onelinkurl.value.length==0||onelinkurl.value.indexOf("tel")!=-1){
+ 			onelinkurl.value="http://";
+ 		}
+ 		
+ 	}
+ }
 </script>
 <link rel="shortcut icon" href="favicon.ico" />
 </head>
-<body class="theme-blue">
+<body class="theme-blue" onload='isShowOneLink(<s:property value="bigtype.ttype"/>)'>
     <div id="main">
         <div class="container-fluid">
             <div class="row-fluid">
@@ -126,10 +142,12 @@ function changePreImg() {
                                     <label class="control-label" for="title">有无子类别：</label>
                                     <div class="controls">
                                     <s:if test="bigtype.isend==1">
-                                    	<input type="radio" name="bigtype.isend" value="1" checked="checked"/>有&nbsp;&nbsp;<input type="radio" name="bigtype.isend" value="0"/>没有
+                                    				<input type="radio" name="bigtype.isend" value="1" checked="checked"/>有
+                                    	&nbsp;&nbsp;<input type="radio" name="bigtype.isend" value="0"/>没有
                                     </s:if>
                                      <s:else>
-                                     	<input type="radio" name="bigtype.isend" value="1"/>有&nbsp;&nbsp;<input type="radio" name="bigtype.isend" value="0" checked="checked"/>没有
+                                     				<input type="radio" name="bigtype.isend" value="1"/>有
+                                     	&nbsp;&nbsp;<input type="radio" name="bigtype.isend" value="0" checked="checked"/>没有
                                      </s:else>
                                      
                                     </div>
@@ -138,7 +156,6 @@ function changePreImg() {
                                     <label class="control-label" for="title">简称：</label>
                                     <div class="controls">
 		 							 <s:textfield name="bigtype.enname"  cssClass="input-xlarge" ></s:textfield>
-										<span class="maroon">*</span>
                                     </div>
                                 </div>
                              
@@ -170,19 +187,19 @@ function changePreImg() {
                                     <label class="control-label" for="title">类型作用：</label>
                                     <div class="controls">
                                     <s:if test="bigtype.ttype==0">
-                                    	&nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="0" checked="checked"/>分类类别
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1"/>文章/链接地址
+                                    				<input type="radio" name="bigtype.ttype" value="0" onclick="isShowOneLink(this.value)" checked="checked"/>分类类别
+                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)"/>文章/链接地址
                                     </s:if>
                                     <s:elseif test="bigtype.ttype==1">
-                                    	&nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="0"/>分类类别
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1"/ checked="checked">文章/链接地址
+                                    				<input type="radio" name="bigtype.ttype" value="0" onclick="isShowOneLink(this.value)"/>分类类别
+                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)" checked="checked"/>文章/链接地址
                                     </s:elseif>
                                         
                                     
                                     </div>
                                 </div>
 
-                                <div class="control-group">
+                                <div class="control-group" id="onelink">
                                     <label class="control-label" for="title">文章链接：</label>
                                     <div class="controls">
                                     	<s:textfield name="bigtype.linkurl" cssClass="input-xxlarge"></s:textfield>

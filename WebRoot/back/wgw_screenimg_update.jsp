@@ -30,10 +30,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/yyucadapter.js"></script>
 <script src="http://api.map.baidu.com/api?v=1.5&ak=1b0ace7dde0245f796844a06fb112734"></script>
 <script type="text/javascript">
+//清除图片
+function clearImg(myimage,myfile,isdelpic){
+	var pic = document.getElementById(myimage),
+		file = document.getElementById(myfile),
+        isdel = document.getElementById(isdelpic);
+    pic.src="images/noimg.jpg";
+    isdel.value=1;
+    
+    // for IE, Opera, Safari, Chrome
+	if (file.outerHTML) {
+		file.outerHTML = file.outerHTML;
+	} else { // FF(包括3.5)
+		file.value = "";
+	}
+}
 //改变上传图片的页面预览图片
-function changePreImg(myimage,myfile) {
+function changePreImg(myimage,myfile,isdelpic) {
     var pic = document.getElementById(myimage),
-        file = document.getElementById(myfile);
+        file = document.getElementById(myfile),
+        isdel = document.getElementById(isdelpic);
+ 
+ 	//修改清除状态：不清除
+ 	isdel.value=0;
  
     var ext=file.value.substring(file.value.lastIndexOf(".")+1).toLowerCase();
  
@@ -73,9 +92,21 @@ function changePreImg(myimage,myfile) {
          pic.src=this.result;
      }
  }
+ 
+ function isShowScreenImg(radiovalue){
+ 	var divBg = document.getElementById("div_bg");
+ 	var divScreenImg = document.getElementById("div_screen_img");
+ 	if(radiovalue==1){
+ 		divBg.style.display="none";
+ 		divScreenImg.style.display="";
+ 	}else{
+ 		divBg.style.display="";
+ 		divScreenImg.style.display="none";
+ 	}
+ }
 </script>
 </head>
-<body class="theme-blue">
+<body class="theme-blue" onload='isShowScreenImg(<s:property value="screenimg.ison"/>)'>
 	<div id="main">
 		<div class="container-fluid">
 			<div class="row-fluid">
@@ -99,7 +130,8 @@ function changePreImg(myimage,myfile) {
 							<div class="control-group">
 									<label for="title" class="control-label">说明：</label>
 									<div class="controls">
-									    如需使用背景轮播请先开启
+									    1-设置的微官网模板必须支持背景轮播显示<br>
+									    2-请开启背景轮播并且配置好轮播图片
 										<span class="maroon"></span>
 										 <span class="help-inline"></span> 
 									</div>
@@ -108,29 +140,35 @@ function changePreImg(myimage,myfile) {
                                         <label for="title" class="control-label">是否开启背景轮播：</label>
                                         <div class="controls">
                                         	<s:if test="screenimg.ison==0">
-                                        		<input type="radio" name="screenimg.ison" value="0" checked="checked" />关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1"  />开启&nbsp;&nbsp;
+                                        		<input type="radio" name="screenimg.ison" value="0" checked="checked" onclick="isShowScreenImg(this.value)"/>关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1"   onclick="isShowScreenImg(this.value)"/>开启&nbsp;&nbsp;
                                         	</s:if>
                                         	<s:else>
-                                        		<input type="radio" name="screenimg.ison" value="0" />关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1" checked="checked"/>开启&nbsp;&nbsp;
+                                        		<input type="radio" name="screenimg.ison" value="0"  onclick="isShowScreenImg(this.value)"/>关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1" checked="checked" onclick="isShowScreenImg(this.value)"/>开启&nbsp;&nbsp;
                                         	</s:else>
-                    						<span class="maroon">*</span>
+                    						
                                         </div>
                                 </div>
-								<div class="control-group">
+								<div class="control-group" id="div_bg">
 									<label class="control-label">背景图片：</label>
 									<div class="controls">
 										<s:if test="screenimg.bgimg!=null&&screenimg.bgimg!=''">
 											<img class="thumb_img" src="<%=basePath %><s:property value="screenimg.bgimg"/>"  id="myimage0" style="max-height:100px;" />
 										</s:if>
 										<s:else>
-											<img class="thumb_img" src="../front/pictures/template1_index_1.jpg"  id="myimage0" style="max-height:100px;" />
+											<img class="thumb_img" src="images/noimg.jpg"  id="myimage0" style="max-height:100px;" />
 										</s:else>
 										<span class="help-inline">
-											<s:file name="picture0" cssStyle="width:80%" onchange="changePreImg('myimage0','myfile0');" title="上传" id="myfile0"></s:file>
+											<s:file name="picture0" cssStyle="width:80%" onchange="changePreImg('myimage0','myfile0','isdelpic0');" title="上传" id="myfile0"></s:file>
+											<br/>
+											<input type="button" value="删除图片" style="margin-top: 5px;" onclick="clearImg('myimage0','myfile0','isdelpic0');">
+										  	<s:hidden name="isdelpic0" value="0" id="isdelpic0"></s:hidden>
+											
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
 										</span>
 									</div>
 								</div>
+								
+								<div id="div_screen_img" style="display: none;">
 								<div class="control-group">
 									<label for="title" class="control-label">轮播间隔时间：</label>
 									<div class="controls">
@@ -149,7 +187,11 @@ function changePreImg(myimage,myfile) {
 											<img class="thumb_img" src="images/noimg.jpg"  id="myimage1" style="max-height:100px;" />
 										</s:else>
 										<span class="help-inline">
-											<s:file name="picture1" cssStyle="width:80%" onchange="changePreImg('myimage1','myfile1');" title="上传" id="myfile1"></s:file>
+											<s:file name="picture1" cssStyle="width:80%" onchange="changePreImg('myimage1','myfile1','isdelpic1');" title="上传" id="myfile1"></s:file>
+											<br/>
+											<input type="button" value="删除图片" style="margin-top: 5px;" onclick="clearImg('myimage1','myfile1','isdelpic1');">
+										  	<s:hidden name="isdelpic1" value="0" id="isdelpic1"></s:hidden>
+											
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
 										</span>
 									</div>
@@ -166,7 +208,11 @@ function changePreImg(myimage,myfile) {
 										</s:else>
 										
 										<span class="help-inline">
-											<s:file name="picture2" cssStyle="width:80%" onchange="changePreImg('myimage2','myfile2');" title="上传" id="myfile2"></s:file>
+											<s:file name="picture2" cssStyle="width:80%" onchange="changePreImg('myimage2','myfile2','isdelpic2');" title="上传" id="myfile2"></s:file>
+											<br/>
+											<input type="button" value="删除图片" style="margin-top: 5px;" onclick="clearImg('myimage2','myfile2','isdelpic2');">
+										  	<s:hidden name="isdelpic2" value="0" id="isdelpic2"></s:hidden>
+											
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
 										</span>
 									</div>
@@ -182,7 +228,11 @@ function changePreImg(myimage,myfile) {
 										</s:else>
 										
 										<span class="help-inline">
-											<s:file name="picture3" cssStyle="width:80%" onchange="changePreImg('myimage3','myfile3');" title="上传" id="myfile3"></s:file>
+											<s:file name="picture3" cssStyle="width:80%" onchange="changePreImg('myimage3','myfile3','isdelpic3');" title="上传" id="myfile3"></s:file>
+											<br/>
+											<input type="button" value="删除图片" style="margin-top: 5px;" onclick="clearImg('myimage3','myfile3','isdelpic3');">
+										  	<s:hidden name="isdelpic3" value="0" id="isdelpic3"></s:hidden>
+											
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
 										</span>
 									</div>
@@ -199,7 +249,11 @@ function changePreImg(myimage,myfile) {
 										</s:else>
 										
 										<span class="help-inline">
-											<s:file name="picture4" cssStyle="width:80%" onchange="changePreImg('myimage4','myfile4');" title="上传" id="myfile4"></s:file>
+											<s:file name="picture4" cssStyle="width:80%" onchange="changePreImg('myimage4','myfile4','isdelpic4');" title="上传" id="myfile4"></s:file>
+											<br/>
+											<input type="button" value="删除图片" style="margin-top: 5px;" onclick="clearImg('myimage4','myfile4','isdelpic4');">
+										  	<s:hidden name="isdelpic4" value="0" id="isdelpic4"></s:hidden>
+											
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
 										</span>
 									</div>
@@ -214,13 +268,18 @@ function changePreImg(myimage,myfile) {
 											<img class="thumb_img" src="images/noimg.jpg" id="myimage5" style="max-height:100px;" />
 										</s:else>
 										<span class="help-inline">
-											<s:file name="picture5" cssStyle="width:80%" onchange="changePreImg('myimage5','myfile5');" title="上传" id="myfile5"></s:file>
+											<s:file name="picture5" cssStyle="width:80%" onchange="changePreImg('myimage5','myfile5','isdelpic5');" title="上传" id="myfile5"></s:file>
+											<br/>
+											<input type="button" value="删除图片" style="margin-top: 5px;" onclick="clearImg('myimage5','myfile5','isdelpic5');">
+										  	<s:hidden name="isdelpic5" value="0" id="isdelpic5"></s:hidden>
+											
 											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
 										</span>
 									</div>
                                     							
 						
 								</div>								
+								</div>
 								
 								<div class="form-actions">
 									<s:token></s:token>
