@@ -82,9 +82,9 @@ html, body
 		</div>
 
 		<div class="link-2">
-
+<!-- 
 			<a href="findpwd.html">忘记密码</a>
-
+ -->
 		</div>
 
 		<div class="clear"></div>
@@ -126,9 +126,10 @@ html, body
 <div class="clear"></div>
 
 <div class="link-to-page">
+<!-- 
 还没有账号?
 <a href="reg.html">立即注册!</a>
-
+ -->
 </div>
 
 </div>

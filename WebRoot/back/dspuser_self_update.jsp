@@ -41,7 +41,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div class="span10">
                                 <h3><i class="icon-edit"></i>请如实填写您的个人信息</h3>
                             </div>
-                            <div class="span2"><a class="btn" href="Javascript:window.history.go(-1)">返回</a></div>
                         </div>
 
                         <div class="box-content">

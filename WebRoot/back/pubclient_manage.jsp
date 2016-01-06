@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
 
               <div>
-                <marquee onMouseOut="this.start()" onMouseOver="this.stop()" align="middle"> <font size=+3 color=red>为了您使用本系统畅快无阻，请勿使用360浏览器及IE的8.0以下版本。推荐：谷歌浏览器&nbsp;&nbsp;</font>
+                <marquee onMouseOut="this.start()" onMouseOver="this.stop()" align="middle"> <font size=+1 color=red>为了您使用本系统畅快无阻，请勿使用360浏览器及IE的8.0以下版本。推荐：谷歌浏览器&nbsp;&nbsp;</font>
                   <a href="http://w.x.baidu.com/alading/anquan_soft_down_ub/14744" target="_blank">点此处下载</a>
                 </marquee>
               </div>

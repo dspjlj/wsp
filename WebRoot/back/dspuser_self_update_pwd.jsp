@@ -44,9 +44,6 @@
 										<i class="icon-edit"></i>修改密码
 									</h3>
 								</div>
-								<div class="span2">
-									<a class="btn" href="javascript:window.history.go(-1);">返回</a>
-								</div>
 							</div>
 							<div class="box-content">
 								<form action="dspuserAction!updateselfpwd" method="post"

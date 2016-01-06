@@ -30,6 +30,15 @@
 <body>
 
   <div class="html" style="background-image: url(<%=basePath %><s:property value="#request.screenimg.bgimg"/>)">
+  <s:action name="bgmusicAction!frontBgmusic">
+  		<s:param name="wgwid" value="#request.wgw.id"></s:param>
+  	</s:action>
+  	<s:if test="#request.bgmusic!=null&&#request.bgmusic.ison==1">
+	  	<audio autoplay="autoplay">
+			<source src="<s:property value="#request.bgmusic.musicurl"/>" type="audio/mpeg">
+		</audio>
+	</s:if>
+  
     <div class="stage" id="stage">
       <section id="sec-index">
 
