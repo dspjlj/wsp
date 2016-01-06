@@ -340,7 +340,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu1key = menu1key;
 	}
 
-	@Column(name = "menu1url", length = 50)
+	@Column(name = "menu1url", length = 100)
 	public String getMenu1url() {
 		return this.menu1url;
 	}
@@ -367,7 +367,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu2key = menu2key;
 	}
 
-	@Column(name = "menu2url", length = 50)
+	@Column(name = "menu2url", length = 100)
 	public String getMenu2url() {
 		return this.menu2url;
 	}
@@ -394,7 +394,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu3key = menu3key;
 	}
 
-	@Column(name = "menu3url", length = 50)
+	@Column(name = "menu3url", length = 100)
 	public String getMenu3url() {
 		return this.menu3url;
 	}
@@ -556,7 +556,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu1son1key = menu1son1key;
 	}
 
-	@Column(name = "menu1son1url", length = 50)
+	@Column(name = "menu1son1url", length = 100)
 	public String getMenu1son1url() {
 		return this.menu1son1url;
 	}
@@ -583,7 +583,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu1son2key = menu1son2key;
 	}
 
-	@Column(name = "menu1son2url", length = 50)
+	@Column(name = "menu1son2url", length = 100)
 	public String getMenu1son2url() {
 		return this.menu1son2url;
 	}
@@ -610,7 +610,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu1son3key = menu1son3key;
 	}
 
-	@Column(name = "menu1son3url", length = 50)
+	@Column(name = "menu1son3url", length = 100)
 	public String getMenu1son3url() {
 		return this.menu1son3url;
 	}
@@ -637,7 +637,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu1son4key = menu1son4key;
 	}
 
-	@Column(name = "menu1son4url", length = 50)
+	@Column(name = "menu1son4url", length = 100)
 	public String getMenu1son4url() {
 		return this.menu1son4url;
 	}
@@ -664,7 +664,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu1son5key = menu1son5key;
 	}
 
-	@Column(name = "menu1son5url", length = 50)
+	@Column(name = "menu1son5url", length = 100)
 	public String getMenu1son5url() {
 		return this.menu1son5url;
 	}
@@ -691,7 +691,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu2son1key = menu2son1key;
 	}
 
-	@Column(name = "menu2son1url", length = 50)
+	@Column(name = "menu2son1url", length = 100)
 	public String getMenu2son1url() {
 		return this.menu2son1url;
 	}
@@ -718,7 +718,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu2son2key = menu2son2key;
 	}
 
-	@Column(name = "menu2son2url", length = 50)
+	@Column(name = "menu2son2url", length = 100)
 	public String getMenu2son2url() {
 		return this.menu2son2url;
 	}
@@ -745,7 +745,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu2son3key = menu2son3key;
 	}
 
-	@Column(name = "menu2son3url", length = 50)
+	@Column(name = "menu2son3url", length = 100)
 	public String getMenu2son3url() {
 		return this.menu2son3url;
 	}
@@ -772,7 +772,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu2son4key = menu2son4key;
 	}
 
-	@Column(name = "menu2son4url", length = 50)
+	@Column(name = "menu2son4url", length = 100)
 	public String getMenu2son4url() {
 		return this.menu2son4url;
 	}
@@ -799,7 +799,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu2son5key = menu2son5key;
 	}
 
-	@Column(name = "menu2son5url", length = 50)
+	@Column(name = "menu2son5url", length = 100)
 	public String getMenu2son5url() {
 		return this.menu2son5url;
 	}
@@ -826,7 +826,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu3son1key = menu3son1key;
 	}
 
-	@Column(name = "menu3son1url", length = 50)
+	@Column(name = "menu3son1url", length = 100)
 	public String getMenu3son1url() {
 		return this.menu3son1url;
 	}
@@ -853,7 +853,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu3son2key = menu3son2key;
 	}
 
-	@Column(name = "menu3son2url", length = 50)
+	@Column(name = "menu3son2url", length = 100)
 	public String getMenu3son2url() {
 		return this.menu3son2url;
 	}
@@ -880,7 +880,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu3son3key = menu3son3key;
 	}
 
-	@Column(name = "menu3son3url", length = 50)
+	@Column(name = "menu3son3url", length = 100)
 	public String getMenu3son3url() {
 		return this.menu3son3url;
 	}
@@ -907,7 +907,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu3son4key = menu3son4key;
 	}
 
-	@Column(name = "menu3son4url", length = 50)
+	@Column(name = "menu3son4url", length = 100)
 	public String getMenu3son4url() {
 		return this.menu3son4url;
 	}
@@ -934,7 +934,7 @@ public class Custommenu implements java.io.Serializable {
 		this.menu3son5key = menu3son5key;
 	}
 
-	@Column(name = "menu3son5url", length = 50)
+	@Column(name = "menu3son5url", length = 100)
 	public String getMenu3son5url() {
 		return this.menu3son5url;
 	}
