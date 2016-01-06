@@ -26,140 +26,7 @@
   <link href="<%=front %>stylesheets/vweisiteV01/list/list2.css" media="screen" rel="stylesheet" type="text/css" />
 
   <script src="<%=front %>assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
-  <meta content="authenticity_token" name="csrf-param" />
-  <meta content="rjcZLVvkHwtIiVZet0CTm58AuMsNNjgv8IU/CajlIVg=" name="csrf-token" />
-</head>
-
-<body>
-
-  <div class="html" style="">
-    <div class="stage" id="stage">
-      <section id="sec-index">
-
-        <div class="body">
-
-          <div class="mod-slider slider-hor" id="index">
-            <ul class="slider-list">
-              <li>
-                <a>
-                  <img alt="没有封面图片" src="<%=basePath %><s:property value="bigtype.imageurl" />" />
-                </a>
-              </li>
-            </ul>
-            <div class="slider-text">
-              <span class="fl slider-span" id="slider-span"><s:property value="bigtype.name" /></span>
-            </div>
-          </div>
-
-          <div class="list">
-            <ul>
-              <s:if test="pagearticles.size()==0">
-              		  <li>
-		                  <div class="list-text" style="padding: 10px;">
-		                    <h1>亲，没有图文信息！</h1>
-		                  </div>
-		              </li>
-              </s:if>
-              <s:iterator value="pagearticles" var="pagearticle" status="index">
-		              <li>
-		                <a href="pagearticleAction!frontView?id=<s:property value="id" />&wgwid=<s:property value="bigtype.wgw.id" />">
-		
-		                  <div class="list-text">
-		                    <h1><s:property value="name" /></h1>
-		                    <h2><s:date name="createtime" format="yyyy-MM-dd HH:mm:ss" /></h2>
-		                  </div>
-		                </a>
-		              </li>
-		        </s:iterator>
-              
-            </ul>
-          </div>
-
-        </div>
-      </section>
-
-      <section class="mod-navLine navLine-2">
-        <ul class="navLine-ul">
-          <li>
-            <a href="javascript:;" class="dev-prev"> <i class="fa fa-reply"></i>
-              <small>后退</small>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;" class="dev-next"> <i class="fa fa-share"></i>
-              <small>前进</small>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;" class="dev-index">
-              <i class="fa fa-home"></i>
-              <small>首页</small>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;" class="dev-refresh">
-              <i class="fa fa-refresh"></i>
-              <small>刷新</small>
-            </a>
-          </li>
-        </ul>
-      </section>
-
-    </div>
-    <!--.stage end--> </div>
-  <!--.html end-->
-
-  <div class="alert J-guanzhu" style="display:none">
-    <div class="alert-m">
-      <div class="alert-img"></div>
-      <div class="alert-c">
-        <p>请先关注公众帐号</p>
-        <p>
-          <span class="alert-num">1</span>
-          点击右上角
-          <span class="alert-text">分享按钮</span>
-          查看公众号
-        </p>
-        <p>
-          <span class="alert-num">2</span>
-          在【添加朋友】—【查找公众号】中搜索
-        </p>
-        <p>
-          <span class="alert-btn">西树泡芙</span>
-          （长按可复制）
-        </p>
-        <p>
-          如果已关注，请打开该公众帐号回复
-          <span class="alert-text"></span>
-          ，参与此活动
-        </p>
-      </div>
-      <div class="alert-f">
-        <a href="javascript:;" class="alert-f-btn J-close">我知道了</a>
-      </div>
-    </div>
-  </div>
-  <div class="alert J-register" style="display:none">
-    <div class="alert-m">
-      <div class="alert-img"></div>
-      <div class="alert-c text-center"></div>
-      <div class="alert-btn-box">
-        <div class="alert-cell cell-4">
-          <a href="javascript:;" class="alert-f-btn btn-gray J-close">我知道了</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  	<s:action name="footerAction!frontFooter">
-		<s:param name="wgwid" value="%{#request.wgw.id}"></s:param>
-	</s:action>
-	<s:if test="#request.footer!=null">
-		<footer>技术支持：<s:property value="#request.footer.foottitle"/></footer>
-	</s:if>
-
-  
-  <style type="text/css">
+	<style type="text/css">
         /*pop*/
     .pop-zoom{display:none;width:100%;height:100%;color:#fff;position:fixed;left:0;top:0;background:rgba(0,0,0,0.5);z-index:10000;}
     .pop-zoom-img{background:#000;text-align:center;overflow:hidden;}
@@ -247,6 +114,98 @@
         });
     });
 </script>
+
+</head>
+
+<body>
+
+  <div class="html" style="">
+    <div class="stage" id="stage">
+      <section id="sec-index">
+
+        <div class="body">
+
+          <div class="mod-slider slider-hor" id="index">
+            <ul class="slider-list">
+              <li>
+                <a>
+                  <img alt="没有封面图片" src="<%=basePath %><s:property value="bigtype.imageurl" />" />
+                </a>
+              </li>
+            </ul>
+            <div class="slider-text">
+              <span class="fl slider-span" id="slider-span"><s:property value="bigtype.name" /></span>
+            </div>
+          </div>
+
+          <div class="list">
+            <ul>
+              <s:if test="pagearticles.size()==0">
+              		  <li>
+		                  <div class="list-text" style="padding: 10px;">
+		                    <h1>亲，没有图文信息！</h1>
+		                  </div>
+		              </li>
+              </s:if>
+              <s:iterator value="pagearticles" var="pagearticle" status="index">
+		              <li>
+		                <a href="pagearticleAction!frontView?id=<s:property value="id" />&wgwid=<s:property value="bigtype.wgw.id" />">
+		
+		                  <div class="list-text">
+		                    <h1><s:property value="name" /></h1>
+		                    <h2><s:date name="createtime" format="yyyy-MM-dd HH:mm:ss" /></h2>
+		                  </div>
+		                </a>
+		              </li>
+		        </s:iterator>
+              
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="mod-navLine navLine-2">
+        <ul class="navLine-ul">
+          <li>
+            <a href="javascript:;" class="dev-prev"> <i class="fa fa-reply"></i>
+              <small>后退</small>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;" class="dev-next"> <i class="fa fa-share"></i>
+              <small>前进</small>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;" class="dev-index">
+              <i class="fa fa-home"></i>
+              <small>首页</small>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;" class="dev-refresh">
+              <i class="fa fa-refresh"></i>
+              <small>刷新</small>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+    <!--.stage end--> </div>
+  <!--.html end-->
+
+
+  	<s:action name="footerAction!frontFooter">
+		<s:param name="wgwid" value="%{#request.wgw.id}"></s:param>
+	</s:action>
+	<s:if test="#request.footer!=null">
+		<footer>技术支持：<s:property value="#request.footer.foottitle"/></footer>
+	</s:if>
+
+  
+  
 
   <a href="javascript:scroll(0,0)" class="btn-up btn-up-1">
     <i class="fa fa-arrow-up"></i>

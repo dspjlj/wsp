@@ -28,7 +28,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">var yyuc_jspath = "";</script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yyucadapter.js"></script>
-<script src="http://api.map.baidu.com/api?v=1.5&ak=1b0ace7dde0245f796844a06fb112734"></script>
 <script type="text/javascript">
 //改变上传图片的页面预览图片
 function changePreImg(myimage,myfile) {

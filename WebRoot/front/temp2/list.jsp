@@ -26,8 +26,6 @@
   <link href="<%=front %>stylesheets/vweisiteV01/list/list7.css" media="screen" rel="stylesheet" type="text/css" />
 
   <script src="<%=front %>assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
-  <meta content="authenticity_token" name="csrf-param" />
-  <meta content="uu4elJjeyZd8k/ARutXFPy7LP4D5o+kT1gTnvZ8OwRo=" name="csrf-token" />
 </head>
 
 <body>
@@ -84,47 +82,6 @@
     <!--.stage end--> </div>
   <!--.html end-->
 
-  <div class="alert J-guanzhu" style="display:none">
-    <div class="alert-m">
-      <div class="alert-img"></div>
-      <div class="alert-c">
-        <p>请先关注公众帐号</p>
-        <p>
-          <span class="alert-num">1</span>
-          点击右上角
-          <span class="alert-text">分享按钮</span>
-          查看公众号
-        </p>
-        <p>
-          <span class="alert-num">2</span>
-          在【添加朋友】—【查找公众号】中搜索
-        </p>
-        <p>
-          <span class="alert-btn">麦香村蛋糕</span>
-          （长按可复制）
-        </p>
-        <p>
-          如果已关注，请打开该公众帐号回复
-          <span class="alert-text"></span>
-          ，参与此活动
-        </p>
-      </div>
-      <div class="alert-f">
-        <a href="javascript:;" class="alert-f-btn J-close">我知道了</a>
-      </div>
-    </div>
-  </div>
-  <div class="alert J-register" style="display:none">
-    <div class="alert-m">
-      <div class="alert-img"></div>
-      <div class="alert-c text-center"></div>
-      <div class="alert-btn-box">
-        <div class="alert-cell cell-4">
-          <a href="javascript:;" class="alert-f-btn btn-gray J-close">我知道了</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <s:action name="footerAction!frontFooter">
 		<s:param name="wgwid" value="%{#request.wgw.id}"></s:param>
@@ -355,23 +312,6 @@
 
         showBtnUp(100);
 
-        $("a.dev-prev").click(function(){
-            history.back();
-        });
-
-        $("a.dev-next").click(function(){
-          history.go(1);
-        });
-
-        $("a.dev-index").click(function(){
-          location.href = "#";
-        });
-
-        $("a.dev-refresh").click(function(){
-          location.reload();
-        });
-
-        
       });
     </script>
 

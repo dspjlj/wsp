@@ -88,13 +88,12 @@ $(function(){
 						<i class="icon-reorder"></i> </a>
 				</div>
 				<ul class='main-nav'>
-					<li class='active'>
-						<a href="javascript:;"> <span>公众号功能</span> </a>
-					</li>
 					<li>
-						<a href="main1.jsp" target="_self">账号管理</a>
+						<a href="main1.jsp" target="_self">公众账号管理</a>
 					</li>
-
+					<li class='active'>
+						<a href="javascript:void(0);"> <span>公众号功能</span> </a>
+					</li>
 				</ul>
 				<div class="user">
 					<ul class="icon-nav">

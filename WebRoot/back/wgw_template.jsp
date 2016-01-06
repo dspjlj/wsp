@@ -29,7 +29,6 @@
 		<script type="text/javascript">var yyuc_jspath = "";</script>
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/yyucadapter.js"></script>
-		<script src="http://api.map.baidu.com/api?v=1.5&amp;ak=1b0ace7dde0245f796844a06fb112734"></script><script type="text/javascript" src="http://api.map.baidu.com/getscript?v=1.5&amp;ak=1b0ace7dde0245f796844a06fb112734&amp;services=&amp;t=20150522094656"></script>
 		<link rel="shortcut icon" href="/favicon.ico">
 		<script type="text/javascript">
 			function initcheck(){

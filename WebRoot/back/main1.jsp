@@ -77,9 +77,9 @@ $(function(){
                     </a>
                 </li>
                 
-                <li><a href="dsp_features.html">功能介绍</a> </li>
+                <!--<li><a href="dsp_features.html">功能介绍</a> </li>-->
                 <!--<li><a href="/htm/help2/taocan.html">套餐介绍</a> </li>-->
-                <li><a href="dsp_useguide.html">使用指南</a></li>
+                <!--<li><a href="dsp_useguide.html">使用指南</a></li>-->
                                 <!-- <li><a href="javascript:void(0)" data-toggle="dropdown" class='dropdown-toggle' data-hover="dropdown">
                     <span>个性化服务</span>
                     <span class="caret"></span>
@@ -89,6 +89,7 @@ $(function(){
                         <li><a href="/htm/help2/dingzhi.html">定制开发</a></li>
                     </ul>
                 </li> -->
+                <!-- 
                                 <li><a href="javascript:void(0)" data-toggle="dropdown" class='dropdown-toggle' data-hover="dropdown">
                     <span>帮助中心</span>
                     <span class="caret"></span>
@@ -112,6 +113,7 @@ $(function(){
 			      <img src="media/images/ht/clock_48.png" alt="刷新系统" title="刷新系统">
 			      </a>
 			    </li>
+			     -->
                 <!--
     				<li><a href="user_topay.html">续费充值</a></li>
                 -->

@@ -26,158 +26,30 @@
   <link href="<%=front %>stylesheets/vweisiteV01/index/index93.css" media="screen" rel="stylesheet" type="text/css" />
 
   <script src="<%=front %>assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
-  <meta content="authenticity_token" name="csrf-param" />
-  <meta content="uu4elJjeyZd8k/ARutXFPy7LP4D5o+kT1gTnvZ8OwRo=" name="csrf-token" />
   <script src="<%=front %>assets/mobile/lib/iscroll-cecd28ae7bd05946cc2efbf28ef43a74.js" type="text/javascript"></script>
-</head>
-
-<body>
-
-  <div class="html" style="background-image: url(<%=basePath %><s:property value="#request.screenimg.bgimg"/>)">
-  	<s:action name="bgmusicAction!frontBgmusic">
-  		<s:param name="wgwid" value="#request.wgw.id"></s:param>
-  	</s:action>
-  	<s:if test="#request.bgmusic!=null&&#request.bgmusic.ison==1">
-	  	<audio autoplay="autoplay">
-			<source src="<s:property value="#request.bgmusic.musicurl"/>" type="audio/mpeg">
-		</audio>
-	</s:if>
-    <div class="stage" id="stage">
-      <section id="sec-index">
-
-        <div class="body">
-
-          
-          <div class="index" id="indexList">
-            <ul class="index-wrap">
-            	<s:if test="#request.bigtypes.size()==0">
-              		<li>
-		                <a href='javascript:void(0);' class="box mod-index">
-		                  <div class="index-name">没有类别</div>
-		                  <div class="index-line"></div>
-		                  <div class="index-icon">
-		                  		<i class="fa fa-heart-o"></i>
-		                  </div>
-		                  <div class="index-summary">亲！掌柜的太忙！没有设置类别！</div>
-		                </a>
-		            </li>
-              	</s:if>
-            	
-            	<s:iterator value="#request.bigtypes" var="bigtype" status="index">
-	              <li>
-	                <a href='
-	                <s:if test="ttype!=0">
-	                	<s:property value="linkurl"/>
-	                </s:if>
-	                <s:else>
-	                	<s:if test="isend==1">
-	                		bigtypeAction!frontBigtypes?wgwid=<s:property value="#request.wgw.id"/>&bigtypeid=<s:property value="id"/>
-	                	</s:if>
-	                	<s:else>
-	                		pagearticleAction!frontPages?wgwid=<s:property value="#request.wgw.id"/>&bigtypeid=<s:property value="id"/>
-	                	</s:else>
-	                </s:else>
-	                ' class="box mod-index">
-	                  <div class="index-name"><s:property value="name"/></div>
-	                  <div class="index-line"></div>
-	                  <div class="index-icon">
-	                  <s:if test="#index.count%2==0">
-	                  		<i class="fa fa-heart"></i>
-	                  </s:if>
-	                  <s:else>
-	                  		<i class="fa fa-heart-o"></i>
-	                  </s:else>
-	                  
-	                  </div>
-	                  <div class="index-summary"><s:property value="enname"/></div>
-	                </a>
-	              </li>
-	            </s:iterator>
-              
-            </ul>
-          </div>
-
-          <script type="text/javascript">
-    $(function(){
-        vcScroll();
-        // 静态背景图
-        //$(".html").css("background-image", "url(pictures/FsughMLV_Qobvz6d7GGFj69R2PVD)");
-    });
-    function vcScroll (id) {
-        var myScroll = new IScroll("#indexList", {
-            scrollX: true,
-            scrollY: false,
-            mouseWheel: true,
-            scrollbars: false,
-            mouseWheel: true,
-            interactiveScrollbars: true,
-            shrinkScrollbars: 'scale',
-            fadeScrollbars: true,
-            click: true
-        });
-        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-    }
-</script>
-
-        </div>
-      </section>
-
-    </div>
-    <!--.stage end--> </div>
-  <!--.html end-->
-
-  <div class="alert J-guanzhu" style="display:none">
-    <div class="alert-m">
-      <div class="alert-img"></div>
-      <div class="alert-c">
-        <p>请先关注公众帐号</p>
-        <p>
-          <span class="alert-num">1</span>
-          点击右上角
-          <span class="alert-text">分享按钮</span>
-          查看公众号
-        </p>
-        <p>
-          <span class="alert-num">2</span>
-          在【添加朋友】—【查找公众号】中搜索
-        </p>
-        <p>
-          <span class="alert-btn">我的面包</span>
-          （长按可复制）
-        </p>
-        <p>
-          如果已关注，请打开该公众帐号回复
-          <span class="alert-text"></span>
-          ，参与此活动
-        </p>
-      </div>
-      <div class="alert-f">
-        <a href="javascript:;" class="alert-f-btn J-close">我知道了</a>
-      </div>
-    </div>
-  </div>
-  <div class="alert J-register" style="display:none">
-    <div class="alert-m">
-      <div class="alert-img"></div>
-      <div class="alert-c text-center"></div>
-      <div class="alert-btn-box">
-        <div class="alert-cell cell-4">
-          <a href="javascript:;" class="alert-f-btn btn-gray J-close">我知道了</a>
-        </div>
-      </div>
-    </div>
-  </div>
-	<s:action name="footerAction!frontFooter">
-		<s:param name="wgwid" value="%{#request.wgw.id}"></s:param>
-	</s:action>
-	<s:if test="#request.footer!=null">
-		<footer>技术支持：<s:property value="#request.footer.foottitle"/></footer>
-	</s:if>
-  	<s:else>
-		技术支持：第三屏
-	</s:else>
-
-  <style type="text/css">
+	<script type="text/javascript">
+	    $(function(){
+	        vcScroll();
+	        // 静态背景图
+	        //$(".html").css("background-image", "url(pictures/FsughMLV_Qobvz6d7GGFj69R2PVD)");
+	    });
+	    function vcScroll (id) {
+	        var myScroll = new IScroll("#indexList", {
+	            scrollX: true,
+	            scrollY: false,
+	            mouseWheel: true,
+	            scrollbars: false,
+	            mouseWheel: true,
+	            interactiveScrollbars: true,
+	            shrinkScrollbars: 'scale',
+	            fadeScrollbars: true,
+	            click: true
+	        });
+	        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	    }
+	</script>
+	
+	<style type="text/css">
         /*pop*/
     .pop-zoom{display:none;width:100%;height:100%;color:#fff;position:fixed;left:0;top:0;background:rgba(0,0,0,0.5);z-index:10000;}
     .pop-zoom-img{background:#000;text-align:center;overflow:hidden;}
@@ -265,6 +137,94 @@
         });
     });
 </script>
+</head>
+
+<body>
+
+  <div class="html" style="background-image: url(<%=basePath %><s:property value="#request.screenimg.bgimg"/>)">
+  	<s:action name="bgmusicAction!frontBgmusic">
+  		<s:param name="wgwid" value="#request.wgw.id"></s:param>
+  	</s:action>
+  	<s:if test="#request.bgmusic!=null&&#request.bgmusic.ison==1">
+	  	<audio autoplay="autoplay">
+			<source src="<s:property value="#request.bgmusic.musicurl"/>" type="audio/mpeg">
+		</audio>
+	</s:if>
+    <div class="stage" id="stage">
+      <section id="sec-index">
+
+        <div class="body">
+
+          
+          <div class="index" id="indexList">
+            <ul class="index-wrap">
+            	<s:if test="#request.bigtypes.size()==0">
+              		<li>
+		                <a href='javascript:void(0);' class="box mod-index">
+		                  <div class="index-name">没有类别</div>
+		                  <div class="index-line"></div>
+		                  <div class="index-icon">
+		                  		<i class="fa fa-heart-o"></i>
+		                  </div>
+		                  <div class="index-summary">亲！掌柜的太忙！没有设置类别！</div>
+		                </a>
+		            </li>
+              	</s:if>
+            	
+            	<s:iterator value="#request.bigtypes" var="bigtype" status="index">
+	              <li>
+	                <a href='
+	                <s:if test="ttype!=0">
+	                	<s:property value="linkurl"/>
+	                </s:if>
+	                <s:else>
+	                	<s:if test="isend==1">
+	                		bigtypeAction!frontBigtypes?wgwid=<s:property value="#request.wgw.id"/>&bigtypeid=<s:property value="id"/>
+	                	</s:if>
+	                	<s:else>
+	                		pagearticleAction!frontPages?wgwid=<s:property value="#request.wgw.id"/>&bigtypeid=<s:property value="id"/>
+	                	</s:else>
+	                </s:else>
+	                ' class="box mod-index">
+	                  <div class="index-name"><s:property value="name"/></div>
+	                  <div class="index-line"></div>
+	                  <div class="index-icon">
+	                  <s:if test="#index.count%2==0">
+	                  		<i class="fa fa-heart"></i>
+	                  </s:if>
+	                  <s:else>
+	                  		<i class="fa fa-heart-o"></i>
+	                  </s:else>
+	                  
+	                  </div>
+	                  <div class="index-summary"><s:property value="enname"/></div>
+	                </a>
+	              </li>
+	            </s:iterator>
+              
+            </ul>
+          </div>
+
+          
+
+        </div>
+      </section>
+
+    </div>
+    <!--.stage end--> </div>
+  <!--.html end-->
+
+	<s:action name="footerAction!frontFooter">
+		<s:param name="wgwid" value="%{#request.wgw.id}"></s:param>
+	</s:action>
+	<s:if test="#request.footer!=null">
+		<footer>技术支持：<s:property value="#request.footer.foottitle"/></footer>
+	</s:if>
+  	<s:else>
+		技术支持：第三屏
+	</s:else>
+
+  
 
   <a href="javascript:scroll(0,0)" class="btn-up btn-up-1">
     <i class="fa fa-arrow-up"></i>
