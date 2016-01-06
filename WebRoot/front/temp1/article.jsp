@@ -46,7 +46,9 @@
             </div>
 
             <div class="bd">
-              <img alt="没有封面图片" src='<%=basePath %><s:property value="pagearticle.imageurl"/>' style="margin-bottom: 10px;"/>
+            	<div style="text-align: center;width: 100%">
+              		<img alt="没有封面图片" src='<%=basePath %><s:property value="pagearticle.imageurl"/>' style="margin-bottom: 10px;vertical-align: middle;"/>
+              	</div>
               <br/>
               <s:property value="pagearticle.description" escapeHtml="false"/>
 
@@ -142,7 +144,9 @@ $(function(){
 	<s:if test="#request.footer!=null">
 		<footer>技术支持：<s:property value="#request.footer.foottitle"/></footer>
 	</s:if>
-
+	<s:else>
+		<footer>技术支持：第三屏</footer>
+	</s:else>
   
 
   <style type="text/css">

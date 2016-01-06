@@ -19,7 +19,7 @@
   <meta content="telephone=no" name="format-detection">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>糕点展</title>
+  <title><s:property value="bigtype.name" /></title>
 
   <link type="text/css" rel="stylesheet" href="<%=front %>stylesheets/vweisiteV01.css"/>
   <link type="text/css" rel="stylesheet" href="<%=front %>stylesheets/font-awesome.css"/>
@@ -76,7 +76,7 @@
 		                	</s:else>
 		                </s:else>
 						'>
-	                  <div class="list-img"> <b><img alt="Ftvtpds6ike2hxedy6fxzxy9_mfi" src="pictures/template2_list_2.jpg" /></b> 
+	                  <div class="list-img"> <b><img alt="暂无图片" src="<%=basePath %><s:property value="imageurl"/>" /></b> 
 	                  </div>
 	
 	                  <div class="list-text">

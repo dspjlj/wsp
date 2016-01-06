@@ -19,7 +19,7 @@
   <meta content="telephone=no" name="format-detection">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>麦香村蛋糕</title>
+  <title><s:property value="#request.wgw.title"/></title>
 
   <link type="text/css" rel="stylesheet" href="<%=front %>stylesheets/vweisiteV01.css"/>
   <link type="text/css" rel="stylesheet" href="<%=front %>stylesheets/font-awesome.css"/>

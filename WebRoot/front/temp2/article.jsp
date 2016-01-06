@@ -6,149 +6,184 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-	String front=basePath+"front/";
+	String front = basePath + "front/";
 %>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta content="black" name="apple-mobile-web-app-status-bar-style">
-  <meta name="format-detection" content="telephone=no">
-  <meta content="telephone=no" name="format-detection">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"
+			content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta name="format-detection" content="telephone=no">
+		<meta content="telephone=no" name="format-detection">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>关于麦香村</title>
+		<title><s:property value="pagearticle.name" />
+		</title>
 
-  <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01.css"/>
-  <link type="text/css" rel="stylesheet" href="stylesheets/font-awesome.css"/>
-  <link href="stylesheets/vweisiteV01/article/article6.css" media="screen" rel="stylesheet" type="text/css" />
+		<link type="text/css" rel="stylesheet"
+			href="<%=front%>stylesheets/vweisiteV01.css" />
+		<link type="text/css" rel="stylesheet"
+			href="<%=front%>stylesheets/font-awesome.css" />
+		<link href="<%=front%>stylesheets/vweisiteV01/article/article6.css"
+			media="screen" rel="stylesheet" type="text/css" />
 
-  <script src="assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
-  <meta content="authenticity_token" name="csrf-param" />
-  <meta content="uu4elJjeyZd8k/ARutXFPy7LP4D5o+kT1gTnvZ8OwRo=" name="csrf-token" />
-</head>
+		<script
+			src="<%=front%>assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js"
+			type="text/javascript"></script>
+		<meta content="authenticity_token" name="csrf-param" />
+		<meta content="uu4elJjeyZd8k/ARutXFPy7LP4D5o+kT1gTnvZ8OwRo="
+			name="csrf-token" />
+	</head>
 
-<body>
+	<body>
 
-  <div class="html" style="">
-    <div class="stage" id="stage">
-      <section id="sec-index">
+		<div class="html" style="">
+			<div class="stage" id="stage">
+				<section id="sec-index">
 
-        <div class="body">
+				<div class="body">
 
-          <div class="article ckeditor_content" id="article">
+					<div class="article ckeditor_content" id="article">
 
-            <div class="hd">
-              <h1>关于麦香村</h1>
-              <small>2014-06-25 11:04</small>
-            </div>
+						<div class="hd">
+							<h1>
+								<s:property value="pagearticle.name" />
+							</h1>
+							<small><s:date name="pagearticle.createtime"
+									format="yyyy-MM-dd HH:mm:ss" />
+							</small>
+						</div>
 
-            <div class="bd">
+						<div class="bd">
+							  <div style="text-align: center;width: 100%">
+							  	<img alt="没有封面图片" src='<%=basePath %><s:property value="pagearticle.imageurl"/>' style="margin-bottom: 10px;vertical-align: middle;"/>
+					          </div>
+				              <br/>
+				              <s:property value="pagearticle.description" escapeHtml="false"/>
+							
+						</div>
 
-              <div>
-                <br></div>
-              麦香村蛋糕房不止是一块蛋糕。麦香村蛋糕房的自然色必须控制在三色以内。在麦香村的厨房、仓储室，呈现在眼前的是一个高科技、严标准的运作形态。厨房室温保持在22℃，目的是防止制作蛋糕过程中，巧克力、乳脂奶油等食材融化，破坏蛋糕造型。
-              <div>
-                <br></div>
-              <div>
-                <img src="pictures/template2_article_3.jpg">
-                <br></div>
-              <div>
-                <br></div>
-              <div>
-                <img src="pictures/tempate2_article_1.jpg">
-                <br></div>
-              <div>
-                <br></div>
-              <div>
-                <img src="pictures/template2_article_2.jpg">
-                <br></div>
-              <div>
-                <br></div>
-              <div> <b>门店地址：</b>
-                吴江市黎里镇北厍麦香村美食店
-              </div>
-              <div> <b>联系方式：</b>
-                <a href="tel:15895502978" style="font-size: 13px; line-height: 1.5;">15895502978</a>
-              </div>
-              <div>
-                <br></div>
-            </div>
+					</div>
 
-          </div>
-
-          <script>
+					<script>
 $(function(){
   $(".ckeditor_content img").css({"height":"auto","width":"auto","max-width":"100%"});
 });
 </script>
 
-        </div>
-      </section>
+				</div>
+				</section>
 
-    </div>
-    <!--.stage end--> </div>
-  <!--.html end-->
+			</div>
+			<!--.stage end-->
+		</div>
+		<!--.html end-->
 
-  <div class="alert J-guanzhu" style="display:none">
-    <div class="alert-m">
-      <div class="alert-img"></div>
-      <div class="alert-c">
-        <p>请先关注公众帐号</p>
-        <p>
-          <span class="alert-num">1</span>
-          点击右上角
-          <span class="alert-text">分享按钮</span>
-          查看公众号
-        </p>
-        <p>
-          <span class="alert-num">2</span>
-          在【添加朋友】—【查找公众号】中搜索
-        </p>
-        <p>
-          <span class="alert-btn">麦香村蛋糕</span>
-          （长按可复制）
-        </p>
-        <p>
-          如果已关注，请打开该公众帐号回复
-          <span class="alert-text"></span>
-          ，参与此活动
-        </p>
-      </div>
-      <div class="alert-f">
-        <a href="javascript:;" class="alert-f-btn J-close">我知道了</a>
-      </div>
-    </div>
-  </div>
-  <div class="alert J-register" style="display:none">
-    <div class="alert-m">
-      <div class="alert-img"></div>
-      <div class="alert-c text-center"></div>
-      <div class="alert-btn-box">
-        <div class="alert-cell cell-4">
-          <a href="javascript:;" class="alert-f-btn btn-gray J-close">我知道了</a>
-        </div>
-      </div>
-    </div>
-  </div>
+		<div class="alert J-guanzhu" style="display: none">
+			<div class="alert-m">
+				<div class="alert-img"></div>
+				<div class="alert-c">
+					<p>
+						请先关注公众帐号
+					</p>
+					<p>
+						<span class="alert-num">1</span> 点击右上角
+						<span class="alert-text">分享按钮</span> 查看公众号
+					</p>
+					<p>
+						<span class="alert-num">2</span> 在【添加朋友】—【查找公众号】中搜索
+					</p>
+					<p>
+						<span class="alert-btn">麦香村蛋糕</span> （长按可复制）
+					</p>
+					<p>
+						如果已关注，请打开该公众帐号回复
+						<span class="alert-text"></span> ，参与此活动
+					</p>
+				</div>
+				<div class="alert-f">
+					<a href="javascript:;" class="alert-f-btn J-close">我知道了</a>
+				</div>
+			</div>
+		</div>
+		<div class="alert J-register" style="display: none">
+			<div class="alert-m">
+				<div class="alert-img"></div>
+				<div class="alert-c text-center"></div>
+				<div class="alert-btn-box">
+					<div class="alert-cell cell-4">
+						<a href="javascript:;" class="alert-f-btn btn-gray J-close">我知道了</a>
+					</div>
+				</div>
+			</div>
+		</div>
 
-  <footer>第三屏</footer>
+		<s:action name="footerAction!frontFooter">
+			<s:param name="wgwid" value="%{#request.wgw.id}"></s:param>
+		</s:action>
+		<s:if test="#request.footer!=null">
+			<footer>技术支持：<s:property value="#request.footer.foottitle"/></footer>
+		</s:if>
+		<s:else>
+			<footer>技术支持：第三屏</footer>
+		</s:else>
 
-  
 
-  <style type="text/css">
-        /*pop*/
-    .pop-zoom{display:none;width:100%;height:100%;color:#fff;position:fixed;left:0;top:0;background:rgba(0,0,0,0.5);z-index:10000;}
-    .pop-zoom-img{background:#000;text-align:center;overflow:hidden;}
-    .show-img{width:100%;height:100%;overflow:hidden;position:relative;}
-    .show-img img{max-width:100%;}
-    .zoom-close{position:fixed;right:5px;top:5px;display:block;z-index:99999;}
-    .zoom-close .fa{width:30px;height:30px;font-size:25px;line-height:30px;border-radius:50%;color:#fff;background:#999;}
+
+		<style type="text/css">
+/*pop*/
+.pop-zoom {
+	display: none;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 10000;
+}
+
+.pop-zoom-img {
+	background: #000;
+	text-align: center;
+	overflow: hidden;
+}
+
+.show-img {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.show-img img {
+	max-width: 100%;
+}
+
+.zoom-close {
+	position: fixed;
+	right: 5px;
+	top: 5px;
+	display: block;
+	z-index: 99999;
+}
+
+.zoom-close .fa {
+	width: 30px;
+	height: 30px;
+	font-size: 25px;
+	line-height: 30px;
+	border-radius: 50%;
+	color: #fff;
+	background: #999;
+}
 </style>
-  <script src="assets/mobile/lib/iScroll-4.2.5.js"></script>
-  <script type="text/javascript">
+		<script src="<%=front%>assets/mobile/lib/iScroll-4.2.5.js"></script>
+		<script type="text/javascript">
     var flag = true; css_reg = /^[\w]*font-awesome\.min[\w]*/;
     $.each($('link[type="text/css"]'), function(){
         var arr = $(this).attr('href').split('/');
@@ -161,7 +196,7 @@ $(function(){
         }
     });
     if(flag){
-        document.write('<link rel="stylesheet" href="assets/font/font-awesome.min.css">')
+        document.write('<link rel="stylesheet" href="<%=front%>assets/font/font-awesome.min.css">')
     }
     var img_zoom_myscroll, img_zoom_scrollTop;
 
@@ -227,44 +262,121 @@ $(function(){
     });
 </script>
 
-  <!-- 快捷菜单 Start -->
+		<!-- 快捷菜单 Start -->
+  <s:action name="wgwmenuAction!frontMenu">
+  		<s:param name="wgwid" value="%{#request.wgw.id}"></s:param>
+  </s:action>
   <div class="mod-navPop navPop-1">
     <div class="navPop-wrap hide" id="navPop-wrap">
-      <b class="navPop-btn" id="navPop-btn"><i class="fa fa-plus" id="fa-btn" onclick="toggleToClass('#navPop-btn','active')"></i></b> 
+      <b class="navPop-btn" id="navPop-btn"> <i class="fa fa-plus" id="fa-btn" onclick="toggleToClass('#navPop-btn','active')"></i>
+      </b>
       <div>
-        <a href="tel:15861521065" class=""> <i class="fa fa-phone"></i>
+        <a href='wgwAction!frontindex?frontpa=<s:property value="#session.frontpa" />' class="">
+          <i class="fa fa-home"></i>
         </a>
       </div>
-      <div>
-        <a href="#location" class="">
-          <i class="fa fa-location-arrow"></i>
-        </a>
-      </div>
+      <s:if test="#request.wgwmenu!=null">
+      	<s:if test="#request.wgwmenu.menu2url!=null&&#request.wgwmenu.menu2url!=''">
+      		<s:if test="#request.wgwmenu.menu2url.contains('tel')">
+      			<div>
+			        <a href='<s:property value="#request.wgwmenu.menu2url" />' class="">
+			          <i class="fa fa-phone"></i>
+			        </a>
+			    </div>
+      		</s:if>
+      		<s:elseif test="#request.wgwmenu.menu2url.contains('location')">
+      			<div>
+			        <a href="<s:property value="#request.wgwmenu.menu2url" />" class="">
+			          <i class="fa fa-location-arrow"></i>
+			        </a>
+			     </div>
+      		</s:elseif>
+      		<s:else>
+      			<div>
+			        <a href="<s:property value="#request.wgwmenu.menu2url" />" class="">
+			          <i class="fa fa-globe"></i>
+			        </a>
+			      </div>
+      		</s:else>
+      	</s:if>
+      
+      
+      	<s:if test="#request.wgwmenu.menu3url!=null&&#request.wgwmenu.menu3url!=''">
+      		<s:if test="#request.wgwmenu.menu3url.contains('tel')">
+      			<div>
+			        <a href='<s:property value="#request.wgwmenu.menu3url" />' class="">
+			          <i class="fa fa-phone"></i>
+			        </a>
+			    </div>
+      		</s:if>
+      		<s:elseif test="#request.wgwmenu.menu3url.contains('location')">
+      			<div>
+			        <a href="<s:property value="#request.wgwmenu.menu3url" />" class="">
+			          <i class="fa fa-location-arrow"></i>
+			        </a>
+			     </div>
+      		</s:elseif>
+      		<s:else>
+      			<div>
+			        <a href="<s:property value="#request.wgwmenu.menu3url" />" class="">
+			          <i class="fa fa-globe"></i>
+			        </a>
+			      </div>
+      		</s:else>
+      	</s:if>
+      	
+      	<s:if test="#request.wgwmenu.menu4url!=null&&#request.wgwmenu.menu4url!=''">
+      		<s:if test="#request.wgwmenu.menu4url.contains('tel')">
+      			<div>
+			        <a href='<s:property value="#request.wgwmenu.menu4url" />' class="">
+			          <i class="fa fa-phone"></i>
+			        </a>
+			    </div>
+      		</s:if>
+      		<s:elseif test="#request.wgwmenu.menu4url.contains('location')">
+      			<div>
+			        <a href="<s:property value="#request.wgwmenu.menu4url" />" class="">
+			          <i class="fa fa-location-arrow"></i>
+			        </a>
+			     </div>
+      		</s:elseif>
+      		<s:else>
+      			<div>
+			        <a href="<s:property value="#request.wgwmenu.menu4url" />" class="">
+			          <i class="fa fa-globe"></i>
+			        </a>
+			      </div>
+      		</s:else>
+      	</s:if>
+      
+      
+      </s:if>
     </div>
   </div>
   <!-- 快捷菜单 End -->
 
-  <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01/animateBg/snower1.css"/>
-  <div class="mod-snower snower1" id="snower1">
-    <script type="text/javascript">var urls = ["assets/mobile/vweisiteV01/animateBg/snower9.png"]</script>
-    <script type="text/javascript" src="javascripts/vweisiteV01/animateBg/snower1.js"></script>
-    <script>
+		<link type="text/css" rel="stylesheet"
+			href="<%=front%>stylesheets/vweisiteV01/animateBg/snower1.css" />
+		<div class="mod-snower snower1" id="snower1">
+			<script type="text/javascript">var urls = ["<%=front%>assets/mobile/vweisiteV01/animateBg/snower9.png"]</script>
+			<script type="text/javascript"
+				src="<%=front%>javascripts/vweisiteV01/animateBg/snower1.js"></script>
+			<script>
              $(function(){
                  snowsFn(16);
              });
          </script>
-  </div>
+		</div>
 
-  <a href="javascript:scroll(0,0)" class="btn-up btn-up-1">
-    <i class="fa fa-arrow-up"></i>
-  </a>
-  <div class="loading fixed-top"></div>
+		<a href="javascript:scroll(0,0)" class="btn-up btn-up-1"> <i
+			class="fa fa-arrow-up"></i> </a>
+		<div class="loading fixed-top"></div>
 
-  <div class="mod-pop" id="pop-share" onclick="hidePop('#pop-share')">
-    <span class="text-share"></span>
-  </div>
+		<div class="mod-pop" id="pop-share" onclick="hidePop('#pop-share')">
+			<span class="text-share"></span>
+		</div>
 
-  <script type="text/javascript">
+		<script type="text/javascript">
       $(document).ready(function(){
 
                 indexSwipe("index", ["", "", "", "", ""]);
@@ -290,24 +402,15 @@ $(function(){
         });
 
         $("a.dev-index").click(function(){
-          location.href = "6_index_dangao.html";
+          location.href = "#";
         });
 
         $("a.dev-refresh").click(function(){
           location.reload();
         });
 
-        $("a.dev-tel").attr("href", "tel:15861521065");
-
-        $("a.dev-member").click(function(){
-          $(this).attr("href", "#")
-        });
-
-        $("a.dev-location").click(function(){
-          $(this).attr("href", "#")
-        });
       });
     </script>
 
-</body>
+	</body>
 </html>
