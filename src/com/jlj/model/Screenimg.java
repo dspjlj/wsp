@@ -1,5 +1,8 @@
 package com.jlj.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.jlj.vo.ScreenimgVo;
 
 /**
  * Screenimg entity.
@@ -37,6 +43,7 @@ public class Screenimg implements java.io.Serializable {
 	private Integer ison;
 	private String publicaccount;
 
+	private List<ScreenimgVo> screenimgvos = new ArrayList<ScreenimgVo>();
 	// Constructors
 
 	/** default constructor */
@@ -212,6 +219,15 @@ public class Screenimg implements java.io.Serializable {
 
 	public void setBgimg(String bgimg) {
 		this.bgimg = bgimg;
+	}
+
+	@Transient
+	public List<ScreenimgVo> getScreenimgvos() {
+		return screenimgvos;
+	}
+
+	public void setScreenimgvos(List<ScreenimgVo> screenimgvos) {
+		this.screenimgvos = screenimgvos;
 	}
 
 	

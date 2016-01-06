@@ -1,5 +1,6 @@
 package com.jlj.action;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import com.jlj.model.Wgw;
 import com.jlj.service.IBigtypeService;
 import com.jlj.service.IScreenimgService;
 import com.jlj.service.IWgwService;
+import com.jlj.vo.ScreenimgVo;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Component("wgwAction")
@@ -73,10 +75,69 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		}
 		bigtypes = bigtypeService.queryIndexBigtypesByWgwId(wgw.getId());
 		screenimg = screenimgService.queryScreenimgByWgwId(wgw.getId());
+		if(screenimg!=null&&screenimg.getIson()==1){
+			List<ScreenimgVo> screenimgvos = pushScreenimgList(screenimg);
+			screenimg.setScreenimgvos(screenimgvos);
+		}
 		//模板
 		int temp = wgw.getTemplate1();
 		temp1="temp"+temp;
 		return "frontindex";
+	}
+	
+	//把这些字符串装配成对象列表
+	private List<ScreenimgVo> pushScreenimgList(Screenimg screenimg){
+		List<ScreenimgVo> screenimgvos = new ArrayList<ScreenimgVo>();
+		ScreenimgVo screenimgVo1 = null;
+		if(screenimg.getImageurl1()!=null&&!screenimg.getImageurl1().equals("")){
+			screenimgVo1 = new ScreenimgVo();
+			screenimgVo1.setImageurl(screenimg.getImageurl1());
+			if(screenimg.getLinkurl1()!=null&&!screenimg.getLinkurl1().equals("")){
+				screenimgVo1.setLinkurl(screenimg.getLinkurl1());
+			}
+			screenimgvos.add(screenimgVo1);
+		}
+		
+		ScreenimgVo screenimgVo2 = null;
+		if(screenimg.getImageurl2()!=null&&!screenimg.getImageurl2().equals("")){
+			screenimgVo2 = new ScreenimgVo();
+			screenimgVo2.setImageurl(screenimg.getImageurl2());
+			if(screenimg.getLinkurl2()!=null&&!screenimg.getLinkurl2().equals("")){
+				screenimgVo2.setLinkurl(screenimg.getLinkurl2());
+			}
+			screenimgvos.add(screenimgVo2);
+		}
+		
+		ScreenimgVo screenimgVo3 = null;
+		if(screenimg.getImageurl3()!=null&&!screenimg.getImageurl3().equals("")){
+			screenimgVo3 = new ScreenimgVo();
+			screenimgVo3.setImageurl(screenimg.getImageurl3());
+			if(screenimg.getLinkurl3()!=null&&!screenimg.getLinkurl3().equals("")){
+				screenimgVo3.setLinkurl(screenimg.getLinkurl3());
+			}
+			screenimgvos.add(screenimgVo3);
+		}
+		
+		ScreenimgVo screenimgVo4 = null;
+		if(screenimg.getImageurl4()!=null&&!screenimg.getImageurl4().equals("")){
+			screenimgVo4 = new ScreenimgVo();
+			screenimgVo4.setImageurl(screenimg.getImageurl4());
+			if(screenimg.getLinkurl4()!=null&&!screenimg.getLinkurl4().equals("")){
+				screenimgVo4.setLinkurl(screenimg.getLinkurl4());
+			}
+			screenimgvos.add(screenimgVo4);
+		}
+		
+		ScreenimgVo screenimgVo5 = null;
+		if(screenimg.getImageurl5()!=null&&!screenimg.getImageurl5().equals("")){
+			screenimgVo5 = new ScreenimgVo();
+			screenimgVo5.setImageurl(screenimg.getImageurl5());
+			if(screenimg.getLinkurl5()!=null&&!screenimg.getLinkurl5().equals("")){
+				screenimgVo5.setLinkurl(screenimg.getLinkurl5());
+			}
+			screenimgvos.add(screenimgVo5);
+		}
+		return screenimgvos;
 	}
 	//=========后台管理=================================================
 	/**

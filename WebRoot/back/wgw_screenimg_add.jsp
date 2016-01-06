@@ -75,13 +75,10 @@ function changePreImg(myimage,myfile) {
  }
  
  function isShowScreenImg(radiovalue){
- 	var divBg = document.getElementById("div_bg");
  	var divScreenImg = document.getElementById("div_screen_img");
  	if(radiovalue==1){
- 		divBg.style.display="none";
  		divScreenImg.style.display="";
  	}else{
- 		divBg.style.display="";
  		divScreenImg.style.display="none";
  	}
  }
@@ -120,7 +117,7 @@ function changePreImg(myimage,myfile) {
                                         </div>
                                 </div>
 								
-                                <div class="control-group" id="div_bg">
+                                <div class="control-group">
 									<label class="control-label">背景图片：</label>
 									<div class="controls">
 										<img class="thumb_img" src="images/noimg.jpg"  id="myimage0" style="max-height:100px;" />
@@ -135,7 +132,7 @@ function changePreImg(myimage,myfile) {
 								<div class="control-group">
 									<label for="title" class="control-label">轮播间隔时间：</label>
 									<div class="controls">
-										<s:textfield name="screenimg.imginterval" value="3000" cssClass="input-xlarge" required="required"></s:textfield>
+										<s:textfield name="screenimg.imginterval" value="3000" cssClass="input-small" required="required"></s:textfield>
 										<span class="maroon">*</span>
 										 <span class="help-inline">单位毫秒，默认3000毫秒，值越大，速度越慢！</span> 
 									</div>
@@ -150,6 +147,14 @@ function changePreImg(myimage,myfile) {
 										</span>
 									</div>
 								</div>
+								<div class="control-group">
+									<label for="title" class="control-label">轮播1链接：</label>
+									<div class="controls">
+										<s:textfield name="screenimg.linkurl1" cssClass="input-xxlarge" required="required"></s:textfield>
+										<br>
+										<span class="help-inline">示例:http://www.di3p.com</span>
+									</div>
+								</div>
 								
 								<div class="control-group">
 									<label class="control-label">轮播2：</label>
@@ -161,6 +166,14 @@ function changePreImg(myimage,myfile) {
 										</span>
 									</div>
 								</div>
+								
+								<div class="control-group">
+									<label for="title" class="control-label">轮播2链接：</label>
+									<div class="controls">
+										<s:textfield name="screenimg.linkurl2" cssClass="input-xxlarge" required="required"></s:textfield>
+									</div>
+								</div>
+								
 								<div class="control-group">
 									<label class="control-label">轮播3：</label>
 									<div class="controls">
@@ -173,6 +186,13 @@ function changePreImg(myimage,myfile) {
 								</div>
 							
 								<div class="control-group">
+									<label for="title" class="control-label">轮播3链接：</label>
+									<div class="controls">
+										<s:textfield name="screenimg.linkurl3" cssClass="input-xxlarge" required="required"></s:textfield>
+									</div>
+								</div>
+								
+								<div class="control-group">
 									<label class="control-label">轮播4：</label>
 									<div class="controls">
 									
@@ -183,6 +203,14 @@ function changePreImg(myimage,myfile) {
 										</span>
 									</div>
 								</div>
+								
+								<div class="control-group">
+									<label for="title" class="control-label">轮播4链接：</label>
+									<div class="controls">
+										<s:textfield name="screenimg.linkurl4" cssClass="input-xxlarge" required="required"></s:textfield>
+									</div>
+								</div>
+								
 								<div class="control-group">
 									<label class="control-label">轮播5：</label>
 									<div class="controls">
@@ -194,7 +222,14 @@ function changePreImg(myimage,myfile) {
 									</div>
                                     								
 						
-								</div>								
+								</div>
+								<div class="control-group">
+									<label for="title" class="control-label">轮播5链接：</label>
+									<div class="controls">
+										<s:textfield name="screenimg.linkurl5" cssClass="input-xxlarge" required="required"></s:textfield>
+									</div>
+								</div>
+								
 								</div>
 								
 								<div class="form-actions">

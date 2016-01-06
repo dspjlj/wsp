@@ -55,15 +55,16 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int con;
 	private String convalue;
 	private String frontpa;
+	private int wgwid;
 	//=========前台显示=================================================
-//	/**
-//	 * 微官网菜单展示
-//	 */
-//	public String frontWgwmenus(){
-//		wgwmenus = wgwmenuService.getFrontWgwmenusByPublicAccount(frontpa);
-//		request.put("wgwmenus", wgwmenus);
-//		return NONE;
-//	}
+	/**
+	 * 微官网菜单展示
+	 */
+	public String frontMenu(){
+		wgwmenu = wgwmenuService.queryWgwmenuByWgwId(wgwid);
+		request.put("wgwmenu", wgwmenu);
+		return NONE;
+	}
 	//=========后台管理=================================================
 	
 	/**
@@ -240,6 +241,14 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 
 	public void setWgw(Wgw wgw) {
 		this.wgw = wgw;
+	}
+
+	public int getWgwid() {
+		return wgwid;
+	}
+
+	public void setWgwid(int wgwid) {
+		this.wgwid = wgwid;
 	}
 	
 	

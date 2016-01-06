@@ -19,15 +19,15 @@
   <meta content="telephone=no" name="format-detection">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title><s:property value="bigtype.name" /></title>
+  <title>关于麦香村</title>
 
-  <link type="text/css" rel="stylesheet" href="<%=front %>stylesheets/vweisiteV01.css"/>
-  <link type="text/css" rel="stylesheet" href="<%=front %>stylesheets/font-awesome.css"/>
-  <link href="<%=front %>stylesheets/vweisiteV01/list/list2.css" media="screen" rel="stylesheet" type="text/css" />
+  <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01.css"/>
+  <link type="text/css" rel="stylesheet" href="stylesheets/font-awesome.css"/>
+  <link href="stylesheets/vweisiteV01/article/article6.css" media="screen" rel="stylesheet" type="text/css" />
 
-  <script src="<%=front %>assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
+  <script src="assets/mobile/vweisiteV01-e2ea5a80772cd54559b36cf747bc391d.js" type="text/javascript"></script>
   <meta content="authenticity_token" name="csrf-param" />
-  <meta content="rjcZLVvkHwtIiVZet0CTm58AuMsNNjgv8IU/CajlIVg=" name="csrf-token" />
+  <meta content="uu4elJjeyZd8k/ARutXFPy7LP4D5o+kT1gTnvZ8OwRo=" name="csrf-token" />
 </head>
 
 <body>
@@ -38,82 +38,54 @@
 
         <div class="body">
 
-          <div class="mod-slider slider-hor" id="index">
-            <ul class="slider-list">
-              <li>
-                <a>
-                  <img alt="没有封面图片" src="<%=basePath %><s:property value="bigtype.imageurl" />" />
-                </a>
-              </li>
-            </ul>
-            <div class="slider-text">
-              <span class="fl slider-span" id="slider-span"><s:property value="bigtype.name" /></span>
+          <div class="article ckeditor_content" id="article">
+
+            <div class="hd">
+              <h1>关于麦香村</h1>
+              <small>2014-06-25 11:04</small>
             </div>
+
+            <div class="bd">
+
+              <div>
+                <br></div>
+              麦香村蛋糕房不止是一块蛋糕。麦香村蛋糕房的自然色必须控制在三色以内。在麦香村的厨房、仓储室，呈现在眼前的是一个高科技、严标准的运作形态。厨房室温保持在22℃，目的是防止制作蛋糕过程中，巧克力、乳脂奶油等食材融化，破坏蛋糕造型。
+              <div>
+                <br></div>
+              <div>
+                <img src="pictures/template2_article_3.jpg">
+                <br></div>
+              <div>
+                <br></div>
+              <div>
+                <img src="pictures/tempate2_article_1.jpg">
+                <br></div>
+              <div>
+                <br></div>
+              <div>
+                <img src="pictures/template2_article_2.jpg">
+                <br></div>
+              <div>
+                <br></div>
+              <div> <b>门店地址：</b>
+                吴江市黎里镇北厍麦香村美食店
+              </div>
+              <div> <b>联系方式：</b>
+                <a href="tel:15895502978" style="font-size: 13px; line-height: 1.5;">15895502978</a>
+              </div>
+              <div>
+                <br></div>
+            </div>
+
           </div>
 
-          <div class="list">
-            <ul>
-            	<s:if test="bigtypes.size()==0">
-              		  <li>
-		                  <div class="list-text" style="padding: 10px;">
-		                    <h1>亲，没有分类信息！</h1>
-		                  </div>
-		              </li>
-              	</s:if>
-            	<s:iterator value="bigtypes" var="bigtype" status="index">
-		              <li>
-		                <a href='
-		                <s:if test="ttype!=0">
-		                	<s:property value="linkurl"/>
-		                </s:if>
-		                <s:else>
-		                	<s:if test="isend==1">
-		                		bigtypeAction!frontBigtypes?wgwid=<s:property value="#request.wgw.id"/>&bigtypeid=<s:property value="id"/>
-		                	</s:if>
-		                	<s:else>
-		                		pagearticleAction!frontPages?wgwid=<s:property value="#request.wgw.id"/>&bigtypeid=<s:property value="id"/>
-		                	</s:else>
-		                </s:else>
-		                '>
-		
-		                  <div class="list-text">
-		                    <h1><s:property value="name" /></h1>
-		                    <h2><s:property value="enname" /></h2>
-		                  </div>
-		                </a>
-		              </li>
-		        </s:iterator>
-            </ul>
-          </div>
+          <script>
+$(function(){
+  $(".ckeditor_content img").css({"height":"auto","width":"auto","max-width":"100%"});
+});
+</script>
 
         </div>
-      </section>
-
-      <section class="mod-navLine navLine-2">
-        <ul class="navLine-ul">
-          <li>
-            <a href="javascript:;" class="dev-prev"> <i class="fa fa-reply"></i>
-              <small>后退</small>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;" class="dev-next"> <i class="fa fa-share"></i>
-              <small>前进</small>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;" class="dev-index">
-              <i class="fa fa-home"></i>
-              <small>首页</small>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;" class="dev-refresh">
-              <i class="fa fa-refresh"></i>
-              <small>刷新</small>
-            </a>
-          </li>
-        </ul>
       </section>
 
     </div>
@@ -136,7 +108,7 @@
           在【添加朋友】—【查找公众号】中搜索
         </p>
         <p>
-          <span class="alert-btn">西树泡芙</span>
+          <span class="alert-btn">麦香村蛋糕</span>
           （长按可复制）
         </p>
         <p>
@@ -162,16 +134,10 @@
     </div>
   </div>
 
-  <s:action name="footerAction!frontFooter">
-		<s:param name="wgwid" value="%{#request.wgw.id}"></s:param>
-	</s:action>
-	<s:if test="#request.footer!=null">
-		<footer>技术支持：<s:property value="#request.footer.foottitle"/></footer>
-	</s:if>
-	<s:else>
-		<footer>技术支持：第三屏</footer>
-	</s:else>
+  <footer>第三屏</footer>
+
   
+
   <style type="text/css">
         /*pop*/
     .pop-zoom{display:none;width:100%;height:100%;color:#fff;position:fixed;left:0;top:0;background:rgba(0,0,0,0.5);z-index:10000;}
@@ -181,7 +147,7 @@
     .zoom-close{position:fixed;right:5px;top:5px;display:block;z-index:99999;}
     .zoom-close .fa{width:30px;height:30px;font-size:25px;line-height:30px;border-radius:50%;color:#fff;background:#999;}
 </style>
-  <script src="<%=front %>assets/mobile/lib/iScroll-4.2.5.js"></script>
+  <script src="assets/mobile/lib/iScroll-4.2.5.js"></script>
   <script type="text/javascript">
     var flag = true; css_reg = /^[\w]*font-awesome\.min[\w]*/;
     $.each($('link[type="text/css"]'), function(){
@@ -195,7 +161,7 @@
         }
     });
     if(flag){
-        document.write('<link rel="stylesheet" href="<%=front %>assets/font/font-awesome.min.css">')
+        document.write('<link rel="stylesheet" href="assets/font/font-awesome.min.css">')
     }
     var img_zoom_myscroll, img_zoom_scrollTop;
 
@@ -261,6 +227,34 @@
     });
 </script>
 
+  <!-- 快捷菜单 Start -->
+  <div class="mod-navPop navPop-1">
+    <div class="navPop-wrap hide" id="navPop-wrap">
+      <b class="navPop-btn" id="navPop-btn"><i class="fa fa-plus" id="fa-btn" onclick="toggleToClass('#navPop-btn','active')"></i></b> 
+      <div>
+        <a href="tel:15861521065" class=""> <i class="fa fa-phone"></i>
+        </a>
+      </div>
+      <div>
+        <a href="#location" class="">
+          <i class="fa fa-location-arrow"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- 快捷菜单 End -->
+
+  <link type="text/css" rel="stylesheet" href="stylesheets/vweisiteV01/animateBg/snower1.css"/>
+  <div class="mod-snower snower1" id="snower1">
+    <script type="text/javascript">var urls = ["assets/mobile/vweisiteV01/animateBg/snower9.png"]</script>
+    <script type="text/javascript" src="javascripts/vweisiteV01/animateBg/snower1.js"></script>
+    <script>
+             $(function(){
+                 snowsFn(16);
+             });
+         </script>
+  </div>
+
   <a href="javascript:scroll(0,0)" class="btn-up btn-up-1">
     <i class="fa fa-arrow-up"></i>
   </a>
@@ -273,13 +267,22 @@
   <script type="text/javascript">
       $(document).ready(function(){
 
-            $("body").addClass("body-navLine-bottom");
+                indexSwipe("index", ["", "", "", "", ""]);
+        bannerSet({
+            background: "#000000",
+            opacity: "50",
+            color: "#FFFFFF"
+        })
+        // 静态背景图
+        //$(".html").css("background-image", "url(pictures/FqJknzulpXhKRkr-uaIGRE1bg4d2)");
+      navPop1("#navPop-wrap","#navPop-btn"); // 快捷菜单    
+      $("#navPop-wrap").show();
 
 
         showBtnUp(100);
 
         $("a.dev-prev").click(function(){
-           history.go(-1);
+            history.back();
         });
 
         $("a.dev-next").click(function(){
@@ -287,14 +290,22 @@
         });
 
         $("a.dev-index").click(function(){
-          location.href = 'wgwAction!frontindex?frontpa=<s:property value="#session.frontpa" />';
+          location.href = "6_index_dangao.html";
         });
 
         $("a.dev-refresh").click(function(){
           location.reload();
         });
 
-        
+        $("a.dev-tel").attr("href", "tel:15861521065");
+
+        $("a.dev-member").click(function(){
+          $(this).attr("href", "#")
+        });
+
+        $("a.dev-location").click(function(){
+          $(this).attr("href", "#")
+        });
       });
     </script>
 

@@ -31,4 +31,6 @@ public interface IWgwmenuService {
 
 	public abstract Wgwmenu queryWgwmenuByPublicAccount(String paccount);
 
+	public abstract Wgwmenu queryWgwmenuByWgwId(int wgwid);
+
 }

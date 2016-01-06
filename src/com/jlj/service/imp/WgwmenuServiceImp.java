@@ -94,5 +94,11 @@ public class WgwmenuServiceImp implements IWgwmenuService {
 		Object[] values = new Object[]{paccount};
 		return wgwmenuDao.queryByNamedParam(queryString, paramNames, values);
 	}
+	public Wgwmenu queryWgwmenuByWgwId(int wgwid) {
+		String queryString = "from Wgwmenu mo where mo.wgw.id=:wgwid ";
+		String[] paramNames = new String[]{"wgwid"};
+		Object[] values = new Object[]{wgwid};
+		return wgwmenuDao.queryByNamedParam(queryString, paramNames, values);
+	}
 
 }
