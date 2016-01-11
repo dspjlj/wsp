@@ -144,11 +144,11 @@ function delfodder(){
 	function player(isplay,id){
 		if(isplay=="play"){
 			document.getElementById('bgaudio'+id).play();
-			document.getElementById('myimg'+id).innerHTML='<a href=# onclick=player("stop",'+id+');><img id=conimage'+id+' src=images/stop.jpg width=20px height=20px/></a>';
+			document.getElementById('myimg'+id).innerHTML='<a href=javascript:void(0) onclick=player("stop",'+id+');><img id=conimage'+id+' src=images/stop.jpg width=20px height=20px/></a>';
 			//conimage.src="stop.jpg";
 		}else{
 			document.getElementById('bgaudio'+id).pause();
-			document.getElementById('myimg'+id).innerHTML='<a href=# onclick=player("play",'+id+');><img id=conimage'+id+' src=images/play.jpg width=20px height=20px/></a>';
+			document.getElementById('myimg'+id).innerHTML='<a href=javascript:void(0) onclick=player("play",'+id+');><img id=conimage'+id+' src=images/play.jpg width=20px height=20px/></a>';
 		}
 		
 	}
@@ -205,7 +205,7 @@ function delfodder(){
 													</a>
 													<audio id="bgaudio<s:property value="id" />" src="<s:property value="musicurl" />"></audio>
 													<span id="myimg<s:property value="id" />"> 
-													<a href="#" onclick="player('play',<s:property value="id" />);"><img id="conimage<s:property value="id" />"
+													<a href="javascript:void(0);" onclick="player('play',<s:property value="id" />);"><img id="conimage<s:property value="id" />"
 																src="images/play.jpg" width="20px" height="20px" />
 													</a> </span>
 
@@ -270,7 +270,7 @@ function delfodder(){
 													</a>
 													<audio id="bgaudio<s:property value="id" />" src="<s:property value="musicurl" />"></audio>
 													<span id="myimg<s:property value="id" />"> 
-													<a href="#" onclick="player('play',<s:property value="id" />);"><img id="conimage<s:property value="id" />"
+													<a href="javascript:void(0);" onclick="player('play',<s:property value="id" />);"><img id="conimage<s:property value="id" />"
 																src="images/play.jpg" width="20px" height="20px" />
 													</a> </span>
 												</h4>

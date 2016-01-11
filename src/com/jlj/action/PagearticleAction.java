@@ -167,9 +167,8 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		
 		if(picture!=null){
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
-			ToolKitUtil.upload(imageName,picture,folderUrl);
-			pagearticle.setImageurl(paccount+"/"+imageName);
+			ToolKitUtil.upload(paccount+"/pagearticle",imageName,picture);
+			pagearticle.setImageurl("res/"+paccount+"/pagearticle/"+imageName);
 			
 		}
 		pagearticle.setPublicaccount(paccount);
@@ -204,12 +203,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		
 		if(picture!=null){
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
-			ToolKitUtil.upload(imageName,picture,folderUrl);
+			ToolKitUtil.upload(paccount+"/pagearticle",imageName,picture);
 			//删除原图片
 			File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+pagearticle.getImageurl());
 			photofile.delete();
-			pagearticle.setImageurl(paccount+"/"+imageName);
+			pagearticle.setImageurl("res/"+paccount+"/pagearticle/"+imageName);
 			
 		}
 		pagearticle.setPublicaccount(paccount);

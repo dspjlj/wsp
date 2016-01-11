@@ -132,9 +132,8 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		if(picture!=null){
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
-			ToolKitUtil.upload(imageName,picture,folderUrl);
-			bigtype.setImageurl(paccount+"/"+imageName);
+			ToolKitUtil.upload(paccount+"/bigtype",imageName,picture);
+			bigtype.setImageurl("res/"+paccount+"/bigtype/"+imageName);
 		}
 		bigtype.setPublicaccount(paccount);
 		bigtypeService.add(bigtype);
@@ -167,12 +166,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(isdelpic==0){
 			if(picture!=null){
 					String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-					String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
-					ToolKitUtil.upload(imageName,picture,folderUrl);
+					ToolKitUtil.upload(paccount+"/bigtype",imageName,picture);
 					//删除原图片
 					File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+bigtype.getImageurl());
 					photofile.delete();
-					bigtype.setImageurl(paccount+"/"+imageName);
+					bigtype.setImageurl("res/"+paccount+"/bigtype/"+imageName);
 			}
 		}else{
 			//删除原图片
@@ -252,9 +250,8 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		if(picture!=null){
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-			String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
-			ToolKitUtil.upload(imageName,picture,folderUrl);
-			bigtype.setImageurl(paccount+"/"+imageName);
+			ToolKitUtil.upload(paccount+"/bigtype",imageName,picture);
+			bigtype.setImageurl("res/"+paccount+"/bigtype/"+imageName);
 		}
 		bigtype.setPublicaccount(paccount);
 		bigtypeService.add(bigtype);
@@ -299,12 +296,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(isdelpic==0){
 			if(picture!=null){
 				String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));
-				String folderUrl=ServletActionContext.getServletContext().getRealPath(paccount);
-				ToolKitUtil.upload(imageName,picture,folderUrl);
+				ToolKitUtil.upload(paccount+"/bigtype",imageName,picture);
 				//删除原图片
 				File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+bigtype.getImageurl());
 				photofile.delete();
-				bigtype.setImageurl(paccount+"/"+imageName);
+				bigtype.setImageurl("res/"+paccount+"/bigtype/"+imageName);
 			}
 		}else{
 			//删除原图片

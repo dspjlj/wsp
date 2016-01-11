@@ -82,14 +82,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <label for="name" class="control-label">AppID(应用ID) :</label>
                                     <div class="controls">
                                     	<s:textfield name="pubclient.appid" id="appid" cssClass="input-large"></s:textfield>
-                                    	<span class="maroon">*</span><span class="help-inline"></span>
 									</div>
                                 </div>
                                 <div class="control-group">
                                     <label for="name" class="control-label">AppSecret(应用密钥) :</label>
                                     <div class="controls">
                                     	<s:textfield name="pubclient.appsecret" id="appsecret" cssClass="input-large"></s:textfield>
-                                    	<span class="maroon">*</span><span class="help-inline"></span>
 									</div>
                                 </div>
                                 <div class="control-group">
@@ -105,7 +103,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <label for="name" class="control-label">座机号码 :</label>
                                     <div class="controls">
                                     	<s:textfield name="pubclient.comtel" id="comtel" cssClass="input-large"></s:textfield>
-                                    	<span class="maroon">*</span><span class="help-inline"></span>
 									</div>
                                 </div>
                                 <div class="control-group">

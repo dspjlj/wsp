@@ -26,6 +26,7 @@ import com.jlj.model.Wgw;
 import com.jlj.service.IScreenimgService;
 import com.jlj.service.IWgwService;
 import com.jlj.util.DateTimeKit;
+import com.jlj.util.ToolKitUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Component("screenimgAction")
@@ -103,33 +104,33 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		if(picture0!=null){
 			String imageName0=DateTimeKit.getDateRandom()+picture0FileName.substring(picture0FileName.indexOf("."));
-			this.upload(imageName0,picture0,paccount);
-			screenimg.setBgimg(paccount+"/"+imageName0);
+			ToolKitUtil.upload(paccount+"/screenimg",imageName0,picture0);
+			screenimg.setBgimg("res/"+paccount+"/screenimg/"+imageName0);
 		}
 		if(picture1!=null){
 			String imageName1=DateTimeKit.getDateRandom()+picture1FileName.substring(picture1FileName.indexOf("."));
-			this.upload(imageName1,picture1,paccount);
-			screenimg.setImageurl1(paccount+"/"+imageName1);
+			ToolKitUtil.upload(paccount+"/screenimg",imageName1,picture1);
+			screenimg.setImageurl1("res/"+paccount+"/screenimg/"+imageName1);
 		}
 		if(picture2!=null){
 			String imageName2=DateTimeKit.getDateRandom()+picture2FileName.substring(picture2FileName.indexOf("."));
-			this.upload(imageName2,picture2,paccount);
-			screenimg.setImageurl2(paccount+"/"+imageName2);
+			ToolKitUtil.upload(paccount+"/screenimg",imageName2,picture2);
+			screenimg.setImageurl2("res/"+paccount+"/screenimg/"+imageName2);
 		}
 		if(picture3!=null){
 			String imageName3=DateTimeKit.getDateRandom()+picture3FileName.substring(picture3FileName.indexOf("."));
-			this.upload(imageName3,picture3,paccount);
-			screenimg.setImageurl3(paccount+"/"+imageName3);
+			ToolKitUtil.upload(paccount+"/screenimg",imageName3,picture3);
+			screenimg.setImageurl3("res/"+paccount+"/screenimg/"+imageName3);
 		}
 		if(picture4!=null){
 			String imageName4=DateTimeKit.getDateRandom()+picture4FileName.substring(picture4FileName.indexOf("."));
-			this.upload(imageName4,picture4,paccount);
-			screenimg.setImageurl4(paccount+"/"+imageName4);
+			ToolKitUtil.upload(paccount+"/screenimg",imageName4,picture4);
+			screenimg.setImageurl4("res/"+paccount+"/screenimg/"+imageName4);
 		}
 		if(picture5!=null){
 			String imageName5=DateTimeKit.getDateRandom()+picture5FileName.substring(picture5FileName.indexOf("."));
-			this.upload(imageName5,picture5,paccount);
-			screenimg.setImageurl5(paccount+"/"+imageName5);
+			ToolKitUtil.upload(paccount+"/screenimg",imageName5,picture5);
+			screenimg.setImageurl5("res/"+paccount+"/screenimg/"+imageName5);
 		}
 		screenimg.setPublicaccount(paccount);
 		screenimgService.add(screenimg);
@@ -147,12 +148,12 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(isdelpic0==0){
 			if(picture0!=null){
 				String imageName0=DateTimeKit.getDateRandom()+picture0FileName.substring(picture0FileName.indexOf("."));
-				this.upload(imageName0,picture0,paccount);
+				ToolKitUtil.upload(paccount+"/screenimg",imageName0,picture0);
 				//删除原文件
 				File photofile0=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getBgimg());
 				photofile0.delete();
 				//设置新图片地址
-				screenimg.setBgimg(paccount+"/"+imageName0);
+				screenimg.setBgimg("res/"+paccount+"/screenimg/"+imageName0);
 			}
 		}else{
 			//删除原文件
@@ -164,12 +165,12 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(isdelpic1==0){
 			if(picture1!=null){
 				String imageName1=DateTimeKit.getDateRandom()+picture1FileName.substring(picture1FileName.indexOf("."));
-				this.upload(imageName1,picture1,paccount);
+				ToolKitUtil.upload(paccount+"/screenimg",imageName1,picture1);
 				//删除原文件
 				File photofile1=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl1());
 				photofile1.delete();
 				//设置新图片地址
-				screenimg.setImageurl1(paccount+"/"+imageName1);
+				screenimg.setImageurl1("res/"+paccount+"/screenimg/"+imageName1);
 			}
 		}else{
 			//删除原文件
@@ -181,12 +182,12 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(isdelpic2==0){
 			if(picture2!=null){
 				String imageName2=DateTimeKit.getDateRandom()+picture2FileName.substring(picture2FileName.indexOf("."));
-				this.upload(imageName2,picture2,paccount);
+				ToolKitUtil.upload(paccount+"/screenimg",imageName2,picture2);
 				//删除原文件
 				File photofile2=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl2());
 				photofile2.delete();
 				//设置新图片地址
-				screenimg.setImageurl2(paccount+"/"+imageName2);
+				screenimg.setImageurl2("res/"+paccount+"/screenimg/"+imageName2);
 			}
 		}else{
 			//删除原文件
@@ -198,12 +199,12 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(isdelpic3==0){
 			if(picture3!=null){
 				String imageName3=DateTimeKit.getDateRandom()+picture3FileName.substring(picture3FileName.indexOf("."));
-				this.upload(imageName3,picture3,paccount);
+				ToolKitUtil.upload(paccount+"/screenimg",imageName3,picture3);
 				//删除原文件
 				File photofile3=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl3());
 				photofile3.delete();
 				//设置新图片地址
-				screenimg.setImageurl3(paccount+"/"+imageName3);
+				screenimg.setImageurl3("res/"+paccount+"/screenimg/"+imageName3);
 			}
 		}else{
 			//删除原文件
@@ -216,12 +217,12 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(isdelpic4==0){
 			if(picture4!=null){
 				String imageName4=DateTimeKit.getDateRandom()+picture4FileName.substring(picture4FileName.indexOf("."));
-				this.upload(imageName4,picture4,paccount);
+				ToolKitUtil.upload(paccount+"/screenimg",imageName4,picture4);
 				//删除原文件
 				File photofile4=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl4());
 				photofile4.delete();
 				//设置新图片地址
-				screenimg.setImageurl4(paccount+"/"+imageName4);
+				screenimg.setImageurl4("res/"+paccount+"/screenimg/"+imageName4);
 			}
 		}else{
 			//删除原文件
@@ -234,12 +235,12 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(isdelpic5==0){
 			if(picture5!=null){
 				String imageName5=DateTimeKit.getDateRandom()+picture5FileName.substring(picture5FileName.indexOf("."));
-				this.upload(imageName5,picture5,paccount);
+				ToolKitUtil.upload(paccount+"/screenimg",imageName5,picture5);
 				//删除原文件
 				File photofile5=new File(ServletActionContext.getServletContext().getRealPath("/")+screenimg.getImageurl5());
 				photofile5.delete();
 				//设置新图片地址
-				screenimg.setImageurl5(paccount+"/"+imageName5);
+				screenimg.setImageurl5("res/"+paccount+"/screenimg/"+imageName5);
 			}
 		}else{
 			//删除原文件
@@ -282,31 +283,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		}
 	}
 	
-	
-	//文件上传
-	public void upload(String imageName,File picture1,String floderName) throws Exception{
-		
-		File saved=new File(ServletActionContext.getServletContext().getRealPath(floderName),imageName);
-		InputStream ins=null;
-		OutputStream ous=null;
-		try {
-			saved.getParentFile().mkdirs();
-			ins=new FileInputStream(picture1);
-			ous=new FileOutputStream(saved);
-			byte[] b=new byte[1024];
-			int len = 0;
-			while((len=ins.read(b))!=-1){
-				ous.write(b,0,len);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally{
-			if(ous!=null)
-				ous.close();
-			if(ins!=null) 
-				ins.close();
-		}
-	}
 	
 	//get、set-------------------------------------------
 	public IScreenimgService getScreenimgService() {

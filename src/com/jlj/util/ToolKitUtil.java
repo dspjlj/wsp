@@ -103,27 +103,27 @@ public class ToolKitUtil {
 	 * @param floderUrl：文件夹路径
 	 * @throws Exception
 	 */
-	public static void upload(String imageName,File picture,String floderUrl) throws Exception{
-		File saved=new File(floderUrl,imageName);
-		InputStream ins=null;
-		OutputStream ous=null;
-		try {
-			saved.getParentFile().mkdirs();
-			ins=new FileInputStream(picture);
-			ous=new FileOutputStream(saved);
-			byte[] b=new byte[1024];
-			int len = 0;
-			while((len=ins.read(b))!=-1){
-				ous.write(b,0,len);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally{
-			if(ous!=null)
-				ous.close();
-			if(ins!=null) 
-				ins.close();
-		}
-	}
+//	public static void upload(String imageName,File picture,String floderUrl) throws Exception{
+//		File saved=new File(floderUrl,imageName);
+//		InputStream ins=null;
+//		OutputStream ous=null;
+//		try {
+//			saved.getParentFile().mkdirs();
+//			ins=new FileInputStream(picture);
+//			ous=new FileOutputStream(saved);
+//			byte[] b=new byte[1024];
+//			int len = 0;
+//			while((len=ins.read(b))!=-1){
+//				ous.write(b,0,len);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally{
+//			if(ous!=null)
+//				ous.close();
+//			if(ins!=null) 
+//				ins.close();
+//		}
+//	}
 	//文件相关==============================================================end
 }

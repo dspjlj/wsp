@@ -15,8 +15,9 @@ if(pubclient==null){
 	response.sendRedirect("/back/login.jsp");
 	return;
 }else{
+	sb.append("res/");
 	sb.append(pubclient.getPublicaccount());
-	sb.append("/");
+	sb.append("/fodder/");
 }
 String dir = sb.toString();
 //文件保存目录路径   

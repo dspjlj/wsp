@@ -29,6 +29,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @Scope("prototype")
 public class PubclientAction extends ActionSupport implements RequestAware,
 SessionAware,ServletResponseAware,ServletRequestAware {
+	private String BASEURL = "http://m.di3p.com/";
 	
 	private static final long serialVersionUID = 1L;
 	private IPubclientService pubclientService;
@@ -132,11 +133,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(picture!=null){
 			String paccount = pubclient.getPublicaccount();//获取原始ID
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));//获取图片文件名称
-			ToolKitUtil.upload(paccount,imageName,picture);
-			pubclient.setImgurl("res/"+paccount+"/"+imageName);//设置图片地址全称
+			ToolKitUtil.upload(paccount+"/pubclient",imageName,picture);
+			pubclient.setImgurl("res/"+paccount+"/pubclient/"+imageName);//设置图片地址全称
 		}
 		//设置url、token和43位的随机密钥encodingAESKey
-		String url = "http://121.40.87.194/wsp/vcoreAction!vprocess?vxinpublic="+pubclient.getPublicno();
+		String url = BASEURL+"wsp/vcoreAction!vprocess?vxinpublic="+pubclient.getPublicaccount();
 		String token = pubclient.getPublicno();
 		String encodingAESKey = ToolKitUtil.getRandomString(43);
 		pubclient.setUrl(url);
@@ -181,11 +182,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(picture!=null){
 			String paccount = pubclient.getPublicaccount();//获取原始ID
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));//获取图片文件名称
-			ToolKitUtil.upload(paccount,imageName,picture);
+			ToolKitUtil.upload(paccount+"/pubclient",imageName,picture);
 			//删除原来的图片
 			File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+pubclient.getImgurl());
 			photofile.delete();
-			pubclient.setImgurl("res/"+paccount+"/"+imageName);//设置图片地址全称
+			pubclient.setImgurl("res/"+paccount+"/pubclient/"+imageName);//设置图片地址全称
 		}
 		
 		pubclientService.update(pubclient);

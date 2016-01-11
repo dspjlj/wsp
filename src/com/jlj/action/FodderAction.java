@@ -229,8 +229,8 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(picture!=null){
 			String paccount=fodder.getPublicaccount();//获取原始ID
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));//获取图片文件名称
-			ToolKitUtil.upload(paccount,imageName,picture);
-			fodder.setPicurl("res/"+paccount+"/"+imageName);//设置图片地址全称
+			ToolKitUtil.upload(paccount+"/fodder",imageName,picture);
+			fodder.setPicurl("res/"+paccount+"/fodder/"+imageName);//设置图片地址全称
 			
 		}
 		//保存正文描述
@@ -403,8 +403,8 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(picture!=null){
 			String paccount=fodder.getPublicaccount();//获取原始ID
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));//获取图片文件名称
-			ToolKitUtil.upload(paccount,imageName,picture);
-			fodder.setPicurl("res/"+paccount+"/"+imageName);//设置图片地址全称
+			ToolKitUtil.upload(paccount+"/fodder",imageName,picture);
+			fodder.setPicurl("res/"+paccount+"/fodder/"+imageName);//设置图片地址全称
 			
 		}
 		//保存正文描述

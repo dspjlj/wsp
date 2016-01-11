@@ -73,28 +73,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	}
 	//=========后台管理=================================================
 	/**
-	 * Diy宣传页管理
-	 */
-//	public String list() throws Exception{
-//		if(convalue!=null&&!convalue.equals("")){
-//			convalue=URLDecoder.decode(convalue, "utf-8");
-//		}
-//		if(page<1){
-//			page=1;
-//		}
-//		//总记录数
-//		totalCount=diypuffService.getTotalCount(con,convalue,status,publicaccount);
-//		//总页数
-//		pageCount=diypuffService.getPageCount(totalCount,size);
-//		if(page>pageCount&&pageCount!=0){
-//			page=pageCount;
-//		}
-//		//所有当前页记录对象
-//		diypuffs=diypuffService.queryList(con,convalue,status,publicaccount,page,size);
-//		
-//		return "list";
-//	}
-	/**
 	 * 跳转到添加页面
 	 * @return
 	 */
@@ -113,8 +91,8 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		//保存二维码图片
 		if(picture!=null){
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));//获取图片文件名称
-			ToolKitUtil.upload(publicaccount,imageName,picture);
-			diypuff.setEwmimg("res/"+publicaccount+"/"+imageName);//设置图片地址全称
+			ToolKitUtil.upload(publicaccount+"/fodder",imageName,picture);
+			diypuff.setEwmimg("res/"+publicaccount+"/fodder/"+imageName);//设置图片地址全称
 		}
 		//保存链接地址
 		diypuff.setLinkurl("front/diypuff.jsp?frontpa="+publicaccount);
@@ -124,25 +102,6 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		return this.view();
 	}
 	
-	/**
-	 * 删除
-	 * @return
-	 */
-//	public String delete(){
-//		diypuffService.deleteById(id);
-//		arg[0]="diypuffAction!list";
-//		arg[1]="Diy宣传页管理";
-//		return SUCCESS;
-//	}
-	
-	/**
-	 * 跳转到修改页面
-	 * @return
-	 */
-//	public String load() throws Exception{
-//		diypuff=diypuffService.loadById(id);
-//		return "load";
-//	}
 	
 	/**
 	 * 修改
@@ -153,11 +112,11 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		if(picture!=null){
 			String paccount = diypuff.getPublicaccount();//获取原始ID
 			String imageName=DateTimeKit.getDateRandom()+pictureFileName.substring(pictureFileName.indexOf("."));//获取图片文件名称
-			ToolKitUtil.upload(paccount,imageName,picture);
+			ToolKitUtil.upload(paccount+"/fodder",imageName,picture);
 			//删除原来的图片
 			File photofile=new File(ServletActionContext.getServletContext().getRealPath("/")+diypuff.getEwmimg());
 			photofile.delete();
-			diypuff.setEwmimg("res/"+paccount+"/"+imageName);//设置图片地址全称
+			diypuff.setEwmimg("res/"+paccount+"/fodder/"+imageName);//设置图片地址全称
 		}
 		
 		diypuffService.update(diypuff);
