@@ -58,7 +58,7 @@
                                     <label class="control-label" for="title">底部名称</label>
                                     <div class="controls">
 										<s:textfield name="footer.foottitle" cssClass="input-xlarge" required="required"></s:textfield>
-										<span class="maroon">提供技术支持</span>
+										<span class="maroon">*提供技术支持</span>
 										<span class="help-block">请设置8字以内</span>
                                     </div>
                                 </div>

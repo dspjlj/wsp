@@ -43,40 +43,35 @@
       <section id="sec-index">
 
         <div class="body">
-
-          <div class="mod-slider slider-hor" id="index">
-            <ul class="slider-list">
-            	<s:if test="#request.screenimg.screenimgvos==null||#request.screenimg.screenimgvos.size()==0">
-            		<li>
-		                <a href="javascript:void(0);" >
-		                  <img alt="暂无轮播图片" />
-		                </a>
-		            </li>
-            	</s:if>
-            	<s:iterator value="#request.screenimg.screenimgvos" var="screenimgvo">
-            		<li>
-		                <a href=<s:if test="linkurl!=null&&linkurl!=''"><s:property value="linkurl"/></s:if> >
-		                  <img alt="轮播图片1" src='<%=basePath %><s:property value="imageurl"/>' />
-		                </a>
-		            </li>
-            	</s:iterator>
-	             
-            </ul>
-            <div class="slider-text">
-              <span class="fl slider-span" id="slider-span"></span>
-              <div id="pagenavi" class="fr slider-page">
-              	<s:iterator value="#request.screenimg.screenimgvos" var="screenimgvo" status="index">
-              	<s:if test="#index.count==1">
-              		<a href="#" class="active"><s:property value="#index.count"/></a>
-              	</s:if>
-                <s:else>
-                	<a href="#" class=""><s:property value="#index.count"/></a>
-                </s:else>
-                </s:iterator>
-              </div>
-            </div>
-          </div>
-
+			<s:if test="#request.screenimg.screenimgvos==null||#request.screenimg.screenimgvos.size()==0">
+			</s:if>
+			<s:else>
+	          <div class="mod-slider slider-hor" id="index">
+	            <ul class="slider-list">
+	            	<s:iterator value="#request.screenimg.screenimgvos" var="screenimgvo">
+	            		<li>
+			                <a href=<s:if test="linkurl!=null&&linkurl!=''"><s:property value="linkurl"/></s:if> >
+			                  <img alt="轮播图片1" src='<%=basePath %><s:property value="imageurl"/>' />
+			                </a>
+			            </li>
+	            	</s:iterator>
+		             
+	            </ul>
+	            <div class="slider-text">
+	              <span class="fl slider-span" id="slider-span"></span>
+	              <div id="pagenavi" class="fr slider-page">
+	              	<s:iterator value="#request.screenimg.screenimgvos" var="screenimgvo" status="index">
+	              	<s:if test="#index.count==1">
+	              		<a href="#" class="active"><s:property value="#index.count"/></a>
+	              	</s:if>
+	                <s:else>
+	                	<a href="#" class=""><s:property value="#index.count"/></a>
+	                </s:else>
+	                </s:iterator>
+	              </div>
+	            </div>
+	          </div>
+			</s:else>
           <div class="index">
 	          	<s:if test="#request.bigtypes.size()==0">
 	          		<a href="javascript:void(0)" class="box mod-index">
@@ -120,7 +115,7 @@
 		<footer>技术支持：<s:property value="#request.footer.foottitle"/></footer>
 	</s:if>
 	<s:else>
-		<footer>技术支持：第三屏</footer>
+		<footer><a href="http://www.di3p.com/mo/index.html">技术支持：第三屏</a></footer>
 	</s:else>
 
   

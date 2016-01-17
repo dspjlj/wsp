@@ -221,7 +221,7 @@
 		<footer>技术支持：<s:property value="#request.footer.foottitle"/></footer>
 	</s:if>
   	<s:else>
-		技术支持：第三屏
+		<a href="http://www.di3p.com/mo/index.html">技术支持：第三屏</a>
 	</s:else>
 
   

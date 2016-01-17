@@ -95,7 +95,7 @@
                                 <div class="control-group">
                                     <label class="control-label" for="title">标题简称：</label>
                                     <div class="controls">
-		 							 	<s:textfield name="pagearticle.shortname" cssClass="input-xlarge" required="required"></s:textfield>
+		 							 	<s:textfield name="pagearticle.shortname" cssClass="input-xlarge"></s:textfield>
                                     </div>
                                 </div>
                              

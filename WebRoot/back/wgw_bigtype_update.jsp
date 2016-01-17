@@ -248,7 +248,7 @@ function changePreImg() {
                                 <div class="control-group">
                                     <label class="control-label" for="title">排序编号：</label>
                                     <div class="controls">
-                                    	<s:textfield name="bigtype.orderid" cssClass="input-mini" required="required"></s:textfield>
+                                    	<s:textfield name="bigtype.orderid" cssClass="input-mini" required="required" type="number"></s:textfield>
 	                                    <span class="maroon">*</span>
                                     </div>
                                 </div>

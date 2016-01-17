@@ -2,6 +2,7 @@
 <%@ page import="java.util.*,java.io.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="org.json.simple.*" %>
+<%@page import="com.jlj.model.Pubclient"%>
 <%
 
 /**
@@ -11,14 +12,29 @@
  * 如果您确定直接使用本程序，使用之前请仔细确认相关安全设置。
  *
  */
-
+Pubclient pubclient = (Pubclient)session.getAttribute("pubclient");
+StringBuffer sb =new StringBuffer();
+if(pubclient==null){
+	response.sendRedirect("/back/login.jsp");
+	return;
+}else{
+	sb.append("res/");
+	sb.append(pubclient.getPublicaccount());
+	sb.append("/");
+}
+String dir = sb.toString();
+//System.out.println(dir);
 //根目录路径，可以指定绝对路径，比如 /var/www/attached/
-String rootPath = pageContext.getServletContext().getRealPath("/") + "attached/";
+//String rootPath = pageContext.getServletContext().getRealPath("/") + "attached/";
+String rootPath = pageContext.getServletContext().getRealPath("/") + dir;
 //根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/
-String rootUrl  = request.getContextPath() + "/attached/";
+//String rootUrl  = request.getContextPath() + "/attached/";
+String rootUrl  = request.getContextPath() + "/" + dir;
+//System.out.println(rootPath);
+//System.out.println(rootUrl);
 //图片扩展名
 String[] fileTypes = new String[]{"gif", "jpg", "jpeg", "png", "bmp"};
-
+/*
 String dirName = request.getParameter("dir");
 if (dirName != null) {
 	if(!Arrays.<String>asList(new String[]{"image", "flash", "media", "file"}).contains(dirName)){
@@ -32,6 +48,7 @@ if (dirName != null) {
 		saveDirFile.mkdirs();
 	}
 }
+*/
 //根据path参数，设置各路径和URL
 String path = request.getParameter("path") != null ? request.getParameter("path") : "";
 String currentPath = rootPath + path;

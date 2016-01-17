@@ -113,8 +113,9 @@ function changePreImg(myimage,myfile,isdelpic) {
 								<h3><i class="icon-cog"></i>微官网背景轮播图配置</h3>
 							</div>
 						</div>
+						<form action="screenimgAction!update" method="post" id="lbsForm" class="form-horizontal form-validate" enctype="multipart/form-data">
 						<div class="box-content">
-							<form action="screenimgAction!update" method="post" id="lbsForm" class="form-horizontal form-validate" enctype="multipart/form-data">
+							
 							<s:hidden name="screenimg.id"></s:hidden>
 							<s:hidden name="screenimg.wgw.id" value="%{wgw.id}"></s:hidden>
 							<s:hidden name="screenimg.imageurl1"></s:hidden>
@@ -123,6 +124,7 @@ function changePreImg(myimage,myfile,isdelpic) {
 							<s:hidden name="screenimg.imageurl4"></s:hidden>
 							<s:hidden name="screenimg.imageurl5"></s:hidden>
 							<s:hidden name="screenimg.bgimg"></s:hidden>
+							<s:hidden name="screenimg.imginterval"></s:hidden>
 							<div class="control-group">
 									<label for="title" class="control-label">说明：</label>
 									<div class="controls">
@@ -163,16 +165,6 @@ function changePreImg(myimage,myfile,isdelpic) {
 										</span>
 									</div>
 								</div>
-								
-								<div id="div_screen_img" style="display: none;">
-								<div class="control-group">
-									<label for="title" class="control-label">轮播间隔时间：</label>
-									<div class="controls">
-										<s:textfield name="screenimg.imginterval" cssClass="input-small" required="required"></s:textfield>
-										<span class="maroon">*</span>
-										 <span class="help-inline">单位毫秒，默认3000毫秒，值越大，速度越慢！</span> 
-									</div>
-								</div>								
 								<div class="control-group">
 									<label class="control-label">轮播1：</label>
 									<div class="controls">
@@ -324,7 +316,6 @@ function changePreImg(myimage,myfile,isdelpic) {
 				</div>
 			</div>
 		</div>
-	</div>
 <br/><br/><br/></body>
 	<script type="text/javascript">
 	function setpic(imgid,hideid){

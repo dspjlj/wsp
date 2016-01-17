@@ -94,154 +94,156 @@ function changePreImg(myimage,myfile) {
 								<h3><i class="icon-cog"></i>微官网背景轮播图配置</h3>
 							</div>
 						</div>
-						<div class="box-content">
-							<form action="screenimgAction!add" method="post" id="lbsForm" class="form-horizontal form-validate" enctype="multipart/form-data">
-							<s:hidden name="screenimg.wgw.id" value="%{wgw.id}"></s:hidden>
-							
-							<div class="control-group">
-									<label for="title" class="control-label">说明：</label>
-									<div class="controls">
-									    1-设置的微官网模板必须支持背景轮播显示<br>
-									    2-请开启背景轮播并且配置好轮播图片
-										<span class="maroon"></span>
-										 <span class="help-inline"></span> 
-									</div>
-								</div><BR>
+						<form action="screenimgAction!add" method="post" id="lbsForm" class="form-horizontal form-validate" enctype="multipart/form-data">
+							<div class="box-content">
 								
-								<div class="control-group">
-                                        <label for="title" class="control-label">是否开启背景轮播：</label>
-                                        <div class="controls">
-                                        	<input type="radio" name="screenimg.ison" value="0" checked="checked"  onclick="isShowScreenImg(this.value)"/>关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1"  onclick="isShowScreenImg(this.value)" />开启&nbsp;&nbsp;
-                    						
-                                        </div>
-                                </div>
+								<s:hidden name="screenimg.wgw.id" value="%{wgw.id}"></s:hidden>
 								
-                                <div class="control-group">
-									<label class="control-label">背景图片：</label>
-									<div class="controls">
-										<img class="thumb_img" src="images/noimg.jpg"  id="myimage0" style="max-height:100px;" />
-										<span class="help-inline">
-											<s:file name="picture0" cssStyle="width:80%" onchange="changePreImg('myimage0','myfile0');" title="上传" id="myfile0"></s:file>
-											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
-										</span>
-									</div>
-								</div>
-								
-                                <div id="div_screen_img" style="display: none;">
+								<s:hidden name="screenimg.imginterval" value="2000"></s:hidden>
 								<div class="control-group">
-									<label for="title" class="control-label">轮播间隔时间：</label>
-									<div class="controls">
-										<s:textfield name="screenimg.imginterval" value="3000" cssClass="input-small" required="required"></s:textfield>
-										<span class="maroon">*</span>
-										 <span class="help-inline">单位毫秒，默认3000毫秒，值越大，速度越慢！</span> 
-									</div>
-								</div>								
-								<div class="control-group">
-									<label class="control-label">轮播1：</label>
-									<div class="controls">
-										<img class="thumb_img" src="images/noimg.jpg"  id="myimage1" style="max-height:100px;" />
-										<span class="help-inline">
-											<s:file name="picture1" cssStyle="width:80%" onchange="changePreImg('myimage1','myfile1');" title="上传" id="myfile1"></s:file>
-											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
-										</span>
-									</div>
-								</div>
-								<div class="control-group">
-									<label for="title" class="control-label">轮播1链接：</label>
-									<div class="controls">
-										<s:textfield name="screenimg.linkurl1" cssClass="input-xxlarge" required="required"></s:textfield>
-										<br>
-										<span class="help-inline">示例:http://www.di3p.com</span>
-									</div>
-								</div>
-								
-								<div class="control-group">
-									<label class="control-label">轮播2：</label>
-									<div class="controls">
-									<img class="thumb_img" src="images/noimg.jpg" id="myimage2"  style="max-height:100px;" />
-										<span class="help-inline">
-											<s:file name="picture2" cssStyle="width:80%" onchange="changePreImg('myimage2','myfile2');" title="上传" id="myfile2"></s:file>
-											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
-										</span>
-									</div>
-								</div>
-								
-								<div class="control-group">
-									<label for="title" class="control-label">轮播2链接：</label>
-									<div class="controls">
-										<s:textfield name="screenimg.linkurl2" cssClass="input-xxlarge" required="required"></s:textfield>
-									</div>
-								</div>
-								
-								<div class="control-group">
-									<label class="control-label">轮播3：</label>
-									<div class="controls">
-									<img class="thumb_img" src="images/noimg.jpg" id="myimage3"  style="max-height:100px;" />
-										<span class="help-inline">
-											<s:file name="picture3" cssStyle="width:80%" onchange="changePreImg('myimage3','myfile3');" title="上传" id="myfile3"></s:file>
-											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
-										</span>
-									</div>
-								</div>
-							
-								<div class="control-group">
-									<label for="title" class="control-label">轮播3链接：</label>
-									<div class="controls">
-										<s:textfield name="screenimg.linkurl3" cssClass="input-xxlarge" required="required"></s:textfield>
-									</div>
-								</div>
-								
-								<div class="control-group">
-									<label class="control-label">轮播4：</label>
-									<div class="controls">
+										<label for="title" class="control-label">说明：</label>
+										<div class="controls">
+										    1-设置的微官网模板必须支持背景轮播显示<br>
+										    2-请开启背景轮播并且配置好轮播图片
+											<span class="maroon"></span>
+											 <span class="help-inline"></span> 
+										</div>
+									</div><BR>
 									
-									<img class="thumb_img" src="images/noimg.jpg" id="myimage4" style="max-height:100px;" />
-										<span class="help-inline">
-											<s:file name="picture4" cssStyle="width:80%" onchange="changePreImg('myimage4','myfile4');" title="上传" id="myfile4"></s:file>
-											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
-										</span>
+									<div class="control-group">
+	                                        <label for="title" class="control-label">是否开启背景轮播：</label>
+	                                        <div class="controls">
+	                                        	<input type="radio" name="screenimg.ison" value="0" checked="checked"  onclick="isShowScreenImg(this.value)"/>关闭&nbsp;&nbsp;<input type="radio" name="screenimg.ison" value="1"  onclick="isShowScreenImg(this.value)" />开启&nbsp;&nbsp;
+	                    						
+	                                        </div>
+	                                </div>
+									
+	                                <div class="control-group">
+										<label class="control-label">背景图片：</label>
+										<div class="controls">
+											<img class="thumb_img" src="images/noimg.jpg"  id="myimage0" style="max-height:100px;" />
+											<span class="help-inline">
+												<s:file name="picture0" cssStyle="width:80%" onchange="changePreImg('myimage0','myfile0');" title="上传" id="myfile0"></s:file>
+												<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
+											</span>
+										</div>
 									</div>
-								</div>
-								
-								<div class="control-group">
-									<label for="title" class="control-label">轮播4链接：</label>
-									<div class="controls">
-										<s:textfield name="screenimg.linkurl4" cssClass="input-xxlarge" required="required"></s:textfield>
+									<!-- 
+	                                <div id="div_screen_img" style="display: none;">
+									<div class="control-group">
+										<label for="title" class="control-label">轮播间隔时间：</label>
+										<div class="controls">
+											<s:textfield name="screenimg.imginterval" value="3000" cssClass="input-small" required="required"></s:textfield>
+											<span class="maroon">*</span>
+											 <span class="help-inline">单位毫秒，默认3000毫秒，值越大，速度越慢！</span> 
+										</div>
 									</div>
-								</div>
-								
-								<div class="control-group">
-									<label class="control-label">轮播5：</label>
-									<div class="controls">
-									<img class="thumb_img" src="images/noimg.jpg" id="myimage5" style="max-height:100px;" />
-										<span class="help-inline">
-											<s:file name="picture5" cssStyle="width:80%" onchange="changePreImg('myimage5','myfile5');" title="上传" id="myfile5"></s:file>
-											<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
-										</span>
+									 -->								
+									<div class="control-group">
+										<label class="control-label">轮播1：</label>
+										<div class="controls">
+											<img class="thumb_img" src="images/noimg.jpg"  id="myimage1" style="max-height:100px;" />
+											<span class="help-inline">
+												<s:file name="picture1" cssStyle="width:80%" onchange="changePreImg('myimage1','myfile1');" title="上传" id="myfile1"></s:file>
+												<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
+											</span>
+										</div>
 									</div>
-                                    								
-						
-								</div>
-								<div class="control-group">
-									<label for="title" class="control-label">轮播5链接：</label>
-									<div class="controls">
-										<s:textfield name="screenimg.linkurl5" cssClass="input-xxlarge" required="required"></s:textfield>
+									<div class="control-group">
+										<label for="title" class="control-label">轮播1链接：</label>
+										<div class="controls">
+											<s:textfield name="screenimg.linkurl1" cssClass="input-xxlarge" required="required"></s:textfield>
+											<br>
+											<span class="help-inline">示例:http://www.di3p.com</span>
+										</div>
 									</div>
-								</div>
+									
+									<div class="control-group">
+										<label class="control-label">轮播2：</label>
+										<div class="controls">
+										<img class="thumb_img" src="images/noimg.jpg" id="myimage2"  style="max-height:100px;" />
+											<span class="help-inline">
+												<s:file name="picture2" cssStyle="width:80%" onchange="changePreImg('myimage2','myfile2');" title="上传" id="myfile2"></s:file>
+												<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
+											</span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="title" class="control-label">轮播2链接：</label>
+										<div class="controls">
+											<s:textfield name="screenimg.linkurl2" cssClass="input-xxlarge" required="required"></s:textfield>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label">轮播3：</label>
+										<div class="controls">
+										<img class="thumb_img" src="images/noimg.jpg" id="myimage3"  style="max-height:100px;" />
+											<span class="help-inline">
+												<s:file name="picture3" cssStyle="width:80%" onchange="changePreImg('myimage3','myfile3');" title="上传" id="myfile3"></s:file>
+												<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
+											</span>
+										</div>
+									</div>
 								
-								</div>
-								
-								<div class="form-actions">
-									<s:token></s:token>
-									<button type="submit" id="bsubmit" data-loading-text="提交中..." class="btn btn-primary">保存</button>
-								</div>
+									<div class="control-group">
+										<label for="title" class="control-label">轮播3链接：</label>
+										<div class="controls">
+											<s:textfield name="screenimg.linkurl3" cssClass="input-xxlarge" required="required"></s:textfield>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label">轮播4：</label>
+										<div class="controls">
+										
+										<img class="thumb_img" src="images/noimg.jpg" id="myimage4" style="max-height:100px;" />
+											<span class="help-inline">
+												<s:file name="picture4" cssStyle="width:80%" onchange="changePreImg('myimage4','myfile4');" title="上传" id="myfile4"></s:file>
+												<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
+											</span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="title" class="control-label">轮播4链接：</label>
+										<div class="controls">
+											<s:textfield name="screenimg.linkurl4" cssClass="input-xxlarge" required="required"></s:textfield>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label">轮播5：</label>
+										<div class="controls">
+										<img class="thumb_img" src="images/noimg.jpg" id="myimage5" style="max-height:100px;" />
+											<span class="help-inline">
+												<s:file name="picture5" cssStyle="width:80%" onchange="changePreImg('myimage5','myfile5');" title="上传" id="myfile5"></s:file>
+												<span class="help-inline">建议尺寸：宽400像素，高720像素</span>
+											</span>
+										</div>
+	                                    								
+							
+									</div>
+									<div class="control-group">
+										<label for="title" class="control-label">轮播5链接：</label>
+										<div class="controls">
+											<s:textfield name="screenimg.linkurl5" cssClass="input-xxlarge" required="required"></s:textfield>
+										</div>
+									</div>
+									
+									</div>
+									
+									<div class="form-actions">
+										<s:token></s:token>
+										<button type="submit" id="bsubmit" data-loading-text="提交中..." class="btn btn-primary">保存</button>
+									</div>
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 <br/><br/><br/></body>
 	<script type="text/javascript">
 	function setpic(imgid,hideid){

@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="control-group">
                                     <label class="control-label" for="brief">音乐地址: </label>
                                     <div class="controls">
-										<textarea name="bgmusic.musicurl" id="weiqi_web_musicmusic" class="input-large" style="height:80px;width:380px;"></textarea>	
+										<textarea name="bgmusic.musicurl" id="weiqi_web_musicmusic" class="input-large" style="height:80px;width:380px;" required="required"></textarea>	
                                         <span class="maroon">*</span>
                                         <span class="help-block">请填写音乐外链地址(MP3或者MAV格式)<br>
                                         示例：<%=basePath %>front/music/spring.mp3</span>

@@ -190,7 +190,7 @@
 		<footer>技术支持：<s:property value="#request.footer.foottitle"/></footer>
 	</s:if>
 	<s:else>
-		<footer>技术支持：第三屏</footer>
+		<footer><a href="http://www.di3p.com/mo/index.html">技术支持：第三屏</a></footer>
 	</s:else>
   
 

@@ -66,7 +66,7 @@
 								<div class="control-group">
                                     <label class="control-label" for="keyword">菜单2:</label>
                                     <div class="controls">
-	                                    <s:textfield name="wgwmenu.menu2" cssClass="input-xlarge"></s:textfield>
+	                                    <s:textfield name="wgwmenu.menu2" cssClass="input-xlarge" required="required"></s:textfield>
 										<span class="maroon">*</span>
                                         <span class="help-inline"></span>
                                     </div>
@@ -74,7 +74,7 @@
                                 <div class="control-group">
                                     <label class="control-label" for="title">菜单2地址：</label>
                                     <div class="controls">
-		 							 	<s:textfield name="wgwmenu.menu2url" cssClass="input-xlarge"></s:textfield>
+		 							 	<s:textfield name="wgwmenu.menu2url" cssClass="input-xlarge" required="required"></s:textfield>
 										<span class="maroon">*</span>
                                     </div>
                                 </div>
@@ -82,7 +82,6 @@
                                     <label class="control-label" for="keyword">菜单3:</label>
                                     <div class="controls">
                                     	<s:textfield name="wgwmenu.menu3" cssClass="input-xlarge"></s:textfield>
-										<span class="maroon">*</span>
                                         <span class="help-inline"></span>
                                     </div>
                                 </div>
@@ -90,14 +89,12 @@
                                     <label class="control-label" for="title">菜单3地址：</label>
                                     <div class="controls">
 		 							 	<s:textfield name="wgwmenu.menu3url" cssClass="input-xlarge"></s:textfield>
-										<span class="maroon">*</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="keyword">菜单4:</label>
                                     <div class="controls">
                                     	<s:textfield name="wgwmenu.menu4" cssClass="input-xlarge"></s:textfield>
-										<span class="maroon">*</span>
                                         <span class="help-inline"></span>
                                     </div>
                                 </div>
@@ -105,7 +102,6 @@
                                     <label class="control-label" for="title">菜单4地址：</label>
                                     <div class="controls">
 		 							 	<s:textfield name="wgwmenu.menu4url" cssClass="input-xlarge"></s:textfield>
-										<span class="maroon">*</span>
                                     </div>
                                 </div>
                                  

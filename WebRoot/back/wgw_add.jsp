@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											标题：
 										</label>
 										<div class="controls">
-											<s:textfield name="wgw.title" value="微官网" id="title" cssClass="input-xlarge"></s:textfield>
+											<s:textfield name="wgw.title" value="微官网" id="title" cssClass="input-xlarge" required="required"></s:textfield>
 											<span class="maroon">*</span>
 										</div>
 									</div>
