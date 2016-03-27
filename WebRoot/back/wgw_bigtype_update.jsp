@@ -157,7 +157,7 @@ function changePreImg() {
                                      <s:else>
                                      	<input type="radio" name="bigtype.isend" value="1"/>有&nbsp;&nbsp;<input type="radio" name="bigtype.isend" value="0" checked="checked"/>没有
                                      </s:else>
-                                     
+                                     &nbsp;&nbsp;*说明：若该类别下是文章列表，请选择"没有"子类别
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -233,15 +233,28 @@ function changePreImg() {
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="title">是否显示：</label>
+                                    <label class="control-label" for="title">是否启用：</label>
                                     <div class="controls">
                                     <s:if test="bigtype.ison==1">
-                                    	<input type="radio" name="bigtype.ison" value="1" checked="checked"/>显示&nbsp;&nbsp;<input type="radio" name="bigtype.ison" value="0"/>不显示
+                                    	<input type="radio" name="bigtype.ison" value="1" checked="checked"/>启用&nbsp;&nbsp;<input type="radio" name="bigtype.ison" value="0"/>不启用
                                     </s:if>
                                     <s:else>
-                                    	<input type="radio" name="bigtype.ison" value="1"/>显示&nbsp;&nbsp;<input type="radio" name="bigtype.ison" value="0" checked="checked"/>不显示
+                                    	<input type="radio" name="bigtype.ison" value="1"/>启用&nbsp;&nbsp;<input type="radio" name="bigtype.ison" value="0" checked="checked"/>不启用
                                     </s:else>
                                      
+                                    </div>
+                                </div>
+
+								<div class="control-group">
+                                    <label class="control-label" for="title">是否显示：</label>
+                                    <div class="controls">
+                                    <s:if test="bigtype.isshow==1">
+                                    	<input type="radio" name="bigtype.isshow" value="1" checked="checked"/>显示&nbsp;&nbsp;<input type="radio" name="bigtype.isshow" value="0"/>不显示
+                                    </s:if>
+                                    <s:else>
+                                    	<input type="radio" name="bigtype.isshow" value="1"/>显示&nbsp;&nbsp;<input type="radio" name="bigtype.isshow" value="0" checked="checked"/>不显示
+                                    </s:else>
+                                     &nbsp;&nbsp;*说明：若该类别需作为头版文章类别，请选择"不显示"；并选择"没有"子分类
                                     </div>
                                 </div>
 

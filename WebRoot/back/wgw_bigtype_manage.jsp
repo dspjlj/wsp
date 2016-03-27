@@ -86,7 +86,13 @@
 	                                            		<a href="bigtypeAction!sonlist?pid=<s:property value="id"/>" class="btn">子分类</a>&nbsp;
 	                                            	</s:if>
 	                                                <s:else>
-	                                                	<a href="javascript:alert('该类别已设置为无子分类，请编辑！');" class="btn">无子类</a>&nbsp;
+	                                                	<s:if test="ttype==1"><a href="javascript:alert('该类别已设置为头版文章，请编辑！');" class="btn">头版文章</a></s:if>
+	                                                	<s:elseif test="ttype==2"><a href="javascript:alert('该类别已设置为一键导航，请编辑！');" class="btn">一键导航</a></s:elseif>
+	                                                	<s:elseif test="ttype==3"><a href="javascript:alert('该类别已设置为一键预约，请编辑！');" class="btn">一键预约</a></s:elseif>
+	                                                	<s:else>
+	                                                	<a href="javascript:alert('该类别已设置为无子分类，请编辑！');" class="btn">无子类</a>
+	                                                	</s:else>
+	                                                	&nbsp;
 	                                                </s:else>
 	                                                <a href="bigtypeAction!load?id=<s:property value="id"/>" class="btn"><i class="icon-edit"></i></a> &nbsp;
 	                                                <a href="javascript:drop_confirm('您确定要删除吗?', 'bigtypeAction!delete?id=<s:property value="id"/>&page=<s:property value="page"/>');" class="btn"><i class="icon-remove"></i></a>

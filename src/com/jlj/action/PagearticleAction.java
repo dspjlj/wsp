@@ -141,9 +141,9 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public String goToAdd(){
 		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		int ison = 1;//启用
-//		int ttype = 0;//类别
+		int ttype = 0;//类别:首页类别
 		int hastype = 0;//无子类别
-		bigtypes = bigtypeService.getBigtypesBycondition(ison,hastype,paccount);
+		bigtypes = bigtypeService.getBigtypesBycondition(ison,ttype,hastype,paccount);
 		//若无子类别，则跳转到先添加子类别
 		if(bigtypes!=null&&bigtypes.size()>0){
 			return "add";
@@ -227,9 +227,9 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public String load() throws Exception{
 		String paccount=((Pubclient)session.get("pubclient")).getPublicaccount();
 		int ison = 1;//启用
-//		int ttype = 0;//类别
+		int ttype = 0;//类别
 		int hastype = 0;//无子类别
-		bigtypes = bigtypeService.getBigtypesBycondition(ison,hastype,paccount);
+		bigtypes = bigtypeService.getBigtypesBycondition(ison,ttype,hastype,paccount);
 		//文章对象
 		pagearticle=pagearticleService.loadById(id);
 		return "load";

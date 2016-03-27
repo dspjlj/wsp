@@ -6,12 +6,22 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
+import com.jlj.dao.IDspuserDao;
 import com.jlj.dao.IPubclientDao;
 import com.jlj.model.Pubclient;
 import com.jlj.service.IPubclientService;
 @Component("pubclientService")
 public class PubclientServiceImp implements IPubclientService{
 	private IPubclientDao pubclientDao;
+	private IDspuserDao dspuserDao;
+	
+	public IDspuserDao getDspuserDao() {
+		return dspuserDao;
+	}
+	@Resource
+	public void setDspuserDao(IDspuserDao dspuserDao) {
+		this.dspuserDao = dspuserDao;
+	}
 	public IPubclientDao getPubclientDao() {
 		return pubclientDao;
 	}
@@ -21,6 +31,14 @@ public class PubclientServiceImp implements IPubclientService{
 	}
 
 	public void add(Pubclient pubclient) throws Exception {
+		
+		//新增保存时修改公众号配额-1
+		int dspuserid = pubclient.getDspuser().getId();
+		String hql = "update Dspuser mo set mo.pubnum=mo.pubnum-1 where mo.id=:dspuserid";
+		String[] paramNames = new String[]{"dspuserid"};
+		Object[] values = new Object[]{dspuserid};
+		dspuserDao.updateByHql(hql, paramNames, values);
+		
 		pubclientDao.save(pubclient);
 	}
 

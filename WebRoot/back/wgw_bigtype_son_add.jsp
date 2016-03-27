@@ -59,6 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <label class="control-label" for="title">有无子类别：</label>
                                     <div class="controls">
                                      <input type="radio" name="bigtype.isend" value="1" checked="checked"/>有&nbsp;&nbsp;<input type="radio" name="bigtype.isend" value="0"/>没有
+                                    &nbsp;&nbsp;*说明：若该类别下是文章列表，请选择"没有"子类别
                                     </div>
                                 </div>
                                 <div class="control-group">

@@ -31,6 +31,7 @@ public class Bigtype implements java.io.Serializable {
 	private String enname;
 	private String imageurl;
 	private Integer ison;
+	private Integer isshow;
 	private Integer orderid;
 	private Integer ttype;
 	private String linkurl;
@@ -47,7 +48,7 @@ public class Bigtype implements java.io.Serializable {
 
 	/** full constructor */
 	public Bigtype(Wgw wgw, Bigtype bigtype, String name, String enname,
-			String imageurl, Integer ison, Integer orderid, Integer ttype,
+			String imageurl, Integer ison,Integer isshow, Integer orderid, Integer ttype,
 			String linkurl, Integer isend, String publicaccount,
 			Set<Pagearticle> pagearticles, Set<Bigtype> bigtypes) {
 		this.wgw = wgw;
@@ -56,6 +57,7 @@ public class Bigtype implements java.io.Serializable {
 		this.enname = enname;
 		this.imageurl = imageurl;
 		this.ison = ison;
+		this.isshow = isshow;
 		this.orderid = orderid;
 		this.ttype = ttype;
 		this.linkurl = linkurl;
@@ -131,6 +133,16 @@ public class Bigtype implements java.io.Serializable {
 
 	public void setIson(Integer ison) {
 		this.ison = ison;
+	}
+
+	
+	@Column(name = "isshow")
+	public Integer getIsshow() {
+		return isshow;
+	}
+
+	public void setIsshow(Integer isshow) {
+		this.isshow = isshow;
 	}
 
 	@Column(name = "orderid")

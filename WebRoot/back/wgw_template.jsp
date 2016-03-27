@@ -106,6 +106,7 @@
 										<ul class="cateradio unstyled">
 										<li class="phoneareali"><label><img src="res/mbpic/1_index.png"><input type="radio" name="template1" value="1">模板1</label></li>
 										<li class="phoneareali"><label><img src="res/mbpic/2_index.png"><input type="radio" name="template1" value="2">模板2</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/3_index.png"><input type="radio" name="template1" value="3">模板3</label></li>
 										</ul>
 									</div>
 									<div class="tab-pane" id="relli1">
@@ -113,6 +114,7 @@
 										<ul class="cateradio unstyled">
 										<li class="phoneareali"><label><img src="res/mbpic/1_type.png"><input type="radio" name="template2" value="1">模板1</label></li>
 										<li class="phoneareali"><label><img src="res/mbpic/2_type.png"><input type="radio" name="template2" value="2">模板2</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/3_type.png"><input type="radio" name="template2" value="3">模板3</label></li>
 										
 										</ul>
 									</div>
@@ -121,6 +123,7 @@
 										<ul class="cateradio unstyled">
 										<li class="phoneareali"><label><img src="res/mbpic/1_list.png"><input type="radio" name="template3" value="1">模板1</label></li>
 										<li class="phoneareali"><label><img src="res/mbpic/2_list.png"><input type="radio" name="template3" value="2">模板2</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/3_list.png"><input type="radio" name="template3" value="3">模板3</label></li>
 										
 										</ul>
 									</div>
@@ -129,6 +132,7 @@
 										<ul class="cateradio unstyled">
 										<li class="phoneareali"><label><img src="res/mbpic/1_article.png"><input type="radio" name="template4" value="1">模板1</label></li>
 										<li class="phoneareali"><label><img src="res/mbpic/2_article.png"><input type="radio" name="template4" value="2">模板2</label></li>
+										<li class="phoneareali"><label><img src="res/mbpic/3_article.png"><input type="radio" name="template4" value="3">模板3</label></li>
 										
 										</ul>
 									</div>

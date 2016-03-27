@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import com.jlj.model.Dspuser;
 import com.jlj.model.Pubclient;
+import com.jlj.service.IDspuserService;
 import com.jlj.service.IPubclientService;
 import com.jlj.util.DateTimeKit;
 import com.jlj.util.ToolKitUtil;
@@ -33,6 +34,9 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	
 	private static final long serialVersionUID = 1L;
 	private IPubclientService pubclientService;
+	
+	private IDspuserService dspuserService;
+	
 	Map<String,Object> request;
 	Map<String,Object> session;
 	private javax.servlet.http.HttpServletResponse response;
@@ -114,6 +118,17 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	 * @return
 	 */
 	public String goToAdd(){
+		Dspuser dspuser1 = (Dspuser)session.get("dspuser");
+		int pubnum = 0;
+		if(dspuser1!=null){
+			pubnum = dspuser1.getPubnum();
+		}
+		String failInfo = null;
+		if(pubnum==0){
+			failInfo="抱歉，您的公众号配额已为0；若需增加配额，请升级您的账户";
+			request.put("failInfo", failInfo);
+			return "opdspuserfail";
+		}
 		return "add";
 	}
 	/**
@@ -144,10 +159,13 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		pubclient.setToken(token);
 		pubclient.setEncodingaeskey(encodingAESKey);
 		pubclientService.add(pubclient);
+		//重新覆盖dspuser更新数量
+		Dspuser dspuser=dspuserService.userlogin(dspuser1.getUsername(),dspuser1.getPassword());
+		session.put("dspuser", dspuser);
 		
 		arg[0]="pubclientAction!list";
 		arg[1]="公众号管理";
-		return SUCCESS;
+		return "dspusersuccess";
 	}
 	/**
 	 * 删除
@@ -192,7 +210,7 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 		pubclientService.update(pubclient);
 		arg[0]="pubclientAction!list";
 		arg[1]="公众号管理";
-		return SUCCESS;
+		return "dspusersuccess";
 	}
 	
 	/**
@@ -244,6 +262,15 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	public void setPubclientService(IPubclientService pubclientService) {
 		this.pubclientService = pubclientService;
 	}
+	
+	public IDspuserService getDspuserService() {
+		return dspuserService;
+	}
+	@Resource
+	public void setDspuserService(IDspuserService dspuserService) {
+		this.dspuserService = dspuserService;
+	}
+
 	// 获得HttpServletResponse对象
     public void setServletResponse(HttpServletResponse response)
     {

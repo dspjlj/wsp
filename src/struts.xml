@@ -32,13 +32,13 @@
 		<action name="dspuserAction" class="dspuserAction">
 			<result name="loginSucc">/back/main1.jsp</result>
 			
-			<result name="success">/back/op_success.jsp</result>
-			<result name="opfail">/back/op_failure.jsp</result>
+			<result name="success">/back/op_dspuser_success.jsp</result>
+			<result name="opfail">/back/op_dspuser_failure.jsp</result>
 			
 			<result name="list">/back/dspuser_manage.jsp</result>
 
 			<result name="load">/back/dspuser_update.jsp</result>
-			<result name="invalid.token">/back/op_error.jsp</result>
+			<result name="invalid.token">/back/op_dspuser_error.jsp</result>
 			<interceptor-ref name="mystack" />
             <interceptor-ref name="token" >
             	<param name="includeMethods">add</param>
@@ -65,6 +65,7 @@
 		<action name="pubclientAction" class="pubclientAction">
 			<result name="success">/back/op_success.jsp</result>
 			
+			<result name="add">/back/pubclient_add.jsp</result>
 			<result name="list">/back/pubclient_manage.jsp</result>
 			
 			<result name="load">/back/pubclient_update.jsp</result>
@@ -73,6 +74,10 @@
 			<result name="loadappauth">/back/pubclient_app_auth.jsp</result>
 			
 			<result name="opfail">/back/op_failure.jsp</result>
+			
+			<result name="dspusersuccess">/back/op_dspuser_success.jsp</result>
+			<result name="opdspuserfail">/back/op_dspuser_failure.jsp</result>
+			
 			<result name="invalid.token">/back/op_error.jsp</result>
 			<interceptor-ref name="mystack" />
             <interceptor-ref name="token" >

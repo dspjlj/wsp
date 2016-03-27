@@ -152,7 +152,7 @@ function changePreImg(myimage,myfile) {
 									<div class="control-group">
 										<label for="title" class="control-label">轮播1链接：</label>
 										<div class="controls">
-											<s:textfield name="screenimg.linkurl1" cssClass="input-xxlarge" required="required"></s:textfield>
+											<s:textfield name="screenimg.linkurl1" cssClass="input-xxlarge"></s:textfield>
 											<br>
 											<span class="help-inline">示例:http://www.di3p.com</span>
 										</div>
@@ -172,7 +172,7 @@ function changePreImg(myimage,myfile) {
 									<div class="control-group">
 										<label for="title" class="control-label">轮播2链接：</label>
 										<div class="controls">
-											<s:textfield name="screenimg.linkurl2" cssClass="input-xxlarge" required="required"></s:textfield>
+											<s:textfield name="screenimg.linkurl2" cssClass="input-xxlarge" ></s:textfield>
 										</div>
 									</div>
 									
@@ -190,7 +190,7 @@ function changePreImg(myimage,myfile) {
 									<div class="control-group">
 										<label for="title" class="control-label">轮播3链接：</label>
 										<div class="controls">
-											<s:textfield name="screenimg.linkurl3" cssClass="input-xxlarge" required="required"></s:textfield>
+											<s:textfield name="screenimg.linkurl3" cssClass="input-xxlarge" ></s:textfield>
 										</div>
 									</div>
 									
@@ -209,7 +209,7 @@ function changePreImg(myimage,myfile) {
 									<div class="control-group">
 										<label for="title" class="control-label">轮播4链接：</label>
 										<div class="controls">
-											<s:textfield name="screenimg.linkurl4" cssClass="input-xxlarge" required="required"></s:textfield>
+											<s:textfield name="screenimg.linkurl4" cssClass="input-xxlarge"></s:textfield>
 										</div>
 									</div>
 									
@@ -228,7 +228,7 @@ function changePreImg(myimage,myfile) {
 									<div class="control-group">
 										<label for="title" class="control-label">轮播5链接：</label>
 										<div class="controls">
-											<s:textfield name="screenimg.linkurl5" cssClass="input-xxlarge" required="required"></s:textfield>
+											<s:textfield name="screenimg.linkurl5" cssClass="input-xxlarge"></s:textfield>
 										</div>
 									</div>
 									

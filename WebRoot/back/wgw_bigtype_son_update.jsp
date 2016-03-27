@@ -149,7 +149,7 @@ function changePreImg() {
                                      				<input type="radio" name="bigtype.isend" value="1"/>有
                                      	&nbsp;&nbsp;<input type="radio" name="bigtype.isend" value="0" checked="checked"/>没有
                                      </s:else>
-                                     
+                                     &nbsp;&nbsp;*说明：若该类别下是文章列表，请选择"没有"子类别
                                     </div>
                                 </div>
                                 <div class="control-group">

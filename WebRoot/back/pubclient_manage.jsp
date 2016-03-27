@@ -54,20 +54,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="box-content nozypadding">
               <div class="row-fluid">
                 <div class="span8 control-group">
-                  <a class="btn" href="pubclient_add.jsp"> <i class="icon-plus"></i>
-                    添加公众帐号
-                  </a>
+	                <s:if test="%{#session.dspuser.pubnum!=0}">
+	                  <a class="btn" href="pubclientAction!goToAdd"> <i class="icon-plus"></i>
+	                    添加公众帐号
+	                  </a>
+	                 </s:if>
                   <a href="http://wpa.qq.com/msgrd?v=3&uin=793495478&site=qq&menu=yes" target="_blank" class="btn btn-warning" style="cursor:pointer">在线咨询</a>
                 </div>
 
               </div>
 
               <div class="row-fluid dataTables_wrapper">
+              <s:if test="%{#session.dspuser.pubnum!=0}">
                 <div class="alert"> <strong>温馨提示</strong>
-                  ：您还有0个微信公众号配额，请珍惜使用名额！
+                  ：您还有${dspuser.pubnum}个微信公众号配额，请珍惜使用名额！
                   <span class="line">第三屏助手QQ：793495478&nbsp;&nbsp;&nbsp;全国招商加盟火热进行中</span>
                 </div>
-                
+                </s:if>
                   <table id="listTable" class="table table-hover table-nomargin table-bordered usertable dataTable">
                     <thead>
                       <tr>

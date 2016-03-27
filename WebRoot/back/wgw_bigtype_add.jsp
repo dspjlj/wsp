@@ -57,6 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <label class="control-label" for="title">有无子类别：</label>
                                     <div class="controls">
                                      <input type="radio" name="bigtype.isend" value="1" checked="checked"/>有&nbsp;&nbsp;<input type="radio" name="bigtype.isend" value="0"/>没有
+                                     &nbsp;&nbsp;*说明：若该类别下是文章列表，请选择"没有"子类别
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -99,9 +100,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
 
                                 <div class="control-group">
+                                    <label class="control-label" for="title">是否启用：</label>
+                                    <div class="controls">
+                                     <input type="radio" name="bigtype.ison" value="1" checked="checked"/>启用&nbsp;&nbsp;<input type="radio" name="bigtype.ison" value="0"/>不启用
+                                    </div>
+                                </div>
+                                
+                                <div class="control-group">
                                     <label class="control-label" for="title">是否显示：</label>
                                     <div class="controls">
-                                     <input type="radio" name="bigtype.ison" value="1" checked="checked"/>显示&nbsp;&nbsp;<input type="radio" name="bigtype.ison" value="0"/>不显示
+                                     <input type="radio" name="bigtype.isshow" value="1" checked="checked"/>显示&nbsp;&nbsp;<input type="radio" name="bigtype.isshow" value="0"/>不显示
+                                    &nbsp;&nbsp;*说明：若该类别需作为头版文章类别，请选择"不显示"；并选择"没有"子分类
                                     </div>
                                 </div>
 
