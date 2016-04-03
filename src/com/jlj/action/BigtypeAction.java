@@ -72,6 +72,19 @@ SessionAware,ServletResponseAware,ServletRequestAware {
 	private int bigtypeid;
 	
 	//=========前台类别=================================================
+	/**
+	 * 前台获取显示大类别
+	 */
+	public String frontShowBigtypes(){
+		List<Bigtype> _bigtypes = bigtypeService.queryFrontBigtypesByCondition(frontpa);
+		System.out.println("jlj-bigtype-size:"+_bigtypes.size()+","+frontpa);
+		request.put("bigtypes", _bigtypes);
+		return NONE;
+	}
+	
+	/**
+	 * 后台大类别
+	 */
 	public String frontBigtypes(){
 		wgw = wgwService.loadById(wgwid);
 		if(wgw==null){

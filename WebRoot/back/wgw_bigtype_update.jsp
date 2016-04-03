@@ -157,7 +157,7 @@ function changePreImg() {
                                      <s:else>
                                      	<input type="radio" name="bigtype.isend" value="1"/>有&nbsp;&nbsp;<input type="radio" name="bigtype.isend" value="0" checked="checked"/>没有
                                      </s:else>
-                                     &nbsp;&nbsp;*说明：若该类别下是文章列表，请选择"没有"子类别
+                                     &nbsp;&nbsp;*温馨提示：若该类别下是文章列表/头版文章，请选择"没有"子类别
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -197,25 +197,25 @@ function changePreImg() {
                                     <div class="controls">
                                     <s:if test="bigtype.ttype==0">
                                     				<input type="radio" name="bigtype.ttype" value="0" onclick="isShowOneLink(this.value)" checked="checked"/>首页类别
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)"/>文章/链接地址
+                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)"/>头版文章/网页地址
                                         &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="2" onclick="isShowOneLink(this.value)"/>一键导航
                                         &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="3" onclick="isShowOneLink(this.value)"/>一键预约
                                     </s:if>
                                     <s:elseif test="bigtype.ttype==1">
                                     				<input type="radio" name="bigtype.ttype" value="0" onclick="isShowOneLink(this.value)"/>首页类别
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)" checked="checked">文章/链接地址
+                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)" checked="checked">头版文章/网页地址
                                         &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="2" onclick="isShowOneLink(this.value)"/>一键导航
                                         &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="3" onclick="isShowOneLink(this.value)"/>一键预约
                                     </s:elseif>
                                     <s:elseif test="bigtype.ttype==2">
                                     				<input type="radio" name="bigtype.ttype" value="0" onclick="isShowOneLink(this.value)"/>首页类别
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)"/>文章/链接地址
+                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)"/>头版文章/网页地址
                                         &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="2" onclick="isShowOneLink(this.value)" checked="checked"/>一键导航
                                         &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="3" onclick="isShowOneLink(this.value)"/>一键预约
                                     </s:elseif>
                                     <s:elseif test="bigtype.ttype==3">
                                     				<input type="radio" name="bigtype.ttype" value="0" onclick="isShowOneLink(this.value)"/>首页类别
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)"/>文章/链接地址
+                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)"/>头版文章/网页地址
                                         &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="2" onclick="isShowOneLink(this.value)"/>一键导航
                                         &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="3" onclick="isShowOneLink(this.value)" checked="checked"/>一键预约
                                     </s:elseif>
@@ -225,7 +225,7 @@ function changePreImg() {
                                 </div>
 
                                 <div class="control-group" id="onelink">
-                                    <label class="control-label" for="title">一键链接：</label>
+                                    <label class="control-label" for="title">链接地址：</label>
                                     <div class="controls">
                                     	<s:textfield name="bigtype.linkurl" id="onelinkurl" cssClass="input-xxlarge"></s:textfield>
 										<span class="maroon">*</span>
@@ -246,7 +246,7 @@ function changePreImg() {
                                 </div>
 
 								<div class="control-group">
-                                    <label class="control-label" for="title">是否显示：</label>
+                                    <label class="control-label" for="title">是否在首页显示：</label>
                                     <div class="controls">
                                     <s:if test="bigtype.isshow==1">
                                     	<input type="radio" name="bigtype.isshow" value="1" checked="checked"/>显示&nbsp;&nbsp;<input type="radio" name="bigtype.isshow" value="0"/>不显示
@@ -254,7 +254,7 @@ function changePreImg() {
                                     <s:else>
                                     	<input type="radio" name="bigtype.isshow" value="1"/>显示&nbsp;&nbsp;<input type="radio" name="bigtype.isshow" value="0" checked="checked"/>不显示
                                     </s:else>
-                                     &nbsp;&nbsp;*说明：若该类别需作为头版文章类别，请选择"不显示"；并选择"没有"子分类
+                                     &nbsp;&nbsp;
                                     </div>
                                 </div>
 

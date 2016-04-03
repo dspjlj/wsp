@@ -50,7 +50,7 @@
 	            <ul class="slider-list">
 	            	<s:iterator value="#request.screenimg.screenimgvos" var="screenimgvo">
 	            		<li>
-			                <a href=<s:if test="linkurl!=null&&linkurl!=''"><s:property value="linkurl"/></s:if> >
+			                <a href='<s:if test="linkurl!=null&&linkurl!=''"><s:property value="linkurl"/></s:if><s:else>#</s:else>' >
 			                  <img alt="轮播图片1" src='<%=basePath %><s:property value="imageurl"/>' />
 			                </a>
 			            </li>

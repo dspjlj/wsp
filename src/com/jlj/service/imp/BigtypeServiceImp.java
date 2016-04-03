@@ -149,6 +149,17 @@ public class BigtypeServiceImp implements IBigtypeService{
 		Object[] p= new Object[]{bigtypeid};
 		return bigtypeDao.getObjectsByCondition(queryString, p);
 	}
+	/**
+	 * 文章页展示分类
+	 * 是否启用ison=1
+	 * 是否显示
+	 * 是首页类别ttype=0
+	 */
+	public List<Bigtype> queryFrontBigtypesByCondition(String frontpa) {
+		String queryString = "from Bigtype mo where mo.ison = 1 and mo.ttype = 0 and mo.publicaccount =? order by mo.orderid asc ";
+		Object[] p= new Object[]{frontpa};
+		return bigtypeDao.getObjectsByCondition(queryString, p);
+	}
 	
 	
 }

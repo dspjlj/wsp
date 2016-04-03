@@ -68,7 +68,7 @@
                                 <table  class="table table-bordered table-hover dataTable">
                                     <thead>
                                         <tr>
-                                            <th >分类名称</th>
+                                            <th >分类名称(/头版文章/网页地址)</th>
                                             <th  class="norightborder">操作</th>
                                         </tr>
                                     </thead>

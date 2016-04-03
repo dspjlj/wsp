@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <label class="control-label" for="title">有无子类别：</label>
                                     <div class="controls">
                                      <input type="radio" name="bigtype.isend" value="1" checked="checked"/>有&nbsp;&nbsp;<input type="radio" name="bigtype.isend" value="0"/>没有
-                                     &nbsp;&nbsp;*说明：若该类别下是文章列表，请选择"没有"子类别
+                                     &nbsp;&nbsp;*温馨提示：若该类别下是文章列表/头版文章，请选择"没有"子类别
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -84,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <label class="control-label" for="title">类型作用：</label>
                                     <div class="controls">
                                         			<input type="radio" name="bigtype.ttype" value="0" checked="checked" onclick="isShowOneLink(this.value)"/>首页类别
-                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)"/>文章/链接地址
+                                        &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="1" onclick="isShowOneLink(this.value)"/>头版文章/网页地址
                                         &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="2" onclick="isShowOneLink(this.value)"/>一键导航
                                         &nbsp;&nbsp;<input type="radio" name="bigtype.ttype" value="3" onclick="isShowOneLink(this.value)"/>一键预约
                                     
@@ -92,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
 
                                 <div class="control-group" id="onelink" style="display: none;">
-                                    <label class="control-label" for="title">一键链接：</label>
+                                    <label class="control-label" for="title">链接地址：</label>
                                     <div class="controls">
                                     	<s:textfield name="bigtype.linkurl" id="onelinkurl" value="http://" cssClass="input-xxlarge"></s:textfield>
 										<span class="maroon">*</span>
@@ -107,10 +107,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
                                 
                                 <div class="control-group">
-                                    <label class="control-label" for="title">是否显示：</label>
+                                    <label class="control-label" for="title">是否在首页显示：</label>
                                     <div class="controls">
                                      <input type="radio" name="bigtype.isshow" value="1" checked="checked"/>显示&nbsp;&nbsp;<input type="radio" name="bigtype.isshow" value="0"/>不显示
-                                    &nbsp;&nbsp;*说明：若该类别需作为头版文章类别，请选择"不显示"；并选择"没有"子分类
+                                    &nbsp;&nbsp;
                                     </div>
                                 </div>
 
